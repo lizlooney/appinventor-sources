@@ -1,0 +1,17 @@
+// -*- mode: java; c-basic-offset: 2; -*-
+// Copyright 2011-2016 MIT, All rights reserved
+// Released under the Apache License, Version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0
+
+package com.google.appinventor.common.version;
+
+/**
+ * Class providing the version code and version name of the FtcDriverStation.apk.
+ */
+public final class FtcConstants {
+  public static final String DEFAULT_VERSION_CODE = "@ftc.version.code@";
+  public static final String DEFAULT_VERSION_NAME = "@ftc.version.name@";
+
+  private FtcConstants() {
+  }
+}

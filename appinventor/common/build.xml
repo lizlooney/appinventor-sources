@@ -101,12 +101,65 @@
     </ai.dojunit>
   </target>
 
+  <target name="FtcConstantsJava"
+          description="Generate FtcConstants.java"
+          depends="init">
+    <!-- We extract two pieces of info from FtcDriverStation.apk: versionCode and versionName. -->
+    <mkdir dir="${local.build.dir}/tmp/"/>
+    <exec executable="${lib.dir}/android/tools/linux/aapt" osfamily="unix"
+          output="${local.build.dir}/tmp/FtcDriverStation.dump">
+      <arg line = "dump badging ${lib.dir}/ftc/FtcDriverStation.apk" />
+    </exec>
+    <exec executable="${lib.dir}/android/tools/windows/aapt" osfamily="windows"
+          output="${local.build.dir}/tmp/FtcDriverStation.dump">
+      <arg line = "dump badging ${lib.dir}/ftc/FtcDriverStation.apk" />
+    </exec>
+    <exec executable="${lib.dir}/android/tools/mac/aapt" osfamily="mac"
+          output="${local.build.dir}/tmp/FtcDriverStation.dump">
+      <arg line = "dump badging ${lib.dir}/ftc/FtcDriverStation.apk" />
+    </exec>
+    <loadfile srcfile="${local.build.dir}/tmp/FtcDriverStation.dump"
+              property="ftc.version.code">
+      <filterchain>
+        <linecontains>
+          <contains value="versionCode"/>
+        </linecontains>
+        <tokenfilter>
+          <replaceregex
+              pattern=".*versionCode\=\'([^\']*)\'.*"
+              replace="\1"/>
+        </tokenfilter>
+        <striplinebreaks/>
+      </filterchain>
+    </loadfile>
+    <echo message="xxx${ftc.version.code}xxx" />
+    <loadfile srcfile="${local.build.dir}/tmp/FtcDriverStation.dump"
+              property="ftc.version.name">
+      <filterchain>
+        <linecontains>
+          <contains value="versionName"/>
+        </linecontains>
+        <tokenfilter>
+          <replaceregex
+              pattern=".*versionName\=\'([^\']*)\'.*"
+              replace="\1"/>
+        </tokenfilter>
+        <striplinebreaks/>
+      </filterchain>
+    </loadfile>
+    <echo message="xxx${ftc.version.name}xxx" />
+    <filter token="ftc.version.code" value="${ftc.version.code}" />
+    <filter token="ftc.version.name" value="${ftc.version.name}" />
+    <mkdir dir="${local.build.dir}/src/${common.pkg}/version/"/>
+    <copy tofile="${local.build.dir}/src/${common.pkg}/version/FtcConstants.java" file="FtcConstants.template" filtering="true" />
+  </target>
+
   <!-- =====================================================================
        CommonVersion: library containing version classes.
        ===================================================================== -->
   <target name="CommonVersion"
           description="Generate library containing version classes"
-          depends="init">
+          depends="init,FtcConstantsJava">
     <property name="CommonVersion-class.dir" location="${class.dir}/CommonVersion" />
     <mkdir dir="${CommonVersion-class.dir}" />
 
