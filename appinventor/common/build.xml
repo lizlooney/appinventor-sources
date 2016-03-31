@@ -101,10 +101,24 @@
     </ai.dojunit>
   </target>
 
+  <target name="CheckFtcConstantsJava"
+          depends="init">
+    <uptodate property="FtcConstantsJava.uptodate" targetfile="${local.build.dir}/src/${common.pkg}/version/FtcConstants.java">
+      <srcfiles dir="${lib.dir}/ftc" includes="FtcDriverStation.apk" />
+    </uptodate>
+  </target>
+
   <target name="FtcConstantsJava"
           description="Generate FtcConstants.java"
-          depends="init">
-    <!-- We extract two pieces of info from FtcDriverStation.apk: versionCode and versionName. -->
+          depends="init,CheckFtcConstantsJava"
+          unless="FtcConstantsJava.uptodate">
+    <!-- Extract versionCode and versionName from FtcDriverStation.apk -->
+    <mkdir dir="${local.build.dir}/src/${common.pkg}/version/"/>
+    <delete>
+      <fileset dir="${local.build.dir}/src/${common.pkg}/version/">
+        <include name="FtcConstants.java"/>
+      </fileset>
+    </delete>
     <mkdir dir="${local.build.dir}/tmp/"/>
     <exec executable="${lib.dir}/android/tools/linux/aapt" osfamily="unix"
           output="${local.build.dir}/tmp/FtcDriverStation.dump">
@@ -132,7 +146,6 @@
         <striplinebreaks/>
       </filterchain>
     </loadfile>
-    <echo message="xxx${ftc.version.code}xxx" />
     <loadfile srcfile="${local.build.dir}/tmp/FtcDriverStation.dump"
               property="ftc.version.name">
       <filterchain>
@@ -147,11 +160,10 @@
         <striplinebreaks/>
       </filterchain>
     </loadfile>
-    <echo message="xxx${ftc.version.name}xxx" />
     <filter token="ftc.version.code" value="${ftc.version.code}" />
     <filter token="ftc.version.name" value="${ftc.version.name}" />
-    <mkdir dir="${local.build.dir}/src/${common.pkg}/version/"/>
-    <copy tofile="${local.build.dir}/src/${common.pkg}/version/FtcConstants.java" file="FtcConstants.template" filtering="true" />
+    <copy tofile="${local.build.dir}/src/${common.pkg}/version/FtcConstants.java"
+          file="FtcConstants.template" filtering="true" />
   </target>
 
   <!-- =====================================================================
