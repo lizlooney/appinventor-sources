@@ -17,6 +17,7 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cController.I2cPortReadyCallback;
 import com.qualcomm.robotcore.hardware.I2cDevice;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
@@ -88,7 +89,7 @@ public final class FtcI2cDeviceSynch extends FtcHardwareDevice {
       }
       i2cDeviceSynch = null;
       if (i2cDevice != null) {
-        i2cDeviceSynchImpl = new I2cDeviceSynchImpl(i2cDevice, i2cAddress, false);
+        i2cDeviceSynchImpl = new I2cDeviceSynchImpl(i2cDevice, I2cAddr.create8bit(i2cAddress), false);
         i2cDeviceSynch = i2cDeviceSynchImpl;
         i2cDeviceSynch.engage();
       }
@@ -418,7 +419,7 @@ public final class FtcI2cDeviceSynch extends FtcHardwareDevice {
     checkHardwareDevice();
     if (i2cDeviceSynch != null) {
       try {
-        i2cDeviceSynch.setI2cAddr(newAddress);
+        i2cDeviceSynch.setI2cAddr(I2cAddr.create8bit(newAddress));
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "I2cAddress",
@@ -437,7 +438,7 @@ public final class FtcI2cDeviceSynch extends FtcHardwareDevice {
     checkHardwareDevice();
     if (i2cDeviceSynch != null) {
       try {
-        return i2cDeviceSynch.getI2cAddr();
+        return i2cDeviceSynch.getI2cAddr().get8Bit();
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "I2cAddress",

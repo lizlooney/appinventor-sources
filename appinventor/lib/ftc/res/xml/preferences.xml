@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
+
+preferences.xml in FtcRobotController
+
 Copyright (c) 2014, 2015 Qualcomm Technologies Inc
 
 All rights reserved.
@@ -33,20 +36,13 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!--
-Modified for App Inventor by Liz Looney
-Copyright 2011-2015 MIT, All rights reserved
-Released under the Apache License, Version 2.0
-http://www.apache.org/licenses/LICENSE-2.0
--->
-
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
   <PreferenceCategory
-    android:title="@string/AI_pref_change_wifi_channel">
+    android:title="@string/pref_change_wifi_channel">
 
     <PreferenceScreen
-      android:title="@string/AI_pref_change_wifi_channel"
+      android:title="@string/pref_change_wifi_channel"
       android:key="@string/pref_launch_settings">
       <intent
         android:action="com.qualcomm.ftccommon.FtcWifiChannelSelectorActivity.intent.action.Launch"
@@ -56,24 +52,14 @@ http://www.apache.org/licenses/LICENSE-2.0
   </PreferenceCategory>
 
   <PreferenceCategory
-    android:title="@string/AI_pref_configure_robot_title">
-
+    android:title="@string/pref_configure_robot_title">
     <PreferenceScreen
-      android:title="@string/AI_configure_activity"
-      android:key="@string/pref_launch_configure">
+        android:title="@string/pref_view_logs"
+        android:key="@string/pref_launch_viewlogs">
       <intent
-        android:action="com.qualcomm.ftccommon.configuration.FtcLoadFileActivity.intent.action.Launch"
-        android:targetPackage="com.qualcomm.ftccommon"
-        android:targetClass="com.qualcomm.ftccommon.configuration.FtcLoadFileActivity" />
-    </PreferenceScreen>
-
-    <PreferenceScreen
-      android:title="@string/title_activity_autoconfigure"
-      android:key="@string/pref_launch_autoconfigure">
-      <intent
-        android:action="com.qualcomm.ftccommon.configuration.FtcAutoconfigureActivity.intent.action.Launch"
-        android:targetPackage="com.qualcomm.ftccommon"
-        android:targetClass="com.qualcomm.ftccommon.configuration.AutoConfigureActivity" />
+        android:action="com.qualcomm.ftccommon.ViewLogsActivity.intent.action.Launch"
+        android:targetClass="com.qualcomm.ftccommon.ViewLogsActivity" />
     </PreferenceScreen>
   </PreferenceCategory>
+
 </PreferenceScreen>

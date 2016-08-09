@@ -20,6 +20,7 @@ import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro.HeadingMode;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 
 /**
  * A component for a gyro sensor of an FTC robot.
@@ -169,19 +170,19 @@ public final class FtcGyroSensor extends FtcHardwareDevice {
   }
 
   /**
-   * Rotation property getter.
+   * RotationFraction property getter.
    */
-  @SimpleProperty(description = "The rotation of this sensor. " +
-      "Not all gyro sensors support this feature.",
+  @SimpleProperty(description = "The rotation of this sensor expressed as a fraction of the " +
+      "maximum possible reportable rotation. Not all gyro sensors support this feature.",
       category = PropertyCategory.BEHAVIOR)
-  public double Rotation() {
+  public double RotationFraction() {
     checkHardwareDevice();
     if (gyroSensor != null) {
       try {
-        return gyroSensor.getRotation();
+        return gyroSensor.getRotationFraction();
       } catch (Throwable e) {
         e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "Rotation",
+        form.dispatchErrorOccurredEvent(this, "RotationFraction",
             ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
     }
@@ -312,7 +313,7 @@ public final class FtcGyroSensor extends FtcHardwareDevice {
     if (gyroSensor != null) {
       try {
         if (gyroSensor instanceof ModernRoboticsI2cGyro) {
-          ((ModernRoboticsI2cGyro) gyroSensor).setI2cAddress(newAddress);
+          ((ModernRoboticsI2cGyro) gyroSensor).setI2cAddress(I2cAddr.create8bit(newAddress));
         }
       } catch (Throwable e) {
         e.printStackTrace();
@@ -333,7 +334,7 @@ public final class FtcGyroSensor extends FtcHardwareDevice {
     if (gyroSensor != null) {
       try {
         if (gyroSensor instanceof ModernRoboticsI2cGyro) {
-          return ((ModernRoboticsI2cGyro) gyroSensor).getI2cAddress();
+          return ((ModernRoboticsI2cGyro) gyroSensor).getI2cAddress().get8Bit();
         }
       } catch (Throwable e) {
         e.printStackTrace();

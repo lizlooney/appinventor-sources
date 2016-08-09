@@ -517,7 +517,7 @@ public final class Compiler {
         out.write("    </activity>\n");
         out.write("    <activity\n");
         out.write("      android:name=\"com.qualcomm.ftccommon.configuration.FtcLoadFileActivity\"\n");
-        out.write("      android:label=\"@string/title_activity_load\"\n");
+        out.write("      android:label=\"@string/configure_activity\"\n");
         out.write("      android:configChanges=\"orientation|screenSize\" >\n");
         out.write("      <intent-filter>\n");
         out.write("        <action android:name=\"com.qualcomm.ftccommon.configuration.FtcLoadFileActivity.intent.action.Launch\" />\n");
@@ -534,8 +534,21 @@ public final class Compiler {
         out.write("      </intent-filter>\n");
         out.write("    </activity>\n");
         out.write("    <activity\n");
+        out.write("      android:name=\"com.qualcomm.ftccommon.configuration.ConfigureFromTemplateActivity\"\n");
+        out.write("      android:label=\"@string/title_activity_configfromtemplate\"\n");
+        out.write("      android:configChanges=\"orientation|screenSize\" >\n");
+        out.write("      <intent-filter>\n");
+        out.write("        <action android:name=\"com.qualcomm.ftccommon.configuration.ConfigureFromTemplateActivity.intent.action.Launch\" />\n");
+        out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+        out.write("      </intent-filter>\n");
+        out.write("    </activity>\n");
+        out.write("    <activity\n");
         out.write("      android:name=\"com.qualcomm.ftccommon.configuration.FtcConfigurationActivity\"\n");
-        out.write("      android:label=\"@string/title_activity_configuration\"\n");
+        out.write("      android:label=\"@string/AI_title_ftc_configuration_activity\"\n");
+        out.write("      android:configChanges=\"orientation|screenSize\" />\n");
+        out.write("    <activity\n");
+        out.write("      android:name=\"com.qualcomm.ftccommon.configuration.FtcNewFileActivity\"\n");
+        out.write("      android:label=\"@string/AI_title_ftc_new_file_activity\"\n");
         out.write("      android:configChanges=\"orientation|screenSize\" />\n");
         out.write("    <activity\n");
         out.write("      android:name=\"com.qualcomm.ftccommon.ConfigWifiDirectActivity\"\n");
@@ -566,15 +579,32 @@ public final class Compiler {
         out.write("      </intent-filter>\n");
         out.write("    </activity>\n");
         out.write("    <activity\n");
+        out.write("      android:name=\".configuration.EditSwapUsbDevices\"\n");
+        out.write("      android:configChanges=\"orientation|screenSize\"\n");
+        out.write("      android:label=\"@string/edit_swap_devices_activity\"\n");
+        out.write("      android:windowSoftInputMode=\"stateHidden\" >\n");
+        out.write("    </activity>\n");
         out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditMotorControllerActivity\"\n");
         out.write("      android:configChanges=\"orientation|screenSize\"\n");
         out.write("      android:label=\"@string/edit_motor_controller_activity\"\n");
         out.write("      android:windowSoftInputMode=\"stateHidden\" />\n");
         out.write("    <activity\n");
+        out.write("      android:name=\".configuration.EditMotorListActivity\"\n");
+        out.write("      android:configChanges=\"orientation|screenSize\"\n");
+        out.write("      android:label=\"@string/edit_motor_controller_activity\"\n");
+        out.write("      android:windowSoftInputMode=\"stateHidden\" >\n");
+        out.write("    </activity>\n");
+        out.write("    <activity\n");
         out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditServoControllerActivity\"\n");
         out.write("      android:configChanges=\"orientation|screenSize\"\n");
         out.write("      android:label=\"@string/edit_servo_controller_activity\"\n");
         out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\" />\n");
+        out.write("    <activity\n");
+        out.write("      android:name=\".configuration.EditServoListActivity\"\n");
+        out.write("      android:configChanges=\"orientation|screenSize\"\n");
+        out.write("      android:label=\"@string/edit_servo_controller_activity\"\n");
+        out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\" >\n");
+        out.write("    </activity>\n");
         out.write("    <activity\n");
         out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditLegacyModuleControllerActivity\"\n");
         out.write("      android:configChanges=\"orientation|screenSize\"\n");
@@ -618,6 +648,33 @@ public final class Compiler {
         out.write("    <service\n");
         out.write("      android:name=\"com.qualcomm.ftccommon.FtcRobotControllerService\"\n");
         out.write("      android:enabled=\"true\" />\n");
+        out.write("    <activity\n");
+        out.write("      android:name=\"com.google.blocks.ftcrobotcontroller.ProgrammingModeActivity\"\n");
+        out.write("      android:configChanges=\"orientation|screenSize\"\n");
+        out.write("      android:label=\"@string/programming_mode_activity\" >\n");
+        out.write("      <intent-filter>\n");
+        out.write("        <action android:name=\"com.google.blocks.ftcrobotcontroller.ProgrammingModeActivity.intent.action.Launch\" />\n");
+        out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+        out.write("      </intent-filter>\n");
+        out.write("    </activity>\n");
+        out.write("    <activity\n");
+        out.write("      android:name=\"com.google.blocks.ftcdriverstation.RemoteProgrammingModeActivity\"\n");
+        out.write("      android:configChanges=\"orientation|screenSize\"\n");
+        out.write("      android:label=\"@string/programming_mode_activity\" >\n");
+        out.write("      <intent-filter>\n");
+        out.write("        <action android:name=\"com.google.blocks.ftcdriverstation.RemoteProgrammingModeActivity.intent.action.Launch\" />\n");
+        out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+        out.write("      </intent-filter>\n");
+        out.write("    </activity>\n");
+        out.write("    <activity\n");
+        out.write("      android:name=\"com.google.blocks.ftcrobotcontroller.BlocksActivity\"\n");
+        out.write("      android:configChanges=\"orientation|screenSize\"\n");
+        out.write("      android:label=\"@string/blocks_activity\" >\n");
+        out.write("      <intent-filter>\n");
+        out.write("        <action android:name=\"com.google.blocks.ftcrobotcontroller.BlocksActivity.intent.action.Launch\" />\n");
+        out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+        out.write("      </intent-filter>\n");
+        out.write("    </activity>\n");
       }
 
       // BroadcastReceiver for Texting Component
@@ -708,6 +765,16 @@ public final class Compiler {
       if (!compiler.createFtcResources(resDir)) {
         return false;
       }
+
+      // Copy assets used in FTC libraries and components.
+      if (!compiler.createFtcAssets(project.getAssetsDirectory())) {
+        return false;
+      }
+
+      // Copy native libraries used in FTC libraries and components.
+      if (!compiler.createFtcNativeLibs(buildDir)) {
+        return false;
+      }
     }
 
     // Determine android permissions.
@@ -751,9 +818,11 @@ public final class Compiler {
       out.println("________Generating R.java files");
       File genDir = createDirectory(buildDir, "gen");
       String[] packages = {
+        "com.google.blocks",
         "com.qualcomm.ftccommon",
         "com.qualcomm.hardware",
-        "com.qualcomm.robotcore"
+        "com.qualcomm.robotcore",
+        "org.firstinspires.inspection"
       };
       List<String> genFileNames = Lists.newArrayListWithCapacity(packages.length);
       for (String customPackage : packages) {
@@ -871,12 +940,54 @@ public final class Compiler {
    */
   private boolean createFtcResources(File resDir) throws IOException {
     String csv = Resources.toString(
-        Compiler.class.getResource(RUNTIME_FILES_DIR + "ftcres.list"), Charsets.UTF_8);
+        Compiler.class.getResource(RUNTIME_FILES_DIR + "ftc/res.list"), Charsets.UTF_8);
     String[] ftcFiles = csv.split(",");
     for (String ftcFile : ftcFiles) {
-      out.println("________Copying " + ftcFile);
-      String source = getResource(RUNTIME_FILES_DIR + "ftcres/" + ftcFile);
+      //out.println("________Copying " + ftcFile);
+      String source = getResource(RUNTIME_FILES_DIR + "ftc/res/" + ftcFile);
       File destFile = new File(resDir, ftcFile.replace('/', File.separatorChar));
+      destFile.getParentFile().mkdirs();
+      if (!copyFile(source, destFile.getAbsolutePath())) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /*
+   * Creates the assets used by FTC.
+   */
+  private boolean createFtcAssets(File assetsDir) throws IOException {
+    createDirectory(assetsDir);
+    String csv = Resources.toString(
+        Compiler.class.getResource(RUNTIME_FILES_DIR + "ftc/assets.list"), Charsets.UTF_8);
+    String[] ftcFiles = csv.split(",");
+    for (String ftcFile : ftcFiles) {
+      //out.println("________Copying " + ftcFile);
+      String source = getResource(RUNTIME_FILES_DIR + "ftc/assets/" + ftcFile);
+      File destFile = new File(assetsDir, ftcFile.replace('/', File.separatorChar));
+      destFile.getParentFile().mkdirs();
+      if (!copyFile(source, destFile.getAbsolutePath())) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /*
+   * Creates the native libraries used by FTC.
+   */
+  private boolean createFtcNativeLibs(File buildDir) throws IOException {
+    File libsDir = createDirectory(buildDir, LIBS_DIR_NAME);
+    File apkLibDir = createDirectory(libsDir, APK_LIB_DIR_NAME); // This dir will be copied to apk.
+
+    String csv = Resources.toString(
+        Compiler.class.getResource(RUNTIME_FILES_DIR + "ftc/libs.list"), Charsets.UTF_8);
+    String[] ftcFiles = csv.split(",");
+    for (String ftcFile : ftcFiles) {
+      //out.println("________Copying " + ftcFile);
+      String source = getResource(RUNTIME_FILES_DIR + "ftc/libs/" + ftcFile);
+      File destFile = new File(apkLibDir, ftcFile.replace('/', File.separatorChar));
       destFile.getParentFile().mkdirs();
       if (!copyFile(source, destFile.getAbsolutePath())) {
         return false;

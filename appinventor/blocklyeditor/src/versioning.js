@@ -1393,7 +1393,13 @@ Blockly.Versioning.AllUpgradeMaps =
   "FtcAnalogInput": {
 
     // This is the initial version. Placeholder for future upgrades
-    1: "noUpgrade"
+    1: "noUpgrade",
+
+    2:
+      [
+        // The Value property was renamed Voltage.
+        Blockly.Versioning.changePropertyName("FtcAnalogInput", "Value", "Voltage")
+      ]
 
   }, // End FtcAnalogInput upgraders
 
@@ -1465,7 +1471,18 @@ Blockly.Versioning.AllUpgradeMaps =
       [
         // The ChannelMode property was renamed Mode.
         Blockly.Versioning.changePropertyName("FtcDcMotor", "ChannelMode", "Mode"),
-      ] 
+      ],
+
+    3:
+      [
+        // The RunMode_RUN_USING_ENCODERS property was renamed RunMode_RUN_USING_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotor", "RunMode_RUN_USING_ENCODERS", "RunMode_RUN_USING_ENCODER"),
+        // The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotor", "RunMode_RUN_WITHOUT_ENCODERS", "RunMode_RUN_WITHOUT_ENCODER"),
+        // The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotor", "RunMode_RESET_ENCODERS", "RunMode_STOP_AND_RESET_ENCODER")
+        // The SetPowerFloat method was deprecated.
+      ]
 
   }, // End FtcDcMotor upgraders
 
@@ -1473,16 +1490,34 @@ Blockly.Versioning.AllUpgradeMaps =
 
     // This is the initial version. Placeholder for future upgrades
     1: "noUpgrade",
+
     // The SetMotorPowerForGroup, SetGearRatio, GetGearRatio,
     // SetDifferentialControlLoopCoefficients, GetDifferentialControlLoopCoefficientP,
     // GetDifferentialControlLoopCoefficientI, GetDifferentialControlLoopCoefficientD functions and
     // the BatteryVoltage property were added.
     2: "noUpgrade",
+
     // The MotorControllerDeviceMode property setter was added.
     3: "noUpgrade",
+
     // The DeviceMode_READ_ONLY, DeviceMode_WRITE_ONLY, and MotorControllerDeviceMode properties
     // were deprecated.
-    4: "noUpgrade"
+    4: "noUpgrade",
+
+    5:
+      [
+        // The RunMode_RUN_USING_ENCODERS property was renamed RunMode_RUN_USING_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotorController", "RunMode_RUN_USING_ENCODERS", "RunMode_RUN_USING_ENCODER"),
+        // The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotorController", "RunMode_RUN_WITHOUT_ENCODERS", "RunMode_RUN_WITHOUT_ENCODER"),
+        // The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotorController", "RunMode_RESET_ENCODERS", "RunMode_STOP_AND_RESET_ENCODER"),
+        // The SetMotorChannelMode method was renamed SetMotorMode.
+        Blockly.Versioning.changeMethodName("FtcDcMotorController", "SetMotorChannelMode", "SetMotorMode"),
+        // The GetMotorChannelMode method was renamed GetMotorMode.
+        Blockly.Versioning.changeMethodName("FtcDcMotorController", "GetMotorChannelMode", "GetMotorMode"),
+        // The SetMotorPowerFloat method was deprecated.
+      ]
 
   }, // End FtcDcMotorController upgraders
 
@@ -1507,8 +1542,14 @@ Blockly.Versioning.AllUpgradeMaps =
         Blockly.Versioning.changeMethodName("FtcDeviceInterfaceModule", "WriteI2cPortFlagOnlyToModule", "WriteI2cPortFlagOnlyToController")
       ],
 
-      // The ClearI2cPortActionFlag method was added.
-      3: "noUpgrade"
+    // The ClearI2cPortActionFlag method was added.
+    3: "noUpgrade",
+
+    4:
+      [
+        // The GetAnalogInputValue method was renamed GetAnalogInputVoltage.
+        Blockly.Versioning.changeMethodName("FtcDeviceInterfaceModule", "GetAnalogInputValue", "GetAnalogInputVoltage"),
+      ],
 
   }, // End FtcDeviceInterfaceModule upgraders
 
@@ -1540,11 +1581,19 @@ Blockly.Versioning.AllUpgradeMaps =
 
     // This is the initial version. Placeholder for future upgrades
     1: "noUpgrade",
+
     // The Calibrate, IsCalibrating, ResetZAxisIntegrator functions and the HeadingMode_CARDINAL,
     // HeadingMode_CARTESIAN, HeadingMode, Heading, RawX, RawY, RawZ properties were added.
     2: "noUpgrade",
+
     // The MAX_NEW_I2C_ADDRESS, MIN_NEW_I2C_ADDRESS, and I2cAddress properties were added.
-    3: "noUpgrade"
+    3: "noUpgrade",
+
+    4:
+      [
+        // The Rotation property was renamed RotationFraction.
+        Blockly.Versioning.changePropertyName("FtcGyroSensor", "Rotation", "RotationFraction")
+      ]
 
   }, // End FtcGyroSensor upgraders
 
@@ -1636,15 +1685,27 @@ Blockly.Versioning.AllUpgradeMaps =
         Blockly.Versioning.changeMethodName("FtcLegacyModule", "WriteI2cPortFlagOnlyToModule", "WriteI2cPortFlagOnlyToController")
       ],
 
-      // The ClearI2cPortActionFlag method was added.
-      3: "noUpgrade"
+    // The ClearI2cPortActionFlag method was added.
+    3: "noUpgrade",
+
+    4:
+      [
+        // The ReadAnalog method was renamed ReadAnalogRaw.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "ReadAnalog", "ReadAnalogRaw")
+      ]
 
   }, // End FtcLegacyModule upgraders
 
   "FtcLightSensor": {
 
     // This is the initial version. Placeholder for future upgrades
-    1: "noUpgrade"
+    1: "noUpgrade",
+
+    2:
+      [
+        // The LightDetectedRaw property was renamed RawLightDetected.
+        Blockly.Versioning.changePropertyName("FtcLightSensor", "LightDetectedRaw", "RawLightDetected")
+      ]
 
   }, // End FtcLightSensor upgraders
 
@@ -1683,7 +1744,13 @@ Blockly.Versioning.AllUpgradeMaps =
   "FtcOpticalDistanceSensor": {
 
     // This is the initial version. Placeholder for future upgrades
-    1: "noUpgrade"
+    1: "noUpgrade",
+
+    2:
+      [
+        // The LightDetectedRaw property was renamed RawLightDetected.
+        Blockly.Versioning.changePropertyName("FtcOpticalDistanceSensor", "LightDetectedRaw", "RawLightDetected")
+      ]
 
   }, // End FtcOpticalDistanceSensor upgraders
 
@@ -1703,7 +1770,10 @@ Blockly.Versioning.AllUpgradeMaps =
     2: "noUpgrade",
 
     // The TelemetrySorted property was added.
-    3: "noUpgrade"
+    3: "noUpgrade",
+
+    // The TelemetrySorted property was deprecated.
+    4: "noUpgrade"
 
   }, // End FtcRobotController upgraders
 

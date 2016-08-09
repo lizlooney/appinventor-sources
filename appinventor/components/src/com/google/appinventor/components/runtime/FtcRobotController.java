@@ -69,11 +69,14 @@ import java.util.List;
                  "android.permission.WRITE_SETTINGS")
 @UsesLibraries(libraries =
   "FtcAnalytics.jar," +
+  "FtcBlocks.jar," +
   "FtcCommon.jar," +
   "FtcHardware.jar," +
+  "FtcInspection.jar," +
   "FtcModernRobotics.jar," +
   "FtcRobotCore.jar," +
-  "FtcWirelessP2p.jar")
+  "FtcWirelessP2p.jar," +
+  "FtcVuforia.jar")
 public final class FtcRobotController extends AndroidViewComponent implements OnInitializeListener,
     ActivityResultListener, OnNewIntentListener, OnCreateOptionsMenuListener,
     OnOptionsItemSelectedListener, OnPauseListener, OnResumeListener, OnStartListener,
@@ -267,6 +270,9 @@ public final class FtcRobotController extends AndroidViewComponent implements On
 
   @Override
   public void onDestroy() {
+    if (ftcRobotControllerActivity != null) {
+      ftcRobotControllerActivity.onDestroyAI();
+    }
     prepareToDie();
     synchronized (robotControllersLock) {
       robotControllers.remove(this);
@@ -279,6 +285,7 @@ public final class FtcRobotController extends AndroidViewComponent implements On
   public void onDelete() {
     if (ftcRobotControllerActivity != null) {
       ftcRobotControllerActivity.onStopAI();
+      ftcRobotControllerActivity.onDestroyAI();
     }
     prepareToDie();
     synchronized (robotControllersLock) {
@@ -534,41 +541,20 @@ public final class FtcRobotController extends AndroidViewComponent implements On
   /**
    * TelemetrySorted property setter.
    */
+  @Deprecated
   @SimpleProperty
   public void TelemetrySorted(boolean sorted) {
-    // Copy the activeOpMode field into a local variable so we avoid any race condition caused by
-    // another thread setting the activeOpMode field to null before we finish using it.
-    OpMode opMode = this.activeOpMode;
-    if (opMode != null) {
-      try {
-        opMode.telemetry.setSorted(sorted);
-      } catch (Throwable e) {
-        e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "TelemetrySorted",
-            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
-      }
-    }
+    // Nothing to do now.
   }
 
   /**
    * TelemetrySorted property getter.
    */
+  @Deprecated
   @SimpleProperty(description = "Whether the telemetry should be sorted by its keys on the driver station.",
       category = PropertyCategory.BEHAVIOR)
   public boolean TelemetrySorted() {
-    // Copy the activeOpMode field into a local variable so we avoid any race condition caused by
-    // another thread setting the activeOpMode field to null before we finish using it.
-    OpMode opMode = this.activeOpMode;
-    if (opMode != null) {
-      try {
-        return opMode.telemetry.isSorted();
-      } catch (Throwable e) {
-        e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "TelemetrySorted",
-            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
-      }
-    }
-    return true;
+    return false;
   }
 
   @SimpleFunction(description = "Clip number if number is less than min or greater than max")

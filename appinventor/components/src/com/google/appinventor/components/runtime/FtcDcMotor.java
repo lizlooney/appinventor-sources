@@ -16,9 +16,9 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotor.Direction;
+import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
 import com.qualcomm.robotcore.hardware.DcMotorController;
-import com.qualcomm.robotcore.hardware.DcMotorController.RunMode;
+import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
@@ -198,6 +198,7 @@ public final class FtcDcMotor extends FtcHardwareDevice {
     return false;
   }
 
+  @Deprecated
   @SimpleFunction(description = "Allow the motor to float.")
   public void SetPowerFloat() {
     checkHardwareDevice();
@@ -285,21 +286,21 @@ public final class FtcDcMotor extends FtcHardwareDevice {
   }
 
   /**
-   * RunMode_RUN_USING_ENCODERS property getter.
+   * RunMode_RUN_USING_ENCODER property getter.
    */
-  @SimpleProperty(description = "The constant for RunMode_RUN_USING_ENCODERS.",
+  @SimpleProperty(description = "The constant for RunMode_RUN_USING_ENCODER.",
       category = PropertyCategory.BEHAVIOR)
-  public String RunMode_RUN_USING_ENCODERS() {
-    return RunMode.RUN_USING_ENCODERS.toString();
+  public String RunMode_RUN_USING_ENCODER() {
+    return RunMode.RUN_USING_ENCODER.toString();
   }
 
   /**
-   * RunMode_RUN_WITHOUT_ENCODERS property getter.
+   * RunMode_RUN_WITHOUT_ENCODER property getter.
    */
-  @SimpleProperty(description = "The constant for RunMode_RUN_WITHOUT_ENCODERS.",
+  @SimpleProperty(description = "The constant for RunMode_RUN_WITHOUT_ENCODER.",
       category = PropertyCategory.BEHAVIOR)
-  public String RunMode_RUN_WITHOUT_ENCODERS() {
-    return RunMode.RUN_WITHOUT_ENCODERS.toString();
+  public String RunMode_RUN_WITHOUT_ENCODER() {
+    return RunMode.RUN_WITHOUT_ENCODER.toString();
   }
 
   /**
@@ -312,12 +313,12 @@ public final class FtcDcMotor extends FtcHardwareDevice {
   }
 
   /**
-   * RunMode_RESET_ENCODERS property getter.
+   * RunMode_STOP_AND_RESET_ENCODER property getter.
    */
-  @SimpleProperty(description = "The constant for RunMode_RESET_ENCODERS.",
+  @SimpleProperty(description = "The constant for RunMode_STOP_AND_RESET_ENCODER.",
       category = PropertyCategory.BEHAVIOR)
-  public String RunMode_RESET_ENCODERS() {
-    return RunMode.RESET_ENCODERS.toString();
+  public String RunMode_STOP_AND_RESET_ENCODER() {
+    return RunMode.STOP_AND_RESET_ENCODER.toString();
   }
 
   /**
@@ -349,8 +350,8 @@ public final class FtcDcMotor extends FtcHardwareDevice {
    * Mode property getter.
    */
   @SimpleProperty(description = "The run mode.\n" +
-      "Valid values are RunMode_RUN_USING_ENCODERS, RunMode_RUN_WITHOUT_ENCODERS, " +
-      "RunMode_RUN_TO_POSITION, or RunMode_RESET_ENCODERS.",
+      "Valid values are RunMode_RUN_USING_ENCODER, RunMode_RUN_WITHOUT_ENCODER, " +
+      "RunMode_RUN_TO_POSITION, or RunMode_STOP_AND_RESET_ENCODER.",
       category = PropertyCategory.BEHAVIOR)
   public String Mode() {
     checkHardwareDevice();

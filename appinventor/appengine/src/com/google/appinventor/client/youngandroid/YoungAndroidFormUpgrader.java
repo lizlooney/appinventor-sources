@@ -260,6 +260,9 @@ public final class YoungAndroidFormUpgrader {
       } else if (componentType.equals("Form")) {
         srcCompVersion = upgradeFormProperties(componentProperties, srcCompVersion);
 
+      } else if (componentType.equals("FtcAnalogInput")) {
+        srcCompVersion = upgradeFtcAnalogInputProperties(componentProperties, srcCompVersion);
+
       } else if (componentType.equals("FtcColorSensor")) {
         srcCompVersion = upgradeFtcColorSensorProperties(componentProperties, srcCompVersion);
 
@@ -291,11 +294,17 @@ public final class YoungAndroidFormUpgrader {
       } else if (componentType.equals("FtcLegacyModule")) {
         srcCompVersion = upgradeFtcLegacyModuleProperties(componentProperties, srcCompVersion);
 
+      } else if (componentType.equals("FtcLightSensor")) {
+        srcCompVersion = upgradeFtcLightSensorProperties(componentProperties, srcCompVersion);
+
       } else if (componentType.equals("FtcLinearOpMode")) {
         srcCompVersion = upgradeFtcLinearOpModeProperties(componentProperties, srcCompVersion);
 
       } else if (componentType.equals("FtcOpMode")) {
         srcCompVersion = upgradeFtcOpModeProperties(componentProperties, srcCompVersion);
+
+      } else if (componentType.equals("FtcOpticalDistanceSensor")) {
+        srcCompVersion = upgradeFtcOpticalDistanceSensorProperties(componentProperties, srcCompVersion);
 
       } else if (componentType.equals("FtcRobotController")) {
         srcCompVersion = upgradeFtcRobotControllerProperties(componentProperties, srcCompVersion);
@@ -955,6 +964,16 @@ public final class YoungAndroidFormUpgrader {
     return srcCompVersion;
   }
 
+  private static int upgradeFtcAnalogInputProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The Value property was renamed Voltage.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
+
   private static int upgradeFtcColorSensorProperties(Map<String, JSONValue> componentProperties,
       int srcCompVersion) {
     if (srcCompVersion < 2) {
@@ -995,6 +1014,15 @@ public final class YoungAndroidFormUpgrader {
       // No designer properties need to be modified to upgrade to version 2.
       srcCompVersion = 2;
     }
+    if (srcCompVersion < 3) {
+      // - The RunMode_RUN_USING_ENCODERS property was renamed RunMode_RUN_USING_ENCODER.
+      // - The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
+      // - The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
+      // - The SetPowerFloat method was deprecated.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+
     return srcCompVersion;
   }
 
@@ -1024,6 +1052,16 @@ public final class YoungAndroidFormUpgrader {
       // No designer properties need to be modified to upgrade to version 4.
       srcCompVersion = 4;
     }
+    if (srcCompVersion < 5) {
+      // - The RunMode_RUN_USING_ENCODERS property was renamed RunMode_RUN_USING_ENCODER.
+      // - The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
+      // - The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
+      // - The SetMotorChannelMode method was renamed SetMotorMode.
+      // - The GetMotorChannelMode method was renamed GetMotorMode.
+      // - The SetMotorPowerFloat method was deprecated.
+      // No designer properties need to be modified to upgrade to version 5.
+      srcCompVersion = 5;
+    }
     return srcCompVersion;
   }
 
@@ -1043,6 +1081,11 @@ public final class YoungAndroidFormUpgrader {
       // - The ClearI2cPortActionFlag method was added.
       // No designer properties need to be modified to upgrade to version 3.
       srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The GetAnalogInputValue method was renamed GetAnalogInputVoltage.
+      // No designer properties need to be modified to upgrade to version 4.
+      srcCompVersion = 4;
     }
     return srcCompVersion;
   }
@@ -1079,6 +1122,11 @@ public final class YoungAndroidFormUpgrader {
       // - The I2cAddress property was added
       // No designer properties need to be modified to upgrade to version 3.
       srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The Rotation property was renamed RotationFraction.
+      // No designer properties need to be modified to upgrade to version 4.
+      srcCompVersion = 4;
     }
     return srcCompVersion;
   }
@@ -1130,6 +1178,21 @@ public final class YoungAndroidFormUpgrader {
       // No designer properties need to be modified to upgrade to version 3.
       srcCompVersion = 3;
     }
+    if (srcCompVersion < 4) {
+      // - The ReadAnalog method was renamed ReadAnalogRaw.
+      // No designer properties need to be modified to upgrade to version 4.
+      srcCompVersion = 4;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcLightSensorProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The LightDetectedRaw property was renamed RawLightDetected.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
     return srcCompVersion;
   }
 
@@ -1169,6 +1232,16 @@ public final class YoungAndroidFormUpgrader {
     return srcCompVersion;
   }
 
+  private static int upgradeFtcOpticalDistanceSensorProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The LightDetectedRaw property was renamed RawLightDetected.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
+
   private static int upgradeFtcRobotControllerProperties(Map<String, JSONValue> componentProperties,
       int srcCompVersion) {
     if (srcCompVersion < 2) {
@@ -1180,6 +1253,11 @@ public final class YoungAndroidFormUpgrader {
       // - The TelemetrySorted property was added.
       // No designer properties need to be modified to upgrade to version 3.
       srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The TelemetrySorted property was deprecated.
+      // No designer properties need to be modified to upgrade to version 4.
+      srcCompVersion = 4;
     }
     return srcCompVersion;
   }

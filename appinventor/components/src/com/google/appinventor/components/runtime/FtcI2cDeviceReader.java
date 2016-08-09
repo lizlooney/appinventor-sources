@@ -14,6 +14,7 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cDevice;
 import com.qualcomm.robotcore.hardware.I2cDeviceReader;
 
@@ -50,7 +51,7 @@ public final class FtcI2cDeviceReader extends FtcHardwareDevice {
         i2cDeviceReader = null;
       }
       if (i2cDevice != null) {
-        i2cDeviceReader = new I2cDeviceReader(i2cDevice, i2cAddress, memAddress, length);
+        i2cDeviceReader = new I2cDeviceReader(i2cDevice, I2cAddr.create8bit(i2cAddress), memAddress, length);
       }
     } catch (Throwable e) {
       e.printStackTrace();

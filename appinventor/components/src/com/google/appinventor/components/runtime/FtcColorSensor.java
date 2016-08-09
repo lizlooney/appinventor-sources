@@ -17,6 +17,7 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import android.graphics.Color;
@@ -421,7 +422,7 @@ public final class FtcColorSensor extends FtcHardwareDevice {
     checkHardwareDevice();
     if (colorSensor != null) {
       try {
-        colorSensor.setI2cAddress(newAddress);
+        colorSensor.setI2cAddress(I2cAddr.create8bit(newAddress));
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "I2cAddress",
@@ -440,7 +441,7 @@ public final class FtcColorSensor extends FtcHardwareDevice {
     checkHardwareDevice();
     if (colorSensor != null) {
       try {
-        return colorSensor.getI2cAddress();
+        return colorSensor.getI2cAddress().get8Bit();
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "I2cAddress",

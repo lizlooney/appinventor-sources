@@ -20,6 +20,7 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannelController.Mode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cController.I2cPortReadyCallback;
 import com.qualcomm.robotcore.util.SerialNumber;
 
@@ -282,15 +283,15 @@ public final class FtcDeviceInterfaceModule extends FtcHardwareDevice
 
   // For AnalogInputController
 
-  @SimpleFunction(description = "Return the current ADC results from the A0-A7 channel input pins.")
-  public int GetAnalogInputValue(int channel) {
+  @SimpleFunction(description = "Return the current voltage in volts.")
+  public double GetAnalogInputVoltage(int channel) {
     checkHardwareDevice();
     if (deviceInterfaceModule != null) {
       try {
-        return deviceInterfaceModule.getAnalogInputValue(channel);
+        return deviceInterfaceModule.getAnalogInputVoltage(channel);
       } catch (Throwable e) {
         e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "GetAnalogInputValue",
+        form.dispatchErrorOccurredEvent(this, "GetAnalogInputVoltage",
             ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
     }
@@ -375,7 +376,7 @@ public final class FtcDeviceInterfaceModule extends FtcHardwareDevice
             portsRegisteredForPortReadyCallback.add(physicalPort);
           }
         }
-        deviceInterfaceModule.enableI2cReadMode(physicalPort, i2cAddress, memAddress, length);
+        deviceInterfaceModule.enableI2cReadMode(physicalPort, I2cAddr.create8bit(i2cAddress), memAddress, length);
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "EnableI2cReadMode",
@@ -396,7 +397,7 @@ public final class FtcDeviceInterfaceModule extends FtcHardwareDevice
             portsRegisteredForPortReadyCallback.add(physicalPort);
           }
         }
-        deviceInterfaceModule.enableI2cWriteMode(physicalPort, i2cAddress, memAddress, length);
+        deviceInterfaceModule.enableI2cWriteMode(physicalPort, I2cAddr.create8bit(i2cAddress), memAddress, length);
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "EnableI2cWriteMode",

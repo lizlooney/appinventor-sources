@@ -20,9 +20,8 @@ import com.google.appinventor.components.runtime.util.YailList;
 import com.qualcomm.hardware.matrix.MatrixDcMotorController;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDcMotorController;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
 import com.qualcomm.robotcore.hardware.DcMotorController;
-import com.qualcomm.robotcore.hardware.DcMotorController.DeviceMode;
-import com.qualcomm.robotcore.hardware.DcMotorController.RunMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.DifferentialControlLoopCoefficients;
@@ -53,21 +52,21 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
   }
 
   /**
-   * RunMode_RUN_USING_ENCODERS property getter.
+   * RunMode_RUN_USING_ENCODER property getter.
    */
-  @SimpleProperty(description = "The constant for RunMode_RUN_USING_ENCODERS.",
+  @SimpleProperty(description = "The constant for RunMode_RUN_USING_ENCODER.",
       category = PropertyCategory.BEHAVIOR)
-  public String RunMode_RUN_USING_ENCODERS() {
-    return RunMode.RUN_USING_ENCODERS.toString();
+  public String RunMode_RUN_USING_ENCODER() {
+    return RunMode.RUN_USING_ENCODER.toString();
   }
 
   /**
-   * RunMode_RUN_WITHOUT_ENCODERS property getter.
+   * RunMode_RUN_WITHOUT_ENCODER property getter.
    */
-  @SimpleProperty(description = "The constant for RunMode_RUN_WITHOUT_ENCODERS.",
+  @SimpleProperty(description = "The constant for RunMode_RUN_WITHOUT_ENCODER.",
       category = PropertyCategory.BEHAVIOR)
-  public String RunMode_RUN_WITHOUT_ENCODERS() {
-    return RunMode.RUN_WITHOUT_ENCODERS.toString();
+  public String RunMode_RUN_WITHOUT_ENCODER() {
+    return RunMode.RUN_WITHOUT_ENCODER.toString();
   }
 
   /**
@@ -80,12 +79,12 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
   }
 
   /**
-   * RunMode_RESET_ENCODERS property getter.
+   * RunMode_STOP_AND_RESET_ENCODER property getter.
    */
-  @SimpleProperty(description = "The constant for RunMode_RESET_ENCODERS.",
+  @SimpleProperty(description = "The constant for RunMode_STOP_AND_RESET_ENCODER.",
       category = PropertyCategory.BEHAVIOR)
-  public String RunMode_RESET_ENCODERS() {
-    return RunMode.RESET_ENCODERS.toString();
+  public String RunMode_STOP_AND_RESET_ENCODER() {
+    return RunMode.STOP_AND_RESET_ENCODER.toString();
   }
 
   /**
@@ -95,7 +94,7 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
   @SimpleProperty(description = "The constant for DeviceMode_READ_ONLY.",
       category = PropertyCategory.BEHAVIOR)
   public String DeviceMode_READ_ONLY() {
-    return DeviceMode.READ_ONLY.toString();
+    return "READ_ONLY";
   }
 
   /**
@@ -105,7 +104,7 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
   @SimpleProperty(description = "The constant for DeviceMode_WRITE_ONLY.",
       category = PropertyCategory.BEHAVIOR)
   public String DeviceMode_WRITE_ONLY() {
-    return DeviceMode.WRITE_ONLY.toString();
+    return "WRITE_ONLY";
   }
 
   /**
@@ -115,23 +114,7 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
   @SimpleProperty
   public void MotorControllerDeviceMode(String deviceMode) {
     checkHardwareDevice();
-    if (dcMotorController != null) {
-      try {
-        for (DeviceMode deviceModeValue : DeviceMode.values()) {
-          if (deviceModeValue.toString().equalsIgnoreCase(deviceMode)) {
-            dcMotorController.setMotorControllerDeviceMode(deviceModeValue);
-            return;
-          }
-        }
-
-        form.dispatchErrorOccurredEvent(this, "MotorControllerDeviceMode",
-            ErrorMessages.ERROR_FTC_INVALID_DC_MOTOR_CONTROLLER_DEVICE_MODE, deviceMode);
-      } catch (Throwable e) {
-        e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "MotorControllerDeviceMode",
-            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
-      }
-    }
+    // Nothing to do now.
   }
 
   /**
@@ -143,57 +126,45 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
       category = PropertyCategory.BEHAVIOR)
   public String MotorControllerDeviceMode() {
     checkHardwareDevice();
-    if (dcMotorController != null) {
-      try {
-        DeviceMode mode = dcMotorController.getMotorControllerDeviceMode();
-        if (mode != null) {
-          return mode.toString();
-        }
-      } catch (Throwable e) {
-        e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "MotorControllerDeviceMode",
-            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
-      }
-    }
     return "";
   }
 
-  @SimpleFunction(description = "Set the current channel mode.\n" +
+  @SimpleFunction(description = "Set the current motor mode.\n" +
       "Valid values are RunMode_RUN_USING_ENCODERS, RunMode_RUN_WITHOUT_ENCODERS, " +
       "RunMode_RUN_TO_POSITION, or RunMode_RESET_ENCODERS.")
-  public void SetMotorChannelMode(int motor, String runMode) {
+  public void SetMotorMode(int motor, String runMode) {
     checkHardwareDevice();
     if (dcMotorController != null) {
       try {
         for (RunMode runModeValue : RunMode.values()) {
           if (runModeValue.toString().equalsIgnoreCase(runMode)) {
-            dcMotorController.setMotorChannelMode(motor, runModeValue);
+            dcMotorController.setMotorMode(motor, runModeValue);
             return;
           }
         }
 
       } catch (Throwable e) {
         e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "SetMotorChannelMode",
+        form.dispatchErrorOccurredEvent(this, "SetMotorMode",
             ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
     }
   }
 
-  @SimpleFunction(description = "Get the current channel mode.\n" +
+  @SimpleFunction(description = "Get the current motor mode.\n" +
       "Valid values are RunMode_RUN_USING_ENCODERS, RunMode_RUN_WITHOUT_ENCODERS, " +
       "RunMode_RUN_TO_POSITION, or RunMode_RESET_ENCODERS.")
-  public String GetMotorChannelMode(int motor) {
+  public String GetMotorMode(int motor) {
     checkHardwareDevice();
     if (dcMotorController != null) {
       try {
-        RunMode runMode = dcMotorController.getMotorChannelMode(motor);
+        RunMode runMode = dcMotorController.getMotorMode(motor);
         if (runMode != null) {
           return runMode.toString();
         }
       } catch (Throwable e) {
         e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "GetMotorChannelMode",
+        form.dispatchErrorOccurredEvent(this, "GetMotorMode",
             ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
     }
@@ -244,18 +215,11 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
     return false;
   }
 
+  @Deprecated
   @SimpleFunction(description = "Allow motor to float.")
   public void SetMotorPowerFloat(int motor) {
     checkHardwareDevice();
-    if (dcMotorController != null) {
-      try {
-        dcMotorController.setMotorPowerFloat(motor);
-      } catch (Throwable e) {
-        e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "SetMotorPowerFloat",
-            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
-      }
-    }
+    // Nothing to do now.
   }
 
   @SimpleFunction(description = "Allow motor to float.")

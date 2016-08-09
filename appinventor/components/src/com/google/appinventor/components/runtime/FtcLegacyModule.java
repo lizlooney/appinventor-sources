@@ -17,6 +17,7 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.LegacyModule;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cController.I2cPortReadyCallback;
 
 import java.util.List;
@@ -67,7 +68,7 @@ public final class FtcLegacyModule extends FtcHardwareDevice implements I2cPortR
             portsRegisteredForPortReadyCallback.add(physicalPort);
           }
         }
-        legacyModule.enableI2cReadMode(physicalPort, i2cAddress, memAddress, length);
+        legacyModule.enableI2cReadMode(physicalPort, I2cAddr.create8bit(i2cAddress), memAddress, length);
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "EnableI2cReadMode",
@@ -88,7 +89,7 @@ public final class FtcLegacyModule extends FtcHardwareDevice implements I2cPortR
             portsRegisteredForPortReadyCallback.add(physicalPort);
           }
         }
-        legacyModule.enableI2cWriteMode(physicalPort, i2cAddress, memAddress, length);
+        legacyModule.enableI2cWriteMode(physicalPort, I2cAddr.create8bit(i2cAddress), memAddress, length);
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "EnableI2cWriteMode",
@@ -336,11 +337,11 @@ public final class FtcLegacyModule extends FtcHardwareDevice implements I2cPortR
 
   @SimpleFunction(description =
       "Read an analog value from a device and return a byte array; only works in analog read mode.")
-  public Object ReadAnalog(int physicalPort) {
+  public Object ReadAnalogRaw(int physicalPort) {
     checkHardwareDevice();
     if (legacyModule != null) {
       try {
-        byte[] src = legacyModule.readAnalog(physicalPort);
+        byte[] src = legacyModule.readAnalogRaw(physicalPort);
         if (src != null) {
           byte[] dest = new byte[src.length];
           System.arraycopy(src, 0, dest, 0, src.length);
@@ -348,7 +349,7 @@ public final class FtcLegacyModule extends FtcHardwareDevice implements I2cPortR
         }
       } catch (Throwable e) {
         e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "ReadAnalog",
+        form.dispatchErrorOccurredEvent(this, "ReadAnalogRaw",
             ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
     }

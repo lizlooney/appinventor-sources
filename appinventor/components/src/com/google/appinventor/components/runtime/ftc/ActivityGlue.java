@@ -44,9 +44,9 @@ class ActivityGlue {
 
     requestCodeToConstant.put(
         aiFtcRobotController.requestCodeConfigureRobot,
-        LaunchActivityConstantsList.FTC_ROBOT_CONTROLLER_ACTIVITY_CONFIGURE_ROBOT);
+        LaunchActivityConstantsList.FTC_CONFIGURE_REQUEST_CODE_ROBOT_CONTROLLER);
     constantToRequestCode.put(
-        LaunchActivityConstantsList.FTC_ROBOT_CONTROLLER_ACTIVITY_CONFIGURE_ROBOT,
+        LaunchActivityConstantsList.FTC_CONFIGURE_REQUEST_CODE_ROBOT_CONTROLLER,
         aiFtcRobotController.requestCodeConfigureRobot);
     requestCodeToConstant.put(
         aiFtcRobotController.requestCodeConfigureWifiChannel,
@@ -95,6 +95,13 @@ class ActivityGlue {
     onStop();
   }
 
+  /*
+   * Called from FtcRobotController.onDestroy and FtcRobotController.onDelete.
+   */
+  public void onDestroyAI() {
+    onDestroy();
+  }
+
   // Activity methods that are overridden in FtcRobotControllerActivity.
 
   protected void onActivityResult(int request, int result, Intent intent) {
@@ -127,6 +134,9 @@ class ActivityGlue {
   }
 
   protected void onStop() {
+  }
+
+  protected void onDestroy() {
   }
 
   // Activity methods that are called from FtcRobotControllerActivity.

@@ -493,7 +493,7 @@ public final class ErrorMessages {
         "An FTC Robot Controller app should contain exactly one FtcRobotController component.");
     errorMessages.put(ERROR_FTC_INVALID_DC_MOTOR_RUN_MODE,
         "The specified run mode \"%s\" is not valid. The valid modes are " +
-        "RUN_USING_ENCODERS, RUN_WITHOUT_ENCODERS, RUN_TO_POSITION, and RESET_ENCODERS.");
+        "RUN_USING_ENCODER, RUN_WITHOUT_ENCODER, RUN_TO_POSITION, and STOP_AND_RESET_ENCODER.");
     errorMessages.put(ERROR_FTC_INVALID_DIRECTION,
         "The specified direction \"%s\" is not valid. The valid directions are " +
         "FORWARD (or 1) and REVERSE (or -1).");

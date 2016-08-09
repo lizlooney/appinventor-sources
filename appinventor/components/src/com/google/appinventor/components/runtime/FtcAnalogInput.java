@@ -41,18 +41,18 @@ public final class FtcAnalogInput extends FtcHardwareDevice {
   }
 
   /**
-   * Value property getter.
+   * Voltage property getter.
    */
-  @SimpleProperty(description = "The current ADC results from the A0-A7 channel input pins.",
+  @SimpleProperty(description = "The current analog input voltage, in volts.",
       category = PropertyCategory.BEHAVIOR)
-  public int Value() {
+  public double Voltage() {
     checkHardwareDevice();
     if (analogInput != null) {
       try {
-        return analogInput.getValue();
+        return analogInput.getVoltage();
       } catch (Throwable e) {
         e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "Value",
+        form.dispatchErrorOccurredEvent(this, "Voltage",
             ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
     }

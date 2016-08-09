@@ -33,14 +33,21 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<!--
+Modified for App Inventor by Liz Looney
+Copyright 2011-2016 MIT, All rights reserved
+Released under the Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0
+-->
+
 <resources>
-  <color name="light_red_background">#790E15</color>
-  <color name="dark_red_background">#3F0206</color>
-  <color name="medium_red_background">#4e0106</color>
-  <color name="very_bright_red">#bf0510</color>
-  <color name="bright_red">#A6040E</color>
-  <color name="bright_red_text">#ff0a19</color>
-  <color name="white">#FFFFFF</color>
-  <color name="black">#000000</color>
-  <color name="transparent_color">#00000000</color>
+  <color name="AI_light_red_background">#790E15</color>
+  <color name="AI_dark_red_background">#3F0206</color>
+  <color name="AI_medium_red_background">#4e0106</color>
+  <color name="AI_very_bright_red">#bf0510</color>
+  <color name="AI_bright_red">#A6040E</color>
+  <color name="AI_bright_red_text">#ff0a19</color>
+  <color name="AI_white">#FFFFFF</color>
+  <color name="AI_black">#000000</color>
+  <color name="AI_transparent_color">#00000000</color>
 </resources>

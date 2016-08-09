@@ -15,6 +15,7 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cController.I2cPortReadyCallback;
 import com.qualcomm.robotcore.hardware.I2cDevice;
 
@@ -61,7 +62,7 @@ public final class FtcI2cDevice extends FtcHardwareDevice implements I2cPortRead
             registeredForPortReadyCallback = true;
           }
         }
-        i2cDevice.enableI2cReadMode(i2cAddress, memAddress, length);
+        i2cDevice.enableI2cReadMode(I2cAddr.create8bit(i2cAddress), memAddress, length);
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "EnableI2cReadMode",
@@ -82,7 +83,7 @@ public final class FtcI2cDevice extends FtcHardwareDevice implements I2cPortRead
             registeredForPortReadyCallback = true;
           }
         }
-        i2cDevice.enableI2cWriteMode(i2cAddress, memAddress, length);
+        i2cDevice.enableI2cWriteMode(I2cAddr.create8bit(i2cAddress), memAddress, length);
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "EnableI2cWriteMode",

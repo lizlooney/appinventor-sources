@@ -17,6 +17,7 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor.IrSeekerIndividualSensor;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor.Mode;
@@ -303,7 +304,7 @@ public final class FtcIrSeekerSensor extends FtcHardwareDevice {
     checkHardwareDevice();
     if (irSeekerSensor != null) {
       try {
-        irSeekerSensor.setI2cAddress(newAddress);
+        irSeekerSensor.setI2cAddress(I2cAddr.create8bit(newAddress));
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "I2cAddress",
@@ -321,7 +322,7 @@ public final class FtcIrSeekerSensor extends FtcHardwareDevice {
     checkHardwareDevice();
     if (irSeekerSensor != null) {
       try {
-        return irSeekerSensor.getI2cAddress();
+        return irSeekerSensor.getI2cAddress().get8Bit();
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "I2cAddress",

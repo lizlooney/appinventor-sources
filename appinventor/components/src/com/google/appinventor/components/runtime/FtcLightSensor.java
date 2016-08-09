@@ -61,18 +61,18 @@ public final class FtcLightSensor extends FtcHardwareDevice {
   }
 
   /**
-   * LightDetectedRaw property getter.
+   * RawLightDetected property getter.
    */
-  @SimpleProperty(description = "The light detected by the sensor, as an integer.",
+  @SimpleProperty(description = "A value proportional to the amount of light detected, in unspecified units.",
       category = PropertyCategory.BEHAVIOR)
-  public int LightDetectedRaw() {
+  public double RawLightDetected() {
     checkHardwareDevice();
     if (lightSensor != null) {
       try {
-        return lightSensor.getLightDetectedRaw();
+        return lightSensor.getRawLightDetected();
       } catch (Throwable e) {
         e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "LightDetectedRaw",
+        form.dispatchErrorOccurredEvent(this, "RawLightDetected",
             ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
     }

@@ -3575,10 +3575,6 @@ public interface OdeMessages extends Messages {
   @Description("")
   String LightDetectedProperties();
 
-  @DefaultMessage("LightDetectedRaw")
-  @Description("")
-  String LightDetectedRawProperties();
-
   @DefaultMessage("MAX_NEW_I2C_ADDRESS")
   @Description("")
   String MAX_NEW_I2C_ADDRESSProperties();
@@ -3651,6 +3647,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String PwmStatus_ENABLEDProperties();
 
+  @DefaultMessage("RawLightDetected")
+  @Description("")
+  String RawLightDetectedProperties();
+
   @DefaultMessage("RawX")
   @Description("")
   String RawXProperties();
@@ -3699,25 +3699,25 @@ public interface OdeMessages extends Messages {
   @Description("")
   String RightTriggerProperties();
 
-  @DefaultMessage("Rotation")
+  @DefaultMessage("RotationFraction")
   @Description("")
-  String RotationProperties();
-
-  @DefaultMessage("RunMode_RESET_ENCODERS")
-  @Description("")
-  String RunMode_RESET_ENCODERSProperties();
+  String RotationFractionProperties();
 
   @DefaultMessage("RunMode_RUN_TO_POSITION")
   @Description("")
   String RunMode_RUN_TO_POSITIONProperties();
 
-  @DefaultMessage("RunMode_RUN_USING_ENCODERS")
+  @DefaultMessage("RunMode_RUN_USING_ENCODER")
   @Description("")
-  String RunMode_RUN_USING_ENCODERSProperties();
+  String RunMode_RUN_USING_ENCODERProperties();
 
-  @DefaultMessage("RunMode_RUN_WITHOUT_ENCODERS")
+  @DefaultMessage("RunMode_RUN_WITHOUT_ENCODER")
   @Description("")
-  String RunMode_RUN_WITHOUT_ENCODERSProperties();
+  String RunMode_RUN_WITHOUT_ENCODERProperties();
+
+  @DefaultMessage("RunMode_STOP_AND_RESET_ENCODER")
+  @Description("")
+  String RunMode_STOP_AND_RESET_ENCODERProperties();
 
   @DefaultMessage("SerialNumber")
   @Description("")
@@ -6005,9 +6005,9 @@ public interface OdeMessages extends Messages {
   @Description("")
   String Get8ByteNumberFromByteArrayMethods();
 
-  @DefaultMessage("GetAnalogInputValue")
+  @DefaultMessage("GetAnalogInputVoltage")
   @Description("")
-  String GetAnalogInputValueMethods();
+  String GetAnalogInputVoltageMethods();
 
   @DefaultMessage("GetCopyOfReadBuffer")
   @Description("")
@@ -6057,13 +6057,13 @@ public interface OdeMessages extends Messages {
   @Description("")
   String GetLEDStateMethods();
 
-  @DefaultMessage("GetMotorChannelMode")
-  @Description("")
-  String GetMotorChannelModeMethods();
-
   @DefaultMessage("GetMotorCurrentPosition")
   @Description("")
   String GetMotorCurrentPositionMethods();
+
+  @DefaultMessage("GetMotorMode")
+  @Description("")
+  String GetMotorModeMethods();
 
   @DefaultMessage("GetMotorPower")
   @Description("")
@@ -6229,9 +6229,9 @@ public interface OdeMessages extends Messages {
   @Description("")
   String Read1ByteMethods();
 
-  @DefaultMessage("ReadAnalog")
+  @DefaultMessage("ReadAnalogRaw")
   @Description("")
-  String ReadAnalogMethods();
+  String ReadAnalogRawMethods();
 
   @DefaultMessage("ReadI2cCacheFromController")
   @Description("")
@@ -6317,9 +6317,9 @@ public interface OdeMessages extends Messages {
   @Description("")
   String SetModeMethods();
 
-  @DefaultMessage("SetMotorChannelMode")
+  @DefaultMessage("SetMotorMode")
   @Description("")
-  String SetMotorChannelModeMethods();
+  String SetMotorModeMethods();
 
   @DefaultMessage("SetMotorPower")
   @Description("")
