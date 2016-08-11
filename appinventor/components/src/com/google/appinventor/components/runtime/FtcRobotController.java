@@ -58,25 +58,31 @@ import java.util.List;
     category = ComponentCategory.FIRSTTECHCHALLENGE)
 @SimpleObject
 @UsesPermissions(permissionNames =
-                 "android.permission.ACCESS_WIFI_STATE, " +
-                 "android.permission.CHANGE_WIFI_STATE, " +
-                 "android.permission.WAKE_LOCK, " +
                  "android.permission.ACCESS_NETWORK_STATE, " +
+                 "android.permission.ACCESS_WIFI_STATE, " +
+                 "android.permission.BLUETOOTH_ADMIN, " +
+                 "android.permission.BLUETOOTH, " +
+                 "android.permission.CAMERA, " +
                  "android.permission.CHANGE_NETWORK_STATE, " +
+                 "android.permission.CHANGE_WIFI_STATE, " +
                  "android.permission.INTERNET, " +
-                 "android.permission.WRITE_EXTERNAL_STORAGE, " +
                  "android.permission.READ_EXTERNAL_STORAGE, " +
+                 "android.permission.WAKE_LOCK, " +
+                 "android.permission.WRITE_EXTERNAL_STORAGE, " +
                  "android.permission.WRITE_SETTINGS")
 @UsesLibraries(libraries =
   "FtcAnalytics.jar," +
   "FtcBlocks.jar," +
   "FtcCommon.jar," +
+  "FtcD2xx.jar," +
+  "FtcGson.jar," +
   "FtcHardware.jar," +
   "FtcInspection.jar," +
   "FtcModernRobotics.jar," +
   "FtcRobotCore.jar," +
-  "FtcWirelessP2p.jar," +
-  "FtcVuforia.jar")
+  "FtcSupportAnnotations.jar," +
+  "FtcVuforia.jar," +
+  "FtcWirelessP2p.jar")
 public final class FtcRobotController extends AndroidViewComponent implements OnInitializeListener,
     ActivityResultListener, OnNewIntentListener, OnCreateOptionsMenuListener,
     OnOptionsItemSelectedListener, OnPauseListener, OnResumeListener, OnStartListener,
@@ -155,6 +161,9 @@ public final class FtcRobotController extends AndroidViewComponent implements On
     form.registerForOnResume(this);
     form.registerForOnStart(this);
     form.registerForOnStop(this);
+
+    Width(LENGTH_FILL_PARENT);
+    Height(LENGTH_FILL_PARENT);
   }
 
   // AndroidViewComponent implementation

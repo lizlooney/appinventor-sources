@@ -76,10 +76,13 @@
     <copy toFile="${classes.files.dir}/FtcAnalytics.jar" file="${build.dir}/components/ftc/Analytics/classes.jar" />
     <copy toFile="${classes.files.dir}/FtcBlocks.jar" file="${build.dir}/components/ftc/Blocks/classes.jar" />
     <copy toFile="${classes.files.dir}/FtcCommon.jar" file="${build.dir}/components/ftc/FtcCommon/classes.jar" />
+    <copy toFile="${classes.files.dir}/FtcD2xx.jar" file="${lib.dir}/ftc/d2xx.jar" />
+    <copy toFile="${classes.files.dir}/FtcGson.jar" file="${lib.dir}/ftc/gson-2.7.jar" />
     <copy toFile="${classes.files.dir}/FtcHardware.jar" file="${build.dir}/components/ftc/Hardware/classes.jar" />
     <copy toFile="${classes.files.dir}/FtcInspection.jar" file="${build.dir}/components/ftc/Inspection/classes.jar" />
     <copy toFile="${classes.files.dir}/FtcModernRobotics.jar" file="${build.dir}/components/ftc/ModernRobotics/classes.jar" />
     <copy toFile="${classes.files.dir}/FtcRobotCore.jar" file="${build.dir}/components/ftc/RobotCore/classes.jar" />
+    <copy toFile="${classes.files.dir}/FtcSupportAnnotations.jar" file="${lib.dir}/ftc/support-annotations-23.4.0.jar" />
     <copy toFile="${classes.files.dir}/FtcVuforia.jar" file="${lib.dir}/ftc/Vuforia.jar" />
     <copy toFile="${classes.files.dir}/FtcWirelessP2p.jar" file="${build.dir}/components/ftc/WirelessP2p/classes.jar" />
     <copy toFile="${classes.files.dir}/fusiontables.jar" file="${lib.dir}/fusiontables/fusiontables.jar" />
@@ -152,11 +155,12 @@
 
   <target name="CopyFtcRes"
           depends="init,components_FtcAars,MergeFtcRes">
-    <!-- We need to merge multiple values resource files from the FTC
-         aar files into single values resource files. -->
+    <!-- Create the target directory. -->
     <property name="ftc.res.dir" location="${class.dir}/BuildServer/files/ftc/res" />
     <mkdir dir="${ftc.res.dir}" />
 
+    <!-- We need to merge multiple values resource files from the FTC
+         aar files into single values resource files. -->
     <mkdir dir="${ftc.res.dir}/values" />
     <java jar="${local.build.dir}/MergeFtcRes.jar" fork="true" failonerror="true">
       <arg value="${ftc.res.dir}/values/values.xml" />
@@ -166,14 +170,12 @@
       <arg value="${build.dir}/components/ftc/Inspection/res/values/values.xml" />
       <arg value="${build.dir}/components/ftc/Blocks/res/values/values.xml" />
     </java>
-
     <mkdir dir="${ftc.res.dir}/values-v11" />
     <java jar="${local.build.dir}/MergeFtcRes.jar" fork="true" failonerror="true">
       <arg value="${ftc.res.dir}/values-v11/values-v11.xml" />
       <arg value="${build.dir}/components/ftc/RobotCore/res/values-v11/values-v11.xml" />
       <arg value="${build.dir}/components/ftc/FtcCommon/res/values-v11/values-v11.xml" />
     </java>
-
     <mkdir dir="${ftc.res.dir}/values-v14" />
     <java jar="${local.build.dir}/MergeFtcRes.jar" fork="true" failonerror="true">
       <arg value="${ftc.res.dir}/values-v14/values-v14.xml" />
@@ -181,26 +183,41 @@
       <arg value="${build.dir}/components/ftc/FtcCommon/res/values-v14/values-v14.xml" />
     </java>
 
-
-    <!-- Copy resources from ftc aar files, but don't copy any files that also
-         exist in lib/ftc/res -->
+    <!-- Copy resources from ftc aar files (RobotCore, Hardware, FtcCommon,
+         Inspection, and Blocks), but don't copy any files that also exist in
+         lib/ftc/res -->
+    <!-- Create a list of the files in lib/ftc/res -->
     <fileset dir="${lib.dir}/ftc/res" id="lib.ftc.res.fileset">
       <include name="**/*" />
     </fileset>
-    <copy todir="${ftc.res.dir}" flatten="false">
-      <fileset dir="${build.dir}/components/ftc/FtcCommon/res" includes="**/*"
-               excludes="**/values*/values*.xml,**/drawable-*-v4/ic_launcher.png,${lib.ftc.res.filelist}" />
-    </copy>
-    <copy todir="${ftc.res.dir}" flatten="false">
-      <fileset dir="${build.dir}/components/ftc/Hardware/res" includes="**/*"
-               excludes="**/values*/values*.xml,${lib.ftc.res.filelist}" />
-    </copy>
-    <copy todir="${ftc.res.dir}" flatten="false">
+    <pathconvert dirsep="/" pathsep="," property="lib.ftc.res.filelist" refid="lib.ftc.res.fileset">
+      <map from="${lib.dir}/ftc/res/" to="" />
+    </pathconvert>
+    <!-- Copy the resources from ftc aar files -->
+    <copy todir="${ftc.res.dir}" flatten="false" verbose="true">
       <fileset dir="${build.dir}/components/ftc/RobotCore/res" includes="**/*"
                excludes="**/values*/values*.xml,${lib.ftc.res.filelist}" />
     </copy>
+    <copy todir="${ftc.res.dir}" flatten="false" verbose="true">
+      <fileset dir="${build.dir}/components/ftc/Hardware/res" includes="**/*"
+               excludes="**/values*/values*.xml,${lib.ftc.res.filelist}" />
+    </copy>
+    <!-- for FtcCommon, we also exclude drawable-*-v4/ic_launcher.png because
+         they conflict with drawble-*/ic_launcher.png -->
+    <copy todir="${ftc.res.dir}" flatten="false" verbose="true">
+      <fileset dir="${build.dir}/components/ftc/FtcCommon/res" includes="**/*"
+               excludes="**/values*/values*.xml,**/drawable-*-v4/ic_launcher.png,${lib.ftc.res.filelist}" />
+    </copy>
+    <copy todir="${ftc.res.dir}" flatten="false" verbose="true">
+      <fileset dir="${build.dir}/components/ftc/Inspection/res" includes="**/*"
+               excludes="**/values*/values*.xml,${lib.ftc.res.filelist}" />
+    </copy>
+    <copy todir="${ftc.res.dir}" flatten="false" verbose="true">
+      <fileset dir="${build.dir}/components/ftc/Blocks/res" includes="**/*"
+               excludes="**/values*/values*.xml,${lib.ftc.res.filelist}" />
+    </copy>
     <!-- Now copy the resources from lib/ftc/res -->
-    <copy todir="${ftc.res.dir}" flatten="false">
+    <copy todir="${ftc.res.dir}" flatten="false" verbose="true">
       <fileset dir="${lib.dir}/ftc/res" includes="**/*" />
     </copy>
   </target>
@@ -226,20 +243,33 @@
 
   <target name="CopyFtcAssets"
           depends="init,components_FtcAars">
+    <!-- Copy assets from ftc aar files (RobotCore, FtcCommon, and Blocks), but
+         don't copy any files that also exist in lib/ftc/assets -->
+    <!-- Create the target directory. -->
     <property name="ftc.assets.dir" location="${class.dir}/BuildServer/files/ftc/assets" />
     <mkdir dir="${ftc.assets.dir}" />
-    <!-- Copy the assets for Blocks, FtcCommon, and RobotCore -->
-    <copy todir="${ftc.assets.dir}" flatten="false">
-      <fileset dir="${build.dir}/components/ftc/Blocks/assets" includes="**/*" />
+    <!-- Create a list of the files in lib/ftc/assets -->
+    <fileset dir="${lib.dir}/ftc/assets" id="lib.ftc.assets.fileset">
+      <include name="**/*" />
+    </fileset>
+    <pathconvert dirsep="/" pathsep="," property="lib.ftc.assets.filelist" refid="lib.ftc.assets.fileset">
+      <map from="${lib.dir}/ftc/assets/" to="" />
+    </pathconvert>
+    <!-- Copy the assets from ftc aar files -->
+    <copy todir="${ftc.assets.dir}" flatten="false" verbose="true">
+      <fileset dir="${build.dir}/components/ftc/RobotCore/assets" includes="**/*"
+               excludes="${lib.ftc.assets.filelist}" />
     </copy>
-    <copy todir="${ftc.assets.dir}" flatten="false">
-      <fileset dir="${build.dir}/components/ftc/FtcCommon/assets" includes="**/*" />
+    <copy todir="${ftc.assets.dir}" flatten="false" verbose="true">
+      <fileset dir="${build.dir}/components/ftc/FtcCommon/assets" includes="**/*"
+               excludes="${lib.ftc.assets.filelist}" />
     </copy>
-    <copy todir="${ftc.assets.dir}" flatten="false">
-      <fileset dir="${build.dir}/components/ftc/RobotCore/assets" includes="**/*" />
+    <copy todir="${ftc.assets.dir}" flatten="false" verbose="true">
+      <fileset dir="${build.dir}/components/ftc/Blocks/assets" includes="**/*"
+               excludes="${lib.ftc.assets.filelist}" />
     </copy>
     <!-- Now copy the assets from lib/ftc/assets -->
-    <copy todir="${ftc.assets.dir}" flatten="false">
+    <copy todir="${ftc.assets.dir}" flatten="false" verbose="true">
       <fileset dir="${lib.dir}/ftc/assets" includes="**/*" />
     </copy>
   </target>

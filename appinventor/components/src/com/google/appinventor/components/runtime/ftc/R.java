@@ -27,9 +27,7 @@ class R {
     final int action_programming_mode;
     final int action_restart_robot;
     final int action_settings;
-    final int active_filename;
     final int entire_screen;
-    final int included_header;
     final int RelativeLayout;
     final int menu_buttons;
     final int textDeviceName;
@@ -51,9 +49,7 @@ class R {
       action_programming_mode = getIdentifier(resources, "action_programming_mode", "id", packageName);
       action_restart_robot = getIdentifier(resources, "action_restart_robot", "id", packageName);
       action_settings = getIdentifier(resources, "action_settings", "id", packageName);
-      active_filename = getIdentifier(resources, "active_filename", "id", packageName);
       entire_screen = getIdentifier(resources, "entire_screen", "id", packageName);
-      included_header = getIdentifier(resources, "included_header", "id", packageName);
       RelativeLayout = getIdentifier(resources, "RelativeLayout", "id", packageName);
       menu_buttons = getIdentifier(resources, "menu_buttons", "id", packageName);
       textDeviceName = getIdentifier(resources, "textDeviceName", "id", packageName);
@@ -82,12 +78,10 @@ class R {
     }
   }
   static class Strings {
-    final int pref_hardware_config_filename;
     final int toastRestartingRobot;
     final int toastWifiConfigurationComplete;
 
     Strings(Resources resources, String packageName) {
-      pref_hardware_config_filename = getIdentifier(resources, "AI_pref_hardware_config_filename", "string", packageName);
       toastRestartingRobot = getIdentifier(resources, "toastRestartingRobot", "string", packageName);
       toastWifiConfigurationComplete = getIdentifier(resources, "toastWifiConfigurationComplete", "string", packageName);
     }
