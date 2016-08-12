@@ -178,7 +178,7 @@ public final class Compiler {
   private final PrintStream userErrors;
   private final boolean isForCompanion;
   private final boolean isFtcRobotController;
-  private final String packageName;
+  private final String overridePackageName;
   // Maximum ram that can be used by a child processes, in MB.
   private final int childProcessRamMb;
   private Set<String> librariesNeeded; // Set of component libraries
@@ -318,6 +318,8 @@ public final class Compiler {
   private boolean writeAndroidManifest(File manifestFile, Set<String> permissionsNeeded) {
     // Create AndroidManifest.xml
     String mainClass = project.getMainClass();
+    String packageName = (overridePackageName != null) ? overridePackageName
+        : Signatures.getPackageName(mainClass);
     String className = Signatures.getClassName(mainClass);
     String projectName = project.getProjectName();
     String vCode = (project.getVCode() == null)
@@ -1093,9 +1095,9 @@ public final class Compiler {
     this.dexCacheDir = dexCacheDir;
 
     isFtcRobotController = componentTypes.contains("FtcRobotController") && !isForCompanion;
-    packageName = isFtcRobotController
+    overridePackageName = isFtcRobotController
         ? "com.qualcomm.ftcrobotcontroller"
-        : Signatures.getPackageName(project.getMainClass());
+        : null;
   }
 
   /*
@@ -1166,6 +1168,8 @@ public final class Compiler {
       String yailRuntime = getResource(YAIL_RUNTIME);
       List<String> kawaCommandArgs = Lists.newArrayList();
       int mx = childProcessRamMb - 200;
+      String packageName = (overridePackageName != null) ? overridePackageName
+          : Signatures.getPackageName(project.getMainClass());
       Collections.addAll(kawaCommandArgs,
           System.getProperty("java.home") + "/bin/java",
           "-mx" + mx + "M",
