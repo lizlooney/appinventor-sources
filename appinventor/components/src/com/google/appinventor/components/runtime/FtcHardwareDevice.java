@@ -16,6 +16,7 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareDevice;
+import com.qualcomm.robotcore.hardware.HardwareDevice.Manufacturer;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.HardwareMap.DeviceMapping;
 
@@ -60,6 +61,28 @@ public abstract class FtcHardwareDevice extends AndroidNonvisibleComponent
   @SimpleProperty(userVisible = false)
   public void DeviceName(String deviceName) {
     this.deviceName = deviceName;
+  }
+
+  /**
+   * Manufacturer property getter.
+   */
+  @SimpleProperty(description = "The manufacturer of the hardware device.",
+      category = PropertyCategory.BEHAVIOR)
+  public String Manufacturer() {
+    checkHardwareDevice();
+    if (hardwareDevice != null) {
+      try {
+        Manufacturer manufacturer = hardwareDevice.getManufacturer();
+        if (manufacturer != null) {
+          return manufacturer.toString();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "Manufacturer",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return "";
   }
 
   /**

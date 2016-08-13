@@ -59,6 +59,25 @@ public final class FtcAnalogInput extends FtcHardwareDevice {
     return 0;
   }
 
+  /**
+   * MaxVoltage property getter.
+   */
+  @SimpleProperty(description = "The maximum voltage, in volts.",
+      category = PropertyCategory.BEHAVIOR)
+  public double MaxVoltage() {
+    checkHardwareDevice();
+    if (analogInput != null) {
+      try {
+        return analogInput.getMaxVoltage();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "MaxVoltage",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
   // FtcHardwareDevice implementation
 
   @Override

@@ -968,6 +968,7 @@ public final class YoungAndroidFormUpgrader {
       int srcCompVersion) {
     if (srcCompVersion < 2) {
       // - The Value property was renamed Voltage.
+      // - The MaxVoltage property was added.
       // No designer properties need to be modified to upgrade to version 2.
       srcCompVersion = 2;
     }
@@ -1019,6 +1020,10 @@ public final class YoungAndroidFormUpgrader {
       // - The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
       // - The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
       // - The SetPowerFloat method was deprecated.
+      // - The MaxSpeed property was added.
+      // - The ZeroPowerBehavior_BRAKE property was added.
+      // - The ZeroPowerBehavior_FLOAT property was added.
+      // - The ZeroPowerBehavior property was added.
       // No designer properties need to be modified to upgrade to version 3.
       srcCompVersion = 3;
     }
@@ -1059,6 +1064,12 @@ public final class YoungAndroidFormUpgrader {
       // - The SetMotorChannelMode method was renamed SetMotorMode.
       // - The GetMotorChannelMode method was renamed GetMotorMode.
       // - The SetMotorPowerFloat method was deprecated.
+      // - The SetMotorMaxSpeed method was added.
+      // - The GetMotorMaxSpeed method was added.
+      // - The ZeroPowerBehavior_BRAKE property was added.
+      // - The ZeroPowerBehavior_FLOAT property was added.
+      // - The SetMotorZeroPowerBehavior method was added.
+      // - The GetMotorZeroPowerBehavior method was added.
       // No designer properties need to be modified to upgrade to version 5.
       srcCompVersion = 5;
     }
@@ -1084,6 +1095,7 @@ public final class YoungAndroidFormUpgrader {
     }
     if (srcCompVersion < 4) {
       // - The GetAnalogInputValue method was renamed GetAnalogInputVoltage.
+      // - The MaxAnalogInputVoltage property was added.
       // No designer properties need to be modified to upgrade to version 4.
       srcCompVersion = 4;
     }
@@ -1125,6 +1137,7 @@ public final class YoungAndroidFormUpgrader {
     }
     if (srcCompVersion < 4) {
       // - The Rotation property was renamed RotationFraction.
+      // - The RawVoltage property was added.
       // No designer properties need to be modified to upgrade to version 4.
       srcCompVersion = 4;
     }
@@ -1190,6 +1203,7 @@ public final class YoungAndroidFormUpgrader {
       int srcCompVersion) {
     if (srcCompVersion < 2) {
       // - The LightDetectedRaw property was renamed RawLightDetected.
+      // - The RawVoltage property was added.
       // No designer properties need to be modified to upgrade to version 2.
       srcCompVersion = 2;
     }
@@ -1236,6 +1250,7 @@ public final class YoungAndroidFormUpgrader {
       int srcCompVersion) {
     if (srcCompVersion < 2) {
       // - The LightDetectedRaw property was renamed RawLightDetected.
+      // - The RawVoltage property was added.
       // No designer properties need to be modified to upgrade to version 2.
       srcCompVersion = 2;
     }

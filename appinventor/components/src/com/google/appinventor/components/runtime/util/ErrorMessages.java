@@ -204,6 +204,7 @@ public final class ErrorMessages {
   public static final int ERROR_FTC_INVALID_HSV = 2915;
   public static final int ERROR_FTC_INVALID_LIST_OF_FTC_DC_MOTORS = 2916;
   public static final int ERROR_FTC_INVALID_I2C_DEVICE_SYNCH_READ_MODE = 2917;
+  public static final int ERROR_FTC_INVALID_ZERO_POWER_BEHAVIOR = 2918;
 
   // Image errors
   public static final int ERROR_IMAGE_CANNOT_ROTATE = 3001;
@@ -528,6 +529,9 @@ public final class ErrorMessages {
     errorMessages.put(ERROR_FTC_INVALID_I2C_DEVICE_SYNCH_READ_MODE,
         "The specified read mode \"%s\" is not valid. The valid modes are " +
         "REPEAT, BALANCED, and ONLY_ONCE.");
+    errorMessages.put(ERROR_FTC_INVALID_ZERO_POWER_BEHAVIOR,
+        "The specified zero power behavior \"%s\" is not valid. The valid values are " +
+        "BRAKE and FLOAT.");
 
     // Image errors
     errorMessages.put(ERROR_IMAGE_CANNOT_ROTATE,

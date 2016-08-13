@@ -3575,6 +3575,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String LightDetectedProperties();
 
+  @DefaultMessage("Manufacturer")
+  @Description("")
+  String ManufacturerProperties();
+
   @DefaultMessage("MAX_NEW_I2C_ADDRESS")
   @Description("")
   String MAX_NEW_I2C_ADDRESSProperties();
@@ -3582,6 +3586,18 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("MAX_POSITION")
   @Description("")
   String MAX_POSITIONProperties();
+
+  @DefaultMessage("MaxAnalogInputVoltage")
+  @Description("")
+  String MaxAnalogInputVoltageProperties();
+
+  @DefaultMessage("MaxSpeed")
+  @Description("")
+  String MaxSpeedProperties();
+
+  @DefaultMessage("MaxVoltage")
+  @Description("")
+  String MaxVoltageProperties();
 
   @DefaultMessage("MIN_NEW_I2C_ADDRESS")
   @Description("")
@@ -3650,6 +3666,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("RawLightDetected")
   @Description("")
   String RawLightDetectedProperties();
+
+  @DefaultMessage("RawVoltage")
+  @Description("")
+  String RawVoltageProperties();
 
   @DefaultMessage("RawX")
   @Description("")
@@ -3786,6 +3806,18 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("Voltage")
   @Description("")
   String VoltageProperties();
+
+  @DefaultMessage("ZeroPowerBehavior")
+  @Description("")
+  String ZeroPowerBehaviorProperties();
+
+  @DefaultMessage("ZeroPowerBehavior_BRAKE")
+  @Description("")
+  String ZeroPowerBehavior_BRAKEProperties();
+
+  @DefaultMessage("ZeroPowerBehavior_FLOAT")
+  @Description("")
+  String ZeroPowerBehavior_FLOATProperties();
 
   //Params
   @DefaultMessage("xAccel")
@@ -4521,6 +4553,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String maxParams();
 
+  @DefaultMessage("maxSpeed")
+  @Description("")
+  String maxSpeedParams();
+
   @DefaultMessage("memAddress")
   @Description("")
   String memAddressParams();
@@ -4612,6 +4648,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("waitForCompletion")
   @Description("")
   String waitForCompletionParams();
+
+  @DefaultMessage("zeroPowerBehavior")
+  @Description("")
+  String zeroPowerBehaviorParams();
 
   //Events
   @DefaultMessage("AccelerationChanged")
@@ -6061,6 +6101,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String GetMotorCurrentPositionMethods();
 
+  @DefaultMessage("GetMotorMaxSpeed")
+  @Description("")
+  String GetMotorMaxSpeedMethods();
+
   @DefaultMessage("GetMotorMode")
   @Description("")
   String GetMotorModeMethods();
@@ -6076,6 +6120,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("GetMotorTargetPosition")
   @Description("")
   String GetMotorTargetPositionMethods();
+
+  @DefaultMessage("GetMotorZeroPowerBehavior")
+  @Description("")
+  String GetMotorZeroPowerBehaviorMethods();
 
   @DefaultMessage("GetPowerFloat")
   @Description("")
@@ -6317,6 +6365,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String SetModeMethods();
 
+  @DefaultMessage("SetMotorMaxSpeed")
+  @Description("")
+  String SetMotorMaxSpeedMethods();
+
   @DefaultMessage("SetMotorMode")
   @Description("")
   String SetMotorModeMethods();
@@ -6336,6 +6388,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("SetMotorTargetPosition")
   @Description("")
   String SetMotorTargetPositionMethods();
+
+  @DefaultMessage("SetMotorZeroPowerBehaviorMethods")
+  @Description("")
+  String SetMotorZeroPowerBehaviorMethods();
 
   @DefaultMessage("SetPowerFloat")
   @Description("")

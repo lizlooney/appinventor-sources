@@ -21,6 +21,7 @@ import com.qualcomm.hardware.matrix.MatrixDcMotorController;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDcMotorController;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
+import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
@@ -200,6 +201,37 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
     return 0.0;
   }
 
+  @SimpleFunction(description = "Set the maximum targetable speed, in units of encoder ticks per " +
+      "second.")
+  public void SetMotorMaxSpeed(int motor, int maxSpeed) {
+    checkHardwareDevice();
+    if (dcMotorController != null) {
+      try {
+        dcMotorController.setMotorMaxSpeed(motor, maxSpeed);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "SetMotorMaxSpeed",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  @SimpleFunction(description = "Get the maximum targetable speed, in units of encoder ticks per " +
+      "second.")
+  public int GetMotorMaxSpeed(int motor) {
+    checkHardwareDevice();
+    if (dcMotorController != null) {
+      try {
+        return dcMotorController.getMotorMaxSpeed(motor);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "GetMotorMaxSpeed",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
   @SimpleFunction(description = "Is the motor busy?")
   public boolean IsBusy(int motor) {
     checkHardwareDevice();
@@ -221,6 +253,65 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
     checkHardwareDevice();
     // Nothing to do now.
   }
+
+  /**
+   * ZeroPowerBehavior_BRAKE property getter.
+   */
+  @SimpleProperty(description = "The constant for ZeroPowerBehavior_BRAKE.",
+      category = PropertyCategory.BEHAVIOR)
+  public String ZeroPowerBehavior_BRAKE() {
+    return ZeroPowerBehavior.BRAKE.toString();
+  }
+
+  /**
+   * ZeroPowerBehavior_FLOAT property getter.
+   */
+  @SimpleProperty(description = "The constant for ZeroPowerBehavior_FLOAT.",
+      category = PropertyCategory.BEHAVIOR)
+  public String ZeroPowerBehavior_FLOAT() {
+    return ZeroPowerBehavior.FLOAT.toString();
+  }
+
+  @SimpleFunction(description = "Set the zero power behavior.\n" +
+      "Valid values are ZeroPowerBehavior_BRAKE or ZeroPowerBehavior_FLOAT.")
+  public void SetMotorZeroPowerBehavior(int motor, String zeroPowerBehavior) {
+    checkHardwareDevice();
+    if (dcMotorController != null) {
+      try {
+        for (ZeroPowerBehavior zeroPowerBehaviorValue : ZeroPowerBehavior.values()) {
+          if (zeroPowerBehaviorValue.toString().equalsIgnoreCase(zeroPowerBehavior)) {
+            dcMotorController.setMotorZeroPowerBehavior(motor, zeroPowerBehaviorValue);
+            return;
+          }
+        }
+
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "SetMotorZeroPowerBehavior",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  @SimpleFunction(description = "Get the current motor zero power behavior.\n" +
+      "Valid values are ZeroPowerBehavior_BRAKE or ZeroPowerBehavior_FLOAT.")
+  public String GetMotorZeroPowerBehavior(int motor) {
+    checkHardwareDevice();
+    if (dcMotorController != null) {
+      try {
+        ZeroPowerBehavior zeroPowerBehavior = dcMotorController.getMotorZeroPowerBehavior(motor);
+        if (zeroPowerBehavior != null) {
+          return zeroPowerBehavior.toString();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "GetMotorZeroPowerBehavior",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return "";
+  }
+
 
   @SimpleFunction(description = "Allow motor to float.")
   public boolean GetMotorPowerFloat(int motor) {

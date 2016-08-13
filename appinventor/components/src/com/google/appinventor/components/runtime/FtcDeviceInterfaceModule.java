@@ -298,6 +298,22 @@ public final class FtcDeviceInterfaceModule extends FtcHardwareDevice
     return 0;
   }
 
+  @SimpleProperty(description = "Get the maximum voltage in volts.",
+      category = PropertyCategory.BEHAVIOR)
+  public double MaxAnalogInputVoltage() {
+    checkHardwareDevice();
+    if (deviceInterfaceModule != null) {
+      try {
+        return deviceInterfaceModule.getMaxAnalogInputVoltage();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "MaxAnalogInputVoltage",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
   // for PWMOutputController
 
   @SimpleFunction(description = "Set the pulse width output time for this channel.\n" +

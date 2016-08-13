@@ -19,7 +19,6 @@ import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModu
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cController.I2cPortReadyCallback;
-import com.qualcomm.robotcore.hardware.I2cDevice;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch.HeartbeatAction;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch.ReadMode;
@@ -41,9 +40,7 @@ import com.qualcomm.robotcore.util.TypeConversion;
 @UsesLibraries(libraries = "FtcHardware.jar,FtcRobotCore.jar")
 public final class FtcI2cDeviceSynch extends FtcHardwareDevice {
 
-  private volatile I2cDevice i2cDevice;
   private volatile I2cDeviceSynch i2cDeviceSynch;
-  private volatile I2cDeviceSynchImpl i2cDeviceSynchImpl;
 
   /**
    * Creates a new FtcI2cDeviceSynch component.
@@ -82,21 +79,14 @@ public final class FtcI2cDeviceSynch extends FtcHardwareDevice {
   @SimpleFunction(description = "Initialize this I2C device")
   public void Initialize(int i2cAddress) {
     checkHardwareDevice();
-    try {
-      if (i2cDeviceSynchImpl != null) {
-        i2cDeviceSynchImpl.close();
-        i2cDeviceSynchImpl = null;
+    if (i2cDeviceSynch != null) {
+      try {
+        i2cDeviceSynch.setI2cAddr(I2cAddr.create8bit(i2cAddress));
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "Initialize",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
-      i2cDeviceSynch = null;
-      if (i2cDevice != null) {
-        i2cDeviceSynchImpl = new I2cDeviceSynchImpl(i2cDevice, I2cAddr.create8bit(i2cAddress), false);
-        i2cDeviceSynch = i2cDeviceSynchImpl;
-        i2cDeviceSynch.engage();
-      }
-    } catch (Throwable e) {
-      e.printStackTrace();
-      form.dispatchErrorOccurredEvent(this, "Initialize",
-          ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
     }
   }
 
@@ -480,23 +470,17 @@ public final class FtcI2cDeviceSynch extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    // We just get the I2cDevice here and in Initialize method, we instantiate the I2cDeviceSynch.
-    i2cDevice = hardwareMap.i2cDevice.get(getDeviceName());
-    return i2cDevice;
+    i2cDeviceSynch = hardwareMap.i2cDeviceSynch.get(getDeviceName());
+    return i2cDeviceSynch;
   }
 
   @Override
   protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("I2cDeviceSynch", hardwareMap.i2cDevice);
+    dispatchDeviceNotFoundError("I2cDeviceSynch", hardwareMap.i2cDeviceSynch);
   }
 
   @Override
   protected void clearHardwareDeviceImpl() {
-    if (i2cDeviceSynchImpl != null) {
-      i2cDeviceSynchImpl.close();
-      i2cDeviceSynchImpl = null;
-    }
     i2cDeviceSynch = null;
-    i2cDevice = null;
   }
 }

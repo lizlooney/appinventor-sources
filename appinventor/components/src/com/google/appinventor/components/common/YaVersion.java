@@ -432,6 +432,7 @@ public class YaVersion {
   // - FTC_OP_MODE_COMPONENT_VERSION was incremented to 3.
   // For YOUNG_ANDROID_VERSION 151:
   // - FTC_ANALOG_INPUT_COMPONENT_VERSION was incremented to 2.
+  // - The FtcCRServo component was added.
   // - FTC_DC_MOTOR_COMPONENT_VERSION was incremented to 3.
   // - FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION was incremented to 5.
   // - FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION was incremented to 4.
@@ -734,6 +735,7 @@ public class YaVersion {
 
   // For FTC_ANALOG_INPUT_COMPONENT_VERSION 2:
   // - The Value property was renamed Voltage.
+  // - The MaxVoltage property was added.
   public static final int FTC_ANALOG_INPUT_COMPONENT_VERSION = 2;
 
   public static final int FTC_ANALOG_OUTPUT_COMPONENT_VERSION = 1;
@@ -759,6 +761,8 @@ public class YaVersion {
   // - The Mode_CALIBRATION property was renamed CompassMode_CALIBRATION_MODE.
   public static final int FTC_COMPASS_SENSOR_COMPONENT_VERSION = 2;
 
+  public static final int FTC_CR_SERVO_COMPONENT_VERSION = 1;
+
   // For FTC_DC_MOTOR_COMPONENT_VERSION 2:
   // - The ChannelMode property was renamed Mode.
   // For FTC_DC_MOTOR_COMPONENT_VERSION 3:
@@ -766,6 +770,10 @@ public class YaVersion {
   // - The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
   // - The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
   // - The SetPowerFloat method was deprecated.
+  // - The MaxSpeed property was added.
+  // - The ZeroPowerBehavior property was added.
+  // - The ZeroPowerBehavior_BRAKE property was added.
+  // - The ZeroPowerBehavior_FLOAT property was added.
   public static final int FTC_DC_MOTOR_COMPONENT_VERSION = 3;
 
   // For FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION 2:
@@ -790,6 +798,12 @@ public class YaVersion {
   // - The SetMotorChannelMode method was renamed SetMotorMode.
   // - The GetMotorChannelMode method was renamed GetMotorMode.
   // - The SetMotorPowerFloat method was deprecated.
+  // - The SetMotorMaxSpeed method was added.
+  // - The GetMotorMaxSpeed method was added.
+  // - The ZeroPowerBehavior_BRAKE property was added.
+  // - The ZeroPowerBehavior_FLOAT property was added.
+  // - The SetMotorZeroPowerBehavior method was added.
+  // - The GetMotorZeroPowerBehavior method was added.
   public static final int FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION = 5;
 
   // For FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION 2:
@@ -803,6 +817,7 @@ public class YaVersion {
   // - The ClearI2cPortActionFlag method was added.
   // For FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION 4:
   // - The GetAnalogInputValue method was renamed GetAnalogInputVoltage.
+  // - The MaxAnalogInputVoltage property was added.
   public static final int FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION = 4;
 
   public static final int FTC_DIGITAL_CHANNEL_COMPONENT_VERSION = 1;
@@ -830,6 +845,7 @@ public class YaVersion {
   // - The I2cAddress property was added
   // For FTC_GYRO_SENSOR_COMPONENT_VERSION 4:
   // - The Rotation property was renamed RotationFraction.
+  // - The RawVoltage property was added.
   public static final int FTC_GYRO_SENSOR_COMPONENT_VERSION = 4;
 
   // For FTC_I2C_DEVICE_COMPONENT_VERSION 2:
@@ -871,6 +887,7 @@ public class YaVersion {
 
   // For FTC_LIGHT_SENSOR_COMPONENT_VERSION 2:
   // - The LightDetectedRaw property was renamed RawLightDetected.
+  // - The RawVoltage property was added.
   public static final int FTC_LIGHT_SENSOR_COMPONENT_VERSION = 2;
 
   // For FTC_LINEAR_OP_MODE_COMPONENT_VERSION 2:
@@ -892,6 +909,7 @@ public class YaVersion {
 
   // For FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION 2:
   // - The LightDetectedRaw property was renamed RawLightDetected.
+  // - The RawVoltage property was added.
   public static final int FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION = 2;
 
   public static final int FTC_PWM_OUTPUT_COMPONENT_VERSION = 1;

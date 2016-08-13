@@ -15,6 +15,7 @@ import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
+import com.qualcomm.robotcore.hardware.AnalogSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
@@ -91,6 +92,28 @@ public final class FtcOpticalDistanceSensor extends FtcHardwareDevice {
             ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
     }
+  }
+
+  /**
+   * RawVoltage property getter.
+   */
+  @SimpleProperty(description = "The sensor's current value as a raw voltage level. " +
+      "Not all optical distance sensors support this feature.",
+      category = PropertyCategory.BEHAVIOR)
+  public double RawVoltage() {
+    checkHardwareDevice();
+    if (opticalDistanceSensor != null) {
+      try {
+        if (opticalDistanceSensor instanceof AnalogSensor) {
+          return ((AnalogSensor) opticalDistanceSensor).readRawVoltage();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "RawVoltage",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
   }
 
   /**

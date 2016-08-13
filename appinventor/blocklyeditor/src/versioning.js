@@ -1399,6 +1399,7 @@ Blockly.Versioning.AllUpgradeMaps =
       [
         // The Value property was renamed Voltage.
         Blockly.Versioning.changePropertyName("FtcAnalogInput", "Value", "Voltage")
+        // The MaxVoltage property was added. (no upgrade needed)
       ]
 
   }, // End FtcAnalogInput upgraders
@@ -1462,6 +1463,13 @@ Blockly.Versioning.AllUpgradeMaps =
 
   }, // End FtcCompassSensor upgraders
 
+  "FtcCRServo": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcCRServo upgraders
+
   "FtcDcMotor": {
 
     // This is the initial version. Placeholder for future upgrades
@@ -1482,6 +1490,10 @@ Blockly.Versioning.AllUpgradeMaps =
         // The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
         Blockly.Versioning.changePropertyName("FtcDcMotor", "RunMode_RESET_ENCODERS", "RunMode_STOP_AND_RESET_ENCODER")
         // The SetPowerFloat method was deprecated.
+        // The MaxSpeed property was added. (no upgrade neeeded)
+        // The ZeroPowerBehavior_BRAKE property was added. (no upgrade neeeded)
+        // The ZeroPowerBehavior_FLOAT property was added. (no upgrade neeeded)
+        // The ZeroPowerBehavior property was added. (no upgrade neeeded)
       ]
 
   }, // End FtcDcMotor upgraders
@@ -1516,7 +1528,13 @@ Blockly.Versioning.AllUpgradeMaps =
         Blockly.Versioning.changeMethodName("FtcDcMotorController", "SetMotorChannelMode", "SetMotorMode"),
         // The GetMotorChannelMode method was renamed GetMotorMode.
         Blockly.Versioning.changeMethodName("FtcDcMotorController", "GetMotorChannelMode", "GetMotorMode"),
-        // The SetMotorPowerFloat method was deprecated.
+        // The SetMotorPowerFloat method was deprecated. (no upgrade neeeded)
+        // The SetMotorMaxSpeed method was added. (no upgrade neeeded)
+        // The GetMotorMaxSpeed method was added. (no upgrade neeeded)
+        // The ZeroPowerBehavior_BRAKE property was added. (no upgrade neeeded)
+        // The ZeroPowerBehavior_FLOAT property was added. (no upgrade neeeded)
+        // The SetMotorZeroPowerBehavior method was added. (no upgrade neeeded)
+        // The GetMotorZeroPowerBehavior method was added. (no upgrade neeeded)
       ]
 
   }, // End FtcDcMotorController upgraders
@@ -1549,6 +1567,7 @@ Blockly.Versioning.AllUpgradeMaps =
       [
         // The GetAnalogInputValue method was renamed GetAnalogInputVoltage.
         Blockly.Versioning.changeMethodName("FtcDeviceInterfaceModule", "GetAnalogInputValue", "GetAnalogInputVoltage"),
+        // The MaxAnalogInputVoltage property was added. (no upgrade needed)
       ],
 
   }, // End FtcDeviceInterfaceModule upgraders
@@ -1593,6 +1612,7 @@ Blockly.Versioning.AllUpgradeMaps =
       [
         // The Rotation property was renamed RotationFraction.
         Blockly.Versioning.changePropertyName("FtcGyroSensor", "Rotation", "RotationFraction")
+        // The RawVoltage property was added. (no upgrade needed)
       ]
 
   }, // End FtcGyroSensor upgraders
@@ -1705,6 +1725,7 @@ Blockly.Versioning.AllUpgradeMaps =
       [
         // The LightDetectedRaw property was renamed RawLightDetected.
         Blockly.Versioning.changePropertyName("FtcLightSensor", "LightDetectedRaw", "RawLightDetected")
+        // - The RawVoltage property was added. (no upgrade needed)
       ]
 
   }, // End FtcLightSensor upgraders
@@ -1750,6 +1771,7 @@ Blockly.Versioning.AllUpgradeMaps =
       [
         // The LightDetectedRaw property was renamed RawLightDetected.
         Blockly.Versioning.changePropertyName("FtcOpticalDistanceSensor", "LightDetectedRaw", "RawLightDetected")
+        // The RawVoltage property was added. (no upgrade needed)
       ]
 
   }, // End FtcOpticalDistanceSensor upgraders

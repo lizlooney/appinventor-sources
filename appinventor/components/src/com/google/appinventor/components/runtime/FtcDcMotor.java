@@ -17,7 +17,7 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
-import com.qualcomm.robotcore.hardware.DcMotorController;
+import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior;
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -364,6 +364,109 @@ public final class FtcDcMotor extends FtcHardwareDevice {
       } catch (Throwable e) {
         e.printStackTrace();
         form.dispatchErrorOccurredEvent(this, "Mode",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return "";
+  }
+
+  /**
+   * MaxSpeed property setter.
+   */
+  @SimpleProperty
+  public void MaxSpeed(int maxSpeed) {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        dcMotor.setMaxSpeed(maxSpeed);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "MaxSpeed",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  /**
+   * MaxSpeed property getter.
+   */
+  @SimpleProperty(description = "The current maximum targetable speed for this motor when the " +
+      "motor is running in one of the PID modes, in units of encoder ticks per second.",
+      category = PropertyCategory.BEHAVIOR)
+  public int MaxSpeed() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        return dcMotor.getMaxSpeed();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "MaxSpeed",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
+  /**
+   * ZeroPowerBehavior_BRAKE property getter.
+   */
+  @SimpleProperty(description = "The constant for ZeroPowerBehavior_BRAKE.",
+      category = PropertyCategory.BEHAVIOR)
+  public String ZeroPowerBehavior_BRAKE() {
+    return ZeroPowerBehavior.BRAKE.toString();
+  }
+
+  /**
+   * ZeroPowerBehavior_FLOAT property getter.
+   */
+  @SimpleProperty(description = "The constant for ZeroPowerBehavior_FLOAT.",
+      category = PropertyCategory.BEHAVIOR)
+  public String ZeroPowerBehavior_FLOAT() {
+    return ZeroPowerBehavior.FLOAT.toString();
+  }
+
+  /**
+   * ZeroPowerBehavior property setter.
+   */
+  @SimpleProperty
+  public void ZeroPowerBehavior(String zeroPowerBehavior) {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        for (ZeroPowerBehavior zeroPowerBehaviorValue : ZeroPowerBehavior.values()) {
+          if (zeroPowerBehaviorValue.toString().equalsIgnoreCase(zeroPowerBehavior)) {
+            dcMotor.setZeroPowerBehavior(zeroPowerBehaviorValue);
+            return;
+          }
+        }
+
+        form.dispatchErrorOccurredEvent(this, "ZeroPowerBehavior",
+            ErrorMessages.ERROR_FTC_INVALID_ZERO_POWER_BEHAVIOR, zeroPowerBehavior);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "ZeroPowerBehavior",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  /**
+   * ZeroPowerBehavior property getter.
+   */
+  @SimpleProperty(description = "Whether this motor should spin forward or reverse.\n" +
+      "Valid values are ZeroPowerBehavior_BRAKE or ZeroPowerBehavior_FLOAT.",
+      category = PropertyCategory.BEHAVIOR)
+  public String ZeroPowerBehavior() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        ZeroPowerBehavior zeroPowerBehavior = dcMotor.getZeroPowerBehavior();
+        if (zeroPowerBehavior != null) {
+          return zeroPowerBehavior.toString();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "ZeroPowerBehavior",
             ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
     }

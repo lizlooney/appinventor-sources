@@ -18,6 +18,7 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro.HeadingMode;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModule;
+import com.qualcomm.robotcore.hardware.AnalogSensor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.I2cAddr;
@@ -262,6 +263,28 @@ public final class FtcGyroSensor extends FtcHardwareDevice {
             ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
       }
     }
+  }
+
+  /**
+   * RawVoltage property getter.
+   */
+  @SimpleProperty(description = "The sensor's current value as a raw voltage level. " +
+      "Not all gyro sensors support this feature.",
+      category = PropertyCategory.BEHAVIOR)
+  public double RawVoltage() {
+    checkHardwareDevice();
+    if (gyroSensor != null) {
+      try {
+        if (gyroSensor instanceof AnalogSensor) {
+          return ((AnalogSensor) gyroSensor).readRawVoltage();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "RawVoltage",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
   }
 
   /**
