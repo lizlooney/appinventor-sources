@@ -547,6 +547,22 @@ public final class FtcRobotController extends AndroidViewComponent implements On
     }
   }
 
+  @SimpleFunction(description = "Updates the telemetry.")
+  public void UpdateTelemetry() throws InterruptedException {
+    // Copy the activeOpMode field into a local variable so we avoid any race condition caused by
+    // another thread setting the activeOpMode field to null before we finish using it.
+    OpMode opMode = this.activeOpMode;
+    if (opMode != null) {
+      try {
+        opMode.telemetry.update();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "UpdateTelemetry",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
   /**
    * TelemetrySorted property setter.
    */

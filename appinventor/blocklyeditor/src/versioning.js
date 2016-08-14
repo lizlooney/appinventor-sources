@@ -1795,6 +1795,7 @@ Blockly.Versioning.AllUpgradeMaps =
     3: "noUpgrade",
 
     // The TelemetrySorted property was deprecated.
+    // The UpdateTelemetry method was added. (no upgrade needed)
     4: "noUpgrade"
 
   }, // End FtcRobotController upgraders
@@ -1849,6 +1850,13 @@ Blockly.Versioning.AllUpgradeMaps =
     1: "noUpgrade"
 
   }, // End FtcVoltageSensor upgraders
+
+  "FtcVuforiaLocalizer": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcVuforiaLocalizer upgraders
 
   "FusiontablesControl": {
 

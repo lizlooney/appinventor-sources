@@ -2389,6 +2389,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String ftcCompassSensorComponentPallette();
 
+  @DefaultMessage("FtcCRServo")
+  @Description("")
+  String ftcCRServoComponentPallette();
+
   @DefaultMessage("FtcDcMotor")
   @Description("")
   String ftcDcMotorComponentPallette();
@@ -2488,6 +2492,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("FtcVoltageSensor")
   @Description("")
   String ftcVoltageSensorComponentPallette();
+
+  @DefaultMessage("FtcVuforiaLocalizer")
+  @Description("")
+  String ftcVuforiaLocalizerComponentPallette();
 
   // Component Properties
   @DefaultMessage("AboutScreen")
@@ -3435,6 +3443,30 @@ public interface OdeMessages extends Messages {
   @Description("")
   String CalibrationFailedProperties();
 
+  @DefaultMessage("CameraDirection_BACK")
+  @Description("")
+  String CameraDirection_BACKProperties();
+
+  @DefaultMessage("CameraDirection_FRONT")
+  @Description("")
+  String CameraDirection_FRONTProperties();
+
+  @DefaultMessage("CameraMonitorFeedback_AXES")
+  @Description("")
+  String CameraMonitorFeedback_AXESProperties();
+
+  @DefaultMessage("CameraMonitorFeedback_BUILDINGS")
+  @Description("")
+  String CameraMonitorFeedback_BUILDINGSProperties();
+
+  @DefaultMessage("CameraMonitorFeedback_NONE")
+  @Description("")
+  String CameraMonitorFeedback_NONEProperties();
+
+  @DefaultMessage("CameraMonitorFeedback_TEAPOT")
+  @Description("")
+  String CameraMonitorFeedback_TEAPOTProperties();
+
   @DefaultMessage("CompassMode_CALIBRATION_MODE")
   @Description("")
   String CompassMode_CALIBRATION_MODEProperties();
@@ -3782,6 +3814,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("Time")
   @Description("")
   String TimeProperties();
+
+  @DefaultMessage("TrackableCount")
+  @Description("")
+  String TrackableCountProperties();
 
   @DefaultMessage("Type")
   @Description("")
@@ -4441,6 +4477,10 @@ public interface OdeMessages extends Messages {
   String timestampParams();
 
   // FIRST Tech Challenge parameters
+  @DefaultMessage("absoluteFileName")
+  @Description("")
+  String absoluteFileNameParams();
+
   @DefaultMessage("alpha")
   @Description("")
   String alphaParams();
@@ -4448,6 +4488,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("argb")
   @Description("")
   String argbParams();
+
+  @DefaultMessage("assetName")
+  @Description("")
+  String assetNameParams();
 
   @DefaultMessage("bigEndian")
   @Description("")
@@ -4472,6 +4516,14 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("channel")
   @Description("")
   String channelParams();
+
+  @DefaultMessage("cameraDirection")
+  @Description("")
+  String cameraDirectionParams();
+
+  @DefaultMessage("cameraMonitorFeedback")
+  @Description("")
+  String cameraMonitorFeedbackParams();
 
   @DefaultMessage("colorText")
   @Description("")
@@ -4633,9 +4685,17 @@ public interface OdeMessages extends Messages {
   @Description("")
   String timeParams();
 
+  @DefaultMessage("trackable")
+  @Description("")
+  String trackableParams();
+
   @DefaultMessage("unsigned")
   @Description("")
   String unsignedParams();
+
+  @DefaultMessage("useExtendedTracking")
+  @Description("")
+  String useExtendedTrackingParams();
 
   @DefaultMessage("value")
   @Description("")
@@ -5929,6 +5989,10 @@ public interface OdeMessages extends Messages {
   String RequestTranslationMethods();
 
   // FIRST Tech Challenge methods
+  @DefaultMessage("ActivateTrackables")
+  @Description("")
+  String ActivateTrackablesMethods();
+
   @DefaultMessage("Calibrate")
   @Description("")
   String CalibrateMethods();
@@ -5976,6 +6040,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("CreateRGB")
   @Description("")
   String CreateRGBMethods();
+
+  @DefaultMessage("CreateVuforiaLocalizer")
+  @Description("")
+  String CreateVuforiaLocalizerMethods();
 
   @DefaultMessage("Enable")
   @Description("")
@@ -6157,6 +6225,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String GetSwitchesMethods();
 
+  @DefaultMessage("GetTrackableName")
+  @Description("")
+  String GetTrackableNameMethods();
+
   @DefaultMessage("Idle")
   @Description("")
   String IdleMethods();
@@ -6220,6 +6292,14 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("LengthOfByteArray")
   @Description("")
   String LengthOfByteArrayMethods();
+
+  @DefaultMessage("LoadTrackablesFromAsset")
+  @Description("")
+  String LoadTrackablesFromAssetMethods();
+
+  @DefaultMessage("LoadTrackablesFromFile")
+  @Description("")
+  String LoadTrackablesFromFileMethods();
 
   @DefaultMessage("Log")
   @Description("")
@@ -6417,6 +6497,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String SetServoPositionAndSpeedMethods();
 
+  @DefaultMessage("SetTrackableName")
+  @Description("")
+  String SetTrackableNameMethods();
+
   @DefaultMessage("Sleep")
   @Description("")
   String SleepMethods();
@@ -6432,6 +6516,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("ToString")
   @Description("")
   String ToStringMethods();
+
+  @DefaultMessage("UpdateTelemetry")
+  @Description("")
+  String UpdateTelemetryMethods();
 
   @DefaultMessage("WaitForNextHardwareCycle")
   @Description("")
@@ -6761,6 +6849,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String FtcCompassSensorHelpStringComponentPallette();
 
+  @DefaultMessage("A component for a continuous rotation servo of an FTC robot.")
+  @Description("")
+  String FtcCRServoHelpStringComponentPallette();
+
   @DefaultMessage("A component for a DC motor of an FTC robot.")
   @Description("")
   String FtcDcMotorHelpStringComponentPallette();
@@ -6860,6 +6952,11 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("A component for a voltage sensor of an FTC robot.")
   @Description("")
   String FtcVoltageSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a interacting with subsystems that can help support " +
+      "localization through visual means, for an FTC robot.")
+  @Description("")
+  String FtcVuforiaLocalizerHelpStringComponentPallette();
 
   @DefaultMessage("A non-visible component allowing you to store data on a Web database powered by Firebase. " +
       "This allows the users of your app to share data with each other. " +

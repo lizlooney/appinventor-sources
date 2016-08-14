@@ -205,6 +205,10 @@ public final class ErrorMessages {
   public static final int ERROR_FTC_INVALID_LIST_OF_FTC_DC_MOTORS = 2916;
   public static final int ERROR_FTC_INVALID_I2C_DEVICE_SYNCH_READ_MODE = 2917;
   public static final int ERROR_FTC_INVALID_ZERO_POWER_BEHAVIOR = 2918;
+  public static final int ERROR_FTC_INVALID_CAMERA_DIRECTION = 2919;
+  public static final int ERROR_FTC_INVALID_CAMERA_MONITOR_FEEDBACK = 2920;
+  public static final int ERROR_FTC_VUFORIA_LOCALIZER_NOT_CREATED = 2921;
+  public static final int ERROR_FTC_INVALID_VUFORIA_TRACKABLE = 2922;
 
   // Image errors
   public static final int ERROR_IMAGE_CANNOT_ROTATE = 3001;
@@ -532,6 +536,17 @@ public final class ErrorMessages {
     errorMessages.put(ERROR_FTC_INVALID_ZERO_POWER_BEHAVIOR,
         "The specified zero power behavior \"%s\" is not valid. The valid values are " +
         "BRAKE and FLOAT.");
+    errorMessages.put(ERROR_FTC_INVALID_CAMERA_DIRECTION,
+        "The specified camera direction \"%s\" is not valid. The valid values are " +
+        "BACK and FRONT.");
+    errorMessages.put(ERROR_FTC_INVALID_CAMERA_MONITOR_FEEDBACK,
+        "The specified camera monitor feedback \"%s\" is not valid. The valid values are " +
+        "NONE, AXES, TEAPOT, and BUILDINGS.");
+    errorMessages.put(ERROR_FTC_VUFORIA_LOCALIZER_NOT_CREATED,
+        "The Vuforia localizer has not been created.");
+    errorMessages.put(ERROR_FTC_INVALID_VUFORIA_TRACKABLE,
+        "The specified Vuforia trackable number %s is not valid. The valid numbers are between " +
+        "%s and %s.");
 
     // Image errors
     errorMessages.put(ERROR_IMAGE_CANNOT_ROTATE,

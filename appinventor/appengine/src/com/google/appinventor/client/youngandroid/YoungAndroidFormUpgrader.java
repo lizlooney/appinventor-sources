@@ -1271,6 +1271,7 @@ public final class YoungAndroidFormUpgrader {
     }
     if (srcCompVersion < 4) {
       // - The TelemetrySorted property was deprecated.
+      // - The UpdateTelemetry method was added.
       // No designer properties need to be modified to upgrade to version 4.
       srcCompVersion = 4;
     }

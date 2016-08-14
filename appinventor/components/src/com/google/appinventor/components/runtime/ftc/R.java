@@ -17,8 +17,8 @@ import java.util.Map;
  * R provides dynamic values for R.<type>.<name> identifiers used in
  * FtcRobotControllerActivity.java and FtcRobotControllerSettingsActivity.java.
  */
-class R {
-  static class Ids {
+public class R {
+  public static class Ids {
     final int action_about;
     final int action_blocks;
     final int action_configure_robot;
@@ -39,6 +39,7 @@ class R {
     final int textNetworkConnectionStatus;
     final int textRemoteProgrammingMode;
     final int webViewBlocksRuntime;
+    public final int cameraMonitorViewId;
 
     Ids(Resources resources, String packageName) {
       action_about = getIdentifier(resources, "action_about", "id", packageName);
@@ -61,6 +62,7 @@ class R {
       textNetworkConnectionStatus = getIdentifier(resources, "textNetworkConnectionStatus", "id", packageName);
       textRemoteProgrammingMode = getIdentifier(resources, "textRemoteProgrammingMode", "id", packageName);
       webViewBlocksRuntime = getIdentifier(resources, "webViewBlocksRuntime", "id", packageName);
+      cameraMonitorViewId = getIdentifier(resources, "cameraMonitorViewId", "id", packageName);
     }
   }
   static class Layouts {
@@ -100,7 +102,7 @@ class R {
   private R() {
   }
 
-  static Ids id;
+  public static Ids id;
   static Layouts layout;
   static Menus menu;
   static Strings string;

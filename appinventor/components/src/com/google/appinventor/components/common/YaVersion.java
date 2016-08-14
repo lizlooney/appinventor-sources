@@ -431,8 +431,9 @@ public class YaVersion {
   // - FTC_LINEAR_OP_MODE_COMPONENT_VERSION was incremented to 4.
   // - FTC_OP_MODE_COMPONENT_VERSION was incremented to 3.
   // For YOUNG_ANDROID_VERSION 151:
-  // - FTC_ANALOG_INPUT_COMPONENT_VERSION was incremented to 2.
   // - The FtcCRServo component was added.
+  // - The FtcVuforiaLocalizer component was added.
+  // - FTC_ANALOG_INPUT_COMPONENT_VERSION was incremented to 2.
   // - FTC_DC_MOTOR_COMPONENT_VERSION was incremented to 3.
   // - FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION was incremented to 5.
   // - FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION was incremented to 4.
@@ -920,6 +921,7 @@ public class YaVersion {
   // - The TelemetrySorted property was added.
   // For FTC_ROBOT_CONTROLLER_COMPONENT_VERSION 4:
   // - The TelemetrySorted property was deprecated.
+  // - The UpdateTelemetry method was added.
   public static final int FTC_ROBOT_CONTROLLER_COMPONENT_VERSION = 4;
 
   public static final int FTC_SERVO_COMPONENT_VERSION = 1;
@@ -939,6 +941,8 @@ public class YaVersion {
   public static final int FTC_ULTRASONIC_SENSOR_COMPONENT_VERSION = 1;
 
   public static final int FTC_VOLTAGE_SENSOR_COMPONENT_VERSION = 1;
+
+  public static final int FTC_VUFORIA_LOCALIZER_COMPONENT_VERSION = 1;
 
   // For FUSIONTABLESCONTROL_COMPONENT_VERSION 2:
   // - The Fusiontables API was migrated from SQL to V1

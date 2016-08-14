@@ -27,7 +27,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
     description = "A component for a continuous rotation servo of an FTC robot.",
     category = ComponentCategory.FIRSTTECHCHALLENGE,
     nonVisible = true,
-    iconName = "images/ftcCRServo.png")
+    iconName = "images/ftc.png")
 @SimpleObject
 @UsesLibraries(libraries = "FtcRobotCore.jar")
 public final class FtcCRServo extends FtcHardwareDevice {
