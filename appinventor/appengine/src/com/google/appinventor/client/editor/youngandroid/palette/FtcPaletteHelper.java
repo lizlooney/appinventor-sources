@@ -24,6 +24,7 @@ class FtcPaletteHelper extends OrderedPaletteHelper {
     // Then, motors.
     ftcComponentNames.add("FtcDcMotor");
     ftcComponentNames.add("FtcDcMotorController");
+    ftcComponentNames.add("FtcCRServo");
     ftcComponentNames.add("FtcServo");
     ftcComponentNames.add("FtcServoController");
     // Then, sensors.
@@ -39,6 +40,7 @@ class FtcPaletteHelper extends OrderedPaletteHelper {
     ftcComponentNames.add("FtcTouchSensorMultiplexer");
     ftcComponentNames.add("FtcUltrasonicSensor");
     ftcComponentNames.add("FtcVoltageSensor");
+    ftcComponentNames.add("FtcVuforiaLocalizer");
     // Then, low level components.
     ftcComponentNames.add("FtcAnalogInput");
     ftcComponentNames.add("FtcAnalogOutput");

@@ -199,14 +199,18 @@ public class TranslationComponentParams {
     map.put("timestamp", MESSAGES.timestampParams());
 
     // ========== FTC
+    map.put("absoluteFileName", MESSAGES.absoluteFileNameParams());
     map.put("alpha", MESSAGES.alphaParams());
     map.put("argb", MESSAGES.argbParams());
+    map.put("assetName", MESSAGES.assetNameParams());
     map.put("bigEndian", MESSAGES.bigEndianParams());
     map.put("bitField", MESSAGES.bitFieldParams());
     map.put("bitPosition", MESSAGES.bitPositionParams());
     map.put("blue", MESSAGES.blueParams());
     map.put("byteArray", MESSAGES.byteArrayParams());
     map.put("channel", MESSAGES.channelParams());
+    map.put("cameraDirection", MESSAGES.cameraDirectionParams());
+    map.put("cameraMonitorFeedback", MESSAGES.cameraMonitorFeedbackParams());
     map.put("colorText", MESSAGES.colorTextParams());
     map.put("d", MESSAGES.dParams());
     map.put("destinationByteArray", MESSAGES.destinationByteArrayParams());
@@ -225,7 +229,9 @@ public class TranslationComponentParams {
     map.put("length", MESSAGES.lengthParams());
     map.put("line", MESSAGES.lineParams());
     map.put("listOfFtcDcMotors", MESSAGES.listOfFtcDcMotorsParams());
+    map.put("loggingTag", MESSAGES.loggingTagParams());
     map.put("max", MESSAGES.maxParams());
+    map.put("maxSpeed", MESSAGES.maxSpeedParams());
     map.put("memAddress", MESSAGES.memAddressParams());
     map.put("min", MESSAGES.minParams());
     map.put("motor", MESSAGES.motorParams());
@@ -235,7 +241,9 @@ public class TranslationComponentParams {
     map.put("port", MESSAGES.portParams());
     map.put("position", MESSAGES.positionParams());
     map.put("ratio", MESSAGES.ratioParams());
+    map.put("readMode", MESSAGES.readModeParams());
     map.put("red", MESSAGES.redParams());
+    map.put("register", MESSAGES.registerParams());
     map.put("saturation", MESSAGES.saturationParams());
     map.put("set", MESSAGES.setParams());
     map.put("sourceByteArray", MESSAGES.sourceByteArrayParams());
@@ -243,9 +251,13 @@ public class TranslationComponentParams {
     map.put("state", MESSAGES.stateParams());
     map.put("threshold", MESSAGES.thresholdParams());
     map.put("time", MESSAGES.timeParams());
+    map.put("trackable", MESSAGES.trackableParams());
     map.put("unsigned", MESSAGES.unsignedParams());
+    map.put("useExtendedTracking", MESSAGES.useExtendedTrackingParams());
     map.put("value", MESSAGES.valueParams());
     map.put("voltage", MESSAGES.voltageParams());
+    map.put("waitForCompletion", MESSAGES.waitForCompletionParams());
+    map.put("zeroPowerBehavior", MESSAGES.zeroPowerBehaviorParams());
     return map;
   }
 }
