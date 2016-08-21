@@ -201,8 +201,13 @@ public class TranslationComponentParams {
     // ========== FTC
     map.put("absoluteFileName", MESSAGES.absoluteFileNameParams());
     map.put("alpha", MESSAGES.alphaParams());
+    map.put("angle1", MESSAGES.angle1Params());
+    map.put("angle2", MESSAGES.angle2Params());
+    map.put("angle3", MESSAGES.angle3Params());
     map.put("argb", MESSAGES.argbParams());
     map.put("assetName", MESSAGES.assetNameParams());
+    map.put("axesOrder", MESSAGES.axesOrderParams());
+    map.put("axesReference", MESSAGES.axesReferenceParams());
     map.put("bigEndian", MESSAGES.bigEndianParams());
     map.put("bitField", MESSAGES.bitFieldParams());
     map.put("bitPosition", MESSAGES.bitPositionParams());
@@ -215,7 +220,11 @@ public class TranslationComponentParams {
     map.put("d", MESSAGES.dParams());
     map.put("destinationByteArray", MESSAGES.destinationByteArrayParams());
     map.put("destinationPosition", MESSAGES.destinationPositionParams());
+    map.put("dx", MESSAGES.dxParams());
+    map.put("dy", MESSAGES.dyParams());
+    map.put("dz", MESSAGES.dzParams());
     map.put("enable", MESSAGES.enableParams());
+    map.put("fillCameraMonitorViewParent", MESSAGES.fillCameraMonitorViewParentParams());
     map.put("frequency", MESSAGES.frequencyParams());
     map.put("green", MESSAGES.greenParams());
     map.put("hsv", MESSAGES.hsvParams());
@@ -230,6 +239,9 @@ public class TranslationComponentParams {
     map.put("line", MESSAGES.lineParams());
     map.put("listOfFtcDcMotors", MESSAGES.listOfFtcDcMotorsParams());
     map.put("loggingTag", MESSAGES.loggingTagParams());
+    map.put("matrix", MESSAGES.matrixParams());
+    map.put("matrix1", MESSAGES.matrix1Params());
+    map.put("matrix2", MESSAGES.matrix2Params());
     map.put("max", MESSAGES.maxParams());
     map.put("maxSpeed", MESSAGES.maxSpeedParams());
     map.put("memAddress", MESSAGES.memAddressParams());
@@ -245,13 +257,16 @@ public class TranslationComponentParams {
     map.put("red", MESSAGES.redParams());
     map.put("register", MESSAGES.registerParams());
     map.put("saturation", MESSAGES.saturationParams());
+    map.put("scaleX", MESSAGES.scaleXParams());
+    map.put("scaleY", MESSAGES.scaleYParams());
+    map.put("scaleZ", MESSAGES.scaleZParams());
     map.put("set", MESSAGES.setParams());
     map.put("sourceByteArray", MESSAGES.sourceByteArrayParams());
     map.put("sourcePosition", MESSAGES.sourcePositionParams());
     map.put("state", MESSAGES.stateParams());
     map.put("threshold", MESSAGES.thresholdParams());
     map.put("time", MESSAGES.timeParams());
-    map.put("trackable", MESSAGES.trackableParams());
+    map.put("trackableNumber", MESSAGES.trackableNumberParams());
     map.put("unsigned", MESSAGES.unsignedParams());
     map.put("useExtendedTracking", MESSAGES.useExtendedTrackingParams());
     map.put("value", MESSAGES.valueParams());

@@ -208,7 +208,10 @@ public final class ErrorMessages {
   public static final int ERROR_FTC_INVALID_CAMERA_DIRECTION = 2919;
   public static final int ERROR_FTC_INVALID_CAMERA_MONITOR_FEEDBACK = 2920;
   public static final int ERROR_FTC_VUFORIA_LOCALIZER_NOT_CREATED = 2921;
-  public static final int ERROR_FTC_INVALID_VUFORIA_TRACKABLE = 2922;
+  public static final int ERROR_FTC_INVALID_TRACKABLE_NUMBER = 2922;
+  public static final int ERROR_FTC_INVALID_OPEN_GL_MATRIX = 2923;
+  public static final int ERROR_FTC_INVALID_AXES_REFERENCE = 2924;
+  public static final int ERROR_FTC_INVALID_AXES_ORDER = 2925;
 
   // Image errors
   public static final int ERROR_IMAGE_CANNOT_ROTATE = 3001;
@@ -510,7 +513,7 @@ public final class ErrorMessages {
     errorMessages.put(ERROR_FTC_INVALID_NUMBER,
         "The specified number is not valid: %s");
     errorMessages.put(ERROR_FTC_INVALID_BYTE_ARRAY,
-        "The specified byte array (%s) is not valid");
+        "The specified byte array (%s) is not valid.");
     errorMessages.put(ERROR_FTC_INVALID_POSITION,
         "The specified position (%s) is not valid: %s");
     errorMessages.put(ERROR_FTC_INVALID_LENGTH,
@@ -527,9 +530,9 @@ public final class ErrorMessages {
         "The specified motor controller device mode \"%s\" is not valid. The valid modes are " +
         "READ_ONLY and WRITE_ONLY.");
     errorMessages.put(ERROR_FTC_INVALID_HSV,
-        "The specified HSV is not valid");
+        "The specified HSV is not valid.");
     errorMessages.put(ERROR_FTC_INVALID_LIST_OF_FTC_DC_MOTORS,
-        "The specified listOfFtcDcMotors is not valid");
+        "The specified listOfFtcDcMotors is not valid.");
     errorMessages.put(ERROR_FTC_INVALID_I2C_DEVICE_SYNCH_READ_MODE,
         "The specified read mode \"%s\" is not valid. The valid modes are " +
         "REPEAT, BALANCED, and ONLY_ONCE.");
@@ -544,9 +547,17 @@ public final class ErrorMessages {
         "NONE, AXES, TEAPOT, and BUILDINGS.");
     errorMessages.put(ERROR_FTC_VUFORIA_LOCALIZER_NOT_CREATED,
         "The Vuforia localizer has not been created.");
-    errorMessages.put(ERROR_FTC_INVALID_VUFORIA_TRACKABLE,
-        "The specified Vuforia trackable number %s is not valid. The valid numbers are between " +
+    errorMessages.put(ERROR_FTC_INVALID_TRACKABLE_NUMBER,
+        "The specified trackable number %s is not valid. The valid numbers are between " +
         "%s and %s.");
+    errorMessages.put(ERROR_FTC_INVALID_OPEN_GL_MATRIX,
+        "The specified OpenGLMatrix (%s) is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_AXES_REFERENCE,
+        "The specified axes reference \"%s\" is not valid. The valid values are " +
+        "EXTRINSIC and INTRINSIC.");
+    errorMessages.put(ERROR_FTC_INVALID_AXES_ORDER,
+        "The specified axes ORDER \"%s\" is not valid. The valid values are " +
+        "XYX, XYZ, XZX, XZY, YXY, YXZ, YZX, YZY, ZXY, ZXZ, ZYX, and ZYZ.");
 
     // Image errors
     errorMessages.put(ERROR_IMAGE_CANNOT_ROTATE,

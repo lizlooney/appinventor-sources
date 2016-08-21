@@ -3423,6 +3423,62 @@ public interface OdeMessages extends Messages {
   @Description("")
   String AtRestProperties();
 
+  @DefaultMessage("AxesOrder_XYX")
+  @Description("")
+  String AxesOrder_XYXProperties();
+
+  @DefaultMessage("AxesOrder_XZX")
+  @Description("")
+  String AxesOrder_XZXProperties();
+
+  @DefaultMessage("AxesOrder_XYZ")
+  @Description("")
+  String AxesOrder_XYZProperties();
+
+  @DefaultMessage("AxesOrder_XZY")
+  @Description("")
+  String AxesOrder_XZYProperties();
+
+  @DefaultMessage("AxesOrder_YXY")
+  @Description("")
+  String AxesOrder_YXYProperties();
+
+  @DefaultMessage("AxesOrder_YXZ")
+  @Description("")
+  String AxesOrder_YXZProperties();
+
+  @DefaultMessage("AxesOrder_YZX")
+  @Description("")
+  String AxesOrder_YZXProperties();
+
+  @DefaultMessage("AxesOrder_YZY")
+  @Description("")
+  String AxesOrder_YZYProperties();
+
+  @DefaultMessage("AxesOrder_ZYZ")
+  @Description("")
+  String AxesOrder_ZYZProperties();
+
+  @DefaultMessage("AxesOrder_ZXZ")
+  @Description("")
+  String AxesOrder_ZXZProperties();
+
+  @DefaultMessage("AxesOrder_ZYX")
+  @Description("")
+  String AxesOrder_ZYXProperties();
+
+  @DefaultMessage("AxesOrder_ZXY")
+  @Description("")
+  String AxesOrder_ZXYProperties();
+
+  @DefaultMessage("AxesReference_EXTRINSIC")
+  @Description("")
+  String AxesReference_EXTRINSICProperties();
+
+  @DefaultMessage("AxesReference_INTRINSIC")
+  @Description("")
+  String AxesReference_INTRINSICProperties();
+
   @DefaultMessage("B")
   @Description("")
   String BProperties();
@@ -4485,6 +4541,18 @@ public interface OdeMessages extends Messages {
   @Description("")
   String alphaParams();
 
+  @DefaultMessage("angle1")
+  @Description("")
+  String angle1Params();
+
+  @DefaultMessage("angle2")
+  @Description("")
+  String angle2Params();
+
+  @DefaultMessage("angle3")
+  @Description("")
+  String angle3Params();
+
   @DefaultMessage("argb")
   @Description("")
   String argbParams();
@@ -4492,6 +4560,14 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("assetName")
   @Description("")
   String assetNameParams();
+
+  @DefaultMessage("axesOrder")
+  @Description("")
+  String axesOrderParams();
+
+  @DefaultMessage("axesReference")
+  @Description("")
+  String axesReferenceParams();
 
   @DefaultMessage("bigEndian")
   @Description("")
@@ -4541,9 +4617,25 @@ public interface OdeMessages extends Messages {
   @Description("")
   String destinationPositionParams();
 
+  @DefaultMessage("dx")
+  @Description("")
+  String dxParams();
+
+  @DefaultMessage("dy")
+  @Description("")
+  String dyParams();
+
+  @DefaultMessage("dz")
+  @Description("")
+  String dzParams();
+
   @DefaultMessage("enable")
   @Description("")
   String enableParams();
+
+  @DefaultMessage("fillCameraMonitorViewParent")
+  @Description("")
+  String fillCameraMonitorViewParentParams();
 
   @DefaultMessage("frequency")
   @Description("")
@@ -4600,6 +4692,18 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("loggingTag")
   @Description("")
   String loggingTagParams();
+
+  @DefaultMessage("matrix")
+  @Description("")
+  String matrixParams();
+
+  @DefaultMessage("matrix1")
+  @Description("")
+  String matrix1Params();
+
+  @DefaultMessage("matrix2")
+  @Description("")
+  String matrix2Params();
 
   @DefaultMessage("max")
   @Description("")
@@ -4661,6 +4765,18 @@ public interface OdeMessages extends Messages {
   @Description("")
   String saturationParams();
 
+  @DefaultMessage("scaleX")
+  @Description("")
+  String scaleXParams();
+
+  @DefaultMessage("scaleY")
+  @Description("")
+  String scaleYParams();
+
+  @DefaultMessage("scaleZ")
+  @Description("")
+  String scaleZParams();
+
   @DefaultMessage("set")
   @Description("")
   String setParams();
@@ -4685,9 +4801,9 @@ public interface OdeMessages extends Messages {
   @Description("")
   String timeParams();
 
-  @DefaultMessage("trackable")
+  @DefaultMessage("trackableNumber")
   @Description("")
-  String trackableParams();
+  String trackableNumberParams();
 
   @DefaultMessage("unsigned")
   @Description("")
@@ -6045,6 +6161,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String CreateVuforiaLocalizerMethods();
 
+  @DefaultMessage("DeactivateTrackables")
+  @Description("")
+  String DeactivateTrackablesMethods();
+
   @DefaultMessage("Enable")
   @Description("")
   String EnableMethods();
@@ -6161,6 +6281,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String GetGearRatioMethods();
 
+  @DefaultMessage("GetLastTrackedRawPose")
+  @Description("")
+  String GetLastTrackedRawPoseMethods();
+
   @DefaultMessage("GetLEDState")
   @Description("")
   String GetLEDStateMethods();
@@ -6193,6 +6317,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String GetMotorZeroPowerBehaviorMethods();
 
+  @DefaultMessage("GetPose")
+  @Description("")
+  String GetPoseMethods();
+
   @DefaultMessage("GetPowerFloat")
   @Description("")
   String GetPowerFloatMethods();
@@ -6209,9 +6337,21 @@ public interface OdeMessages extends Messages {
   @Description("")
   String GetPwmStatusMethods();
 
+  @DefaultMessage("GetRawPose")
+  @Description("")
+  String GetRawPoseMethods();
+
+  @DefaultMessage("GetRawUpdatedPose")
+  @Description("")
+  String GetRawUpdatedPoseMethods();
+
   @DefaultMessage("GetReadBuffer")
   @Description("")
   String GetReadBufferMethods();
+
+  @DefaultMessage("GetRobotLocation")
+  @Description("")
+  String GetRobotLocationMethods();
 
   @DefaultMessage("GetRuntime")
   @Description("")
@@ -6225,9 +6365,17 @@ public interface OdeMessages extends Messages {
   @Description("")
   String GetSwitchesMethods();
 
+  @DefaultMessage("GetTrackableLocation")
+  @Description("")
+  String GetTrackableLocationMethods();
+
   @DefaultMessage("GetTrackableName")
   @Description("")
   String GetTrackableNameMethods();
+
+  @DefaultMessage("GetUpdatedRobotLocation")
+  @Description("")
+  String GetUpdatedRobotLocationMethods();
 
   @DefaultMessage("Idle")
   @Description("")
@@ -6289,6 +6437,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String IsTouchSensorPressedMethods();
 
+  @DefaultMessage("IsTrackableVisible")
+  @Description("")
+  String IsTrackableVisibleMethods();
+
   @DefaultMessage("LengthOfByteArray")
   @Description("")
   String LengthOfByteArrayMethods();
@@ -6312,6 +6464,54 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("OpModeIsActive")
   @Description("")
   String OpModeIsActiveMethods();
+
+  @DefaultMessage("OpenGLMatrixFormat")
+  @Description("")
+  String OpenGLMatrixFormatMethods();
+
+  @DefaultMessage("OpenGLMatrixIdentity")
+  @Description("")
+  String OpenGLMatrixIdentityMethods();
+
+  @DefaultMessage("OpenGLMatrixInverted")
+  @Description("")
+  String OpenGLMatrixInvertedMethods();
+
+  @DefaultMessage("OpenGLMatrixIsNull")
+  @Description("")
+  String OpenGLMatrixIsNullMethods();
+
+  @DefaultMessage("OpenGLMatrixMultiplied")
+  @Description("")
+  String OpenGLMatrixMultipliedMethods();
+
+  @DefaultMessage("OpenGLMatrixRotated")
+  @Description("")
+  String OpenGLMatrixRotatedMethods();
+
+  @DefaultMessage("OpenGLMatrixRotation")
+  @Description("")
+  String OpenGLMatrixRotationMethods();
+
+  @DefaultMessage("OpenGLMatrixScaled")
+  @Description("")
+  String OpenGLMatrixScaledMethods();
+
+  @DefaultMessage("OpenGLMatrixTranslated")
+  @Description("")
+  String OpenGLMatrixTranslatedMethods();
+
+  @DefaultMessage("OpenGLMatrixTranslation")
+  @Description("")
+  String OpenGLMatrixTranslationMethods();
+
+  @DefaultMessage("OpenGLMatrixTransposed")
+  @Description("")
+  String OpenGLMatrixTransposedMethods();
+
+  @DefaultMessage("OrientationGetRotationMatrix")
+  @Description("")
+  String OrientationGetRotationMatrixMethods();
 
   @DefaultMessage("ParseColor")
   @Description("")
@@ -6473,9 +6673,17 @@ public interface OdeMessages extends Messages {
   @Description("")
   String SetMotorZeroPowerBehaviorMethods();
 
+  @DefaultMessage("SetPhoneLocationOnRobot")
+  @Description("")
+  String SetPhoneLocationOnRobotMethods();
+
   @DefaultMessage("SetPowerFloat")
   @Description("")
   String SetPowerFloatMethods();
+
+  @DefaultMessage("SetPoseCorrectionMatrix")
+  @Description("")
+  String SetPoseCorrectionMatrixMethods();
 
   @DefaultMessage("SetPulseWidthOutputTime")
   @Description("")
@@ -6500,6 +6708,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("SetTrackableName")
   @Description("")
   String SetTrackableNameMethods();
+
+  @DefaultMessage("SetTrackableLocation")
+  @Description("")
+  String SetTrackableLocationMethods();
 
   @DefaultMessage("Sleep")
   @Description("")
