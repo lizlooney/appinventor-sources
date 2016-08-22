@@ -77,6 +77,7 @@ import com.qualcomm.ftccommon.FtcRobotControllerSettingsActivity;
 import com.qualcomm.ftccommon.LaunchActivityConstantsList;
 import com.qualcomm.ftccommon.ProgrammingModeController;
 import com.qualcomm.ftccommon.Restarter;
+import org.firstinspires.ftc.ftccommon.external.SoundPlayingRobotMonitor;
 import com.qualcomm.ftccommon.UpdateUI;
 import com.qualcomm.ftccommon.configuration.EditParameters;
 import com.qualcomm.ftccommon.configuration.FtcLoadFileActivity;
@@ -99,7 +100,7 @@ import com.qualcomm.robotcore.wifi.NetworkType;
 import com.qualcomm.robotcore.wifi.WifiDirectAssistant;
 
 import org.firstinspires.ftc.robotcore.internal.AppUtil;
-import org.firstinspires.inspection.InspectionActivity;
+import org.firstinspires.inspection.RcInspectionActivity;
 
 import java.io.File;
 import java.util.Queue;
@@ -231,6 +232,13 @@ public class FtcRobotControllerActivity extends ActivityGlue {
     ClassManagerFactory.processClasses();
     cfgFileMgr = new RobotConfigFileManager(thisActivity);
 
+    // Clean up 'dirty' status after a possible crash
+    RobotConfigFile configFile = cfgFileMgr.getActiveConfig();
+    if (configFile.isDirty()) {
+      configFile.markClean();
+      cfgFileMgr.setActiveConfig(false, configFile);
+    }
+
     textDeviceName = (TextView) findViewById(R.id.textDeviceName);
     textNetworkConnectionStatus = (TextView) findViewById(R.id.textNetworkConnectionStatus);
     textRobotStatus = (TextView) findViewById(R.id.textRobotStatus);
@@ -242,16 +250,12 @@ public class FtcRobotControllerActivity extends ActivityGlue {
     //immersion = new ImmersiveMode(getWindow().getDecorView());
     dimmer = new Dimmer(thisActivity);
     dimmer.longBright();
-    Restarter restarter = new RobotRestarter();
 
     programmingModeController = new ProgrammingModeControllerImpl(
         thisActivity, (TextView) findViewById(R.id.textRemoteProgrammingMode));
 
-    updateUI = new UpdateUI(thisActivity, dimmer);
-    updateUI.setRestarter(restarter);
-    updateUI.setTextViews(textNetworkConnectionStatus, textRobotStatus,
-        textGamepad, textOpMode, textErrorMessage, textDeviceName);
-    callback = updateUI.new Callback();
+    updateUI = createUpdateUI();
+    callback = createUICallback(updateUI);
 
     PreferenceManager.setDefaultValues(thisActivity, R.xml.preferences, false);
 
@@ -267,6 +271,20 @@ public class FtcRobotControllerActivity extends ActivityGlue {
     wifiLock.acquire();
     callback.networkConnectionUpdate(WifiDirectAssistant.Event.DISCONNECTED);
     bindToService();
+  }
+
+  protected UpdateUI createUpdateUI() {
+    Restarter restarter = new RobotRestarter();
+    UpdateUI result = new UpdateUI(thisActivity, dimmer);
+    result.setRestarter(restarter);
+    result.setTextViews(textNetworkConnectionStatus, textRobotStatus, textGamepad, textOpMode, textErrorMessage, textDeviceName);
+    return result;
+  }
+
+  protected UpdateUI.Callback createUICallback(UpdateUI updateUI) {
+    UpdateUI.Callback result = updateUI.new Callback();
+    result.setStateMonitor(new SoundPlayingRobotMonitor());
+    return result;
   }
 
   @Override
@@ -400,7 +418,7 @@ public class FtcRobotControllerActivity extends ActivityGlue {
       startActivity(programmingModeIntent);
       return true;
     } else if (id == R.id.action_inspection_mode) {
-      Intent inspectionModeIntent = new Intent(InspectionActivity.launchIntent);
+      Intent inspectionModeIntent = new Intent(RcInspectionActivity.rcLaunchIntent);
       startActivity(inspectionModeIntent);
       return true;
     }
