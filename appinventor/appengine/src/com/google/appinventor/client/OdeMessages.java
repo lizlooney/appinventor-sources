@@ -3423,6 +3423,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String AtRestProperties();
 
+  @DefaultMessage("Autonomous")
+  @Description("")
+  String AutonomousProperties();
+
   @DefaultMessage("AxesOrder_XYX")
   @Description("")
   String AxesOrder_XYXProperties();
@@ -3594,6 +3598,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("Green")
   @Description("")
   String GreenProperties();
+
+  @DefaultMessage("Group")
+  @Description("")
+  String GroupProperties();
 
   @DefaultMessage("Guide")
   @Description("")

@@ -59,10 +59,12 @@ http://www.apache.org/licenses/LICENSE-2.0
 
   <!-- Preferences -->
   <string name="pref_view_logs">View Logs</string>
+  <string name="pref_sound_on_off_title">Sound</string>
 
   <!-- Toast messages -->  
   <string name="toastWifiConfigurationComplete">Configuration Complete</string>
   <string name="AI_toastRestartingRobot">Restarting Robot</string>
+  <string name="toastConfigureRobotBeforeProgrammingMode">You must Configure Robot before starting Programming Mode.</string>
 
   <!-- Added for App Inventor -->
   <string name="AI_title_ftc_configuration_activity">FtcConfigurationActivity</string>

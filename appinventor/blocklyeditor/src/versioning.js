@@ -1745,7 +1745,10 @@ Blockly.Versioning.AllUpgradeMaps =
     3: "noUpgrade",
 
     // The Idle, IsStarted, IsStopRequested, and RequestOpModeStop methods were added.
-    4: "noUpgrade"
+    4: "noUpgrade",
+
+    // The Autonomous and Group properties were added.
+    5: "noUpgrade"
 
   }, // End FtcLinearOpMode upgraders
 
@@ -1758,7 +1761,10 @@ Blockly.Versioning.AllUpgradeMaps =
     2: "noUpgrade",
 
     // The RequestOpModeStop method was added.
-    3: "noUpgrade"
+    3: "noUpgrade",
+
+    // The Autonomous and Group properties were added.
+    4: "noUpgrade"
 
   }, // End FtcOpMode upgraders
 

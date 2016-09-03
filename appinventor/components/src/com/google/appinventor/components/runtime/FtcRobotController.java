@@ -24,6 +24,8 @@ import com.google.appinventor.components.runtime.util.SdkLevel;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
+import com.qualcomm.robotcore.eventloop.opmode.OpModeMeta;
+import com.qualcomm.robotcore.eventloop.opmode.OpModeMeta.Flavor;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
@@ -100,6 +102,8 @@ public final class FtcRobotController extends AndroidViewComponent implements On
 
   interface OpModeWrapper {
     String getOpModeName();
+    Flavor getFlavor();
+    String getGroup();
     OpMode getOpMode();
   }
 
@@ -316,7 +320,11 @@ public final class FtcRobotController extends AndroidViewComponent implements On
         }
       });
       for (OpModeWrapper opModeWrapper : opModeWrappers) {
-        opModeManager.register(opModeWrapper.getOpModeName(), opModeWrapper.getOpMode());
+        String group = opModeWrapper.getGroup();
+        OpModeMeta meta = TextUtils.isEmpty(group)
+            ? new OpModeMeta(opModeWrapper.getOpModeName(), opModeWrapper.getFlavor())
+            : new OpModeMeta(opModeWrapper.getOpModeName(), opModeWrapper.getFlavor(), group);
+        opModeManager.register(meta, opModeWrapper.getOpMode());
       }
     }
   }

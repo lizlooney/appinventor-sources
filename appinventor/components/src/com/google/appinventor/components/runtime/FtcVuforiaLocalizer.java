@@ -725,13 +725,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
           ErrorMessages.ERROR_FTC_INVALID_OPEN_GL_MATRIX, "matrix");
       return "";
     }
-    // TODO(lizlooney): after format method is added to OpenGLMatrix, just call it here.
-    // return ((OpenGLMatrix) matrix).format();
-    OpenGLMatrix openGLMatrix = (OpenGLMatrix) matrix;
-    VectorF translation = openGLMatrix.getTranslation();
-    Orientation orientation = Orientation.getOrientation(
-        openGLMatrix, AxesReference.EXTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
-    return String.format("%s %s", orientation.toString(), translation.toString());
+    return ((OpenGLMatrix) matrix).formatAsTransform();
   }
 
   // AxesOrder enum values

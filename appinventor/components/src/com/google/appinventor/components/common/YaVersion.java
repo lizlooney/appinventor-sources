@@ -442,8 +442,11 @@ public class YaVersion {
   // - FTC_LIGHT_SENSOR_COMPONENT_VERSION was incremented to 2.
   // - FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION was incremented to 2.
   // - FTC_ROBOT_CONTROLLER_COMPONENT_VERSION was incremented to 4.
+  // For YOUNG_ANDROID_VERSION 152:
 
-  public static final int YOUNG_ANDROID_VERSION = 151;
+  public static final int YOUNG_ANDROID_VERSION = 152;
+  // - FTC_LINEAR_OP_MODE_COMPONENT_VERSION was incremented to 5.
+  // - FTC_OP_MODE_COMPONENT_VERSION was incremented to 4.
 
   // ............................... Blocks Language Version Number ...............................
 
@@ -900,13 +903,17 @@ public class YaVersion {
   // - IsStarted method was added.
   // - IsStopRequested method was added.
   // - RequestOpModeStop method was added.
-  public static final int FTC_LINEAR_OP_MODE_COMPONENT_VERSION = 4;
+  // For FTC_LINEAR_OP_MODE_COMPONENT_VERSION 5:
+  // - The Autonomous and Group properties were added.
+  public static final int FTC_LINEAR_OP_MODE_COMPONENT_VERSION = 5;
 
   // For FTC_OP_MODE_COMPONENT_VERSION 2:
   // - The Time property was added.
   // For FTC_OP_MODE_COMPONENT_VERSION 3:
   // - RequestOpModeStop method was added.
-  public static final int FTC_OP_MODE_COMPONENT_VERSION = 3;
+  // For FTC_OP_MODE_COMPONENT_VERSION 4:
+  // - The Autonomous and Group properties were added.
+  public static final int FTC_OP_MODE_COMPONENT_VERSION = 4;
 
   // For FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION 2:
   // - The LightDetectedRaw property was renamed RawLightDetected.

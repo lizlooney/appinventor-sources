@@ -80,7 +80,8 @@ public final class FtcOpticalDistanceSensor extends FtcHardwareDevice {
     return 0;
   }
 
-  @SimpleFunction(description = "Enable the LED light.")
+  @SimpleFunction(description = "Enable the LED light. " +
+      "Not all optical distance sensors support this feature.")
   public void EnableLed(boolean enable) {
     checkHardwareDevice();
     if (opticalDistanceSensor != null) {

@@ -82,10 +82,14 @@ public class R {
   static class Strings {
     final int toastRestartingRobot;
     final int toastWifiConfigurationComplete;
+    final int toastConfigureRobotBeforeProgrammingMode;
 
     Strings(Resources resources, String packageName) {
       toastRestartingRobot = getIdentifier(resources, "toastRestartingRobot", "string", packageName);
-      toastWifiConfigurationComplete = getIdentifier(resources, "toastWifiConfigurationComplete", "string", packageName);
+      toastWifiConfigurationComplete =
+          getIdentifier(resources, "toastWifiConfigurationComplete", "string", packageName);
+      toastConfigureRobotBeforeProgrammingMode =
+          getIdentifier(resources, "toastConfigureRobotBeforeProgrammingMode", "string", packageName);
     }
   }
   static class Xmls {

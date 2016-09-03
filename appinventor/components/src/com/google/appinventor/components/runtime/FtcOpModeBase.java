@@ -13,6 +13,7 @@ import com.google.appinventor.components.annotations.SimpleProperty;
 import com.google.appinventor.components.common.PropertyTypeConstants;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpModeMeta.Flavor;
 
 /**
  * A base class for components for operation modes for an FTC robot.
@@ -28,6 +29,8 @@ public abstract class FtcOpModeBase extends AndroidNonvisibleComponent
   protected final OpMode opMode;
 
   private volatile String opModeName = DEFAULT_NAME;
+  private volatile boolean autonomous;
+  private volatile String group = "";
 
   protected FtcOpModeBase(ComponentContainer container) {
     super(container.$form());
@@ -61,6 +64,48 @@ public abstract class FtcOpModeBase extends AndroidNonvisibleComponent
     this.opModeName = opModeName;
   }
 
+  /**
+   * Autonomous property getter.
+   * Not visible in blocks.
+   */
+  @SimpleProperty(description = "Whether this op mode is autonomous.",
+      category = PropertyCategory.BEHAVIOR, userVisible = false)
+  public boolean Autonomous() {
+    return autonomous;
+  }
+
+  /**
+   * Autonomous property setter.
+   * Can only be set in designer; not visible in blocks.
+   */
+  @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_BOOLEAN,
+      defaultValue = "False")
+  @SimpleProperty(userVisible = false)
+  public void Autonomous(boolean autonomous) {
+    this.autonomous = autonomous;
+  }
+
+  /**
+   * Group property getter.
+   * Not visible in blocks.
+   */
+  @SimpleProperty(description = "The group for this Op Mode.",
+      category = PropertyCategory.BEHAVIOR, userVisible = false)
+  public String Group() {
+    return group;
+  }
+
+  /**
+   * Group property setter.
+   * Can only be set in designer; not visible in blocks.
+   */
+  @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_STRING,
+      defaultValue = "")
+  @SimpleProperty(userVisible = false)
+  public void Group(String group) {
+    this.group = (group == null) ? "" : group;
+  }
+
   @SimpleFunction(description = "Get the number of seconds this op mode has been running.")
   public double GetRuntime() {
     return opMode.getRuntime();
@@ -91,6 +136,16 @@ public abstract class FtcOpModeBase extends AndroidNonvisibleComponent
   @Override
   public String getOpModeName() {
     return opModeName;
+  }
+
+  @Override
+  public Flavor getFlavor() {
+    return autonomous ? Flavor.AUTONOMOUS : Flavor.TELEOP;
+  }
+
+  @Override
+  public String getGroup() {
+    return group;
   }
 
   @Override

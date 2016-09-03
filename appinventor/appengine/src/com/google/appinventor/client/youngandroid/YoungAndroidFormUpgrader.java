@@ -1229,6 +1229,10 @@ public final class YoungAndroidFormUpgrader {
       // - The RequestOpModeStop method was added.
       srcCompVersion = 4;
     }
+    if (srcCompVersion < 5) {
+      // - The Autonomous and Group properties were added.
+      srcCompVersion = 5;
+    }
     return srcCompVersion;
   }
 
@@ -1242,6 +1246,10 @@ public final class YoungAndroidFormUpgrader {
     if (srcCompVersion < 3) {
       // - The RequestOpModeStop method was added.
       srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The Autonomous and Group properties were added.
+      srcCompVersion = 4;
     }
     return srcCompVersion;
   }
