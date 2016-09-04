@@ -15,8 +15,8 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.AccelerationSensor;
-import com.qualcomm.robotcore.hardware.AccelerationSensor.Acceleration;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 
 /**
  * A component for an acceleration sensor of an FTC robot.
@@ -52,7 +52,7 @@ public final class FtcAccelerationSensor extends FtcHardwareDevice {
       try {
         Acceleration acceleration = accelerationSensor.getAcceleration();
         if (acceleration != null) {
-          return acceleration.x;
+          return acceleration.xAccel;
         }
       } catch (Throwable e) {
         e.printStackTrace();
@@ -74,7 +74,7 @@ public final class FtcAccelerationSensor extends FtcHardwareDevice {
       try {
         Acceleration acceleration = accelerationSensor.getAcceleration();
         if (acceleration != null) {
-          return acceleration.y;
+          return acceleration.yAccel;
         }
       } catch (Throwable e) {
         e.printStackTrace();
@@ -96,7 +96,7 @@ public final class FtcAccelerationSensor extends FtcHardwareDevice {
       try {
         Acceleration acceleration = accelerationSensor.getAcceleration();
         if (acceleration != null) {
-          return acceleration.z;
+          return acceleration.zAccel;
         }
       } catch (Throwable e) {
         e.printStackTrace();
