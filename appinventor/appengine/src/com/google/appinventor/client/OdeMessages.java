@@ -3790,7 +3790,7 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("ReadMode_REPEAT")
   @Description("")
   String ReadMode_REPEATProperties();
-  
+
   @DefaultMessage("Red")
   @Description("")
   String RedProperties();
@@ -3906,6 +3906,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("Voltage")
   @Description("")
   String VoltageProperties();
+
+  @DefaultMessage("VuforiaLicenseKey")
+  @Description("")
+  String VuforiaLicenseKeyProperties();
 
   @DefaultMessage("ZeroPowerBehavior")
   @Description("")

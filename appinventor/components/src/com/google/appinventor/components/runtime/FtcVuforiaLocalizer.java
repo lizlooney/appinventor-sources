@@ -6,12 +6,14 @@
 package com.google.appinventor.components.runtime;
 
 import com.google.appinventor.components.annotations.DesignerComponent;
+import com.google.appinventor.components.annotations.DesignerProperty;
 import com.google.appinventor.components.annotations.PropertyCategory;
 import com.google.appinventor.components.annotations.SimpleFunction;
 import com.google.appinventor.components.annotations.SimpleObject;
 import com.google.appinventor.components.annotations.SimpleProperty;
 import com.google.appinventor.components.annotations.UsesLibraries;
 import com.google.appinventor.components.common.ComponentCategory;
+import com.google.appinventor.components.common.PropertyTypeConstants;
 import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 import com.google.appinventor.components.runtime.ftc.R;
@@ -42,7 +44,11 @@ import java.util.List;
  */
 @DesignerComponent(version = YaVersion.FTC_VUFORIA_LOCALIZER_COMPONENT_VERSION,
     description = "A component for interacting with subsystems that can help support localization " +
-        "through visual means, for an FTC robot.",
+        "through visual means, for an FTC robot. You need to obtain your own license key to use " +
+        "Vuforia. " +
+        "Vuforia will not load without a valid license being provided. Vuforia 'Development' " +
+        "license keys, which is what is needed here, can be obtained free of charge from the " +
+        "Vuforia developer web site at https://developer.vuforia.com/license-manager",
     category = ComponentCategory.FIRSTTECHCHALLENGE,
     nonVisible = true,
     iconName = "images/ftc.png")
@@ -51,6 +57,7 @@ import java.util.List;
 public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
     implements Component, OnDestroyListener, Deleteable {
 
+  private volatile String vuforiaLicenseKey;
   private volatile VuforiaLocalizer.Parameters parameters;
   private volatile VuforiaLocalizer vuforiaLocalizer;
   private volatile OpenGLMatrix phoneLocationOnRobot;
@@ -64,6 +71,30 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
     super(container.$form());
 
     form.registerForOnDestroy(this);
+  }
+
+  /**
+   * VuforiaLicenseKey property getter.
+   * Not visible in blocks.
+   */
+  @SimpleProperty(description = "The license key with which to use Vuforia. " +
+      "Vuforia will not load without a valid license being provided. Vuforia 'Development' " +
+      "license keys, which is what is needed here, can be obtained free of charge from the " +
+      "Vuforia developer web site at https://developer.vuforia.com/license-manager",
+      category = PropertyCategory.BEHAVIOR, userVisible = false)
+  public String VuforiaLicenseKey() {
+    return vuforiaLicenseKey;
+  }
+
+  /**
+   * VuforiaLicenseKey property setter.
+   * Can only be set in designer; not visible in blocks.
+   */
+  @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_STRING,
+      defaultValue = "")
+  @SimpleProperty(userVisible = false)
+  public void VuforiaLicenseKey(String vuforiaLicenseKey) {
+    this.vuforiaLicenseKey = vuforiaLicenseKey;
   }
 
   /**
@@ -149,6 +180,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
       boolean fillCameraMonitorViewParent) {
     try {
       parameters = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
+      parameters.vuforiaLicenseKey = vuforiaLicenseKey;
       CameraDirection cameraDirectionValue = parseCameraDirection(
           cameraDirection, "CreateVuforiaLocalizer");
       if (cameraDirectionValue != null) {
