@@ -15,9 +15,13 @@ import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cCompassSensor;
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.CompassSensor;
 import com.qualcomm.robotcore.hardware.CompassSensor.CompassMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cAddr;
+import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
+import org.firstinspires.ftc.robotcore.external.navigation.MagneticFlux;
 
 /**
  * A component for a compass sensor of an FTC robot.
@@ -30,7 +34,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
     nonVisible = true,
     iconName = "images/ftcCompassSensor.png")
 @SimpleObject
-@UsesLibraries(libraries = "FtcRobotCore.jar")
+@UsesLibraries(libraries = "FtcHardware.jar,FtcRobotCore.jar")
 public final class FtcCompassSensor extends FtcHardwareDevice {
 
   private volatile CompassSensor compassSensor;
@@ -39,7 +43,7 @@ public final class FtcCompassSensor extends FtcHardwareDevice {
    * Creates a new FtcCompassSensor component.
    */
   public FtcCompassSensor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), CompassSensor.class);
   }
 
   /**
@@ -143,17 +147,162 @@ public final class FtcCompassSensor extends FtcHardwareDevice {
     return false;
   }
 
+  // ModernRoboticsI2cCompassSensor
+
+  /**
+   * MAX_NEW_I2C_ADDRESS property getter.
+   */
+  @SimpleProperty(description = "The constant for MAX_NEW_I2C_ADDRESS.",
+      category = PropertyCategory.BEHAVIOR)
+  public int MAX_NEW_I2C_ADDRESS() {
+    return ModernRoboticsUsbDeviceInterfaceModule.MAX_NEW_I2C_ADDRESS;
+  }
+
+  /**
+   * MIN_NEW_I2C_ADDRESS property getter.
+   */
+  @SimpleProperty(description = "The constant for MIN_NEW_I2C_ADDRESS.",
+      category = PropertyCategory.BEHAVIOR)
+  public int MIN_NEW_I2C_ADDRESS() {
+    return ModernRoboticsUsbDeviceInterfaceModule.MIN_NEW_I2C_ADDRESS;
+  }
+
+  /**
+   * I2cAddress property setter.
+   */
+  @SimpleProperty
+  public void I2cAddress(int newAddress) {
+    checkHardwareDevice();
+    if (compassSensor != null) {
+      try {
+        if (compassSensor instanceof ModernRoboticsI2cCompassSensor) {
+          ((ModernRoboticsI2cCompassSensor) compassSensor)
+              .setI2cAddress(I2cAddr.create8bit(newAddress));
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "I2cAddress",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  /**
+   * I2cAddress property getter.
+   */
+  @SimpleProperty(description = "The I2C address of the compass sensor. " + 
+      "Not all compass sensors support this feature.",
+      category = PropertyCategory.BEHAVIOR)
+  public int I2cAddress() {
+    checkHardwareDevice();
+    if (compassSensor != null) {
+      try {
+        if (compassSensor instanceof ModernRoboticsI2cCompassSensor) {
+          return ((ModernRoboticsI2cCompassSensor) compassSensor).getI2cAddress().get8Bit();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "I2cAddress",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
+  /**
+   * Acceleration property getter.
+   */
+  @SimpleProperty(description = "Returns an Acceleration object representing the acceleration " +
+      "detected by the sensor.",
+      category = PropertyCategory.BEHAVIOR)
+  public Object Acceleration() {
+    checkHardwareDevice();
+    if (compassSensor != null) {
+      try {
+        if (compassSensor instanceof ModernRoboticsI2cCompassSensor) {
+          return ((ModernRoboticsI2cCompassSensor) compassSensor).getAcceleration();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "Acceleration",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return null;
+  }
+
+  /**
+   * MagneticFlux property getter.
+   */
+  @SimpleProperty(description = "Returns a MagneticFlux object representing the magnetic flux " +
+      "detected by the sensor. Not all compass sensors support this feature.",
+      category = PropertyCategory.BEHAVIOR)
+  public Object MagneticFlux() {
+    checkHardwareDevice();
+    if (compassSensor != null) {
+      try {
+        if (compassSensor instanceof ModernRoboticsI2cCompassSensor) {
+          return ((ModernRoboticsI2cCompassSensor) compassSensor).getMagneticFlux();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "MagneticFlux",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return null;
+  }
+
+  // Functions to extract fields from Acceleration and MagneticFlux
+
+  @SimpleFunction(description = "Returns the X value of the given Acceleration or MagneticFlux object.")
+  public double GetX(Object object) {
+    if (object instanceof Acceleration) {
+      return ((Acceleration) object).xAccel;
+    }
+    if (object instanceof MagneticFlux) {
+      return ((MagneticFlux) object).x;
+    }
+
+    form.dispatchErrorOccurredEvent(this, "GetX",
+        ErrorMessages.ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX, "object");
+    return 0;
+  }
+
+  @SimpleFunction(description = "Returns the Y value of the given Acceleration or MagneticFlux object.")
+  public double GetY(Object object) {
+    if (object instanceof Acceleration) {
+      return ((Acceleration) object).yAccel;
+    }
+    if (object instanceof MagneticFlux) {
+      return ((MagneticFlux) object).y;
+    }
+
+    form.dispatchErrorOccurredEvent(this, "GetY",
+        ErrorMessages.ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX, "object");
+    return 0;
+  }
+
+  @SimpleFunction(description = "Returns the Z value of the given Acceleration or MagneticFlux.")
+  public double GetZ(Object object) {
+    if (object instanceof Acceleration) {
+      return ((Acceleration) object).zAccel;
+    }
+    if (object instanceof MagneticFlux) {
+      return ((MagneticFlux) object).z;
+    }
+
+    form.dispatchErrorOccurredEvent(this, "GetZ",
+        ErrorMessages.ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX, "object");
+    return 0;
+  }
+
   // FtcHardwareDevice implementation
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    compassSensor = hardwareMap.compassSensor.get(getDeviceName());
+    compassSensor = (CompassSensor) hardwareMap.get(deviceClass, getDeviceName());
     return compassSensor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("CompassSensor", hardwareMap.compassSensor);
   }
 
   @Override

@@ -16,7 +16,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModule;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cController.I2cPortReadyCallback;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
@@ -46,7 +45,7 @@ public final class FtcI2cDeviceSynch extends FtcHardwareDevice {
    * Creates a new FtcI2cDeviceSynch component.
    */
   public FtcI2cDeviceSynch(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), I2cDeviceSynch.class);
   }
 
   /**
@@ -470,13 +469,8 @@ public final class FtcI2cDeviceSynch extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    i2cDeviceSynch = hardwareMap.i2cDeviceSynch.get(getDeviceName());
+    i2cDeviceSynch = (I2cDeviceSynch) hardwareMap.get(deviceClass, getDeviceName());
     return i2cDeviceSynch;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("I2cDeviceSynch", hardwareMap.i2cDeviceSynch);
   }
 
   @Override

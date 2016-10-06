@@ -443,10 +443,17 @@ public class YaVersion {
   // - FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION was incremented to 2.
   // - FTC_ROBOT_CONTROLLER_COMPONENT_VERSION was incremented to 4.
   // For YOUNG_ANDROID_VERSION 152:
-
-  public static final int YOUNG_ANDROID_VERSION = 152;
   // - FTC_LINEAR_OP_MODE_COMPONENT_VERSION was incremented to 5.
   // - FTC_OP_MODE_COMPONENT_VERSION was incremented to 4.
+  // For YOUNG_ANDROID_VERSION 153:
+  // - FTC_COMPASS_SENSOR_COMPONENT_VERSION was incremented to 3.
+  // - FTC_GYRO_SENSOR_COMPONENT_VERSION was incremented to 5.
+  // - FTC_LIGHT_SENSOR_COMPONENT_VERSION was incremented to 3.
+  // - FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION was incremented to 3.
+  // - The FtcBNO055IMU component was added.
+  // - The FtcMrRangeSensor component was added.
+
+  public static final int YOUNG_ANDROID_VERSION = 153;
 
   // ............................... Blocks Language Version Number ...............................
 
@@ -744,6 +751,8 @@ public class YaVersion {
 
   public static final int FTC_ANALOG_OUTPUT_COMPONENT_VERSION = 1;
 
+  public static final int FTC_BNO055IMU_COMPONENT_VERSION = 1;
+
   // For FTC_COLOR_SENSOR_COMPONENT_VERSION 2:
   // - The ColorToHSV method was renamed ConvertColorToHSV.
   // - The HSVToColor method was renamed ConvertHSVToColor.
@@ -763,7 +772,11 @@ public class YaVersion {
   // For FTC_COMPASS_SENSOR_COMPONENT_VERSION 2:
   // - The Mode_MEASUREMENT property was renamed CompassMode_MEASUREMENT_MODE.
   // - The Mode_CALIBRATION property was renamed CompassMode_CALIBRATION_MODE.
-  public static final int FTC_COMPASS_SENSOR_COMPONENT_VERSION = 2;
+  // For FTC_COMPASS_SENSOR_COMPONENT_VERSION 3:
+  // - The MAX_NEW_I2C_ADDRESS, MIN_NEW_I2C_ADDRESS, I2cAddress, Acceleration, and MagneticFlux
+  // properties were added.
+  // - The IsCalibrating, GetX, GetY, and GetZ methods were added.
+  public static final int FTC_COMPASS_SENSOR_COMPONENT_VERSION = 3;
 
   public static final int FTC_CR_SERVO_COMPONENT_VERSION = 1;
 
@@ -850,7 +863,9 @@ public class YaVersion {
   // For FTC_GYRO_SENSOR_COMPONENT_VERSION 4:
   // - The Rotation property was renamed RotationFraction.
   // - The RawVoltage property was added.
-  public static final int FTC_GYRO_SENSOR_COMPONENT_VERSION = 4;
+  // For FTC_GYRO_SENSOR_COMPONENT_VERSION 5:
+  // - The IntegratedZValue property was added.
+  public static final int FTC_GYRO_SENSOR_COMPONENT_VERSION = 5;
 
   // For FTC_I2C_DEVICE_COMPONENT_VERSION 2:
   // - The GetI2cReadCache method was renamed GetCopyOfReadBuffer.
@@ -892,7 +907,9 @@ public class YaVersion {
   // For FTC_LIGHT_SENSOR_COMPONENT_VERSION 2:
   // - The LightDetectedRaw property was renamed RawLightDetected.
   // - The RawVoltage property was added.
-  public static final int FTC_LIGHT_SENSOR_COMPONENT_VERSION = 2;
+  // For FTC_LIGHT_SENSOR_COMPONENT_VERSION 3:
+  // - The RawLightDetectedMax property was added.
+  public static final int FTC_LIGHT_SENSOR_COMPONENT_VERSION = 3;
 
   // For FTC_LINEAR_OP_MODE_COMPONENT_VERSION 2:
   // - The WaitOneHardwareCycle method was renamed WaitOneFullHardwareCycle.
@@ -907,6 +924,8 @@ public class YaVersion {
   // - The Autonomous and Group properties were added.
   public static final int FTC_LINEAR_OP_MODE_COMPONENT_VERSION = 5;
 
+  public static final int FTC_MR_RANGE_SENSOR_COMPONENT_VERSION = 1;
+
   // For FTC_OP_MODE_COMPONENT_VERSION 2:
   // - The Time property was added.
   // For FTC_OP_MODE_COMPONENT_VERSION 3:
@@ -918,7 +937,9 @@ public class YaVersion {
   // For FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION 2:
   // - The LightDetectedRaw property was renamed RawLightDetected.
   // - The RawVoltage property was added.
-  public static final int FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION = 2;
+  // For FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION 3:
+  // - The RawLightDetectedMax property was added.
+  public static final int FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION = 3;
 
   public static final int FTC_PWM_OUTPUT_COMPONENT_VERSION = 1;
 

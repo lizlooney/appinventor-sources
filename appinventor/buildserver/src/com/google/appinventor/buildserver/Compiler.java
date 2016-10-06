@@ -400,7 +400,8 @@ public final class Compiler {
         out.write("android:label=\"" + aName + "\" ");
       }
       if (isFtcRobotController) {
-        out.write("android:icon=\"@drawable/ic_launcher\" ");
+        out.write("android:largeHeap=\"true\"\n");
+        out.write("android:icon=\"@drawable/ic_launcher\"\n");
         out.write("android:theme=\"@style/AI_AppTheme\"\n");
       } else {
         out.write("android:icon=\"@drawable/ya\" ");

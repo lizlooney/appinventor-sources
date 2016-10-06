@@ -15,7 +15,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtTouchSensor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 /**
@@ -38,7 +37,7 @@ public final class FtcTouchSensor extends FtcHardwareDevice {
    * Creates a new FtcTouchSensor component.
    */
   public FtcTouchSensor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), TouchSensor.class);
   }
 
   /**
@@ -109,13 +108,8 @@ public final class FtcTouchSensor extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    touchSensor = hardwareMap.touchSensor.get(getDeviceName());
+    touchSensor = (TouchSensor) hardwareMap.get(deviceClass, getDeviceName());
     return touchSensor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("TouchSensor", hardwareMap.touchSensor);
   }
 
   @Override

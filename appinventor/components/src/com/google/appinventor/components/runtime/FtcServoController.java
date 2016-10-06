@@ -16,7 +16,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.hardware.matrix.MatrixServoController;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.ServoController;
 import com.qualcomm.robotcore.hardware.ServoController.PwmStatus;
 
@@ -40,7 +39,7 @@ public final class FtcServoController extends FtcHardwareDevice {
    * Creates a new FtcServoController component.
    */
   public FtcServoController(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), ServoController.class);
   }
 
   /**
@@ -160,13 +159,8 @@ public final class FtcServoController extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    servoController = hardwareMap.servoController.get(getDeviceName());
+    servoController = (ServoController) hardwareMap.get(deviceClass, getDeviceName());
     return servoController;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("ServoController", hardwareMap.servoController);
   }
 
   @Override

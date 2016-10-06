@@ -76,9 +76,45 @@ public class PropertyTypeConstants {
   public static final String PROPERTY_TYPE_FLOAT = "float";
 
   /**
+   * FTC BNO055 acceleration unit choices
+   * @see
+   * com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055AccelUnitChoicePropertyEditor
+   */
+  public static final String PROPERTY_TYPE_FTC_BNO055_ACCEL_UNIT = "FtcBNO055AccelUnit";
+
+  /**
+   * FTC BNO055 acceleration unit choices
+   * @see
+   * com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055AccelerationIntegrationAlgorithmChoicePropertyEditor
+   */
+  public static final String PROPERTY_TYPE_FTC_BNO055_ACCELERATION_INTEGRATION_ALGORITHM =
+      "FtcBNO055AccelerationIntegrationAlgorithm";
+
+  /**
+   * FTC BNO055 angle unit choices
+   * @see
+   * com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055AngleUnitChoicePropertyEditor
+   */
+  public static final String PROPERTY_TYPE_FTC_BNO055_ANGLE_UNIT = "FtcBNO055AngleUnit";
+
+  /**
+   * FTC BNO055 sensor mode choices
+   * @see
+   * com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055SensorModeChoicePropertyEditor
+   */
+  public static final String PROPERTY_TYPE_FTC_BNO055_SENSOR_MODE = "FtcBNO055SensorMode";
+
+  /**
+   * FTC BNO055 temperature unit choices
+   * @see
+   * com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055TempUnitChoicePropertyEditor
+   */
+  public static final String PROPERTY_TYPE_FTC_BNO055_TEMP_UNIT = "FtcBNO055TempUnit";
+
+  /**
    * FTC gamepad number choices (1 or 2)
    * @see
-   * com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidFtcGamepadNumberChoicePropertyEditor
+   * com.google.appinventor.client.editor.youngandroid.properties.FtcGamepadNumberChoicePropertyEditor
    */
   public static final String PROPERTY_TYPE_FTC_GAMEPAD_NUMBER = "FtcGamepadNumber";
 

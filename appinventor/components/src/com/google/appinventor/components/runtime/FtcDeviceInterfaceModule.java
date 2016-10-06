@@ -19,7 +19,6 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannelController.Mode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cController.I2cPortReadyCallback;
 import com.qualcomm.robotcore.util.SerialNumber;
@@ -49,7 +48,7 @@ public final class FtcDeviceInterfaceModule extends FtcHardwareDevice
    * Creates a new FtcDeviceInterfaceModule component.
    */
   public FtcDeviceInterfaceModule(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), DeviceInterfaceModule.class);
   }
 
   @SimpleEvent(description = "This event is triggered when an I2C port is ready, " +
@@ -694,13 +693,8 @@ public final class FtcDeviceInterfaceModule extends FtcHardwareDevice
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    deviceInterfaceModule = hardwareMap.deviceInterfaceModule.get(getDeviceName());
+    deviceInterfaceModule = (DeviceInterfaceModule) hardwareMap.get(deviceClass, getDeviceName());
     return deviceInterfaceModule;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("DeviceInterfaceModule", hardwareMap.deviceInterfaceModule);
   }
 
   @Override

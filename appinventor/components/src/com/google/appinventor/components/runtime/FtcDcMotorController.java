@@ -23,7 +23,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
 import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior;
 import com.qualcomm.robotcore.hardware.DcMotorController;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.DifferentialControlLoopCoefficients;
 
@@ -49,7 +48,7 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
    * Creates a new FtcDcMotorController component.
    */
   public FtcDcMotorController(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), DcMotorController.class);
   }
 
   /**
@@ -562,13 +561,8 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    dcMotorController = hardwareMap.dcMotorController.get(getDeviceName());
+    dcMotorController = (DcMotorController) hardwareMap.get(deviceClass, getDeviceName());
     return dcMotorController;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("DcMotorController", hardwareMap.dcMotorController);
   }
 
   @Override

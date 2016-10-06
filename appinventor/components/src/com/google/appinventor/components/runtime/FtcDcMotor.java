@@ -19,7 +19,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
 import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior;
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
  * A component for a DC motor of an FTC robot.
@@ -41,7 +40,7 @@ public final class FtcDcMotor extends FtcHardwareDevice {
    * Creates a new FtcDcMotor component.
    */
   public FtcDcMotor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), DcMotor.class);
   }
 
   protected DcMotor getDcMotor() {
@@ -477,13 +476,8 @@ public final class FtcDcMotor extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    dcMotor = hardwareMap.dcMotor.get(getDeviceName());
+    dcMotor = (DcMotor) hardwareMap.get(deviceClass, getDeviceName());
     return dcMotor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("DcMotor", hardwareMap.dcMotor);
   }
 
   @Override

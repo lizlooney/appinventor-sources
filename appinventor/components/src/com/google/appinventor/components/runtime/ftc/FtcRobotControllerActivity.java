@@ -207,6 +207,7 @@ public class FtcRobotControllerActivity extends ActivityGlue {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    RobotLog.writeLogcatToDisk();
     RobotLog.vv(TAG, "onCreate()");
 
     receivedUsbAttachmentNotifications = new ConcurrentLinkedQueue<UsbDevice>();
@@ -266,8 +267,6 @@ public class FtcRobotControllerActivity extends ActivityGlue {
 
     if (USE_DEVICE_EMULATION) { HardwareFactory.enableDeviceEmulation(); }
 
-    // save 4MB of logcat to the SD card
-    RobotLog.writeLogcatToDisk(thisActivity, 4 * 1024);
     wifiLock.acquire();
     callback.networkConnectionUpdate(WifiDirectAssistant.Event.DISCONNECTED);
     bindToService();
@@ -340,7 +339,7 @@ public class FtcRobotControllerActivity extends ActivityGlue {
 
     unbindFromService();
     wifiLock.release();
-    RobotLog.cancelWriteLogcatToDisk(thisActivity);
+    RobotLog.cancelWriteLogcatToDisk();
   }
 
   protected void bindToService() {

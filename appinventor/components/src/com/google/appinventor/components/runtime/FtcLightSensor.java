@@ -16,7 +16,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.AnalogSensor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.LightSensor;
 
 /**
@@ -39,7 +38,7 @@ public final class FtcLightSensor extends FtcHardwareDevice {
    * Creates a new FtcLightSensor component.
    */
   public FtcLightSensor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), LightSensor.class);
   }
 
   /**
@@ -138,17 +137,31 @@ public final class FtcLightSensor extends FtcHardwareDevice {
     return "";
   }
 
+  /**
+   * RawLightDetectedMax property getter.
+   */
+  @SimpleProperty(description = "Returns the maximum value that can be returned for RawLightDetected.",
+      category = PropertyCategory.BEHAVIOR)
+  public double RawLightDetectedMax() {
+    checkHardwareDevice();
+    if (lightSensor != null) {
+      try {
+        return lightSensor.getRawLightDetectedMax();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "RawLightDetectedMax",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
   // FtcHardwareDevice implementation
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    lightSensor = hardwareMap.lightSensor.get(getDeviceName());
+    lightSensor = (LightSensor) hardwareMap.get(deviceClass, getDeviceName());
     return lightSensor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("LightSensor", hardwareMap.lightSensor);
   }
 
   @Override

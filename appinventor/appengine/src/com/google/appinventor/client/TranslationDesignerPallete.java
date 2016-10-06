@@ -186,10 +186,14 @@ public class TranslationDesignerPallete {
       value = MESSAGES.ftcAnalogInputComponentPallette();
     } else if (key.equals("FtcAnalogOutput")) {
       value = MESSAGES.ftcAnalogOutputComponentPallette();
-    } else if (key.equals("FtcCologSensor")) {
+    } else if (key.equals("FtcBNO055IMU")) {
+      value = MESSAGES.ftcBNO055IMUComponentPallette();
+    } else if (key.equals("FtcColorSensor")) {
       value = MESSAGES.ftcColorSensorComponentPallette();
     } else if (key.equals("FtcCompassSensor")) {
       value = MESSAGES.ftcCompassSensorComponentPallette();
+    } else if (key.equals("FtcCRServo")) {
+      value = MESSAGES.ftcCRServoComponentPallette();
     } else if (key.equals("FtcDcMotor")) {
       value = MESSAGES.ftcDcMotorComponentPallette();
     } else if (key.equals("FtcDcMotorController")) {
@@ -220,6 +224,8 @@ public class TranslationDesignerPallete {
       value = MESSAGES.ftcLightSensorComponentPallette();
     } else if (key.equals("FtcLinearOpMode")) {
       value = MESSAGES.ftcLinearOpModeComponentPallette();
+    } else if (key.equals("FtcMrRangeSensor")) {
+      value = MESSAGES.ftcMrRangeSensorComponentPallette();
     } else if (key.equals("FtcOpMode")) {
       value = MESSAGES.ftcOpModeComponentPallette();
     } else if (key.equals("FtcOpticalDistanceSensor")) {
@@ -380,10 +386,14 @@ public class TranslationDesignerPallete {
       value = MESSAGES.FtcAnalogInputHelpStringComponentPallette();
     } else if (key.equals("FtcAnalogOutput-helpString")) {
       value = MESSAGES.FtcAnalogOutputHelpStringComponentPallette();
+    } else if (key.equals("FtcBNO055IMU-helpString")) {
+      value = MESSAGES.FtcBNO055IMUHelpStringComponentPallette();
     } else if (key.equals("FtcColorSensor-helpString")) {
       value = MESSAGES.FtcColorSensorHelpStringComponentPallette();
     } else if (key.equals("FtcCompassSensor-helpString")) {
       value = MESSAGES.FtcCompassSensorHelpStringComponentPallette();
+    } else if (key.equals("FtcCRServo-helpString")) {
+      value = MESSAGES.FtcCRServoHelpStringComponentPallette();
     } else if (key.equals("FtcDcMotor-helpString")) {
       value = MESSAGES.FtcDcMotorHelpStringComponentPallette();
     } else if (key.equals("FtcDcMotorController-helpString")) {
@@ -414,6 +424,8 @@ public class TranslationDesignerPallete {
       value = MESSAGES.FtcLightSensorHelpStringComponentPallette();
     } else if (key.equals("FtcLinearOpMode-helpString")) {
       value = MESSAGES.FtcLinearOpModeHelpStringComponentPallette();
+    } else if (key.equals("FtcMrRangeSensor-helpString")) {
+      value = MESSAGES.FtcMrRangeSensorHelpStringComponentPallette();
     } else if (key.equals("FtcOpMode-helpString")) {
       value = MESSAGES.FtcOpModeHelpStringComponentPallette();
     } else if (key.equals("FtcOpticalDistanceSensor-helpString")) {

@@ -16,7 +16,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.AnalogSensor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
 /**
@@ -39,7 +38,7 @@ public final class FtcOpticalDistanceSensor extends FtcHardwareDevice {
    * Creates a new FtcOpticalDistanceSensor component.
    */
   public FtcOpticalDistanceSensor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), OpticalDistanceSensor.class);
   }
 
   /**
@@ -80,21 +79,6 @@ public final class FtcOpticalDistanceSensor extends FtcHardwareDevice {
     return 0;
   }
 
-  @SimpleFunction(description = "Enable the LED light. " +
-      "Not all optical distance sensors support this feature.")
-  public void EnableLed(boolean enable) {
-    checkHardwareDevice();
-    if (opticalDistanceSensor != null) {
-      try {
-        opticalDistanceSensor.enableLed(enable);
-      } catch (Throwable e) {
-        e.printStackTrace();
-        form.dispatchErrorOccurredEvent(this, "EnableLed",
-            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
-      }
-    }
-  }
-
   /**
    * RawVoltage property getter.
    */
@@ -115,6 +99,21 @@ public final class FtcOpticalDistanceSensor extends FtcHardwareDevice {
       }
     }
     return 0;
+  }
+
+  @SimpleFunction(description = "Enable the LED light. " +
+      "Not all optical distance sensors support this feature.")
+  public void EnableLed(boolean enable) {
+    checkHardwareDevice();
+    if (opticalDistanceSensor != null) {
+      try {
+        opticalDistanceSensor.enableLed(enable);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "EnableLed",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
   }
 
   /**
@@ -139,17 +138,31 @@ public final class FtcOpticalDistanceSensor extends FtcHardwareDevice {
     return "";
   }
 
+  /**
+   * RawLightDetectedMax property getter.
+   */
+  @SimpleProperty(description = "Returns the maximum value that can be returned for RawLightDetected.",
+      category = PropertyCategory.BEHAVIOR)
+  public double RawLightDetectedMax() {
+    checkHardwareDevice();
+    if (opticalDistanceSensor != null) {
+      try {
+        return opticalDistanceSensor.getRawLightDetectedMax();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "RawLightDetectedMax",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
   // FtcHardwareDevice implementation
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    opticalDistanceSensor = hardwareMap.opticalDistanceSensor.get(getDeviceName());
+    opticalDistanceSensor = (OpticalDistanceSensor) hardwareMap.get(deviceClass, getDeviceName());
     return opticalDistanceSensor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("OpticalDistanceSensor", hardwareMap.opticalDistanceSensor);
   }
 
   @Override

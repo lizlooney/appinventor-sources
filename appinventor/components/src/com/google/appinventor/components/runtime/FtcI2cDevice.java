@@ -14,7 +14,6 @@ import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cController.I2cPortReadyCallback;
 import com.qualcomm.robotcore.hardware.I2cDevice;
@@ -41,7 +40,7 @@ public final class FtcI2cDevice extends FtcHardwareDevice implements I2cPortRead
    * Creates a new FtcI2cDevice component.
    */
   public FtcI2cDevice(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), I2cDevice.class);
   }
 
   @SimpleEvent(description = "This event is triggered when the I2C port is ready. This event is " +
@@ -293,13 +292,8 @@ public final class FtcI2cDevice extends FtcHardwareDevice implements I2cPortRead
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    i2cDevice = hardwareMap.i2cDevice.get(getDeviceName());
+    i2cDevice = (I2cDevice) hardwareMap.get(deviceClass, getDeviceName());
     return i2cDevice;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("I2cDevice", hardwareMap.i2cDevice);
   }
 
   @Override

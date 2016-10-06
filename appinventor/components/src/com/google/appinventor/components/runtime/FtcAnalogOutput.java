@@ -14,7 +14,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.AnalogOutput;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
  * A component for an analog output device of an FTC robot.
@@ -36,7 +35,7 @@ public final class FtcAnalogOutput extends FtcHardwareDevice {
    * Creates a new FtcAnalogOutput component.
    */
   public FtcAnalogOutput(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), AnalogOutput.class);
   }
 
   @SimpleFunction(description = "Sets the channel output voltage.\n" +
@@ -92,13 +91,8 @@ public final class FtcAnalogOutput extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    analogOutput = hardwareMap.analogOutput.get(getDeviceName());
+    analogOutput = (AnalogOutput) hardwareMap.get(deviceClass, getDeviceName());
     return analogOutput;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("AnalogOutput", hardwareMap.analogOutput);
   }
 
   @Override

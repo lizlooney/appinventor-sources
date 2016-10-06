@@ -1005,6 +1005,13 @@ public final class YoungAndroidFormUpgrader {
       // No designer properties need to be modified to upgrade to version 2.
       srcCompVersion = 2;
     }
+    if (srcCompVersion < 3) {
+      // - The MAX_NEW_I2C_ADDRESS, MIN_NEW_I2C_ADDRESS, I2cAddress, Acceleration, and MagneticFlux
+      // properties were added.
+      // - The IsCalibrating, GetX, GetY, and GetZ methods were added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
     return srcCompVersion;
   }
 
@@ -1141,6 +1148,11 @@ public final class YoungAndroidFormUpgrader {
       // No designer properties need to be modified to upgrade to version 4.
       srcCompVersion = 4;
     }
+    if (srcCompVersion < 5) {
+      // - The IntegratedZValue property was added.
+      // No designer properties need to be modified to upgrade to version 5.
+      srcCompVersion = 5;
+    }
     return srcCompVersion;
   }
 
@@ -1207,6 +1219,11 @@ public final class YoungAndroidFormUpgrader {
       // No designer properties need to be modified to upgrade to version 2.
       srcCompVersion = 2;
     }
+    if (srcCompVersion < 3) {
+      // - The RawLightDetectedMax property was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
     return srcCompVersion;
   }
 
@@ -1261,6 +1278,11 @@ public final class YoungAndroidFormUpgrader {
       // - The RawVoltage property was added.
       // No designer properties need to be modified to upgrade to version 2.
       srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The RawLightDetectedMax property was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
     }
     return srcCompVersion;
   }

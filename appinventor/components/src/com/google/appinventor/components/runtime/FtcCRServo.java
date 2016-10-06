@@ -16,7 +16,6 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
  * A component for a continuous rotation servo of an FTC robot.
@@ -38,7 +37,7 @@ public final class FtcCRServo extends FtcHardwareDevice {
    * Creates a new FtcCRServo component.
    */
   public FtcCRServo(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), CRServo.class);
   }
 
   protected CRServo getCRServo() {
@@ -184,13 +183,8 @@ public final class FtcCRServo extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    crservo = hardwareMap.crservo.get(getDeviceName());
+    crservo = (CRServo) hardwareMap.get(deviceClass, getDeviceName());
     return crservo;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("CRServo", hardwareMap.crservo);
   }
 
   @Override

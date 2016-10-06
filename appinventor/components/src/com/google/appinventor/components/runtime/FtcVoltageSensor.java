@@ -14,7 +14,6 @@ import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 /**
@@ -37,7 +36,7 @@ public final class FtcVoltageSensor extends FtcHardwareDevice {
    * Creates a new FtcVoltageSensor component.
    */
   public FtcVoltageSensor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), VoltageSensor.class);
   }
 
   /**
@@ -63,13 +62,8 @@ public final class FtcVoltageSensor extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    voltageSensor = hardwareMap.voltageSensor.get(getDeviceName());
+    voltageSensor = (VoltageSensor) hardwareMap.get(deviceClass, getDeviceName());
     return voltageSensor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("VoltageSensor", hardwareMap.voltageSensor);
   }
 
   @Override

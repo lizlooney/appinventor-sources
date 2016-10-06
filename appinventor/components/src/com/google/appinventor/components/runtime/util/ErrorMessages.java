@@ -212,6 +212,13 @@ public final class ErrorMessages {
   public static final int ERROR_FTC_INVALID_OPEN_GL_MATRIX = 2923;
   public static final int ERROR_FTC_INVALID_AXES_REFERENCE = 2924;
   public static final int ERROR_FTC_INVALID_AXES_ORDER = 2925;
+  public static final int ERROR_FTC_INVALID_DISTANCE_UNIT = 2926;
+  public static final int ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX = 2927;
+  public static final int ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX_POSITION_QUATERNION_VELOCITY = 2928;
+  public static final int ERROR_FTC_INVALID_QUATERNION = 2929;
+  public static final int ERROR_FTC_INVALID_ORIENTATION = 2930;
+  public static final int ERROR_FTC_INVALID_ANGULAR_VELOCITY = 2931;
+  public static final int ERROR_FTC_INVALID_OBJECT = 2932;
 
   // Image errors
   public static final int ERROR_IMAGE_CANNOT_ROTATE = 3001;
@@ -558,6 +565,21 @@ public final class ErrorMessages {
     errorMessages.put(ERROR_FTC_INVALID_AXES_ORDER,
         "The specified axes ORDER \"%s\" is not valid. The valid values are " +
         "XYX, XYZ, XZX, XZY, YXY, YXZ, YZX, YZY, ZXY, ZXZ, ZYX, and ZYZ.");
+    errorMessages.put(ERROR_FTC_INVALID_DISTANCE_UNIT,
+        "The specified distance unit \"%s\" is not valid. The valid values are " +
+        "METER, CM, MM, and INCH.");
+    errorMessages.put(ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX,
+        "The specified Object (%s) is not valid. It must be an Acceleration or MagneticFlux object.");
+    errorMessages.put(ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX_POSITION_QUATERNION_VELOCITY,
+        "The specified Object (%s) is not valid. It must be an Acceleration, MagneticFlux, Position, Quaternion, or Velocity object.");
+    errorMessages.put(ERROR_FTC_INVALID_QUATERNION,
+        "The specified Object (%s) is not valid. It must be a Quaternion object.");
+    errorMessages.put(ERROR_FTC_INVALID_ORIENTATION,
+        "The specified Orientation (%s) is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_ANGULAR_VELOCITY,
+        "The specified AngularVelocity (%s) is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_OBJECT,
+        "The specified Object (%s) is not valid.");
 
     // Image errors
     errorMessages.put(ERROR_IMAGE_CANNOT_ROTATE,

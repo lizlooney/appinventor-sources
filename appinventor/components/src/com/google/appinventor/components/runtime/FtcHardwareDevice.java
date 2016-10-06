@@ -18,8 +18,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.HardwareDevice.Manufacturer;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.HardwareMap.DeviceMapping;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,13 +31,15 @@ import java.util.Map;
 public abstract class FtcHardwareDevice extends AndroidNonvisibleComponent
     implements Component, OnDestroyListener, Deleteable, FtcRobotController.HardwareDevice {
 
+  protected final Class deviceClass;
   private volatile String deviceName = "";
   protected volatile HardwareMap hardwareMap;
   private volatile HardwareDevice hardwareDevice;
   private volatile Throwable initHardwareDeviceException;
 
-  protected FtcHardwareDevice(ComponentContainer container) {
+  protected FtcHardwareDevice(ComponentContainer container, Class deviceClass) {
     super(container.$form());
+    this.deviceClass = deviceClass;
     FtcRobotController.addHardwareDevice(this);
     form.registerForOnDestroy(this);
   }
@@ -213,8 +215,6 @@ public abstract class FtcHardwareDevice extends AndroidNonvisibleComponent
 
   protected abstract Object initHardwareDeviceImpl();
 
-  protected abstract void dispatchDeviceNotFoundError();
-
   protected abstract void clearHardwareDeviceImpl();
 
   protected final String getDeviceName() {
@@ -227,15 +227,19 @@ public abstract class FtcHardwareDevice extends AndroidNonvisibleComponent
     }
   }
 
-  protected final void dispatchDeviceNotFoundError(String type,
-      DeviceMapping<? extends Object> deviceMapping) {
+  protected final void dispatchDeviceNotFoundError() {
     StringBuilder names = new StringBuilder();
     String delimiter = "";
-    for (Map.Entry<String, ? extends Object> entry : deviceMapping.entrySet()) {
-      names.append(delimiter).append(entry.getKey());
-      delimiter = ", ";
+
+    List<HardwareDevice> devices = hardwareMap.getAll(deviceClass);
+    for (HardwareDevice device : devices) {
+      for (String name : hardwareMap.getNamesOf(device)) {
+        names.append(delimiter).append(name);
+        delimiter = ", ";
+      }
     }
+    
     form.dispatchErrorOccurredEvent(this, "", ErrorMessages.ERROR_FTC_INVALID_DEVICE_NAME,
-        type, deviceName, names.toString());
+        deviceClass.getSimpleName(), deviceName, names.toString());
   }
 }

@@ -16,7 +16,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.hardware.hitechnic.HiTechnicNxtTouchSensorMultiplexer;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.TouchSensorMultiplexer;
 
 /**
@@ -39,7 +38,7 @@ public final class FtcTouchSensorMultiplexer extends FtcHardwareDevice {
    * Creates a new FtcTouchSensorMultiplexer component.
    */
   public FtcTouchSensorMultiplexer(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), TouchSensorMultiplexer.class);
   }
 
   @SimpleFunction(description = "Is the touch sensor pressed?")
@@ -101,13 +100,8 @@ public final class FtcTouchSensorMultiplexer extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    touchSensorMultiplexer = hardwareMap.touchSensorMultiplexer.get(getDeviceName());
+    touchSensorMultiplexer = (TouchSensorMultiplexer) hardwareMap.get(deviceClass, getDeviceName());
     return touchSensorMultiplexer;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("TouchSensorMultiplexer", hardwareMap.touchSensorMultiplexer);
   }
 
   @Override

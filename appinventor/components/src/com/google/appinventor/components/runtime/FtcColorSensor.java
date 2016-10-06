@@ -18,7 +18,6 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import android.graphics.Color;
 
@@ -42,7 +41,7 @@ public final class FtcColorSensor extends FtcHardwareDevice {
    * Creates a new FtcColorSensor component.
    */
   public FtcColorSensor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), ColorSensor.class);
   }
 
   /**
@@ -455,13 +454,8 @@ public final class FtcColorSensor extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    colorSensor = hardwareMap.colorSensor.get(getDeviceName());
+    colorSensor = (ColorSensor) hardwareMap.get(deviceClass, getDeviceName());
     return colorSensor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("ColorSensor", hardwareMap.colorSensor);
   }
 
   @Override

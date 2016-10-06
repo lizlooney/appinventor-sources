@@ -16,7 +16,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModule;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor.IrSeekerIndividualSensor;
@@ -42,7 +41,7 @@ public final class FtcIrSeekerSensor extends FtcHardwareDevice {
    * Creates a new FtcIrSeekerSensor component.
    */
   public FtcIrSeekerSensor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), IrSeekerSensor.class);
   }
 
   /**
@@ -336,13 +335,8 @@ public final class FtcIrSeekerSensor extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    irSeekerSensor = hardwareMap.irSeekerSensor.get(getDeviceName());
+    irSeekerSensor = (IrSeekerSensor) hardwareMap.get(deviceClass, getDeviceName());
     return irSeekerSensor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("IrSeekerSensor", hardwareMap.irSeekerSensor);
   }
 
   @Override

@@ -20,7 +20,6 @@ import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro.HeadingMode;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsUsbDeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.AnalogSensor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 
 /**
@@ -43,7 +42,7 @@ public final class FtcGyroSensor extends FtcHardwareDevice {
    * Creates a new FtcGyroSensor component.
    */
   public FtcGyroSensor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), GyroSensor.class);
   }
 
   @SimpleFunction(description = "Calibrate the gyro. " +
@@ -62,7 +61,7 @@ public final class FtcGyroSensor extends FtcHardwareDevice {
     }
   }
 
-  @SimpleFunction(description = "Is the gyro performing a calibration operation? " +
+  @SimpleFunction(description = "Is the gyro sensor performing a calibration operation? " +
       "Not all gyro sensors support this feature.")
   public boolean IsCalibrating() {
     checkHardwareDevice();
@@ -349,7 +348,7 @@ public final class FtcGyroSensor extends FtcHardwareDevice {
   /**
    * I2cAddress property getter.
    */
-  @SimpleProperty(description = "The I2C address of the gyro sensor. " + 
+  @SimpleProperty(description = "The I2C address of the gyro sensor. " +
       "Not all gyro sensors support this feature.",
       category = PropertyCategory.BEHAVIOR)
   public int I2cAddress() {
@@ -368,17 +367,34 @@ public final class FtcGyroSensor extends FtcHardwareDevice {
     return 0;
   }
 
+  /**
+   * IntegratedZValue property getter.
+   */
+  @SimpleProperty(description = "The Integrated Z Value of the gyro sensor. " +
+      "Not all gyro sensors support this feature.",
+      category = PropertyCategory.BEHAVIOR)
+  public int IntegratedZValue() {
+    checkHardwareDevice();
+    if (gyroSensor != null) {
+      try {
+        if (gyroSensor instanceof ModernRoboticsI2cGyro) {
+          return ((ModernRoboticsI2cGyro) gyroSensor).getIntegratedZValue();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "IntegratedZValue",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
   // FtcHardwareDevice implementation
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    gyroSensor = hardwareMap.gyroSensor.get(getDeviceName());
+    gyroSensor = (GyroSensor) hardwareMap.get(deviceClass, getDeviceName());
     return gyroSensor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("GyroSensor", hardwareMap.gyroSensor);
   }
 
   @Override

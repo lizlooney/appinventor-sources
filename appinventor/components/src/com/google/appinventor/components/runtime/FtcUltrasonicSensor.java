@@ -14,7 +14,6 @@ import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.UltrasonicSensor;
 
 /**
@@ -37,7 +36,7 @@ public final class FtcUltrasonicSensor extends FtcHardwareDevice {
    * Creates a new FtcUltrasonicSensor component.
    */
   public FtcUltrasonicSensor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), UltrasonicSensor.class);
   }
 
   /**
@@ -85,13 +84,8 @@ public final class FtcUltrasonicSensor extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    ultrasonicSensor = hardwareMap.ultrasonicSensor.get(getDeviceName());
+    ultrasonicSensor = (UltrasonicSensor) hardwareMap.get(deviceClass, getDeviceName());
     return ultrasonicSensor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("UltrasonicSensor", hardwareMap.ultrasonicSensor);
   }
 
   @Override

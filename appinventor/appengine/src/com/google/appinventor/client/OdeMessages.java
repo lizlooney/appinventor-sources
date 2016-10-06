@@ -2381,6 +2381,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String ftcAnalogOutputComponentPallette();
 
+  @DefaultMessage("FtcBNO055IMU")
+  @Description("")
+  String ftcBNO055IMUComponentPallette();
+
   @DefaultMessage("FtcColorSensor")
   @Description("")
   String ftcColorSensorComponentPallette();
@@ -2452,6 +2456,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("FtcLinearOpMode")
   @Description("")
   String ftcLinearOpModeComponentPallette();
+
+  @DefaultMessage("FtcMrRangeSensor")
+  @Description("")
+  String ftcMrRangeSensorComponentPallette();
 
   @DefaultMessage("FtcOpMode")
   @Description("")
@@ -3411,9 +3419,33 @@ public interface OdeMessages extends Messages {
   @Description("")
   String AProperties();
 
+  @DefaultMessage("AccelUnit")
+  @Description("")
+  String AccelUnitProperties();
+
+  @DefaultMessage("Acceleration")
+  @Description("")
+  String AccelerationProperties();
+
+  @DefaultMessage("AccelerationIntegrationAlgorithm")
+  @Description("")
+  String AccelerationIntegrationAlgorithmProperties();
+
   @DefaultMessage("Alpha")
   @Description("")
   String AlphaProperties();
+
+  @DefaultMessage("AngleUnit")
+  @Description("")
+  String AngleUnitProperties();
+
+  @DefaultMessage("AngularOrientation")
+  @Description("")
+  String AngularOrientationProperties();
+
+  @DefaultMessage("AngularVelocity")
+  @Description("")
+  String AngularVelocityProperties();
 
   @DefaultMessage("ARGB")
   @Description("")
@@ -3527,6 +3559,22 @@ public interface OdeMessages extends Messages {
   @Description("")
   String CameraMonitorFeedback_TEAPOTProperties();
 
+  @DefaultMessage("CalibrationDataFile")
+  @Description("")
+  String CalibrationDataFileProperties();
+
+  @DefaultMessage("CalibrationStatus")
+  @Description("")
+  String CalibrationStatusProperties();
+
+  @DefaultMessage("CmOptical")
+  @Description("")
+  String CmOpticalProperties();
+
+  @DefaultMessage("CmUltrasonic")
+  @Description("")
+  String CmUltrasonicProperties();
+
   @DefaultMessage("CompassMode_CALIBRATION_MODE")
   @Description("")
   String CompassMode_CALIBRATION_MODEProperties();
@@ -3575,6 +3623,22 @@ public interface OdeMessages extends Messages {
   @Description("")
   String Direction_REVERSEProperties();
 
+  @DefaultMessage("DistanceUnit_METER")
+  @Description("")
+  String DistanceUnit_METERProperties();
+
+  @DefaultMessage("DistanceUnit_CM")
+  @Description("")
+  String DistanceUnit_CMProperties();
+
+  @DefaultMessage("DistanceUnit_MM")
+  @Description("")
+  String DistanceUnit_MMProperties();
+
+  @DefaultMessage("DistanceUnit_INCH")
+  @Description("")
+  String DistanceUnit_INCHProperties();
+
   @DefaultMessage("DpadDown")
   @Description("")
   String DpadDownProperties();
@@ -3594,6 +3658,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("GamepadNumber")
   @Description("")
   String GamepadNumberProperties();
+
+  @DefaultMessage("Gravity")
+  @Description("")
+  String GravityProperties();
 
   @DefaultMessage("Green")
   @Description("")
@@ -3639,6 +3707,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String IndividualSensorCountProperties();
 
+  @DefaultMessage("IntegratedZValue")
+  @Description("")
+  String IntegratedZValueProperties();
+
   @DefaultMessage("IsPressed")
   @Description("")
   String IsPressedProperties();
@@ -3670,6 +3742,26 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("LightDetected")
   @Description("")
   String LightDetectedProperties();
+
+  @DefaultMessage("LinearAcceleration")
+  @Description("")
+  String LinearAccelerationProperties();
+
+  @DefaultMessage("LoggingEnabled")
+  @Description("")
+  String LoggingEnabledProperties();
+
+  @DefaultMessage("LoggingTag")
+  @Description("")
+  String LoggingTagProperties();
+
+  @DefaultMessage("MagneticFieldStrength")
+  @Description("")
+  String MagneticFieldStrengthProperties();
+
+  @DefaultMessage("MagneticFlux")
+  @Description("")
+  String MagneticFluxProperties();
 
   @DefaultMessage("Manufacturer")
   @Description("")
@@ -3731,6 +3823,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String OpModeNameProperties();
 
+  @DefaultMessage("OverallAcceleration")
+  @Description("")
+  String OverallAccelerationProperties();
+
   @DefaultMessage("PortNumber")
   @Description("")
   String PortNumberProperties();
@@ -3759,9 +3855,25 @@ public interface OdeMessages extends Messages {
   @Description("")
   String PwmStatus_ENABLEDProperties();
 
+  @DefaultMessage("QuaternionOrientation")
+  @Description("")
+  String QuaternionOrientationProperties();
+
   @DefaultMessage("RawLightDetected")
   @Description("")
   String RawLightDetectedProperties();
+
+  @DefaultMessage("RawLightDetectedMax")
+  @Description("")
+  String RawLightDetectedMaxProperties();
+
+  @DefaultMessage("RawOptical")
+  @Description("")
+  String RawOpticalProperties();
+
+  @DefaultMessage("RawUltrasonic")
+  @Description("")
+  String RawUltrasonicProperties();
 
   @DefaultMessage("RawVoltage")
   @Description("")
@@ -3835,6 +3947,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String RunMode_STOP_AND_RESET_ENCODERProperties();
 
+  @DefaultMessage("SensorMode")
+  @Description("")
+  String SensorModeProperties();
+
   @DefaultMessage("SerialNumber")
   @Description("")
   String SerialNumberProperties();
@@ -3867,6 +3983,14 @@ public interface OdeMessages extends Messages {
   @Description("")
   String StrengthProperties();
 
+  @DefaultMessage("SystemError")
+  @Description("")
+  String SystemErrorProperties();
+
+  @DefaultMessage("SystemStatus")
+  @Description("")
+  String SystemStatusProperties();
+
   @DefaultMessage("TargetPosition")
   @Description("")
   String TargetPositionProperties();
@@ -3874,6 +3998,14 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("TelemetrySorted")
   @Description("")
   String TelemetrySortedProperties();
+
+  @DefaultMessage("TempUnit")
+  @Description("")
+  String TempUnitProperties();
+
+  @DefaultMessage("Temperature")
+  @Description("")
+  String TemperatureProperties();
 
   @DefaultMessage("Time")
   @Description("")
@@ -3898,6 +4030,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("Value")
   @Description("")
   String ValueProperties();
+
+  @DefaultMessage("Velocity")
+  @Description("")
+  String VelocityProperties();
 
   @DefaultMessage("Version")
   @Description("")
@@ -4629,6 +4765,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String destinationPositionParams();
 
+  @DefaultMessage("distanceUnit")
+  @Description("")
+  String distanceUnitParams();
+
   @DefaultMessage("dx")
   @Description("")
   String dxParams();
@@ -4737,6 +4877,14 @@ public interface OdeMessages extends Messages {
   @Description("")
   String motorParams();
 
+  @DefaultMessage("object")
+  @Description("")
+  String objectParams();
+
+  @DefaultMessage("orientation")
+  @Description("")
+  String orientationParams();
+
   @DefaultMessage("p")
   @Description("")
   String pParams();
@@ -4748,6 +4896,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("physicalPort")
   @Description("")
   String physicalPortParams();
+
+  @DefaultMessage("pollInterval")
+  @Description("")
+  String pollIntervalParams();
 
   @DefaultMessage("port")
   @Description("")
@@ -6121,6 +6273,22 @@ public interface OdeMessages extends Messages {
   @Description("")
   String ActivateTrackablesMethods();
 
+  @DefaultMessage("AngularVelocityToAxesReference")
+  @Description("")
+  String AngularVelocityToAxesReferenceMethods();
+
+  @DefaultMessage("AngularVelocityFirstAngleRate")
+  @Description("")
+  String AngularVelocityFirstAngleRateMethods();
+
+  @DefaultMessage("AngularVelocitySecondAngleRate")
+  @Description("")
+  String AngularVelocitySecondAngleRateMethods();
+
+  @DefaultMessage("AngularVelocityThirdAngleRate")
+  @Description("")
+  String AngularVelocityThirdAngleRateMethods();
+
   @DefaultMessage("Calibrate")
   @Description("")
   String CalibrateMethods();
@@ -6389,6 +6557,22 @@ public interface OdeMessages extends Messages {
   @Description("")
   String GetUpdatedRobotLocationMethods();
 
+  @DefaultMessage("GetW")
+  @Description("")
+  String GetWMethods();
+
+  @DefaultMessage("GetX")
+  @Description("")
+  String GetXMethods();
+
+  @DefaultMessage("GetY")
+  @Description("")
+  String GetYMethods();
+
+  @DefaultMessage("GetZ")
+  @Description("")
+  String GetZMethods();
+
   @DefaultMessage("Idle")
   @Description("")
   String IdleMethods();
@@ -6404,6 +6588,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("Initialize")
   @Description("")
   String InitializeMethods();
+
+  @DefaultMessage("IsAccelerometerCalibrated")
+  @Description("")
+  String IsAccelerometerCalibratedMethods();
 
   @DefaultMessage("IsArmed")
   @Description("")
@@ -6421,6 +6609,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String IsCalibratingMethods();
 
+  @DefaultMessage("IsGyroCalibrated")
+  @Description("")
+  String IsGyroCalibratedMethods();
+
   @DefaultMessage("IsI2cPortActionFlagSet")
   @Description("")
   String IsI2cPortActionFlagSetMethods();
@@ -6437,6 +6629,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String IsI2cPortReadyMethods();
 
+  @DefaultMessage("IsMagnetometerCalibrated")
+  @Description("")
+  String IsMagnetometerCalibratedMethods();
+
   @DefaultMessage("IsStarted")
   @Description("")
   String IsStartedMethods();
@@ -6444,6 +6640,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("IsStopRequested")
   @Description("")
   String IsStopRequestedMethods();
+
+  @DefaultMessage("IsSystemCalibrated")
+  @Description("")
+  String IsSystemCalibratedMethods();
 
   @DefaultMessage("IsTouchSensorPressed")
   @Description("")
@@ -6521,9 +6721,29 @@ public interface OdeMessages extends Messages {
   @Description("")
   String OpenGLMatrixTransposedMethods();
 
+  @DefaultMessage("OrientationFirstAngle")
+  @Description("")
+  String OrientationFirstAngleMethods();
+
+  @DefaultMessage("OrientationSecondAngle")
+  @Description("")
+  String OrientationSecondAngleMethods();
+
+  @DefaultMessage("OrientationThirdAngle")
+  @Description("")
+  String OrientationThirdAngleMethods();
+
   @DefaultMessage("OrientationGetRotationMatrix")
   @Description("")
   String OrientationGetRotationMatrixMethods();
+
+  @DefaultMessage("OrientationToAxesOrder")
+  @Description("")
+  String OrientationToAxesOrderMethods();
+
+  @DefaultMessage("OrientationToAxesReference")
+  @Description("")
+  String OrientationToAxesReferenceMethods();
 
   @DefaultMessage("ParseColor")
   @Description("")
@@ -6584,6 +6804,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("ResetZAxisIntegrator")
   @Description("")
   String ResetZAxisIntegratorMethods();
+
+  @DefaultMessage("SaveCalibrationData")
+  @Description("")
+  String SaveCalibrationDataMethods();
 
   @DefaultMessage("ScaleRange")
   @Description("")
@@ -6729,6 +6953,14 @@ public interface OdeMessages extends Messages {
   @Description("")
   String SleepMethods();
 
+  @DefaultMessage("StartAccelerationIntegration")
+  @Description("")
+  String StartAccelerationIntegrationMethods();
+
+  @DefaultMessage("StopAccelerationIntegration")
+  @Description("")
+  String StopAccelerationIntegrationMethods();
+
   @DefaultMessage("TelemetryAddNumericData")
   @Description("")
   String TelemetryAddNumericDataMethods();
@@ -6740,6 +6972,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("ToString")
   @Description("")
   String ToStringMethods();
+
+  @DefaultMessage("ToText")
+  @Description("")
+  String ToTextMethods();
 
   @DefaultMessage("UpdateTelemetry")
   @Description("")
@@ -7065,6 +7301,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String FtcAnalogOutputHelpStringComponentPallette();
 
+  @DefaultMessage("A component for a BNO055IMU sensor of an FTC robot.")
+  @Description("")
+  String FtcBNO055IMUHelpStringComponentPallette();
+
   @DefaultMessage("A component for a color sensor of an FTC robot.")
   @Description("")
   String FtcColorSensorHelpStringComponentPallette();
@@ -7136,6 +7376,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("A component for a linear operation mode for an FTC robot.")
   @Description("")
   String FtcLinearOpModeHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a Modern Robotics range sensor of an FTC robot.")
+  @Description("")
+  String FtcMrRangeSensorHelpStringComponentPallette();
 
   @DefaultMessage("A component for an operation mode for an FTC robot.")
   @Description("")

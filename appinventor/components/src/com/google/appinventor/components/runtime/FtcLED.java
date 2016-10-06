@@ -14,7 +14,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.LED;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
  * A component for an LED of an FTC robot.
@@ -36,7 +35,7 @@ public final class FtcLED extends FtcHardwareDevice {
    * Creates a new FtcLED component.
    */
   public FtcLED(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), LED.class);
   }
 
   @SimpleFunction(description = "Turn on or turn off the LED light.")
@@ -57,13 +56,8 @@ public final class FtcLED extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    led = hardwareMap.led.get(getDeviceName());
+    led = (LED) hardwareMap.get(deviceClass, getDeviceName());
     return led;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("LED", hardwareMap.led);
   }
 
   @Override

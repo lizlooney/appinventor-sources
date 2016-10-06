@@ -220,6 +220,7 @@ public class TranslationComponentParams {
     map.put("d", MESSAGES.dParams());
     map.put("destinationByteArray", MESSAGES.destinationByteArrayParams());
     map.put("destinationPosition", MESSAGES.destinationPositionParams());
+    map.put("distanceUnit", MESSAGES.distanceUnitParams());
     map.put("dx", MESSAGES.dxParams());
     map.put("dy", MESSAGES.dyParams());
     map.put("dz", MESSAGES.dzParams());
@@ -247,9 +248,11 @@ public class TranslationComponentParams {
     map.put("memAddress", MESSAGES.memAddressParams());
     map.put("min", MESSAGES.minParams());
     map.put("motor", MESSAGES.motorParams());
+    map.put("orientation", MESSAGES.orientationParams());
     map.put("p", MESSAGES.pParams());
     map.put("period", MESSAGES.periodParams());
     map.put("physicalPort", MESSAGES.physicalPortParams());
+    map.put("pollInterval", MESSAGES.pollIntervalParams());
     map.put("port", MESSAGES.portParams());
     map.put("position", MESSAGES.positionParams());
     map.put("ratio", MESSAGES.ratioParams());

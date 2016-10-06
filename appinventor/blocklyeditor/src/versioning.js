@@ -1411,6 +1411,13 @@ Blockly.Versioning.AllUpgradeMaps =
 
   }, // End FtcAnalogOutput upgraders
 
+  "FtcBNO055IMU": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcBNO055IMU upgraders
+
   "FtcColorSensor": {
 
     // This is the initial version. Placeholder for future upgrades
@@ -1459,7 +1466,12 @@ Blockly.Versioning.AllUpgradeMaps =
         Blockly.Versioning.changePropertyName("FtcCompassSensor", "Mode_MEASUREMENT", "CompassMode_MEASUREMENT_MODE"),
         // The Mode_CALIBRATION property was renamed CompassMode_CALIBRATION_MODE.
         Blockly.Versioning.changePropertyName("FtcCompassSensor", "Mode_CALIBRATION", "CompassMode_CALIBRATION_MODE")
-      ]
+      ],
+
+    // The MAX_NEW_I2C_ADDRESS, MIN_NEW_I2C_ADDRESS, I2cAddress, Acceleration, and MagneticFlux
+    // properties were added.
+    // The IsCalibrating, GetX, GetY, and GetZ methods were added.
+    3: "noUpgrade"
 
   }, // End FtcCompassSensor upgraders
 
@@ -1613,7 +1625,10 @@ Blockly.Versioning.AllUpgradeMaps =
         // The Rotation property was renamed RotationFraction.
         Blockly.Versioning.changePropertyName("FtcGyroSensor", "Rotation", "RotationFraction")
         // The RawVoltage property was added. (no upgrade needed)
-      ]
+      ],
+
+    // The IntegratedZValue property was added.
+    5: "noUpgrade"
 
   }, // End FtcGyroSensor upgraders
 
@@ -1726,7 +1741,10 @@ Blockly.Versioning.AllUpgradeMaps =
         // The LightDetectedRaw property was renamed RawLightDetected.
         Blockly.Versioning.changePropertyName("FtcLightSensor", "LightDetectedRaw", "RawLightDetected")
         // - The RawVoltage property was added. (no upgrade needed)
-      ]
+      ],
+
+    // The RawLightDetectedMax property was added.
+    3: "noUpgrade"
 
   }, // End FtcLightSensor upgraders
 
@@ -1751,6 +1769,13 @@ Blockly.Versioning.AllUpgradeMaps =
     5: "noUpgrade"
 
   }, // End FtcLinearOpMode upgraders
+
+  "FtcMrRangeSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcMrRangeSensor upgraders
 
   "FtcOpMode": {
 
@@ -1778,7 +1803,10 @@ Blockly.Versioning.AllUpgradeMaps =
         // The LightDetectedRaw property was renamed RawLightDetected.
         Blockly.Versioning.changePropertyName("FtcOpticalDistanceSensor", "LightDetectedRaw", "RawLightDetected")
         // The RawVoltage property was added. (no upgrade needed)
-      ]
+      ],
+
+    // The RawLightDetectedMax property was added.
+    3: "noUpgrade"
 
   }, // End FtcOpticalDistanceSensor upgraders
 

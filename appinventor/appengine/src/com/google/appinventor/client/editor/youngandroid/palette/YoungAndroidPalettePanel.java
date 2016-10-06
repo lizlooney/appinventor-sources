@@ -16,6 +16,12 @@ import com.google.appinventor.client.editor.simple.palette.SimpleComponentDescri
 import com.google.appinventor.client.editor.simple.palette.SimplePaletteItem;
 import com.google.appinventor.client.editor.simple.palette.SimplePalettePanel;
 import com.google.appinventor.client.editor.youngandroid.YaFormEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055AccelUnitChoicePropertyEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055AccelerationIntegrationAlgorithmChoicePropertyEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055AngleUnitChoicePropertyEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055SensorModeChoicePropertyEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055TempUnitChoicePropertyEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcGamepadNumberChoicePropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidAccelerometerSensitivityChoicePropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidAlignmentChoicePropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidAssetSelectorPropertyEditor;
@@ -25,7 +31,6 @@ import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroid
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidComponentSelectorPropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidDefaultURLPropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidFontTypefaceChoicePropertyEditor;
-import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidFtcGamepadNumberChoicePropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidHorizontalAlignmentChoicePropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidLegoNxtSensorPortChoicePropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidScreenAnimationChoicePropertyEditor;
@@ -191,8 +196,18 @@ public class YoungAndroidPalettePanel extends Composite implements SimplePalette
       return new YoungAndroidComponentSelectorPropertyEditor(editor);
     } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FLOAT)) {
       return new FloatPropertyEditor();
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_BNO055_ACCEL_UNIT)) {
+      return new FtcBNO055AccelUnitChoicePropertyEditor();
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_BNO055_ACCELERATION_INTEGRATION_ALGORITHM)) {
+      return new FtcBNO055AccelerationIntegrationAlgorithmChoicePropertyEditor();
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_BNO055_ANGLE_UNIT)) {
+      return new FtcBNO055AngleUnitChoicePropertyEditor();
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_BNO055_SENSOR_MODE)) {
+      return new FtcBNO055SensorModeChoicePropertyEditor();
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_BNO055_TEMP_UNIT)) {
+      return new FtcBNO055TempUnitChoicePropertyEditor();
     } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_GAMEPAD_NUMBER)) {
-      return new YoungAndroidFtcGamepadNumberChoicePropertyEditor();
+      return new FtcGamepadNumberChoicePropertyEditor();
     } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_INTEGER)) {
       return new IntegerPropertyEditor();
     } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_LEGO_NXT_SENSOR_PORT)) {

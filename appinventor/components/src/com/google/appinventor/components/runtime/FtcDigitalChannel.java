@@ -16,7 +16,6 @@ import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DigitalChannelController.Mode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
  * A component for a single digital channel of an FTC robot.
@@ -38,7 +37,7 @@ public final class FtcDigitalChannel extends FtcHardwareDevice {
    * Creates a new FtcDigitalChannel component.
    */
   public FtcDigitalChannel(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), DigitalChannel.class);
   }
 
   /**
@@ -149,13 +148,8 @@ public final class FtcDigitalChannel extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    digitalChannel = hardwareMap.digitalChannel.get(getDeviceName());
+    digitalChannel = (DigitalChannel) hardwareMap.get(deviceClass, getDeviceName());
     return digitalChannel;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("DigitalChannel", hardwareMap.digitalChannel);
   }
 
   @Override

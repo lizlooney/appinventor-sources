@@ -15,7 +15,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.AccelerationSensor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 
 /**
@@ -38,7 +37,7 @@ public final class FtcAccelerationSensor extends FtcHardwareDevice {
    * Creates a new FtcAccelerationSensor component.
    */
   public FtcAccelerationSensor(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), AccelerationSensor.class);
   }
 
   /**
@@ -133,13 +132,8 @@ public final class FtcAccelerationSensor extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    accelerationSensor = hardwareMap.accelerationSensor.get(getDeviceName());
+    accelerationSensor = (AccelerationSensor) hardwareMap.get(deviceClass, getDeviceName());
     return accelerationSensor;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("AccelerationSensor", hardwareMap.accelerationSensor);
   }
 
   @Override

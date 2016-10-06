@@ -15,7 +15,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.collect.Lists;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.LegacyModule;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cController.I2cPortReadyCallback;
@@ -44,7 +43,7 @@ public final class FtcLegacyModule extends FtcHardwareDevice implements I2cPortR
    * Creates a new FtcLegacyModule component.
    */
   public FtcLegacyModule(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), LegacyModule.class);
   }
 
   @SimpleEvent(description = "This event is triggered when an I2C port is ready, " +
@@ -382,13 +381,8 @@ public final class FtcLegacyModule extends FtcHardwareDevice implements I2cPortR
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    legacyModule = hardwareMap.legacyModule.get(getDeviceName());
+    legacyModule = (LegacyModule) hardwareMap.get(deviceClass, getDeviceName());
     return legacyModule;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("LegacyModule", hardwareMap.legacyModule);
   }
 
   @Override

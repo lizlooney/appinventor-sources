@@ -15,7 +15,6 @@ import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.Servo.Direction;
 
@@ -39,7 +38,7 @@ public final class FtcServo extends FtcHardwareDevice {
    * Creates a new FtcServo component.
    */
   public FtcServo(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), Servo.class);
   }
 
   /**
@@ -216,13 +215,8 @@ public final class FtcServo extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    servo = hardwareMap.servo.get(getDeviceName());
+    servo = (Servo) hardwareMap.get(deviceClass, getDeviceName());
     return servo;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("Servo", hardwareMap.servo);
   }
 
   @Override

@@ -14,7 +14,6 @@ import com.google.appinventor.components.common.ComponentCategory;
 import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PWMOutput;
 
 /**
@@ -37,7 +36,7 @@ public final class FtcPwmOutput extends FtcHardwareDevice {
    * Creates a new FtcPwmOutput component.
    */
   public FtcPwmOutput(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), PWMOutput.class);
   }
 
   /**
@@ -118,13 +117,8 @@ public final class FtcPwmOutput extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    pwmOutput = hardwareMap.pwmOutput.get(getDeviceName());
+    pwmOutput = (PWMOutput) hardwareMap.get(deviceClass, getDeviceName());
     return pwmOutput;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("PWMOutput", hardwareMap.pwmOutput);
   }
 
   @Override

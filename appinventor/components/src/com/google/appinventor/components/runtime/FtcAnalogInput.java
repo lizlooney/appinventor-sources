@@ -15,7 +15,6 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
 
 import com.qualcomm.robotcore.hardware.AnalogInput;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
  * A component for an analog input device of an FTC robot.
@@ -37,7 +36,7 @@ public final class FtcAnalogInput extends FtcHardwareDevice {
    * Creates a new FtcAnalogInput component.
    */
   public FtcAnalogInput(ComponentContainer container) {
-    super(container.$form());
+    super(container.$form(), AnalogInput.class);
   }
 
   /**
@@ -82,13 +81,8 @@ public final class FtcAnalogInput extends FtcHardwareDevice {
 
   @Override
   protected Object initHardwareDeviceImpl() {
-    analogInput = hardwareMap.analogInput.get(getDeviceName());
+    analogInput = (AnalogInput) hardwareMap.get(deviceClass, getDeviceName());
     return analogInput;
-  }
-
-  @Override
-  protected void dispatchDeviceNotFoundError() {
-    dispatchDeviceNotFoundError("AnalogInput", hardwareMap.analogInput);
   }
 
   @Override
