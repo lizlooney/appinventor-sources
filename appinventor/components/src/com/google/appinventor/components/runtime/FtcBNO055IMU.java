@@ -598,7 +598,7 @@ public final class FtcBNO055IMU extends FtcHardwareDevice {
     return "";
   }
 
-  @SimpleProperty(description = "If SystemStatus is \"SYSTEM_ERROR\", returns particulars " +
+  @SimpleProperty(description = "If SystemStatus is \"SYSTEM_ERROR\", SystemError returns particulars " +
       "regarding that error.",
       category = PropertyCategory.BEHAVIOR)
   public String SystemError() {
@@ -1037,7 +1037,7 @@ public final class FtcBNO055IMU extends FtcHardwareDevice {
   /**
    * AxesReference_INTRINSIC property getter.
    */
-  @SimpleProperty(description = "The constant for AxesReference_INTRINSIC." +
+  @SimpleProperty(description = "The constant for AxesReference_INTRINSIC. " +
       "Indicates that the axes move with the object that is rotating.",
       category = PropertyCategory.BEHAVIOR)
   public String AxesReference_INTRINSIC() {

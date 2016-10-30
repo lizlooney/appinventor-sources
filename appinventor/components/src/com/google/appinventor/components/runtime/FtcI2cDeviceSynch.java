@@ -420,8 +420,7 @@ public final class FtcI2cDeviceSynch extends FtcHardwareDevice {
   /**
    * I2cAddress property getter.
    */
-  @SimpleProperty(description = "The I2C address of the gyro sensor. " + 
-      "Not all gyro sensors support this feature.",
+  @SimpleProperty(description = "The I2C address of the device.",
       category = PropertyCategory.BEHAVIOR)
   public int I2cAddress() {
     checkHardwareDevice();

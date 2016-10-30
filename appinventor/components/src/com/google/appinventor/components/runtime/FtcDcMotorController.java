@@ -130,8 +130,8 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
   }
 
   @SimpleFunction(description = "Set the current motor mode.\n" +
-      "Valid values are RunMode_RUN_USING_ENCODERS, RunMode_RUN_WITHOUT_ENCODERS, " +
-      "RunMode_RUN_TO_POSITION, or RunMode_RESET_ENCODERS.")
+      "Valid values are RunMode_RUN_USING_ENCODER, RunMode_RUN_WITHOUT_ENCODER, " +
+      "RunMode_RUN_TO_POSITION, or RunMode_STOP_AND_RESET_ENCODER.")
   public void SetMotorMode(int motor, String runMode) {
     checkHardwareDevice();
     if (dcMotorController != null) {
@@ -152,8 +152,8 @@ public final class FtcDcMotorController extends FtcHardwareDevice {
   }
 
   @SimpleFunction(description = "Get the current motor mode.\n" +
-      "Valid values are RunMode_RUN_USING_ENCODERS, RunMode_RUN_WITHOUT_ENCODERS, " +
-      "RunMode_RUN_TO_POSITION, or RunMode_RESET_ENCODERS.")
+      "Valid values are RunMode_RUN_USING_ENCODER, RunMode_RUN_WITHOUT_ENCODER, " +
+      "RunMode_RUN_TO_POSITION, or RunMode_STOP_AND_RESET_ENCODER.")
   public String GetMotorMode(int motor) {
     checkHardwareDevice();
     if (dcMotorController != null) {

@@ -895,7 +895,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
   /**
    * AxesReference_INTRINSIC property getter.
    */
-  @SimpleProperty(description = "The constant for AxesReference_INTRINSIC." +
+  @SimpleProperty(description = "The constant for AxesReference_INTRINSIC. " +
       "Indicates that the axes move with the object that is rotating.",
       category = PropertyCategory.BEHAVIOR)
   public String AxesReference_INTRINSIC() {
