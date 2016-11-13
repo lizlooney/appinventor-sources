@@ -856,6 +856,7 @@ public final class FtcBNO055IMU extends FtcHardwareDevice {
 
   // Functions to extract AngularVelocity fields
 
+  @Deprecated
   @SimpleFunction(description = "Converts an AngularVelocity object to an equivalent one with " +
       "the indicated point of view. Returns an AngularVelocity object.")
   public Object AngularVelocityToAxesReference(Object angularVelocity, String axesReference) {
@@ -864,41 +865,37 @@ public final class FtcBNO055IMU extends FtcHardwareDevice {
           ErrorMessages.ERROR_FTC_INVALID_ANGULAR_VELOCITY, "angularVelocity");
       return null;
     }
-    AxesReference axesReferenceValue = parseAxesReference(axesReference, "AngularVelocityToAxesReference");
-    if (axesReferenceValue == null) {
-      return null;
-    }
-    return ((AngularVelocity) angularVelocity).toAxesReference(axesReferenceValue);
+    return angularVelocity;
   }
 
-  @SimpleFunction(description = "Returns the first angle rate of the given AngularVelocity object.")
-  public float AngularVelocityFirstAngleRate(Object angularVelocity) {
+  @SimpleFunction(description = "Returns the instantaneous body-referenced rotation rate about the x-axis, from the given AngularVelocity object.")
+  public float AngularVelocityXRotationRate(Object angularVelocity) {
     if (!(angularVelocity instanceof AngularVelocity)) {
-      form.dispatchErrorOccurredEvent(this, "AngularVelocityFirstAngleRate",
+      form.dispatchErrorOccurredEvent(this, "AngularVelocityXRotationRate",
           ErrorMessages.ERROR_FTC_INVALID_ANGULAR_VELOCITY, "angularVelocity");
       return 0;
     }
-    return ((AngularVelocity) angularVelocity).firstAngleRate;
+    return ((AngularVelocity) angularVelocity).xRotationRate;
   }
 
-  @SimpleFunction(description = "Returns the second angle rate of the given AngularVelocity object.")
-  public float AngularVelocitySecondAngleRate(Object angularVelocity) {
+  @SimpleFunction(description = "Returns the instantaneous body-referenced rotation rate about the y-axis, from the given AngularVelocity object.")
+  public float AngularVelocityYRotationRate(Object angularVelocity) {
     if (!(angularVelocity instanceof AngularVelocity)) {
-      form.dispatchErrorOccurredEvent(this, "AngularVelocitySecondAngleRate",
+      form.dispatchErrorOccurredEvent(this, "AngularVelocityYRotationRate",
           ErrorMessages.ERROR_FTC_INVALID_ANGULAR_VELOCITY, "angularVelocity");
       return 0;
     }
-    return ((AngularVelocity) angularVelocity).secondAngleRate;
+    return ((AngularVelocity) angularVelocity).yRotationRate;
   }
 
-  @SimpleFunction(description = "Returns the third angle rate of the given AngularVelocity object.")
-  public float AngularVelocityThirdAngleRate(Object angularVelocity) {
+  @SimpleFunction(description = "Returns the instantaneous body-referenced rotation rate about the z-axis, from the given AngularVelocity object.")
+  public float AngularVelocityZRotationRate(Object angularVelocity) {
     if (!(angularVelocity instanceof AngularVelocity)) {
-      form.dispatchErrorOccurredEvent(this, "AngularVelocityThirdAngleRate",
+      form.dispatchErrorOccurredEvent(this, "AngularVelocityZRotationRate",
           ErrorMessages.ERROR_FTC_INVALID_ANGULAR_VELOCITY, "angularVelocity");
       return 0;
     }
-    return ((AngularVelocity) angularVelocity).thirdAngleRate;
+    return ((AngularVelocity) angularVelocity).zRotationRate;
   }
 
   // AxesOrder enum values

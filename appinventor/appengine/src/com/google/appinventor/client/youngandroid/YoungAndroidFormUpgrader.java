@@ -263,6 +263,9 @@ public final class YoungAndroidFormUpgrader {
       } else if (componentType.equals("FtcAnalogInput")) {
         srcCompVersion = upgradeFtcAnalogInputProperties(componentProperties, srcCompVersion);
 
+      } else if (componentType.equals("FtcBNO055IMU")) {
+        srcCompVersion = upgradeFtcBNO055IMUProperties(componentProperties, srcCompVersion);
+
       } else if (componentType.equals("FtcColorSensor")) {
         srcCompVersion = upgradeFtcColorSensorProperties(componentProperties, srcCompVersion);
 
@@ -969,6 +972,19 @@ public final class YoungAndroidFormUpgrader {
     if (srcCompVersion < 2) {
       // - The Value property was renamed Voltage.
       // - The MaxVoltage property was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcBNO055IMUProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The AngularVelocityToAxesReference method was deprecated.
+      // - The AngularVelocityFirstAngleRate method was renamed AngularVelocityXRotationRate.
+      // - The AngularVelocitySecondAngleRate method was renamed AngularVelocityYRotationRate.
+      // - The AngularVelocityThirdAngleRate method was renamed AngularVelocityZRotationRate.
       // No designer properties need to be modified to upgrade to version 2.
       srcCompVersion = 2;
     }

@@ -6277,17 +6277,17 @@ public interface OdeMessages extends Messages {
   @Description("")
   String AngularVelocityToAxesReferenceMethods();
 
-  @DefaultMessage("AngularVelocityFirstAngleRate")
+  @DefaultMessage("AngularVelocityXRotationRate")
   @Description("")
-  String AngularVelocityFirstAngleRateMethods();
+  String AngularVelocityXRotationRateMethods();
 
-  @DefaultMessage("AngularVelocitySecondAngleRate")
+  @DefaultMessage("AngularVelocityYRotationRate")
   @Description("")
-  String AngularVelocitySecondAngleRateMethods();
+  String AngularVelocityYRotationRateMethods();
 
-  @DefaultMessage("AngularVelocityThirdAngleRate")
+  @DefaultMessage("AngularVelocityZRotationRate")
   @Description("")
-  String AngularVelocityThirdAngleRateMethods();
+  String AngularVelocityZRotationRateMethods();
 
   @DefaultMessage("Calibrate")
   @Description("")

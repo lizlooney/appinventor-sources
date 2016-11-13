@@ -1414,7 +1414,18 @@ Blockly.Versioning.AllUpgradeMaps =
   "FtcBNO055IMU": {
 
     // This is the initial version. Placeholder for future upgrades
-    1: "noUpgrade"
+    1: "noUpgrade",
+
+    2:
+      [
+        // The AngularVelocityToAxesReference method was deprecated.
+        // The AngularVelocityFirstAngleRate method was renamed AngularVelocityXRotationRate.
+        Blockly.Versioning.changeMethodName("FtcBNO055IMU", "AngularVelocityFirstAngleRate", "AngularVelocityXRotationRate"),
+        // The AngularVelocitySecondAngleRate method was renamed AngularVelocityYRotationRate.
+        Blockly.Versioning.changeMethodName("FtcBNO055IMU", "AngularVelocitySecondAngleRate", "AngularVelocityYRotationRate"),
+        // The AngularVelocityThirdAngleRate method was renamed AngularVelocityZRotationRate.
+        Blockly.Versioning.changeMethodName("FtcBNO055IMU", "AngularVelocityThirdAngleRate", "AngularVelocityZRotationRate"),
+      ]
 
   }, // End FtcBNO055IMU upgraders
 
