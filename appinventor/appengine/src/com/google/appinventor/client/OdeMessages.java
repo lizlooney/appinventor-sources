@@ -4027,6 +4027,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String UsbScanTimeInSecondsProperties();
 
+  @DefaultMessage("UseExternalCrystal")
+  @Description("")
+  String UseExternalCrystalProperties();
+
   @DefaultMessage("Value")
   @Description("")
   String ValueProperties();

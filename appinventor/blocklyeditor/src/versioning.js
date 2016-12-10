@@ -1425,7 +1425,10 @@ Blockly.Versioning.AllUpgradeMaps =
         Blockly.Versioning.changeMethodName("FtcBNO055IMU", "AngularVelocitySecondAngleRate", "AngularVelocityYRotationRate"),
         // The AngularVelocityThirdAngleRate method was renamed AngularVelocityZRotationRate.
         Blockly.Versioning.changeMethodName("FtcBNO055IMU", "AngularVelocityThirdAngleRate", "AngularVelocityZRotationRate"),
-      ]
+      ],
+
+    // The UseExternalCrystal property was added.
+    3: "noUpgrade"
 
   }, // End FtcBNO055IMU upgraders
 

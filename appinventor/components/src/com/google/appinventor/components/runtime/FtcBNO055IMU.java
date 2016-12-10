@@ -62,6 +62,7 @@ public final class FtcBNO055IMU extends FtcHardwareDevice {
   private volatile AngleUnit angleUnit = AngleUnit.DEGREES;
   private volatile TempUnit tempUnit = TempUnit.CELSIUS;
   private volatile SensorMode sensorMode = SensorMode.IMU;
+  private volatile boolean useExternalCrystal = true;
   private volatile String calibrationDataFile = "";
   private volatile AccelerationIntegrationAlgorithm accelerationIntegrationAlgorithm =
       AccelerationIntegrationAlgorithm.NAIVE;
@@ -150,6 +151,27 @@ public final class FtcBNO055IMU extends FtcHardwareDevice {
         this.sensorMode = sensorMode;
       }
     }
+  }
+
+  /**
+   * UseExternalCrystal property getter.
+   * Not visible in blocks.
+   */
+  @SimpleProperty(description = "Whether to use the external crystal. The default value is true.",
+      category = PropertyCategory.BEHAVIOR, userVisible = false)
+  public boolean UseExternalCrystal() {
+    return useExternalCrystal;
+  }
+
+  /**
+   * UseExternalCrystal property setter.
+   * Can only be set in designer; not visible in blocks.
+   */
+  @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_BOOLEAN,
+      defaultValue = "True")
+  @SimpleProperty(userVisible = false)
+  public void UseExternalCrystal(boolean useExternalCrystal) {
+    this.useExternalCrystal = useExternalCrystal;
   }
 
   /**
@@ -285,6 +307,7 @@ public final class FtcBNO055IMU extends FtcHardwareDevice {
         parameters.angleUnit = angleUnit;
         parameters.accelUnit = accelUnit;
         parameters.mode = sensorMode;
+        parameters.useExternalCrystal = useExternalCrystal;
         parameters.temperatureUnit = tempUnit;
         if (!TextUtils.isEmpty(calibrationDataFile)) {
           parameters.calibrationDataFile = calibrationDataFile;

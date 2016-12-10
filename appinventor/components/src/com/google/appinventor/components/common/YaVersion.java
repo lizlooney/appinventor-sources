@@ -454,8 +454,10 @@ public class YaVersion {
   // - The FtcMrRangeSensor component was added.
   // For YOUNG_ANDROID_VERSION 154:
   // - FTC_BNO055IMU_COMPONENT_VERSION was incremented to 2.
+  // For YOUNG_ANDROID_VERSION 155:
+  // - FTC_BNO055IMU_COMPONENT_VERSION was incremented to 3.
 
-  public static final int YOUNG_ANDROID_VERSION = 154;
+  public static final int YOUNG_ANDROID_VERSION = 155;
 
   // ............................... Blocks Language Version Number ...............................
 
@@ -758,7 +760,9 @@ public class YaVersion {
   // - The AngularVelocityFirstAngleRate method was renamed AngularVelocityXRotationRate.
   // - The AngularVelocitySecondAngleRate method was renamed AngularVelocityYRotationRate.
   // - The AngularVelocityThirdAngleRate method was renamed AngularVelocityZRotationRate.
-  public static final int FTC_BNO055IMU_COMPONENT_VERSION = 2;
+  // For FTC_BNO055IMU_COMPONENT_VERSION 3:
+  // - The UseExternalCrystal property was added.
+  public static final int FTC_BNO055IMU_COMPONENT_VERSION = 3;
 
   // For FTC_COLOR_SENSOR_COMPONENT_VERSION 2:
   // - The ColorToHSV method was renamed ConvertColorToHSV.
