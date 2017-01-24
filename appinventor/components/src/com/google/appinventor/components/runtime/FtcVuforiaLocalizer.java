@@ -178,6 +178,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
       String cameraDirection, boolean useExtendedTracking, String cameraMonitorFeedback,
       boolean fillCameraMonitorViewParent) {
     try {
+      clear();
       parameters = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId);
       parameters.vuforiaLicenseKey = vuforiaLicenseKey;
       CameraDirection cameraDirectionValue = parseCameraDirection(
@@ -917,15 +918,18 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
 
   @Override
   public void onDestroy() {
-    vuforiaLocalizer = null;
-    trackablesList.clear();
-    trackableList.clear();
+    clear();
   }
 
   // Deleteable implementation
 
   @Override
   public void onDelete() {
+    clear();
+  }
+
+  private void clear() {
+    parameters = null;
     vuforiaLocalizer = null;
     trackablesList.clear();
     trackableList.clear();
