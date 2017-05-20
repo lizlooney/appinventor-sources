@@ -140,6 +140,8 @@ public class DocumentationGenerator extends ComponentProcessor {
         ComponentCategory.CONNECTIVITY,
         ComponentCategory.SENSORS,
         ComponentCategory.LEGOMINDSTORMS,
+        // FIRST Tech Challenge: Add FIRST Tech Challenge category.
+        ComponentCategory.FIRSTTECHCHALLENGE,
         //ComponentCategory.EXPERIMENTAL
       }
     };

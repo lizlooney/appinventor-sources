@@ -110,6 +110,10 @@ public class TopToolbar extends Composite {
   private static final String WIDGET_NAME_BUILD_COMPONENT = "BuildComponent";
   private static final String WIDGET_NAME_UPLOAD_COMPONENT = "UploadComponent";
 
+  // FIRST Tech Challenge: Added Download menu with Driver Station menu item.
+  private static final String WIDGET_NAME_DOWNLOAD = "Download";
+  private static final String WIDGET_NAME_DRIVERSTATION = "DriverStation";
+
   private static final String WIDGET_NAME_ADMIN = "Admin";
   private static final String WIDGET_NAME_USER_ADMIN = "UserAdmin";
   private static final String WIDGET_NAME_DOWNLOAD_USER_SOURCE = "DownloadUserSource";
@@ -209,15 +213,21 @@ public class TopToolbar extends Composite {
         new HardResetAction()));
 
     // Build -> {Show Barcode; Download to Computer; Generate YAIL only when logged in as an admin}
+    // FIRST Tech Challenge: No barcode menu item on Build menu.
+    /*
     buildItems.add(new DropDownItem(WIDGET_NAME_BUILD_BARCODE, MESSAGES.showBarcodeMenuItem(),
         new BarcodeAction()));
+    */
     buildItems.add(new DropDownItem(WIDGET_NAME_BUILD_DOWNLOAD, MESSAGES.downloadToComputerMenuItem(),
         new DownloadAction()));
+    // FIRST Tech Challenge: No Generate YAIL menu item on Build menu.
+    /*
     if (AppInventorFeatures.hasYailGenerationOption() && Ode.getInstance().getUser().getIsAdmin()) {
       buildItems.add(null);
       buildItems.add(new DropDownItem(WIDGET_NAME_BUILD_YAIL, MESSAGES.generateYailMenuItem(),
           new GenerateYailAction()));
     }
+    */
 
     // Help -> {About, Library, Get Started, Tutorials, Troubleshooting, Forums, Report an Issue,
     //  Companion Information, Show Splash Screen}
@@ -262,10 +272,13 @@ public class TopToolbar extends Composite {
           new WindowOpenAction(feedbackUrl)));
       helpItems.add(null);
     }
+    // FIRST Tech Challenge: No companion app.
+    /*
     helpItems.add(new DropDownItem(WIDGET_NAME_COMPANIONINFO, MESSAGES.companionInformation(),
         new AboutCompanionAction()));
     helpItems.add(new DropDownItem(WIDGET_NAME_COMPANIONUPDATE, MESSAGES.companionUpdate(),
         new CompanionUpdateAction()));
+    */
     helpItems.add(new DropDownItem(WIDGET_NAME_SHOWSPLASH, MESSAGES.showSplashMenuItem(),
         new ShowSplashAction()));
 
@@ -287,8 +300,20 @@ public class TopToolbar extends Composite {
 
     // Add the Buttons to the Toolbar.
     toolbar.add(fileDropDown);
+    // FIRST Tech Challenge: No companion app.
+    /*
     toolbar.add(connectDropDown);
+    */
     toolbar.add(buildDropDown);
+
+    // FIRST Tech Challenge: Added Download menu with Driver Station menu item.
+    List<DropDownItem> downloadItems = Lists.newArrayList();
+    downloadItems.add(new DropDownItem(WIDGET_NAME_DRIVERSTATION,
+        MESSAGES.downloadDriverStationMenuItem(), new DownloadDriverStationAction()));
+    DropDownButton downloadDropDown =
+        new DropDownButton(WIDGET_NAME_DOWNLOAD, MESSAGES.downloadTabName(), downloadItems, false);
+    downloadDropDown.setStyleName("ode-TopPanelButton");
+    toolbar.add(downloadDropDown);
 
     // Commented out language switching until we have a clean Chinese translation. (AFM)
     toolbar.add(helpDropDown);
@@ -727,6 +752,15 @@ public class TopToolbar extends Composite {
     }
   }
 
+  // FIRST Tech Challenge: Added Download menu with Driver Station menu item.
+  private static class DownloadDriverStationAction implements Command {
+    @Override
+    public void execute() {
+      ErrorReporter.hide();
+      Downloader.getInstance().setUrl("/FtcDriverStation-release.apk");
+    }
+  }
+
   private static class AboutAction implements Command {
     @Override
     public void execute() {
@@ -741,7 +775,14 @@ public class TopToolbar extends Composite {
 
       VerticalPanel DialogBoxContents = new VerticalPanel();
       String html = MESSAGES.gitBuildId(GitBuildId.getDate(), GitBuildId.getVersion()) +
+      // FIRST Tech Challenge: Different message in About box.
+          "<BR/><BR/><b>This version of MIT App Inventor contains support for<BR/>" +
+          "FIRST\u00AE Tech Challenge</b>" +
+          "<BR/><BR/>No Companion Available.";
+      /*
           "<BR/>Use Companion: " + BlocklyPanel.getCompVersion();
+      */
+
       Config config = Ode.getInstance().getSystemConfig();
       String releaseNotesUrl = config.getReleaseNotesUrl();
       if (!Strings.isNullOrEmpty(releaseNotesUrl)) {

@@ -2402,6 +2402,531 @@ Blockly.Versioning.AllUpgradeMaps =
     //This is initial version. Placeholder for future upgrades
     1: "noUpgrade"
 
-  } // End YandexTranslate upgraders
+  }, // End YandexTranslate upgraders
+
+  // FIRST Tech Challenge: Support FTC components.
+
+  "FtcAccelerationSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcAccelerationSensor upgraders
+
+  "FtcAnalogInput": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The Value property was renamed Voltage.
+        Blockly.Versioning.changePropertyName("FtcAnalogInput", "Value", "Voltage")
+        // The MaxVoltage property was added. (no upgrade needed)
+      ]
+
+  }, // End FtcAnalogInput upgraders
+
+  "FtcAnalogOutput": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcAnalogOutput upgraders
+
+  "FtcBNO055IMU": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The AngularVelocityToAxesReference method was deprecated.
+        // The AngularVelocityFirstAngleRate method was renamed AngularVelocityXRotationRate.
+        Blockly.Versioning.changeMethodName("FtcBNO055IMU", "AngularVelocityFirstAngleRate", "AngularVelocityXRotationRate"),
+        // The AngularVelocitySecondAngleRate method was renamed AngularVelocityYRotationRate.
+        Blockly.Versioning.changeMethodName("FtcBNO055IMU", "AngularVelocitySecondAngleRate", "AngularVelocityYRotationRate"),
+        // The AngularVelocityThirdAngleRate method was renamed AngularVelocityZRotationRate.
+        Blockly.Versioning.changeMethodName("FtcBNO055IMU", "AngularVelocityThirdAngleRate", "AngularVelocityZRotationRate"),
+      ],
+
+    // The UseExternalCrystal property was added.
+    3: "noUpgrade"
+
+  }, // End FtcBNO055IMU upgraders
+
+  "FtcColorSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The ColorToHSV method was renamed ConvertColorToHSV.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "ColorToHSV", "ConvertColorToHSV"),
+        // The HSVToColor method was renamed ConvertHSVToColor.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "HSVToColor", "ConvertHSVToColor"),
+        // The HSVToColorWithAlpha method was renamed ConvertHSVToColorWithAlpha.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "HSVToColorWithAlpha", "ConvertHSVToColorWithAlpha"),
+        // The RGBToHSV method was renamed ConvertRGBToHSV.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "RGBToHSV", "ConvertRGBToHSV"),
+        // The ARGB method was renamed CreateARGB.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "ARGB", "CreateARGB"),
+        // The RGB method was renamed CreateRGB.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "RGB", "CreateRGB"),
+        // The Alpha method was renamed ExtractAlpha.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "Alpha", "ExtractAlpha"),
+        // The Red method was renamed ExtractRed.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "Red", "ExtractRed"),
+        // The Green method was renamed ExtractGreen.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "Green", "ExtractGreen"),
+        // The Blue method was renamed ExtractBlue.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "Blue", "ExtractBlue"),
+        // The Hue method was renamed ExtractHue.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "Hue", "ExtractHue"),
+        // The Saturation method was renamed ExtractSaturation.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "Saturation", "ExtractSaturation"),
+        // The Value method was renamed ExtractValue.
+        Blockly.Versioning.changeMethodName("FtcColorSensor", "Value", "ExtractValue"),
+      ]
+
+  }, // End FtcColorSensor upgraders
+
+  "FtcCompassSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The Mode_MEASUREMENT property was renamed CompassMode_MEASUREMENT_MODE.
+        Blockly.Versioning.changePropertyName("FtcCompassSensor", "Mode_MEASUREMENT", "CompassMode_MEASUREMENT_MODE"),
+        // The Mode_CALIBRATION property was renamed CompassMode_CALIBRATION_MODE.
+        Blockly.Versioning.changePropertyName("FtcCompassSensor", "Mode_CALIBRATION", "CompassMode_CALIBRATION_MODE")
+      ],
+
+    // The MAX_NEW_I2C_ADDRESS, MIN_NEW_I2C_ADDRESS, I2cAddress, Acceleration, and MagneticFlux
+    // properties were added.
+    // The IsCalibrating, GetX, GetY, and GetZ methods were added.
+    3: "noUpgrade"
+
+  }, // End FtcCompassSensor upgraders
+
+  "FtcCRServo": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcCRServo upgraders
+
+  "FtcDcMotor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The ChannelMode property was renamed Mode.
+        Blockly.Versioning.changePropertyName("FtcDcMotor", "ChannelMode", "Mode"),
+      ],
+
+    3:
+      [
+        // The RunMode_RUN_USING_ENCODERS property was renamed RunMode_RUN_USING_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotor", "RunMode_RUN_USING_ENCODERS", "RunMode_RUN_USING_ENCODER"),
+        // The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotor", "RunMode_RUN_WITHOUT_ENCODERS", "RunMode_RUN_WITHOUT_ENCODER"),
+        // The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotor", "RunMode_RESET_ENCODERS", "RunMode_STOP_AND_RESET_ENCODER")
+        // The SetPowerFloat method was deprecated.
+        // The MaxSpeed property was added. (no upgrade neeeded)
+        // The ZeroPowerBehavior_BRAKE property was added. (no upgrade neeeded)
+        // The ZeroPowerBehavior_FLOAT property was added. (no upgrade neeeded)
+        // The ZeroPowerBehavior property was added. (no upgrade neeeded)
+      ]
+
+  }, // End FtcDcMotor upgraders
+
+  "FtcDcMotorController": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    // The SetMotorPowerForGroup, SetGearRatio, GetGearRatio,
+    // SetDifferentialControlLoopCoefficients, GetDifferentialControlLoopCoefficientP,
+    // GetDifferentialControlLoopCoefficientI, GetDifferentialControlLoopCoefficientD functions and
+    // the BatteryVoltage property were added.
+    2: "noUpgrade",
+
+    // The MotorControllerDeviceMode property setter was added.
+    3: "noUpgrade",
+
+    // The DeviceMode_READ_ONLY, DeviceMode_WRITE_ONLY, and MotorControllerDeviceMode properties
+    // were deprecated.
+    4: "noUpgrade",
+
+    5:
+      [
+        // The RunMode_RUN_USING_ENCODERS property was renamed RunMode_RUN_USING_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotorController", "RunMode_RUN_USING_ENCODERS", "RunMode_RUN_USING_ENCODER"),
+        // The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotorController", "RunMode_RUN_WITHOUT_ENCODERS", "RunMode_RUN_WITHOUT_ENCODER"),
+        // The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
+        Blockly.Versioning.changePropertyName("FtcDcMotorController", "RunMode_RESET_ENCODERS", "RunMode_STOP_AND_RESET_ENCODER"),
+        // The SetMotorChannelMode method was renamed SetMotorMode.
+        Blockly.Versioning.changeMethodName("FtcDcMotorController", "SetMotorChannelMode", "SetMotorMode"),
+        // The GetMotorChannelMode method was renamed GetMotorMode.
+        Blockly.Versioning.changeMethodName("FtcDcMotorController", "GetMotorChannelMode", "GetMotorMode"),
+        // The SetMotorPowerFloat method was deprecated. (no upgrade neeeded)
+        // The SetMotorMaxSpeed method was added. (no upgrade neeeded)
+        // The GetMotorMaxSpeed method was added. (no upgrade neeeded)
+        // The ZeroPowerBehavior_BRAKE property was added. (no upgrade neeeded)
+        // The ZeroPowerBehavior_FLOAT property was added. (no upgrade neeeded)
+        // The SetMotorZeroPowerBehavior method was added. (no upgrade neeeded)
+        // The GetMotorZeroPowerBehavior method was added. (no upgrade neeeded)
+      ]
+
+  }, // End FtcDcMotorController upgraders
+
+  "FtcDeviceInterfaceModule": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The GetI2cReadCache method was renamed GetCopyOfReadBuffer.
+        Blockly.Versioning.changeMethodName("FtcDeviceInterfaceModule", "GetI2cReadCache", "GetCopyOfReadBuffer"),
+        // The GetI2cWriteCache method was renamed GetCopyOfWriteBuffer.
+        Blockly.Versioning.changeMethodName("FtcDeviceInterfaceModule", "GetI2cWriteCache", "GetCopyOfWriteBuffer"),
+        // The ReadI2cCacheFromModule method was renamed ReadI2cCacheFromController.
+        Blockly.Versioning.changeMethodName("FtcDeviceInterfaceModule", "ReadI2cCacheFromModule", "ReadI2cCacheFromController"),
+        // The SetI2cWriteCache method was renamed CopyBufferIntoWriteBuffer.
+        Blockly.Versioning.changeMethodName("FtcDeviceInterfaceModule", "SetI2cWriteCache", "CopyBufferIntoWriteBuffer"),
+        // The WriteI2cCacheToModule method was renamed WriteI2cCacheToController.
+        Blockly.Versioning.changeMethodName("FtcDeviceInterfaceModule", "WriteI2cCacheToModule", "WriteI2cCacheToController"),
+        // The WriteI2cPortFlagOnlyToModule method was renamed WriteI2cPortFlagOnlyToController.
+        Blockly.Versioning.changeMethodName("FtcDeviceInterfaceModule", "WriteI2cPortFlagOnlyToModule", "WriteI2cPortFlagOnlyToController")
+      ],
+
+    // The ClearI2cPortActionFlag method was added.
+    3: "noUpgrade",
+
+    4:
+      [
+        // The GetAnalogInputValue method was renamed GetAnalogInputVoltage.
+        Blockly.Versioning.changeMethodName("FtcDeviceInterfaceModule", "GetAnalogInputValue", "GetAnalogInputVoltage"),
+        // The MaxAnalogInputVoltage property was added. (no upgrade needed)
+      ],
+
+  }, // End FtcDeviceInterfaceModule upgraders
+
+  "FtcDigitalChannel": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcDigitalChannel upgraders
+
+  "FtcElapsedTime": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcElapsedTime upgraders
+
+  "FtcGamepad": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    // The Type property was added.
+    2: "noUpgrade"
+
+  }, // End FtcGamepad upgraders
+
+  "FtcGyroSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    // The Calibrate, IsCalibrating, ResetZAxisIntegrator functions and the HeadingMode_CARDINAL,
+    // HeadingMode_CARTESIAN, HeadingMode, Heading, RawX, RawY, RawZ properties were added.
+    2: "noUpgrade",
+
+    // The MAX_NEW_I2C_ADDRESS, MIN_NEW_I2C_ADDRESS, and I2cAddress properties were added.
+    3: "noUpgrade",
+
+    4:
+      [
+        // The Rotation property was renamed RotationFraction.
+        Blockly.Versioning.changePropertyName("FtcGyroSensor", "Rotation", "RotationFraction")
+        // The RawVoltage property was added. (no upgrade needed)
+      ],
+
+    // The IntegratedZValue property was added.
+    5: "noUpgrade"
+
+  }, // End FtcGyroSensor upgraders
+
+  "FtcI2cDevice": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The GetI2cReadCache method was renamed GetCopyOfReadBuffer.
+        Blockly.Versioning.changeMethodName("FtcI2cDevice", "GetI2cReadCache", "GetCopyOfReadBuffer"),
+        // The GetI2cWriteCache method was renamed GetCopyOfWriteBuffer.
+        Blockly.Versioning.changeMethodName("FtcI2cDevice", "GetI2cWriteCache", "GetCopyOfWriteBuffer"),
+        // The ReadI2cCacheFromModule method was renamed ReadI2cCacheFromController.
+        Blockly.Versioning.changeMethodName("FtcI2cDevice", "ReadI2cCacheFromModule", "ReadI2cCacheFromController"),
+        // The SetI2cWriteCache method was renamed CopyBufferIntoWriteBuffer.
+        Blockly.Versioning.changeMethodName("FtcI2cDevice", "SetI2cWriteCache", "CopyBufferIntoWriteBuffer"),
+        // The WriteI2cCacheToModule method was renamed WriteI2cCacheToController.
+        Blockly.Versioning.changeMethodName("FtcI2cDevice", "WriteI2cCacheToModule", "WriteI2cCacheToController"),
+        // The WriteI2cPortFlagOnlyToModule method was renamed WriteI2cPortFlagOnlyToController.
+        Blockly.Versioning.changeMethodName("FtcI2cDevice", "WriteI2cPortFlagOnlyToModule", "WriteI2cPortFlagOnlyToController")
+      ]
+
+  }, // End FtcI2cDevice upgraders
+
+  "FtcI2cDeviceReader": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcI2cDeviceReader upgraders
+
+  "FtcI2cDeviceSynch": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcI2cDeviceSynch upgraders
+
+  "FtcIrSeekerSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The Mode_1200HZ_AC property was renamed Mode_1200HZ.
+        Blockly.Versioning.changePropertyName("FtcIrSeekerSensor", "Mode_1200HZ_AC", "Mode_1200HZ"),
+        // The Mode_600HZ_DC property was renamed Mode_600HZ.
+        Blockly.Versioning.changePropertyName("FtcIrSeekerSensor", "Mode_600HZ_DC", "Mode_600HZ")
+      ]
+
+  }, // End FtcIrSeekerSensor upgraders
+
+  "FtcLED": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcLED upgraders
+
+  "FtcLegacyModule": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The EnableNxtI2cReadMode method was renamed EnableI2cReadMode.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "EnableNxtI2cReadMode", "EnableI2cReadMode"),
+        // The EnableNxtI2cWriteMode method was renamed EnableI2cWriteMode.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "EnableNxtI2cWriteMode", "EnableI2cWriteMode"),
+        // The GetI2cReadCache method was renamed GetCopyOfReadBuffer.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "GetI2cReadCache", "GetCopyOfReadBuffer"),
+        // The GetI2cWriteCache method was renamed GetCopyOfWriteBuffer.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "GetI2cWriteCache", "GetCopyOfWriteBuffer"),
+        // The IsNxtI2cPortActionFlagSet method was renamed IsI2cPortActionFlagSet.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "IsNxtI2cPortActionFlagSet", "IsI2cPortActionFlagSet"),
+        // The ReadI2cCacheFromModule method was renamed ReadI2cCacheFromController.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "ReadI2cCacheFromModule", "ReadI2cCacheFromController"),
+        // The SetI2cWriteCache method was renamed CopyBufferIntoWriteBuffer.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "SetI2cWriteCache", "CopyBufferIntoWriteBuffer"),
+        // The SetNxtI2cPortActionFlag method was renamed SetI2cPortActionFlag.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "SetNxtI2cPortActionFlag", "SetI2cPortActionFlag"),
+        // The WriteI2cCacheToModule method was renamed WriteI2cCacheToController.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "WriteI2cCacheToModule", "WriteI2cCacheToController"),
+        // The WriteI2cPortFlagOnlyToModule method was renamed WriteI2cPortFlagOnlyToController.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "WriteI2cPortFlagOnlyToModule", "WriteI2cPortFlagOnlyToController")
+      ],
+
+    // The ClearI2cPortActionFlag method was added.
+    3: "noUpgrade",
+
+    4:
+      [
+        // The ReadAnalog method was renamed ReadAnalogRaw.
+        Blockly.Versioning.changeMethodName("FtcLegacyModule", "ReadAnalog", "ReadAnalogRaw")
+      ]
+
+  }, // End FtcLegacyModule upgraders
+
+  "FtcLightSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The LightDetectedRaw property was renamed RawLightDetected.
+        Blockly.Versioning.changePropertyName("FtcLightSensor", "LightDetectedRaw", "RawLightDetected")
+        // - The RawVoltage property was added. (no upgrade needed)
+      ],
+
+    // The RawLightDetectedMax property was added.
+    3: "noUpgrade"
+
+  }, // End FtcLightSensor upgraders
+
+  "FtcLinearOpMode": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The WaitOneHardwareCycle method was renamed WaitOneFullHardwareCycle.
+        Blockly.Versioning.changeMethodName("FtcLinearOpMode", "WaitOneHardwareCycle", "WaitOneFullHardwareCycle")
+      ],
+
+    // The Time property was added.
+    3: "noUpgrade",
+
+    // The Idle, IsStarted, IsStopRequested, and RequestOpModeStop methods were added.
+    4: "noUpgrade",
+
+    // The Autonomous and Group properties were added.
+    5: "noUpgrade"
+
+  }, // End FtcLinearOpMode upgraders
+
+  "FtcMrRangeSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcMrRangeSensor upgraders
+
+  "FtcOpMode": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    // The Time property was added.
+    2: "noUpgrade",
+
+    // The RequestOpModeStop method was added.
+    3: "noUpgrade",
+
+    // The Autonomous and Group properties were added.
+    4: "noUpgrade"
+
+  }, // End FtcOpMode upgraders
+
+  "FtcOpticalDistanceSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    2:
+      [
+        // The LightDetectedRaw property was renamed RawLightDetected.
+        Blockly.Versioning.changePropertyName("FtcOpticalDistanceSensor", "LightDetectedRaw", "RawLightDetected")
+        // The RawVoltage property was added. (no upgrade needed)
+      ],
+
+    // The RawLightDetectedMax property was added.
+    3: "noUpgrade"
+
+  }, // End FtcOpticalDistanceSensor upgraders
+
+  "FtcPwmOutput": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcPwmOutput upgraders
+
+  "FtcRobotController": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    // The LogDevices function was added.
+    2: "noUpgrade",
+
+    // The TelemetrySorted property was added.
+    3: "noUpgrade",
+
+    // The TelemetrySorted property was deprecated.
+    // The UpdateTelemetry method was added. (no upgrade needed)
+    4: "noUpgrade"
+
+  }, // End FtcRobotController upgraders
+
+  "FtcServo": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcServo upgraders
+
+  "FtcServoController": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    // The SetServoPositionAndSpeed function was added.
+    2: "noUpgrade"
+
+  }, // End FtcServoController upgraders
+
+  "FtcTouchSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    // The Status function was added.
+    2: "noUpgrade"
+
+  }, // End FtcTouchSensor upgraders
+
+  "FtcTouchSensorMultiplexer": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade",
+
+    // The Status function was added.
+    2: "noUpgrade"
+
+  }, // End FtcTouchSensorMultiplexer upgraders
+
+  "FtcUltrasonicSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcUltrasonicSensor upgraders
+
+  "FtcVoltageSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcVoltageSensor upgraders
+
+  "FtcVuforiaLocalizer": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  } // End FtcVuforiaLocalizer upgraders
 
 };

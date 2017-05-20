@@ -349,6 +349,48 @@ public final class YoungAndroidFormUpgrader {
         srcCompVersion = upgradeFirebaseDBProperties(componentProperties, srcCompVersion);
       } else if (componentType.equals("Pedometer")) {
         srcCompVersion = upgradePedometerProperties(componentProperties, srcCompVersion);
+
+      // FIRST Tech Challenge: Support FTC components.
+      } else if (componentType.equals("FtcAnalogInput")) {
+        srcCompVersion = upgradeFtcAnalogInputProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcBNO055IMU")) {
+        srcCompVersion = upgradeFtcBNO055IMUProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcColorSensor")) {
+        srcCompVersion = upgradeFtcColorSensorProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcCompassSensor")) {
+        srcCompVersion = upgradeFtcCompassSensorProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcDcMotor")) {
+        srcCompVersion = upgradeFtcDcMotorProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcDcMotorController")) {
+        srcCompVersion = upgradeFtcDcMotorControllerProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcDeviceInterfaceModule")) {
+        srcCompVersion = upgradeFtcDeviceInterfaceModuleProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcGamepad")) {
+        srcCompVersion = upgradeFtcGamepadProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcGyroSensor")) {
+        srcCompVersion = upgradeFtcGyroSensorProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcI2cDevice")) {
+        srcCompVersion = upgradeFtcI2cDeviceProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcIrSeekerSensor")) {
+        srcCompVersion = upgradeFtcIrSeekerSensorProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcLegacyModule")) {
+        srcCompVersion = upgradeFtcLegacyModuleProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcLightSensor")) {
+        srcCompVersion = upgradeFtcLightSensorProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcLinearOpMode")) {
+        srcCompVersion = upgradeFtcLinearOpModeProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcOpMode")) {
+        srcCompVersion = upgradeFtcOpModeProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcOpticalDistanceSensor")) {
+        srcCompVersion = upgradeFtcOpticalDistanceSensorProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcRobotController")) {
+        srcCompVersion = upgradeFtcRobotControllerProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcServoController")) {
+        srcCompVersion = upgradeFtcServoControllerProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcTouchSensor")) {
+        srcCompVersion = upgradeFtcTouchSensorProperties(componentProperties, srcCompVersion);
+      } else if (componentType.equals("FtcTouchSensorMultiplexer")) {
+        srcCompVersion = upgradeFtcTouchSensorMultiplexerProperties(componentProperties, srcCompVersion);
       }
 
       if (srcCompVersion < sysCompVersion) {
@@ -1501,4 +1543,397 @@ public final class YoungAndroidFormUpgrader {
     dialogBox.show();
   }
 
+  // FIRST Tech Challenge
+
+  private static int upgradeFtcAnalogInputProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The Value property was renamed Voltage.
+      // - The MaxVoltage property was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcBNO055IMUProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The AngularVelocityToAxesReference method was deprecated.
+      // - The AngularVelocityFirstAngleRate method was renamed AngularVelocityXRotationRate.
+      // - The AngularVelocitySecondAngleRate method was renamed AngularVelocityYRotationRate.
+      // - The AngularVelocityThirdAngleRate method was renamed AngularVelocityZRotationRate.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The UseExternalCrystal property was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcColorSensorProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The ColorToHSV method was renamed ConvertColorToHSV.
+      // - The HSVToColor method was renamed ConvertHSVToColor.
+      // - The HSVToColorWithAlpha method was renamed ConvertHSVToColorWithAlpha.
+      // - The RGBToHSV method was renamed ConvertRGBToHSV.
+      // - The ARGB method was renamed CreateARGB.
+      // - The RGB method was renamed CreateRGB.
+      // - The Alpha method was renamed ExtractAlpha.
+      // - The Red method was renamed ExtractRed.
+      // - The Green method was renamed ExtractGreen.
+      // - The Blue method was renamed ExtractBlue.
+      // - The Hue method was renamed ExtractHue.
+      // - The Saturation method was renamed ExtractSaturation.
+      // - The Value method was renamed ExtractValue.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcCompassSensorProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The Mode_MEASUREMENT property (blocks only) was renamed CompassMode_MEASUREMENT_MODE.
+      // - The Mode_CALIBRATION property (blocks only) was renamed CompassMode_CALIBRATION_MODE.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The MAX_NEW_I2C_ADDRESS, MIN_NEW_I2C_ADDRESS, I2cAddress, Acceleration, and MagneticFlux
+      // properties were added.
+      // - The IsCalibrating, GetX, GetY, and GetZ methods were added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcDcMotorProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The ChannelMode property (blocks only) was renamed Mode.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The RunMode_RUN_USING_ENCODERS property was renamed RunMode_RUN_USING_ENCODER.
+      // - The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
+      // - The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
+      // - The SetPowerFloat method was deprecated.
+      // - The MaxSpeed property was added.
+      // - The ZeroPowerBehavior_BRAKE property was added.
+      // - The ZeroPowerBehavior_FLOAT property was added.
+      // - The ZeroPowerBehavior property was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcDcMotorControllerProperties(
+      Map<String, JSONValue> componentProperties, int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The SetMotorPowerForGroup function was added.
+      // - The BatteryVoltage (blocks only) property was added.
+      // - The SetGearRatio function was added.
+      // - The GetGearRatio function was added.
+      // - The SetDifferentialControlLoopCoefficients function was added.
+      // - The GetDifferentialControlLoopCoefficientP function was added.
+      // - The GetDifferentialControlLoopCoefficientI function was added.
+      // - The GetDifferentialControlLoopCoefficientD function was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The MotorControllerDeviceMode property setter was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The DeviceMode_READ_ONLY property was deprecated.
+      // - The DeviceMode_WRITE_ONLY property was deprecated.
+      // - The MotorControllerDeviceMode property was deprecated.
+      // No designer properties need to be modified to upgrade to version 4.
+      srcCompVersion = 4;
+    }
+    if (srcCompVersion < 5) {
+      // - The RunMode_RUN_USING_ENCODERS property was renamed RunMode_RUN_USING_ENCODER.
+      // - The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
+      // - The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
+      // - The SetMotorChannelMode method was renamed SetMotorMode.
+      // - The GetMotorChannelMode method was renamed GetMotorMode.
+      // - The SetMotorPowerFloat method was deprecated.
+      // - The SetMotorMaxSpeed method was added.
+      // - The GetMotorMaxSpeed method was added.
+      // - The ZeroPowerBehavior_BRAKE property was added.
+      // - The ZeroPowerBehavior_FLOAT property was added.
+      // - The SetMotorZeroPowerBehavior method was added.
+      // - The GetMotorZeroPowerBehavior method was added.
+      // No designer properties need to be modified to upgrade to version 5.
+      srcCompVersion = 5;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcDeviceInterfaceModuleProperties(
+      Map<String, JSONValue> componentProperties, int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The GetI2cReadCache method was renamed GetCopyOfReadBuffer.
+      // - The GetI2cWriteCache method was renamed GetCopyOfWriteBuffer.
+      // - The SetI2cWriteCache method was renamed CopyBufferIntoWriteBuffer.
+      // - The ReadI2cCacheFromModule method was renamed ReadI2cCacheFromController.
+      // - The WriteI2cCacheToModule method was renamed WriteI2cCacheToController.
+      // - The WriteI2cPortFlagOnlyToModule method was renamed WriteI2cPortFlagOnlyToController.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The ClearI2cPortActionFlag method was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The GetAnalogInputValue method was renamed GetAnalogInputVoltage.
+      // - The MaxAnalogInputVoltage property was added.
+      // No designer properties need to be modified to upgrade to version 4.
+      srcCompVersion = 4;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcGamepadProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The Type property was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcGyroSensorProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The Calibrate method was added.
+      // - The IsCalibrating method was added.
+      // - The ResetZAxisIntegrator method was added.
+      // - The HeadingMode_CARDINAL property was added.
+      // - The HeadingMode_CARTESIAN property was added.
+      // - The HeadingMode property was added.
+      // - The Heading property was added.
+      // - The RawX property was added.
+      // - The RawY property was added.
+      // - The RawZ property was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The MAX_NEW_I2C_ADDRESS property was added.
+      // - The MIN_NEW_I2C_ADDRESS property was added.
+      // - The I2cAddress property was added
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The Rotation property was renamed RotationFraction.
+      // - The RawVoltage property was added.
+      // No designer properties need to be modified to upgrade to version 4.
+      srcCompVersion = 4;
+    }
+    if (srcCompVersion < 5) {
+      // - The IntegratedZValue property was added.
+      // No designer properties need to be modified to upgrade to version 5.
+      srcCompVersion = 5;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcI2cDeviceProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The GetI2cReadCache method was renamed GetCopyOfReadBuffer.
+      // - The GetI2cWriteCache method was renamed GetCopyOfWriteBuffer.
+      // - The SetI2cWriteCache method was renamed CopyBufferIntoWriteBuffer.
+      // - The ReadI2cCacheFromModule method was renamed ReadI2cCacheFromController.
+      // - The WriteI2cCacheToModule method was renamed WriteI2cCacheToController.
+      // - The WriteI2cPortFlagOnlyToModule method was renamed WriteI2cPortFlagOnlyToController.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcIrSeekerSensorProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The Mode_1200HZ_AC property (blocks only) was renamed Mode_1200HZ.
+      // - The Mode_600HZ_DC property (blocks only) was renamed Mode_600HZ.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcLegacyModuleProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The EnableNxtI2cReadMode method was renamed EnableI2cReadMode.
+      // - The EnableNxtI2cWriteMode method was renamed EnableI2cWriteMode.
+      // - The GetI2cReadCache method was renamed GetCopyOfReadBuffer.
+      // - The GetI2cWriteCache method was renamed GetCopyOfWriteBuffer.
+      // - The IsNxtI2cPortActionFlagSet method was renamed IsI2cPortActionFlagSet.
+      // - The SetI2cWriteCache method was renamed CopyBufferIntoWriteBuffer.
+      // - The SetNxtI2cPortActionFlag method was renamed SetI2cPortActionFlag.
+      // - The ReadI2cCacheFromModule method was renamed ReadI2cCacheFromController.
+      // - The WriteI2cCacheToModule method was renamed WriteI2cCacheToController.
+      // - The WriteI2cPortFlagOnlyToModule method was renamed WriteI2cPortFlagOnlyToController.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The ClearI2cPortActionFlag method was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The ReadAnalog method was renamed ReadAnalogRaw.
+      // No designer properties need to be modified to upgrade to version 4.
+      srcCompVersion = 4;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcLightSensorProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The LightDetectedRaw property was renamed RawLightDetected.
+      // - The RawVoltage property was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The RawLightDetectedMax property was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcLinearOpModeProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The WaitOneHardwareCycle method was renamed WaitOneFullHardwareCycle.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The Time property was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The Idle method was added.
+      // - The IsStarted method was added.
+      // - The IsStopRequested method was added.
+      // - The RequestOpModeStop method was added.
+      srcCompVersion = 4;
+    }
+    if (srcCompVersion < 5) {
+      // - The Autonomous and Group properties were added.
+      srcCompVersion = 5;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcOpModeProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The Time property was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The RequestOpModeStop method was added.
+      srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The Autonomous and Group properties were added.
+      srcCompVersion = 4;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcOpticalDistanceSensorProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The LightDetectedRaw property was renamed RawLightDetected.
+      // - The RawVoltage property was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The RawLightDetectedMax property was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcRobotControllerProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The LogDevices function was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    if (srcCompVersion < 3) {
+      // - The TelemetrySorted property was added.
+      // No designer properties need to be modified to upgrade to version 3.
+      srcCompVersion = 3;
+    }
+    if (srcCompVersion < 4) {
+      // - The TelemetrySorted property was deprecated.
+      // - The UpdateTelemetry method was added.
+      // No designer properties need to be modified to upgrade to version 4.
+      srcCompVersion = 4;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcServoControllerProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The SetServoPositionAndSpeed function was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcTouchSensorProperties(Map<String, JSONValue> componentProperties,
+      int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The Status function was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
+
+  private static int upgradeFtcTouchSensorMultiplexerProperties(
+      Map<String, JSONValue> componentProperties, int srcCompVersion) {
+    if (srcCompVersion < 2) {
+      // - The Status function was added.
+      // No designer properties need to be modified to upgrade to version 2.
+      srcCompVersion = 2;
+    }
+    return srcCompVersion;
+  }
 }
