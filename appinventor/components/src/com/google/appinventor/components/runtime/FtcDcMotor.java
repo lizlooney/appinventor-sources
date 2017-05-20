@@ -1,0 +1,489 @@
+// -*- mode: java; c-basic-offset: 2; -*-
+// Copyright 2011-2015 MIT, All rights reserved
+// Released under the Apache License, Version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0
+
+package com.google.appinventor.components.runtime;
+
+import com.google.appinventor.components.annotations.DesignerComponent;
+import com.google.appinventor.components.annotations.PropertyCategory;
+import com.google.appinventor.components.annotations.SimpleFunction;
+import com.google.appinventor.components.annotations.SimpleObject;
+import com.google.appinventor.components.annotations.SimpleProperty;
+import com.google.appinventor.components.annotations.UsesLibraries;
+import com.google.appinventor.components.common.ComponentCategory;
+import com.google.appinventor.components.common.YaVersion;
+import com.google.appinventor.components.runtime.util.ErrorMessages;
+
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotor.RunMode;
+import com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior;
+import com.qualcomm.robotcore.hardware.DcMotorSimple.Direction;
+
+/**
+ * A component for a DC motor of an FTC robot.
+ *
+ * @author lizlooney@google.com (Liz Looney)
+ */
+@DesignerComponent(version = YaVersion.FTC_DC_MOTOR_COMPONENT_VERSION,
+    description = "A component for a DC motor of an FTC robot.",
+    category = ComponentCategory.FIRSTTECHCHALLENGE,
+    nonVisible = true,
+    iconName = "images/ftcDcMotor.png")
+@SimpleObject
+@UsesLibraries(libraries = "FtcRobotCore.jar")
+public final class FtcDcMotor extends FtcHardwareDevice {
+
+  private volatile DcMotor dcMotor;
+
+  /**
+   * Creates a new FtcDcMotor component.
+   */
+  public FtcDcMotor(ComponentContainer container) {
+    super(container.$form(), DcMotor.class);
+  }
+
+  protected DcMotor getDcMotor() {
+    return dcMotor;
+  }
+
+  /**
+   * Direction_FORWARD property getter.
+   */
+  @SimpleProperty(description = "The constant for Direction_FORWARD.",
+      category = PropertyCategory.BEHAVIOR)
+  public String Direction_FORWARD() {
+    return Direction.FORWARD.toString();
+  }
+
+  /**
+   * Direction_REVERSE property getter.
+   */
+  @SimpleProperty(description = "The constant for Direction_REVERSE.",
+      category = PropertyCategory.BEHAVIOR)
+  public String Direction_REVERSE() {
+    return Direction.REVERSE.toString();
+  }
+
+  /**
+   * Direction property setter.
+   */
+  @SimpleProperty
+  public void Direction(String direction) {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        try {
+          int n = Integer.decode(direction);
+          if (n == 1) {
+            dcMotor.setDirection(Direction.FORWARD);
+            return;
+          }
+          if (n == -1) {
+            dcMotor.setDirection(Direction.REVERSE);
+            return;
+          }
+        } catch (NumberFormatException e) {
+          // Code below will try to interpret direction as a Direction enum string.
+        }
+        
+        for (Direction directionValue : Direction.values()) {
+          if (directionValue.toString().equalsIgnoreCase(direction)) {
+            dcMotor.setDirection(directionValue);
+            return;
+          }
+        }
+
+        form.dispatchErrorOccurredEvent(this, "Direction",
+            ErrorMessages.ERROR_FTC_INVALID_DIRECTION, direction);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "Direction",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  /**
+   * Direction property getter.
+   */
+  @SimpleProperty(description = "Whether this motor should spin forward or reverse.\n" +
+      "Valid values are Direction_FORWARD or Direction_REVERSE.",
+      category = PropertyCategory.BEHAVIOR)
+  public String Direction() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        Direction direction = dcMotor.getDirection();
+        if (direction != null) {
+          return direction.toString();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "Direction",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return "";
+  }
+
+  /**
+   * PortNumber property getter.
+   */
+  @SimpleProperty(description = "The port number.",
+      category = PropertyCategory.BEHAVIOR)
+  public int PortNumber() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        return dcMotor.getPortNumber();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "PortNumber",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
+  /**
+   * Power property setter.
+   */
+  @SimpleProperty
+  public void Power(double power) {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        dcMotor.setPower(power);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "Power",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  /**
+   * Power property getter.
+   */
+  @SimpleProperty(description = "The current motor power, between -1 and 1.",
+      category = PropertyCategory.BEHAVIOR)
+  public double Power() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        return dcMotor.getPower();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "Power",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0.0;
+  }
+
+  @SimpleFunction(description = "Whether the motor is busy.")
+  public boolean IsBusy() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        return dcMotor.isBusy();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "IsBusy",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return false;
+  }
+
+  @Deprecated
+  @SimpleFunction(description = "Allow the motor to float.")
+  public void SetPowerFloat() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        dcMotor.setPowerFloat();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "SetPowerFloat",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  @SimpleFunction(description = "Is motor power set to float?")
+  public boolean GetPowerFloat() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        return dcMotor.getPowerFloat();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "GetPowerFloat",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return true;
+  }
+
+  /**
+   * TargetPosition property setter.
+   */
+  @SimpleProperty
+  public void TargetPosition(int position) {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        dcMotor.setTargetPosition(position);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "TargetPosition",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  /**
+   * TargetPosition property getter.
+   */
+  @SimpleProperty(description = "The motor target position. If this motor has been set to " +
+      "REVERSE, the value will be multiplied by -1.",
+      category = PropertyCategory.BEHAVIOR)
+  public int TargetPosition() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        return dcMotor.getTargetPosition();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "TargetPosition",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
+  /**
+   * CurrentPosition property getter.
+   */
+  @SimpleProperty(description = "The current encoder value. If this motor has been set to " +
+      "REVERSE, the value will be multiplied by -1.",
+      category = PropertyCategory.BEHAVIOR)
+  public int CurrentPosition() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        return dcMotor.getCurrentPosition();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "CurrentPosition",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
+  /**
+   * RunMode_RUN_USING_ENCODER property getter.
+   */
+  @SimpleProperty(description = "The constant for RunMode_RUN_USING_ENCODER.",
+      category = PropertyCategory.BEHAVIOR)
+  public String RunMode_RUN_USING_ENCODER() {
+    return RunMode.RUN_USING_ENCODER.toString();
+  }
+
+  /**
+   * RunMode_RUN_WITHOUT_ENCODER property getter.
+   */
+  @SimpleProperty(description = "The constant for RunMode_RUN_WITHOUT_ENCODER.",
+      category = PropertyCategory.BEHAVIOR)
+  public String RunMode_RUN_WITHOUT_ENCODER() {
+    return RunMode.RUN_WITHOUT_ENCODER.toString();
+  }
+
+  /**
+   * RunMode_RUN_TO_POSITION property getter.
+   */
+  @SimpleProperty(description = "The constant for RunMode_RUN_TO_POSITION.",
+      category = PropertyCategory.BEHAVIOR)
+  public String RunMode_RUN_TO_POSITION() {
+    return RunMode.RUN_TO_POSITION.toString();
+  }
+
+  /**
+   * RunMode_STOP_AND_RESET_ENCODER property getter.
+   */
+  @SimpleProperty(description = "The constant for RunMode_STOP_AND_RESET_ENCODER.",
+      category = PropertyCategory.BEHAVIOR)
+  public String RunMode_STOP_AND_RESET_ENCODER() {
+    return RunMode.STOP_AND_RESET_ENCODER.toString();
+  }
+
+  /**
+   * Mode property setter.
+   */
+  @SimpleProperty
+  public void Mode(String runMode) {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        for (RunMode runModeValue : RunMode.values()) {
+          if (runModeValue.toString().equalsIgnoreCase(runMode)) {
+            dcMotor.setMode(runModeValue);
+            return;
+          }
+        }
+
+        form.dispatchErrorOccurredEvent(this, "Mode",
+            ErrorMessages.ERROR_FTC_INVALID_DC_MOTOR_RUN_MODE, runMode);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "Mode",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  /**
+   * Mode property getter.
+   */
+  @SimpleProperty(description = "The run mode.\n" +
+      "Valid values are RunMode_RUN_USING_ENCODER, RunMode_RUN_WITHOUT_ENCODER, " +
+      "RunMode_RUN_TO_POSITION, or RunMode_STOP_AND_RESET_ENCODER.",
+      category = PropertyCategory.BEHAVIOR)
+  public String Mode() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        RunMode mode = dcMotor.getMode();
+        if (mode != null) {
+          return mode.toString();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "Mode",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return "";
+  }
+
+  /**
+   * MaxSpeed property setter.
+   */
+  @Deprecated
+  @SimpleProperty
+  public void MaxSpeed(int maxSpeed) {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        //dcMotor.setMaxSpeed(maxSpeed);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "MaxSpeed",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  /**
+   * MaxSpeed property getter.
+   */
+  @Deprecated
+  @SimpleProperty(description = "The current maximum targetable speed for this motor when the " +
+      "motor is running in one of the PID modes, in units of encoder ticks per second.",
+      category = PropertyCategory.BEHAVIOR)
+  public int MaxSpeed() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        return 0; // dcMotor.getMaxSpeed();
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "MaxSpeed",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return 0;
+  }
+
+  /**
+   * ZeroPowerBehavior_BRAKE property getter.
+   */
+  @SimpleProperty(description = "The constant for ZeroPowerBehavior_BRAKE.",
+      category = PropertyCategory.BEHAVIOR)
+  public String ZeroPowerBehavior_BRAKE() {
+    return ZeroPowerBehavior.BRAKE.toString();
+  }
+
+  /**
+   * ZeroPowerBehavior_FLOAT property getter.
+   */
+  @SimpleProperty(description = "The constant for ZeroPowerBehavior_FLOAT.",
+      category = PropertyCategory.BEHAVIOR)
+  public String ZeroPowerBehavior_FLOAT() {
+    return ZeroPowerBehavior.FLOAT.toString();
+  }
+
+  /**
+   * ZeroPowerBehavior property setter.
+   */
+  @SimpleProperty
+  public void ZeroPowerBehavior(String zeroPowerBehavior) {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        for (ZeroPowerBehavior zeroPowerBehaviorValue : ZeroPowerBehavior.values()) {
+          if (zeroPowerBehaviorValue.toString().equalsIgnoreCase(zeroPowerBehavior)) {
+            dcMotor.setZeroPowerBehavior(zeroPowerBehaviorValue);
+            return;
+          }
+        }
+
+        form.dispatchErrorOccurredEvent(this, "ZeroPowerBehavior",
+            ErrorMessages.ERROR_FTC_INVALID_ZERO_POWER_BEHAVIOR, zeroPowerBehavior);
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "ZeroPowerBehavior",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+  }
+
+  /**
+   * ZeroPowerBehavior property getter.
+   */
+  @SimpleProperty(description = "Whether this motor should spin forward or reverse.\n" +
+      "Valid values are ZeroPowerBehavior_BRAKE or ZeroPowerBehavior_FLOAT.",
+      category = PropertyCategory.BEHAVIOR)
+  public String ZeroPowerBehavior() {
+    checkHardwareDevice();
+    if (dcMotor != null) {
+      try {
+        ZeroPowerBehavior zeroPowerBehavior = dcMotor.getZeroPowerBehavior();
+        if (zeroPowerBehavior != null) {
+          return zeroPowerBehavior.toString();
+        }
+      } catch (Throwable e) {
+        e.printStackTrace();
+        form.dispatchErrorOccurredEvent(this, "ZeroPowerBehavior",
+            ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+      }
+    }
+    return "";
+  }
+
+  // FtcHardwareDevice implementation
+
+  @Override
+  protected Object initHardwareDeviceImpl() {
+    dcMotor = (DcMotor) hardwareMap.get(deviceClass, getDeviceName());
+    return dcMotor;
+  }
+
+  @Override
+  protected void clearHardwareDeviceImpl() {
+    dcMotor = null;
+  }
+}

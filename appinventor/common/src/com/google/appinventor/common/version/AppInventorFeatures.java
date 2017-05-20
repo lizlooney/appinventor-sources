@@ -17,13 +17,17 @@ public final class AppInventorFeatures {
 
   public static boolean hasDebuggingView() {
     // Set this to true if you want the Debugging view to show.
-    return true;
+    // FIRST Tech Challenge: No debugging view.
+    return false;
+    //return true;
   }
 
   public static boolean hasYailGenerationOption() {
     // Set this to true if you want the Package for Phone button to include an option to just
     // generate Yail
-    return true;
+    // FIRST Tech Challenge: No generate YAIL.
+    return false;
+    //return true;
   }
 
   public static boolean sendBugReports() {
@@ -34,7 +38,9 @@ public final class AppInventorFeatures {
   public static boolean allowMultiScreenApplications() {
     // Set this to true if you want users to be able to create more than one screen in a single
     // project.
-    return true;
+    // FIRST Tech Challenge: No multi-screen applications.
+    return false;
+    //return true;
   }
 
   public static boolean showInternalComponentsCategory() {

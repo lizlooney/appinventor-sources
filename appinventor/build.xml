@@ -18,7 +18,9 @@
     <ant inheritAll="false" useNativeBasedir="true" dir="common"/>
     <ant inheritAll="false" useNativeBasedir="true" dir="buildserver"/>
     <ant inheritAll="false" useNativeBasedir="true" dir="components"/>
+    <!-- FIRST Tech Challenge: No companion app.
     <ant inheritAll="false" useNativeBasedir="true" dir="buildserver" target="PlayApp"/>
+    -->
   </target>
 
   <target name="MakeAuthKey">

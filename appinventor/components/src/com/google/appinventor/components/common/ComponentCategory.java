@@ -14,6 +14,8 @@ import java.util.Map;
  */
 //public enum ComponentCategory {
 //  // TODO(user): i18n category names
+//  // FIRST Tech Challenge: Add FIRST Tech Challenge category.
+//  FIRSTTECHCHALLENGE(MESSAGES.ftcComponentPallette()),
 //  USERINTERFACE(MESSAGES.UIComponentPallette()),
 //  LAYOUT(MESSAGES.layoutComponentPallette()),
 //  MEDIA(MESSAGES.mediaComponentPallette()),
@@ -33,6 +35,8 @@ import java.util.Map;
 //  // suitable for appearing in URLs.
 //  private static final Map<String, String> DOC_MAP = new HashMap<String, String>();
 //  static {
+//    // FIRST Tech Challenge: Add FIRST Tech Challenge category.
+//    DOC_MAP.put(MESSAGES.ftcComponentPallette(), "firsttechchallenge");
 //    DOC_MAP.put(MESSAGES.UIComponentPallette(), "userinterface");
 //    DOC_MAP.put(MESSAGES.layoutComponentPallette(), "layout");
 //    DOC_MAP.put(MESSAGES.mediaComponentPallette(), "media");
@@ -47,6 +51,8 @@ import java.util.Map;
 
   public enum ComponentCategory {
     // TODO(user): i18n category names
+    // FIRST Tech Challenge: Add FIRST Tech Challenge category.
+    FIRSTTECHCHALLENGE("FIRST\u00AE Tech Challenge"),
     USERINTERFACE("User Interface"),
     LAYOUT("Layout"),
     MEDIA("Media"),
@@ -67,6 +73,8 @@ import java.util.Map;
     // suitable for appearing in URLs.
     private static final Map<String, String> DOC_MAP = new HashMap<String, String>();
     static {
+      // FIRST Tech Challenge: Add FIRST Tech Challenge category.
+      DOC_MAP.put("FIRST\u00AE Tech Challenge", "firsttechchallenge");
       DOC_MAP.put("User Interface", "userinterface");
       DOC_MAP.put("Layout", "layout");
       DOC_MAP.put("Media", "media");

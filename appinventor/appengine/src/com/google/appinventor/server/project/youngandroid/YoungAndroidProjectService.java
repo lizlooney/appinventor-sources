@@ -70,6 +70,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 import java.util.logging.Logger;
 
 /**
@@ -120,6 +121,10 @@ public final class YoungAndroidProjectService extends CommonProjectService {
   private static final Flag<String> appengineHost =
       Flag.createFlag("appengine.host", "");
   private static final boolean DEBUG = Flag.createFlag("appinventor.debugging", false).get();
+
+  // FIRST Tech Challenge: Use random integer for uuid property value of FtcRobotController.
+  // component.
+  private static final Random random = new Random();
 
   public YoungAndroidProjectService(StorageIo storageIo) {
     super(YoungAndroidProjectNode.YOUNG_ANDROID_PROJECT_TYPE, storageIo);
@@ -210,7 +215,12 @@ public final class YoungAndroidProjectService extends CommonProjectService {
         "\"YaVersion\":\"" + YaVersion.YOUNG_ANDROID_VERSION + "\",\"Source\":\"Form\"," +
         "\"Properties\":{\"$Name\":\"" + formName + "\",\"$Type\":\"Form\"," +
         "\"$Version\":\"" + YaVersion.FORM_COMPONENT_VERSION + "\",\"Uuid\":\"" + 0 + "\"," +
-        "\"Title\":\"" + formName + "\",\"AppName\":\"" + packageName +"\"}}\n|#";
+        "\"Title\":\"" + formName + "\",\"AppName\":\"" + packageName +"\"" +
+        // FIRST Tech Challenge: Add FtcRobotController component.
+        ",\"$Components\":[" +
+        "{\"$Name\":\"FtcRobotController1\",\"$Type\":\"FtcRobotController\",\"$Version\":\"" + YaVersion.FTC_ROBOT_CONTROLLER_COMPONENT_VERSION + "\",\"Uuid\":\"" + random.nextInt() + "\"}" +
+        "]" +
+        "}}\n|#";
   }
 
   /**

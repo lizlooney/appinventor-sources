@@ -538,4 +538,203 @@ public interface Images extends Resources {
   @Source("com/google/appinventor/images/proximitysensor.png")
   ImageResource proximitysensor();
 
+  // FIRST Tech Challenge
+
+  /*
+   * Designer palette item: FIRST robotics components
+   */
+  @Source("com/google/appinventor/images/ftc.png")
+  ImageResource ftc();
+
+  /*
+   * Designer palette item: FtcAccelerationSensor component
+   */
+  @Source("com/google/appinventor/images/ftcAccelerationSensor.png")
+  ImageResource ftcAccelerationSensor();
+
+  /*
+   * Designer palette item: FtcAnalogInput component
+   */
+  @Source("com/google/appinventor/images/ftcAnalogInput.png")
+  ImageResource ftcAnalogInput();
+
+  /*
+   * Designer palette item: FtcAnalogOutput component
+   */
+  @Source("com/google/appinventor/images/ftcAnalogOutput.png")
+  ImageResource ftcAnalogOutput();
+
+  /*
+   * Designer palette item: FtcColorSensor component
+   */
+  @Source("com/google/appinventor/images/ftcColorSensor.png")
+  ImageResource ftcColorSensor();
+
+  /*
+   * Designer palette item: FtcCompassSensor component
+   */
+  @Source("com/google/appinventor/images/ftcCompassSensor.png")
+  ImageResource ftcCompassSensor();
+
+  /*
+   * Designer palette item: FtcDcMotor component
+   */
+  @Source("com/google/appinventor/images/ftcDcMotor.png")
+  ImageResource ftcDcMotor();
+
+  /*
+   * Designer palette item: FtcDcMotorController component
+   */
+  @Source("com/google/appinventor/images/ftcDcMotorController.png")
+  ImageResource ftcDcMotorController();
+
+  /*
+   * Designer palette item: FtcDeviceInterfaceModule component
+   */
+  @Source("com/google/appinventor/images/ftcDeviceInterfaceModule.png")
+  ImageResource ftcDeviceInterfaceModule();
+
+  /*
+   * Designer palette item: FtcDigitalChannel component
+   */
+  @Source("com/google/appinventor/images/ftcDigitalChannel.png")
+  ImageResource ftcDigitalChannel();
+
+  /*
+   * Designer palette item: FtcElapsedTime component
+   */
+  @Source("com/google/appinventor/images/ftcElapsedTime.png")
+  ImageResource ftcElapsedTime();
+
+  /*
+   * Designer palette item: FtcGamepad component
+   */
+  @Source("com/google/appinventor/images/ftcGamepad.png")
+  ImageResource ftcGamepad();
+
+  /*
+   * Designer palette item: FtcGyroSensor component
+   */
+  @Source("com/google/appinventor/images/ftcGyroSensor.png")
+  ImageResource ftcGyroSensor();
+
+  /*
+   * Designer palette item: FtcI2cDevice component
+   */
+  @Source("com/google/appinventor/images/ftcI2cDevice.png")
+  ImageResource ftcI2cDevice();
+
+  /*
+   * Designer palette item: FtcI2cDeviceReader component
+   */
+  @Source("com/google/appinventor/images/ftcI2cDeviceReader.png")
+  ImageResource ftcI2cDeviceReader();
+
+  /*
+   * Designer palette item: FtcI2cDeviceSynch component
+   */
+  @Source("com/google/appinventor/images/ftcI2cDeviceSynch.png")
+  ImageResource ftcI2cDeviceSynch();
+
+  /*
+   * Designer palette item: FtcIrSeekerSensor component
+   */
+  @Source("com/google/appinventor/images/ftcIrSeekerSensor.png")
+  ImageResource ftcIrSeekerSensor();
+
+  /*
+   * Designer palette item: FtcLED component
+   */
+  @Source("com/google/appinventor/images/ftcLED.png")
+  ImageResource ftcLED();
+
+  /*
+   * Designer palette item: FtcLegacyModule component
+   */
+  @Source("com/google/appinventor/images/ftcLegacyModule.png")
+  ImageResource ftcLegacyModule();
+
+  /*
+   * Designer palette item: FtcLightSensor component
+   */
+  @Source("com/google/appinventor/images/ftcLightSensor.png")
+  ImageResource ftcLightSensor();
+
+  /*
+   * Designer palette item: FtcLinearOpMode component
+   */
+  @Source("com/google/appinventor/images/ftcLinearOpMode.png")
+  ImageResource ftcLinearOpMode();
+
+  /*
+   * Designer palette item: FtcOpMode component
+   */
+  @Source("com/google/appinventor/images/ftcOpMode.png")
+  ImageResource ftcOpMode();
+
+  /*
+   * Designer palette item: FtcOpticalDistanceSensor component
+   */
+  @Source("com/google/appinventor/images/ftcOpticalDistanceSensor.png")
+  ImageResource ftcOpticalDistanceSensor();
+
+  /*
+   * Designer palette item: FtcPwmOutput component
+   */
+  @Source("com/google/appinventor/images/ftcPwmOutput.png")
+  ImageResource ftcPwmOutput();
+
+  /*
+   * Designer palette item: FtcRobotController component
+   */
+  @Source("com/google/appinventor/images/ftcRobotController.png")
+  ImageResource ftcRobotController();
+
+  /*
+   * Designer palette item: FtcServo component
+   */
+  @Source("com/google/appinventor/images/ftcServo.png")
+  ImageResource ftcServo();
+
+  /*
+   * Designer palette item: FtcServoController component
+   */
+  @Source("com/google/appinventor/images/ftcServoController.png")
+  ImageResource ftcServoController();
+
+  /*
+   * Designer palette item: FtcTouchSensor component
+   */
+  @Source("com/google/appinventor/images/ftcTouchSensor.png")
+  ImageResource ftcTouchSensor();
+
+  /*
+   * Designer palette item: FtcTouchSensorMultiplexer component
+   */
+  @Source("com/google/appinventor/images/ftcTouchSensorMultiplexer.png")
+  ImageResource ftcTouchSensorMultiplexer();
+
+  /*
+   * Designer palette item: FtcUltrasonicSensor component
+   */
+  @Source("com/google/appinventor/images/ftcUltrasonicSensor.png")
+  ImageResource ftcUltrasonicSensor();
+
+  /*
+   * Designer palette item: FtcVoltageSensor component
+   */
+  @Source("com/google/appinventor/images/ftcVoltageSensor.png")
+  ImageResource ftcVoltageSensor();
+
+  /*
+   * Robot controller icon
+   */
+  @Source("com/google/appinventor/images/robotcontroller_icon.png")
+  ImageResource robotControllerIcon();
+
+  /*
+   * Robot controller menu
+   */
+  @Source("com/google/appinventor/images/robotcontroller_menu.png")
+  ImageResource robotControllerMenu();
 }

@@ -70,6 +70,9 @@ public class YoungAndroidPalettePanel extends Composite implements SimplePalette
     // If a category has a palette helper, add it to the paletteHelpers map here.
     paletteHelpers.put(ComponentCategory.LEGOMINDSTORMS, new LegoPaletteHelper());
 
+    // FIRST Tech Challenge: Define order for FTC palette.
+    paletteHelpers.put(ComponentCategory.FIRSTTECHCHALLENGE, new FtcPaletteHelper());
+
     categoryPanels = new HashMap<ComponentCategory, VerticalPanel>();
     simplePaletteItems = new HashMap<String, SimplePaletteItem>();
 

@@ -81,6 +81,8 @@
         <include name="images/canvas.png" />
       </fileset>
       <fileset dir="${docs.dir}"/>
+      <!-- FIRST Tech Challenge -->
+      <fileset dir="${lib.dir}/ftc" includes="FtcDriverStation-release.apk"/>
     </copy>
     <mkdir dir="${build.war.dir}/assets/" />
     <copy todir="${build.war.dir}/assets/" flatten="true">
