@@ -70,6 +70,9 @@ public class YoungAndroidPalettePanel extends Composite implements SimplePalette
     // If a category has a palette helper, add it to the paletteHelpers map here.
     paletteHelpers.put(ComponentCategory.LEGOMINDSTORMS, new LegoPaletteHelper());
 
+    // FIRST Tech Challenge: Define order for FTC palette.
+    paletteHelpers.put(ComponentCategory.FIRSTTECHCHALLENGE, new FtcPaletteHelper());
+
     categoryPanels = new HashMap<ComponentCategory, VerticalPanel>();
     simplePaletteItems = new HashMap<String, SimplePaletteItem>();
 
@@ -142,6 +145,7 @@ public class YoungAndroidPalettePanel extends Composite implements SimplePalette
       removeComponent(componentTypeName);
     }
     String helpString = COMPONENT_DATABASE.getHelpString(componentTypeName);
+    String helpUrl = COMPONENT_DATABASE.getHelpUrl(componentTypeName);
     String categoryDocUrlString = COMPONENT_DATABASE.getCategoryDocUrlString(componentTypeName);
     String categoryString = COMPONENT_DATABASE.getCategoryString(componentTypeName);
     Boolean showOnPalette = COMPONENT_DATABASE.getShowOnPalette(componentTypeName);
@@ -150,7 +154,7 @@ public class YoungAndroidPalettePanel extends Composite implements SimplePalette
     ComponentCategory category = ComponentCategory.valueOf(categoryString);
     if (showOnPalette && showCategory(category)) {
       SimplePaletteItem item = new SimplePaletteItem(
-          new SimpleComponentDescriptor(componentTypeName, editor, helpString,
+          new SimpleComponentDescriptor(componentTypeName, editor, helpString, helpUrl,
               categoryDocUrlString, showOnPalette, nonVisible, external),
             dropTargetProvider);
       simplePaletteItems.put(componentTypeName, item);

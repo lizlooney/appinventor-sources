@@ -6348,4 +6348,2025 @@ public interface OdeMessages extends Messages {
   @Description("")
   String reloadWindow();
 
+  //................................................................................
+  // FIRST Tech Challenge
+
+  @DefaultMessage("FIRST\u00AE Tech Challenge")
+  @Description("")
+  String firstTechChallengeComponentPallette();
+
+  @DefaultMessage("Download")
+  @Description("Label for the Download menu")
+  String downloadTabName();
+
+  @DefaultMessage("Driver Station")
+  @Description("Download the FTC driver station app")
+  String downloadDriverStationMenuItem();
+
+  // FIRST Tech Challenge: Add FTC component names.
+  @DefaultMessage("FtcAccelerationSensor")
+  @Description("")
+  String ftcAccelerationSensorComponentPallette();
+
+  @DefaultMessage("FtcAnalogInput")
+  @Description("")
+  String ftcAnalogInputComponentPallette();
+
+  @DefaultMessage("FtcAnalogOutput")
+  @Description("")
+  String ftcAnalogOutputComponentPallette();
+
+  @DefaultMessage("FtcBNO055IMU")
+  @Description("")
+  String ftcBNO055IMUComponentPallette();
+
+  @DefaultMessage("FtcColorSensor")
+  @Description("")
+  String ftcColorSensorComponentPallette();
+
+  @DefaultMessage("FtcCompassSensor")
+  @Description("")
+  String ftcCompassSensorComponentPallette();
+
+  @DefaultMessage("FtcCRServo")
+  @Description("")
+  String ftcCRServoComponentPallette();
+
+  @DefaultMessage("FtcDcMotor")
+  @Description("")
+  String ftcDcMotorComponentPallette();
+
+  @DefaultMessage("FtcDcMotorController")
+  @Description("")
+  String ftcDcMotorControllerComponentPallette();
+
+  @DefaultMessage("FtcDeviceInterfaceModule")
+  @Description("")
+  String ftcDeviceInterfaceModuleComponentPallette();
+
+  @DefaultMessage("FtcDigitalChannel")
+  @Description("")
+  String ftcDigitalChannelComponentPallette();
+
+  @DefaultMessage("FtcElapsedTime")
+  @Description("")
+  String ftcElapsedTimeComponentPallette();
+
+  @DefaultMessage("FtcGamepad")
+  @Description("")
+  String ftcGamepadComponentPallette();
+
+  @DefaultMessage("FtcGyroSensor")
+  @Description("")
+  String ftcGyroSensorComponentPallette();
+
+  @DefaultMessage("FtcI2cDevice")
+  @Description("")
+  String ftcI2cDeviceComponentPallette();
+
+  @DefaultMessage("FtcI2cDeviceReader")
+  @Description("")
+  String ftcI2cDeviceReaderComponentPallette();
+
+  @DefaultMessage("FtcI2cDeviceSynch")
+  @Description("")
+  String ftcI2cDeviceSynchComponentPallette();
+
+  @DefaultMessage("FtcIrSeekerSensor")
+  @Description("")
+  String ftcIrSeekerSensorComponentPallette();
+
+  @DefaultMessage("FtcLED")
+  @Description("")
+  String ftcLEDComponentPallette();
+
+  @DefaultMessage("FtcLegacyModule")
+  @Description("")
+  String ftcLegacyModuleComponentPallette();
+
+  @DefaultMessage("FtcLightSensor")
+  @Description("")
+  String ftcLightSensorComponentPallette();
+
+  @DefaultMessage("FtcLinearOpMode")
+  @Description("")
+  String ftcLinearOpModeComponentPallette();
+
+  @DefaultMessage("FtcMrRangeSensor")
+  @Description("")
+  String ftcMrRangeSensorComponentPallette();
+
+  @DefaultMessage("FtcOpMode")
+  @Description("")
+  String ftcOpModeComponentPallette();
+
+  @DefaultMessage("FtcOpticalDistanceSensor")
+  @Description("")
+  String ftcOpticalDistanceSensorComponentPallette();
+
+  @DefaultMessage("FtcPwmOutput")
+  @Description("")
+  String ftcPwmOutputComponentPallette();
+
+  @DefaultMessage("FtcRobotController")
+  @Description("")
+  String ftcRobotControllerComponentPallette();
+
+  @DefaultMessage("FtcServo")
+  @Description("")
+  String ftcServoComponentPallette();
+
+  @DefaultMessage("FtcServoController")
+  @Description("")
+  String ftcServoControllerComponentPallette();
+
+  @DefaultMessage("FtcTouchSensor")
+  @Description("")
+  String ftcTouchSensorComponentPallette();
+
+  @DefaultMessage("FtcTouchSensorMultiplexer")
+  @Description("")
+  String ftcTouchSensorMultiplexerComponentPallette();
+
+  @DefaultMessage("FtcUltrasonicSensor")
+  @Description("")
+  String ftcUltrasonicSensorComponentPallette();
+
+  @DefaultMessage("FtcVoltageSensor")
+  @Description("")
+  String ftcVoltageSensorComponentPallette();
+
+  @DefaultMessage("FtcVuforiaLocalizer")
+  @Description("")
+  String ftcVuforiaLocalizerComponentPallette();
+
+  // FIRST Tech Challenge: Add FTC component help strings.
+  @DefaultMessage("A component for an acceleration sensor of an FTC robot.")
+  @Description("")
+  String FtcAccelerationSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for an analog input device of an FTC robot.")
+  @Description("")
+  String FtcAnalogInputHelpStringComponentPallette();
+
+  @DefaultMessage("A component for an analog output device of an FTC robot.")
+  @Description("")
+  String FtcAnalogOutputHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a BNO055IMU sensor of an FTC robot.")
+  @Description("")
+  String FtcBNO055IMUHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a color sensor of an FTC robot.")
+  @Description("")
+  String FtcColorSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a compass sensor of an FTC robot.")
+  @Description("")
+  String FtcCompassSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a continuous rotation servo of an FTC robot.")
+  @Description("")
+  String FtcCRServoHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a DC motor of an FTC robot.")
+  @Description("")
+  String FtcDcMotorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a DC motor controller of an FTC robot.")
+  @Description("")
+  String FtcDcMotorControllerHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a device interface module of an FTC robot.")
+  @Description("")
+  String FtcDeviceInterfaceModuleHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a single digital channel of an FTC robot.")
+  @Description("")
+  String FtcDigitalChannelHelpStringComponentPallette();
+
+  @DefaultMessage("A component for measuring elapsed time for an FTC robot.")
+  @Description("")
+  String FtcElapsedTimeHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a gamepad of an FTC robot.")
+  @Description("")
+  String FtcGamepadHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a gyro sensor of an FTC robot.")
+  @Description("")
+  String FtcGyroSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for an I2C device of an FTC robot.")
+  @Description("")
+  String FtcI2cDeviceHelpStringComponentPallette();
+
+  @DefaultMessage("A component for an I2C device reader of an FTC robot.")
+  @Description("")
+  String FtcI2cDeviceReaderHelpStringComponentPallette();
+
+  @DefaultMessage("A component that provides synchronous access for an I2C device of an FTC robot.")
+  @Description("")
+  String FtcI2cDeviceSynchHelpStringComponentPallette();
+
+  @DefaultMessage("A component for an IR seeker sensor of an FTC robot.")
+  @Description("")
+  String FtcIrSeekerSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for an LED of an FTC robot.")
+  @Description("")
+  String FtcLEDHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a legacy module of an FTC robot.")
+  @Description("")
+  String FtcLegacyModuleHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a light sensor of an FTC robot.")
+  @Description("")
+  String FtcLightSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a linear operation mode for an FTC robot.")
+  @Description("")
+  String FtcLinearOpModeHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a Modern Robotics range sensor of an FTC robot.")
+  @Description("")
+  String FtcMrRangeSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for an operation mode for an FTC robot.")
+  @Description("")
+  String FtcOpModeHelpStringComponentPallette();
+
+  @DefaultMessage("A component for an optical distance sensor of an FTC robot.")
+  @Description("")
+  String FtcOpticalDistanceSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a PWM output device of an FTC robot.")
+  @Description("")
+  String FtcPwmOutputHelpStringComponentPallette();
+
+  @DefaultMessage("The primary FTC Robot Controller component.")
+  @Description("")
+  String FtcRobotControllerHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a servo of an FTC robot.")
+  @Description("")
+  String FtcServoHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a servo controller of an FTC robot.")
+  @Description("")
+  String FtcServoControllerHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a touch sensor of an FTC robot.")
+  @Description("")
+  String FtcTouchSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a touch sensor multiplexer of an FTC robot.")
+  @Description("")
+  String FtcTouchSensorMultiplexerHelpStringComponentPallette();
+
+  @DefaultMessage("A component for an ultrasonic sensor of an FTC robot.")
+  @Description("")
+  String FtcUltrasonicSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a voltage sensor of an FTC robot.")
+  @Description("")
+  String FtcVoltageSensorHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a interacting with subsystems that can help support " +
+      "localization through visual means, for an FTC robot.")
+  @Description("")
+  String FtcVuforiaLocalizerHelpStringComponentPallette();
+
+  // FIRST Tech Challenge: Add FTC properties.
+  @DefaultMessage("A")
+  @Description("")
+  String AProperties();
+
+  @DefaultMessage("AccelUnit")
+  @Description("")
+  String AccelUnitProperties();
+
+  @DefaultMessage("Acceleration")
+  @Description("")
+  String AccelerationProperties();
+
+  @DefaultMessage("AccelerationIntegrationAlgorithm")
+  @Description("")
+  String AccelerationIntegrationAlgorithmProperties();
+
+  @DefaultMessage("Alpha")
+  @Description("")
+  String AlphaProperties();
+
+  @DefaultMessage("AngleUnit")
+  @Description("")
+  String AngleUnitProperties();
+
+  @DefaultMessage("AngularOrientation")
+  @Description("")
+  String AngularOrientationProperties();
+
+  @DefaultMessage("AngularVelocity")
+  @Description("")
+  String AngularVelocityProperties();
+
+  @DefaultMessage("ARGB")
+  @Description("")
+  String ARGBProperties();
+
+  @DefaultMessage("AtRest")
+  @Description("")
+  String AtRestProperties();
+
+  @DefaultMessage("Autonomous")
+  @Description("")
+  String AutonomousProperties();
+
+  @DefaultMessage("AxesOrder_XYX")
+  @Description("")
+  String AxesOrder_XYXProperties();
+
+  @DefaultMessage("AxesOrder_XZX")
+  @Description("")
+  String AxesOrder_XZXProperties();
+
+  @DefaultMessage("AxesOrder_XYZ")
+  @Description("")
+  String AxesOrder_XYZProperties();
+
+  @DefaultMessage("AxesOrder_XZY")
+  @Description("")
+  String AxesOrder_XZYProperties();
+
+  @DefaultMessage("AxesOrder_YXY")
+  @Description("")
+  String AxesOrder_YXYProperties();
+
+  @DefaultMessage("AxesOrder_YXZ")
+  @Description("")
+  String AxesOrder_YXZProperties();
+
+  @DefaultMessage("AxesOrder_YZX")
+  @Description("")
+  String AxesOrder_YZXProperties();
+
+  @DefaultMessage("AxesOrder_YZY")
+  @Description("")
+  String AxesOrder_YZYProperties();
+
+  @DefaultMessage("AxesOrder_ZYZ")
+  @Description("")
+  String AxesOrder_ZYZProperties();
+
+  @DefaultMessage("AxesOrder_ZXZ")
+  @Description("")
+  String AxesOrder_ZXZProperties();
+
+  @DefaultMessage("AxesOrder_ZYX")
+  @Description("")
+  String AxesOrder_ZYXProperties();
+
+  @DefaultMessage("AxesOrder_ZXY")
+  @Description("")
+  String AxesOrder_ZXYProperties();
+
+  @DefaultMessage("AxesReference_EXTRINSIC")
+  @Description("")
+  String AxesReference_EXTRINSICProperties();
+
+  @DefaultMessage("AxesReference_INTRINSIC")
+  @Description("")
+  String AxesReference_INTRINSICProperties();
+
+  @DefaultMessage("B")
+  @Description("")
+  String BProperties();
+
+  @DefaultMessage("Back")
+  @Description("")
+  String BackProperties();
+
+  @DefaultMessage("BatteryVoltage")
+  @Description("")
+  String BatteryVoltageProperties();
+
+  @DefaultMessage("Blue")
+  @Description("")
+  String BlueProperties();
+
+  @DefaultMessage("CalibrationFailed")
+  @Description("")
+  String CalibrationFailedProperties();
+
+  @DefaultMessage("CameraDirection_BACK")
+  @Description("")
+  String CameraDirection_BACKProperties();
+
+  @DefaultMessage("CameraDirection_FRONT")
+  @Description("")
+  String CameraDirection_FRONTProperties();
+
+  @DefaultMessage("CameraMonitorFeedback_AXES")
+  @Description("")
+  String CameraMonitorFeedback_AXESProperties();
+
+  @DefaultMessage("CameraMonitorFeedback_BUILDINGS")
+  @Description("")
+  String CameraMonitorFeedback_BUILDINGSProperties();
+
+  @DefaultMessage("CameraMonitorFeedback_NONE")
+  @Description("")
+  String CameraMonitorFeedback_NONEProperties();
+
+  @DefaultMessage("CameraMonitorFeedback_TEAPOT")
+  @Description("")
+  String CameraMonitorFeedback_TEAPOTProperties();
+
+  @DefaultMessage("CalibrationDataFile")
+  @Description("")
+  String CalibrationDataFileProperties();
+
+  @DefaultMessage("CalibrationStatus")
+  @Description("")
+  String CalibrationStatusProperties();
+
+  @DefaultMessage("CmOptical")
+  @Description("")
+  String CmOpticalProperties();
+
+  @DefaultMessage("CmUltrasonic")
+  @Description("")
+  String CmUltrasonicProperties();
+
+  @DefaultMessage("CompassMode_CALIBRATION_MODE")
+  @Description("")
+  String CompassMode_CALIBRATION_MODEProperties();
+
+  @DefaultMessage("CompassMode_MEASUREMENT_MODE")
+  @Description("")
+  String CompassMode_MEASUREMENT_MODEProperties();
+
+  @DefaultMessage("Configuration")
+  @Description("")
+  String ConfigurationProperties();
+
+  @DefaultMessage("ConnectionInfo")
+  @Description("")
+  String ConnectionInfoProperties();
+
+  @DefaultMessage("CurrentPosition")
+  @Description("")
+  String CurrentPositionProperties();
+
+  @DefaultMessage("Device")
+  @Description("")
+  String DeviceProperties();
+
+  @DefaultMessage("DeviceMode_READ_ONLY")
+  @Description("")
+  String DeviceMode_READ_ONLYProperties();
+
+  @DefaultMessage("DeviceMode_WRITE_ONLY")
+  @Description("")
+  String DeviceMode_WRITE_ONLYProperties();
+
+  @DefaultMessage("DeviceName")
+  @Description("")
+  String DeviceNameProperties();
+
+  @DefaultMessage("Direction")
+  @Description("")
+  String DirectionProperties();
+
+  @DefaultMessage("Direction_FORWARD")
+  @Description("")
+  String Direction_FORWARDProperties();
+
+  @DefaultMessage("Direction_REVERSE")
+  @Description("")
+  String Direction_REVERSEProperties();
+
+  @DefaultMessage("DistanceUnit_METER")
+  @Description("")
+  String DistanceUnit_METERProperties();
+
+  @DefaultMessage("DistanceUnit_CM")
+  @Description("")
+  String DistanceUnit_CMProperties();
+
+  @DefaultMessage("DistanceUnit_MM")
+  @Description("")
+  String DistanceUnit_MMProperties();
+
+  @DefaultMessage("DistanceUnit_INCH")
+  @Description("")
+  String DistanceUnit_INCHProperties();
+
+  @DefaultMessage("DpadDown")
+  @Description("")
+  String DpadDownProperties();
+
+  @DefaultMessage("DpadLeft")
+  @Description("")
+  String DpadLeftProperties();
+
+  @DefaultMessage("DpadRight")
+  @Description("")
+  String DpadRightProperties();
+
+  @DefaultMessage("DpadUp")
+  @Description("")
+  String DpadUpProperties();
+
+  @DefaultMessage("GamepadNumber")
+  @Description("")
+  String GamepadNumberProperties();
+
+  @DefaultMessage("Gravity")
+  @Description("")
+  String GravityProperties();
+
+  @DefaultMessage("Green")
+  @Description("")
+  String GreenProperties();
+
+  @DefaultMessage("Group")
+  @Description("")
+  String GroupProperties();
+
+  @DefaultMessage("Guide")
+  @Description("")
+  String GuideProperties();
+
+  @DefaultMessage("HeadingMode")
+  @Description("")
+  String HeadingModeProperties();
+
+  @DefaultMessage("HeadingMode_CARDINAL")
+  @Description("")
+  String HeadingMode_CARDINALProperties();
+
+  @DefaultMessage("HeadingMode_CARTESIAN")
+  @Description("")
+  String HeadingMode_CARTESIANProperties();
+
+  @DefaultMessage("HeartbeatActionRereadLastRead")
+  @Description("")
+  String HeartbeatActionRereadLastReadProperties();
+
+  @DefaultMessage("HeartbeatActionRewriteLastWritten")
+  @Description("")
+  String HeartbeatActionRewriteLastWrittenProperties();
+
+  @DefaultMessage("HeartbeatInterval")
+  @Description("")
+  String HeartbeatIntervalProperties();
+
+  @DefaultMessage("I2cAddress")
+  @Description("")
+  String I2cAddressProperties();
+
+  @DefaultMessage("IndividualSensorCount")
+  @Description("")
+  String IndividualSensorCountProperties();
+
+  @DefaultMessage("IntegratedZValue")
+  @Description("")
+  String IntegratedZValueProperties();
+
+  @DefaultMessage("IsPressed")
+  @Description("")
+  String IsPressedProperties();
+
+  @DefaultMessage("LeftBumper")
+  @Description("")
+  String LeftBumperProperties();
+
+  @DefaultMessage("LeftStickButton")
+  @Description("")
+  String LeftStickButtonProperties();
+
+  @DefaultMessage("LeftStickX")
+  @Description("")
+  String LeftStickXProperties();
+
+  @DefaultMessage("LeftStickY")
+  @Description("")
+  String LeftStickYProperties();
+
+  @DefaultMessage("LeftTrigger")
+  @Description("")
+  String LeftTriggerProperties();
+
+  @DefaultMessage("LIBRARY_VERSION")
+  @Description("")
+  String LIBRARY_VERSIONProperties();
+
+  @DefaultMessage("LightDetected")
+  @Description("")
+  String LightDetectedProperties();
+
+  @DefaultMessage("LinearAcceleration")
+  @Description("")
+  String LinearAccelerationProperties();
+
+  @DefaultMessage("LoggingEnabled")
+  @Description("")
+  String LoggingEnabledProperties();
+
+  @DefaultMessage("LoggingTag")
+  @Description("")
+  String LoggingTagProperties();
+
+  @DefaultMessage("MagneticFieldStrength")
+  @Description("")
+  String MagneticFieldStrengthProperties();
+
+  @DefaultMessage("MagneticFlux")
+  @Description("")
+  String MagneticFluxProperties();
+
+  @DefaultMessage("Manufacturer")
+  @Description("")
+  String ManufacturerProperties();
+
+  @DefaultMessage("MAX_NEW_I2C_ADDRESS")
+  @Description("")
+  String MAX_NEW_I2C_ADDRESSProperties();
+
+  @DefaultMessage("MAX_POSITION")
+  @Description("")
+  String MAX_POSITIONProperties();
+
+  @DefaultMessage("MaxAnalogInputVoltage")
+  @Description("")
+  String MaxAnalogInputVoltageProperties();
+
+  @DefaultMessage("MaxSpeed")
+  @Description("")
+  String MaxSpeedProperties();
+
+  @DefaultMessage("MaxVoltage")
+  @Description("")
+  String MaxVoltageProperties();
+
+  @DefaultMessage("MIN_NEW_I2C_ADDRESS")
+  @Description("")
+  String MIN_NEW_I2C_ADDRESSProperties();
+
+  @DefaultMessage("MIN_POSITION")
+  @Description("")
+  String MIN_POSITIONProperties();
+
+  @DefaultMessage("Mode_1200HZ")
+  @Description("")
+  String Mode_1200HZProperties();
+
+  @DefaultMessage("Mode_600HZ")
+  @Description("")
+  String Mode_600HZProperties();
+
+  @DefaultMessage("Mode_INPUT")
+  @Description("")
+  String Mode_INPUTProperties();
+
+  @DefaultMessage("Mode_OUTPUT")
+  @Description("")
+  String Mode_OUTPUTProperties();
+
+  @DefaultMessage("MotorControllerDeviceMode")
+  @Description("")
+  String MotorControllerDeviceModeProperties();
+
+  @DefaultMessage("OpModeName")
+  @Description("")
+  String OpModeNameProperties();
+
+  @DefaultMessage("OverallAcceleration")
+  @Description("")
+  String OverallAccelerationProperties();
+
+  @DefaultMessage("PortNumber")
+  @Description("")
+  String PortNumberProperties();
+
+  @DefaultMessage("Position")
+  @Description("")
+  String PositionProperties();
+
+  @DefaultMessage("Power")
+  @Description("")
+  String PowerProperties();
+
+  @DefaultMessage("PulseWidthOutputTime")
+  @Description("")
+  String PulseWidthOutputTimeProperties();
+
+  @DefaultMessage("PulseWidthPeriod")
+  @Description("")
+  String PulseWidthPeriodProperties();
+
+  @DefaultMessage("PwmStatus_DISABLED")
+  @Description("")
+  String PwmStatus_DISABLEDProperties();
+
+  @DefaultMessage("PwmStatus_ENABLED")
+  @Description("")
+  String PwmStatus_ENABLEDProperties();
+
+  @DefaultMessage("QuaternionOrientation")
+  @Description("")
+  String QuaternionOrientationProperties();
+
+  @DefaultMessage("RawLightDetected")
+  @Description("")
+  String RawLightDetectedProperties();
+
+  @DefaultMessage("RawLightDetectedMax")
+  @Description("")
+  String RawLightDetectedMaxProperties();
+
+  @DefaultMessage("RawOptical")
+  @Description("")
+  String RawOpticalProperties();
+
+  @DefaultMessage("RawUltrasonic")
+  @Description("")
+  String RawUltrasonicProperties();
+
+  @DefaultMessage("RawVoltage")
+  @Description("")
+  String RawVoltageProperties();
+
+  @DefaultMessage("RawX")
+  @Description("")
+  String RawXProperties();
+
+  @DefaultMessage("RawY")
+  @Description("")
+  String RawYProperties();
+
+  @DefaultMessage("RawZ")
+  @Description("")
+  String RawZProperties();
+
+  @DefaultMessage("ReadMode_BALANCED")
+  @Description("")
+  String ReadMode_BALANCEDProperties();
+
+  @DefaultMessage("ReadMode_ONLY_ONCE")
+  @Description("")
+  String ReadMode_ONLY_ONCEProperties();
+
+  @DefaultMessage("ReadMode_REPEAT")
+  @Description("")
+  String ReadMode_REPEATProperties();
+
+  @DefaultMessage("Red")
+  @Description("")
+  String RedProperties();
+
+  @DefaultMessage("RightBumper")
+  @Description("")
+  String RightBumperProperties();
+
+  @DefaultMessage("RightStickButton")
+  @Description("")
+  String RightStickButtonProperties();
+
+  @DefaultMessage("RightStickX")
+  @Description("")
+  String RightStickXProperties();
+
+  @DefaultMessage("RightStickY")
+  @Description("")
+  String RightStickYProperties();
+
+  @DefaultMessage("RightTrigger")
+  @Description("")
+  String RightTriggerProperties();
+
+  @DefaultMessage("RotationFraction")
+  @Description("")
+  String RotationFractionProperties();
+
+  @DefaultMessage("RunMode_RUN_TO_POSITION")
+  @Description("")
+  String RunMode_RUN_TO_POSITIONProperties();
+
+  @DefaultMessage("RunMode_RUN_USING_ENCODER")
+  @Description("")
+  String RunMode_RUN_USING_ENCODERProperties();
+
+  @DefaultMessage("RunMode_RUN_WITHOUT_ENCODER")
+  @Description("")
+  String RunMode_RUN_WITHOUT_ENCODERProperties();
+
+  @DefaultMessage("RunMode_STOP_AND_RESET_ENCODER")
+  @Description("")
+  String RunMode_STOP_AND_RESET_ENCODERProperties();
+
+  @DefaultMessage("SensorMode")
+  @Description("")
+  String SensorModeProperties();
+
+  @DefaultMessage("SerialNumber")
+  @Description("")
+  String SerialNumberProperties();
+
+  @DefaultMessage("SignalDetected")
+  @Description("")
+  String SignalDetectedProperties();
+
+  @DefaultMessage("SignalDetectedThreshold")
+  @Description("")
+  String SignalDetectedThresholdProperties();
+
+  @DefaultMessage("Start")
+  @Description("")
+  String StartProperties();
+
+  @DefaultMessage("StartTime")
+  @Description("")
+  String StartTimeProperties();
+
+  @DefaultMessage("State")
+  @Description("")
+  String StateProperties();
+
+  @DefaultMessage("Status")
+  @Description("")
+  String StatusProperties();
+
+  @DefaultMessage("Strength")
+  @Description("")
+  String StrengthProperties();
+
+  @DefaultMessage("SystemError")
+  @Description("")
+  String SystemErrorProperties();
+
+  @DefaultMessage("SystemStatus")
+  @Description("")
+  String SystemStatusProperties();
+
+  @DefaultMessage("TargetPosition")
+  @Description("")
+  String TargetPositionProperties();
+
+  @DefaultMessage("TelemetrySorted")
+  @Description("")
+  String TelemetrySortedProperties();
+
+  @DefaultMessage("TempUnit")
+  @Description("")
+  String TempUnitProperties();
+
+  @DefaultMessage("Temperature")
+  @Description("")
+  String TemperatureProperties();
+
+  @DefaultMessage("Time")
+  @Description("")
+  String TimeProperties();
+
+  @DefaultMessage("TrackableCount")
+  @Description("")
+  String TrackableCountProperties();
+
+  @DefaultMessage("Type")
+  @Description("")
+  String TypeProperties();
+
+  @DefaultMessage("UltrasonicLevel")
+  @Description("")
+  String UltrasonicLevelProperties();
+
+  @DefaultMessage("UsbScanTimeInSeconds")
+  @Description("")
+  String UsbScanTimeInSecondsProperties();
+
+  @DefaultMessage("UseExternalCrystal")
+  @Description("")
+  String UseExternalCrystalProperties();
+
+  @DefaultMessage("Value")
+  @Description("")
+  String ValueProperties();
+
+  @DefaultMessage("Velocity")
+  @Description("")
+  String VelocityProperties();
+
+  @DefaultMessage("Version")
+  @Description("")
+  String VersionProperties();
+
+  @DefaultMessage("Voltage")
+  @Description("")
+  String VoltageProperties();
+
+  @DefaultMessage("VuforiaLicenseKey")
+  @Description("")
+  String VuforiaLicenseKeyProperties();
+
+  @DefaultMessage("ZeroPowerBehavior")
+  @Description("")
+  String ZeroPowerBehaviorProperties();
+
+  @DefaultMessage("ZeroPowerBehavior_BRAKE")
+  @Description("")
+  String ZeroPowerBehavior_BRAKEProperties();
+
+  @DefaultMessage("ZeroPowerBehavior_FLOAT")
+  @Description("")
+  String ZeroPowerBehavior_FLOATProperties();
+
+  // FIRST Tech Challenge: Add FTC events.
+  @DefaultMessage("I2cPortIsReady")
+  @Description("")
+  String I2cPortIsReadyEvents();
+
+  @DefaultMessage("Init")
+  @Description("")
+  String InitEvents();
+
+  @DefaultMessage("InitLoop")
+  @Description("")
+  String InitLoopEvents();
+
+  @DefaultMessage("Loop")
+  @Description("")
+  String LoopEvents();
+
+  @DefaultMessage("RunOpMode")
+  @Description("")
+  String RunOpModeEvents();
+
+  @DefaultMessage("Start")
+  @Description("")
+  String StartEvents();
+
+  @DefaultMessage("Stop")
+  @Description("")
+  String StopEvents();
+
+  // FIRST Tech Challenge: Add FTC methods.
+  @DefaultMessage("ActivateTrackables")
+  @Description("")
+  String ActivateTrackablesMethods();
+
+  @DefaultMessage("AngularVelocityToAxesReference")
+  @Description("")
+  String AngularVelocityToAxesReferenceMethods();
+
+  @DefaultMessage("AngularVelocityXRotationRate")
+  @Description("")
+  String AngularVelocityXRotationRateMethods();
+
+  @DefaultMessage("AngularVelocityYRotationRate")
+  @Description("")
+  String AngularVelocityYRotationRateMethods();
+
+  @DefaultMessage("AngularVelocityZRotationRate")
+  @Description("")
+  String AngularVelocityZRotationRateMethods();
+
+  @DefaultMessage("Calibrate")
+  @Description("")
+  String CalibrateMethods();
+
+  @DefaultMessage("ClearI2cPortActionFlag")
+  @Description("")
+  String ClearI2cPortActionFlagMethods();
+
+  @DefaultMessage("ConvertColorToHSV")
+  @Description("")
+  String ConvertColorToHSVMethods();
+
+  @DefaultMessage("ConvertHSVToColor")
+  @Description("")
+  String ConvertHSVToColorMethods();
+
+  @DefaultMessage("ConvertHSVToColorWithAlpha")
+  @Description("")
+  String ConvertHSVToColorWithAlphaMethods();
+
+  @DefaultMessage("ConvertRGBToHSV")
+  @Description("")
+  String ConvertRGBToHSVMethods();
+
+  @DefaultMessage("CopyBufferIntoWriteBuffer")
+  @Description("")
+  String CopyBufferIntoWriteBufferMethods();
+
+  @DefaultMessage("CopyBytes")
+  @Description("")
+  String CopyBytesMethods();
+
+  @DefaultMessage("CreateARGB")
+  @Description("")
+  String CreateARGBMethods();
+
+  @DefaultMessage("CreateByteArray")
+  @Description("")
+  String CreateByteArrayMethods();
+
+  @DefaultMessage("CreateHSV")
+  @Description("")
+  String CreateHSVMethods();
+
+  @DefaultMessage("CreateRGB")
+  @Description("")
+  String CreateRGBMethods();
+
+  @DefaultMessage("CreateVuforiaLocalizer")
+  @Description("")
+  String CreateVuforiaLocalizerMethods();
+
+  @DefaultMessage("DeactivateTrackables")
+  @Description("")
+  String DeactivateTrackablesMethods();
+
+  @DefaultMessage("Enable")
+  @Description("")
+  String EnableMethods();
+
+  @DefaultMessage("Enable9v")
+  @Description("")
+  String Enable9vMethods();
+
+  @DefaultMessage("EnableAnalogReadMode")
+  @Description("")
+  String EnableAnalogReadModeMethods();
+
+  @DefaultMessage("EnableI2cReadMode")
+  @Description("")
+  String EnableI2cReadModeMethods();
+
+  @DefaultMessage("EnableI2cWriteMode")
+  @Description("")
+  String EnableI2cWriteModeMethods();
+
+  @DefaultMessage("EnableLed")
+  @Description("")
+  String EnableLedMethods();
+
+  @DefaultMessage("ExtractAlpha")
+  @Description("")
+  String ExtractAlphaMethods();
+
+  @DefaultMessage("ExtractBlue")
+  @Description("")
+  String ExtractBlueMethods();
+
+  @DefaultMessage("ExtractGreen")
+  @Description("")
+  String ExtractGreenMethods();
+
+  @DefaultMessage("ExtractHue")
+  @Description("")
+  String ExtractHueMethods();
+
+  @DefaultMessage("ExtractRed")
+  @Description("")
+  String ExtractRedMethods();
+
+  @DefaultMessage("ExtractSaturation")
+  @Description("")
+  String ExtractSaturationMethods();
+
+  @DefaultMessage("ExtractValue")
+  @Description("")
+  String ExtractValueMethods();
+
+  @DefaultMessage("Get1ByteNumberFromByteArray")
+  @Description("")
+  String Get1ByteNumberFromByteArrayMethods();
+
+  @DefaultMessage("Get2ByteNumberFromByteArray")
+  @Description("")
+  String Get2ByteNumberFromByteArrayMethods();
+
+  @DefaultMessage("Get4ByteNumberFromByteArray")
+  @Description("")
+  String Get4ByteNumberFromByteArrayMethods();
+
+  @DefaultMessage("Get8ByteNumberFromByteArray")
+  @Description("")
+  String Get8ByteNumberFromByteArrayMethods();
+
+  @DefaultMessage("GetAnalogInputVoltage")
+  @Description("")
+  String GetAnalogInputVoltageMethods();
+
+  @DefaultMessage("GetCopyOfReadBuffer")
+  @Description("")
+  String GetCopyOfReadBufferMethods();
+
+  @DefaultMessage("GetCopyOfWriteBuffer")
+  @Description("")
+  String GetCopyOfWriteBufferMethods();
+
+  @DefaultMessage("GetDifferentialControlLoopCoefficientD")
+  @Description("")
+  String GetDifferentialControlLoopCoefficientDMethods();
+
+  @DefaultMessage("GetDifferentialControlLoopCoefficientI")
+  @Description("")
+  String GetDifferentialControlLoopCoefficientIMethods();
+
+  @DefaultMessage("GetDifferentialControlLoopCoefficientP")
+  @Description("")
+  String GetDifferentialControlLoopCoefficientPMethods();
+
+  @DefaultMessage("GetDigitalChannelMode")
+  @Description("")
+  String GetDigitalChannelModeMethods();
+
+  @DefaultMessage("GetDigitalChannelState")
+  @Description("")
+  String GetDigitalChannelStateMethods();
+
+  @DefaultMessage("GetDigitalInputStateByte")
+  @Description("")
+  String GetDigitalInputStateByteMethods();
+
+  @DefaultMessage("GetDigitalIOControlByte")
+  @Description("")
+  String GetDigitalIOControlByteMethods();
+
+  @DefaultMessage("GetDigitalOutputStateByte")
+  @Description("")
+  String GetDigitalOutputStateByteMethods();
+
+  @DefaultMessage("GetGearRatio")
+  @Description("")
+  String GetGearRatioMethods();
+
+  @DefaultMessage("GetLastTrackedRawPose")
+  @Description("")
+  String GetLastTrackedRawPoseMethods();
+
+  @DefaultMessage("GetLEDState")
+  @Description("")
+  String GetLEDStateMethods();
+
+  @DefaultMessage("GetMotorCurrentPosition")
+  @Description("")
+  String GetMotorCurrentPositionMethods();
+
+  @DefaultMessage("GetMotorMaxSpeed")
+  @Description("")
+  String GetMotorMaxSpeedMethods();
+
+  @DefaultMessage("GetMotorMode")
+  @Description("")
+  String GetMotorModeMethods();
+
+  @DefaultMessage("GetMotorPower")
+  @Description("")
+  String GetMotorPowerMethods();
+
+  @DefaultMessage("GetMotorPowerFloat")
+  @Description("")
+  String GetMotorPowerFloatMethods();
+
+  @DefaultMessage("GetMotorTargetPosition")
+  @Description("")
+  String GetMotorTargetPositionMethods();
+
+  @DefaultMessage("GetMotorZeroPowerBehavior")
+  @Description("")
+  String GetMotorZeroPowerBehaviorMethods();
+
+  @DefaultMessage("GetPose")
+  @Description("")
+  String GetPoseMethods();
+
+  @DefaultMessage("GetPowerFloat")
+  @Description("")
+  String GetPowerFloatMethods();
+
+  @DefaultMessage("GetPulseWidthOutputTime")
+  @Description("")
+  String GetPulseWidthOutputTimeMethods();
+
+  @DefaultMessage("GetPulseWidthPeriod")
+  @Description("")
+  String GetPulseWidthPeriodMethods();
+
+  @DefaultMessage("GetPwmStatus")
+  @Description("")
+  String GetPwmStatusMethods();
+
+  @DefaultMessage("GetRawPose")
+  @Description("")
+  String GetRawPoseMethods();
+
+  @DefaultMessage("GetRawUpdatedPose")
+  @Description("")
+  String GetRawUpdatedPoseMethods();
+
+  @DefaultMessage("GetReadBuffer")
+  @Description("")
+  String GetReadBufferMethods();
+
+  @DefaultMessage("GetRobotLocation")
+  @Description("")
+  String GetRobotLocationMethods();
+
+  @DefaultMessage("GetRuntime")
+  @Description("")
+  String GetRuntimeMethods();
+
+  @DefaultMessage("GetServoPosition")
+  @Description("")
+  String GetServoPositionMethods();
+
+  @DefaultMessage("GetSwitches")
+  @Description("")
+  String GetSwitchesMethods();
+
+  @DefaultMessage("GetTrackableLocation")
+  @Description("")
+  String GetTrackableLocationMethods();
+
+  @DefaultMessage("GetTrackableName")
+  @Description("")
+  String GetTrackableNameMethods();
+
+  @DefaultMessage("GetUpdatedRobotLocation")
+  @Description("")
+  String GetUpdatedRobotLocationMethods();
+
+  @DefaultMessage("GetW")
+  @Description("")
+  String GetWMethods();
+
+  @DefaultMessage("GetX")
+  @Description("")
+  String GetXMethods();
+
+  @DefaultMessage("GetY")
+  @Description("")
+  String GetYMethods();
+
+  @DefaultMessage("GetZ")
+  @Description("")
+  String GetZMethods();
+
+  @DefaultMessage("Idle")
+  @Description("")
+  String IdleMethods();
+
+  @DefaultMessage("IndividualSensorAngle")
+  @Description("")
+  String IndividualSensorAngleMethods();
+
+  @DefaultMessage("IndividualSensorStrength")
+  @Description("")
+  String IndividualSensorStrengthMethods();
+
+  @DefaultMessage("Initialize")
+  @Description("")
+  String InitializeMethods();
+
+  @DefaultMessage("IsAccelerometerCalibrated")
+  @Description("")
+  String IsAccelerometerCalibratedMethods();
+
+  @DefaultMessage("IsArmed")
+  @Description("")
+  String IsArmedMethods();
+
+  @DefaultMessage("IsBitSet")
+  @Description("")
+  String IsBitSetMethods();
+
+  @DefaultMessage("IsBusy")
+  @Description("")
+  String IsBusyMethods();
+
+  @DefaultMessage("IsCalibrating")
+  @Description("")
+  String IsCalibratingMethods();
+
+  @DefaultMessage("IsGyroCalibrated")
+  @Description("")
+  String IsGyroCalibratedMethods();
+
+  @DefaultMessage("IsI2cPortActionFlagSet")
+  @Description("")
+  String IsI2cPortActionFlagSetMethods();
+
+  @DefaultMessage("IsI2cPortInReadMode")
+  @Description("")
+  String IsI2cPortInReadModeMethods();
+
+  @DefaultMessage("IsI2cPortInWriteMode")
+  @Description("")
+  String IsI2cPortInWriteModeMethods();
+
+  @DefaultMessage("IsI2cPortReady")
+  @Description("")
+  String IsI2cPortReadyMethods();
+
+  @DefaultMessage("IsMagnetometerCalibrated")
+  @Description("")
+  String IsMagnetometerCalibratedMethods();
+
+  @DefaultMessage("IsStarted")
+  @Description("")
+  String IsStartedMethods();
+
+  @DefaultMessage("IsStopRequested")
+  @Description("")
+  String IsStopRequestedMethods();
+
+  @DefaultMessage("IsSystemCalibrated")
+  @Description("")
+  String IsSystemCalibratedMethods();
+
+  @DefaultMessage("IsTouchSensorPressed")
+  @Description("")
+  String IsTouchSensorPressedMethods();
+
+  @DefaultMessage("IsTrackableVisible")
+  @Description("")
+  String IsTrackableVisibleMethods();
+
+  @DefaultMessage("LengthOfByteArray")
+  @Description("")
+  String LengthOfByteArrayMethods();
+
+  @DefaultMessage("LoadTrackablesFromAsset")
+  @Description("")
+  String LoadTrackablesFromAssetMethods();
+
+  @DefaultMessage("LoadTrackablesFromFile")
+  @Description("")
+  String LoadTrackablesFromFileMethods();
+
+  @DefaultMessage("Log")
+  @Description("")
+  String LogMethods();
+
+  @DefaultMessage("LogDevices")
+  @Description("")
+  String LogDevicesMethods();
+
+  @DefaultMessage("OpModeIsActive")
+  @Description("")
+  String OpModeIsActiveMethods();
+
+  @DefaultMessage("OpenGLMatrixFormat")
+  @Description("")
+  String OpenGLMatrixFormatMethods();
+
+  @DefaultMessage("OpenGLMatrixIdentity")
+  @Description("")
+  String OpenGLMatrixIdentityMethods();
+
+  @DefaultMessage("OpenGLMatrixInverted")
+  @Description("")
+  String OpenGLMatrixInvertedMethods();
+
+  @DefaultMessage("OpenGLMatrixIsNull")
+  @Description("")
+  String OpenGLMatrixIsNullMethods();
+
+  @DefaultMessage("OpenGLMatrixMultiplied")
+  @Description("")
+  String OpenGLMatrixMultipliedMethods();
+
+  @DefaultMessage("OpenGLMatrixRotated")
+  @Description("")
+  String OpenGLMatrixRotatedMethods();
+
+  @DefaultMessage("OpenGLMatrixRotation")
+  @Description("")
+  String OpenGLMatrixRotationMethods();
+
+  @DefaultMessage("OpenGLMatrixScaled")
+  @Description("")
+  String OpenGLMatrixScaledMethods();
+
+  @DefaultMessage("OpenGLMatrixTranslated")
+  @Description("")
+  String OpenGLMatrixTranslatedMethods();
+
+  @DefaultMessage("OpenGLMatrixTranslation")
+  @Description("")
+  String OpenGLMatrixTranslationMethods();
+
+  @DefaultMessage("OpenGLMatrixTransposed")
+  @Description("")
+  String OpenGLMatrixTransposedMethods();
+
+  @DefaultMessage("OrientationFirstAngle")
+  @Description("")
+  String OrientationFirstAngleMethods();
+
+  @DefaultMessage("OrientationSecondAngle")
+  @Description("")
+  String OrientationSecondAngleMethods();
+
+  @DefaultMessage("OrientationThirdAngle")
+  @Description("")
+  String OrientationThirdAngleMethods();
+
+  @DefaultMessage("OrientationGetRotationMatrix")
+  @Description("")
+  String OrientationGetRotationMatrixMethods();
+
+  @DefaultMessage("OrientationToAxesOrder")
+  @Description("")
+  String OrientationToAxesOrderMethods();
+
+  @DefaultMessage("OrientationToAxesReference")
+  @Description("")
+  String OrientationToAxesReferenceMethods();
+
+  @DefaultMessage("ParseColor")
+  @Description("")
+  String ParseColorMethods();
+
+  @DefaultMessage("Put1ByteNumberIntoByteArray")
+  @Description("")
+  String Put1ByteNumberIntoByteArrayMethods();
+
+  @DefaultMessage("Put2ByteNumberIntoByteArray")
+  @Description("")
+  String Put2ByteNumberIntoByteArrayMethods();
+
+  @DefaultMessage("Put4ByteNumberIntoByteArray")
+  @Description("")
+  String Put4ByteNumberIntoByteArrayMethods();
+
+  @DefaultMessage("Put8ByteNumberIntoByteArray")
+  @Description("")
+  String Put8ByteNumberIntoByteArrayMethods();
+
+  @DefaultMessage("PwmDisable")
+  @Description("")
+  String PwmDisableMethods();
+
+  @DefaultMessage("PwmEnable")
+  @Description("")
+  String PwmEnableMethods();
+
+  @DefaultMessage("RangeClip")
+  @Description("")
+  String RangeClipMethods();
+
+  @DefaultMessage("RangeScale")
+  @Description("")
+  String RangeScaleMethods();
+
+  @DefaultMessage("Read")
+  @Description("")
+  String ReadMethods();
+
+  @DefaultMessage("Read1Byte")
+  @Description("")
+  String Read1ByteMethods();
+
+  @DefaultMessage("ReadAnalogRaw")
+  @Description("")
+  String ReadAnalogRawMethods();
+
+  @DefaultMessage("ReadI2cCacheFromController")
+  @Description("")
+  String ReadI2cCacheFromControllerMethods();
+
+  @DefaultMessage("RequestOpModeStop")
+  @Description("")
+  String RequestOpModeStopMethods();
+
+  @DefaultMessage("ResetZAxisIntegrator")
+  @Description("")
+  String ResetZAxisIntegratorMethods();
+
+  @DefaultMessage("SaveCalibrationData")
+  @Description("")
+  String SaveCalibrationDataMethods();
+
+  @DefaultMessage("ScaleRange")
+  @Description("")
+  String ScaleRangeMethods();
+
+  @DefaultMessage("SetAnalogOutputFrequency")
+  @Description("")
+  String SetAnalogOutputFrequencyMethods();
+
+  @DefaultMessage("SetAnalogOutputMode")
+  @Description("")
+  String SetAnalogOutputModeMethods();
+
+  @DefaultMessage("SetAnalogOutputVoltage")
+  @Description("")
+  String SetAnalogOutputVoltageMethods();
+
+  @DefaultMessage("SetDifferentialControlLoopCoefficients")
+  @Description("")
+  String SetDifferentialControlLoopCoefficientsMethods();
+
+  @DefaultMessage("SetDigitalChannelMode")
+  @Description("")
+  String SetDigitalChannelModeMethods();
+
+  @DefaultMessage("SetDigitalChannelState")
+  @Description("")
+  String SetDigitalChannelStateMethods();
+
+  @DefaultMessage("SetDigitalIOControlByte")
+  @Description("")
+  String SetDigitalIOControlByteMethods();
+
+  @DefaultMessage("SetDigitalLine")
+  @Description("")
+  String SetDigitalLineMethods();
+
+  @DefaultMessage("SetDigitalOutputByte")
+  @Description("")
+  String SetDigitalOutputByteMethods();
+
+  @DefaultMessage("SetGearRatio")
+  @Description("")
+  String SetGearRatioMethods();
+
+  @DefaultMessage("SetHeartbeatActionReadWindow")
+  @Description("")
+  String SetHeartbeatActionReadWindowMethods();
+
+  @DefaultMessage("SetI2cPortActionFlag")
+  @Description("")
+  String SetI2cPortActionFlagMethods();
+
+  @DefaultMessage("SetJoystickDeadzone")
+  @Description("")
+  String SetJoystickDeadzoneMethods();
+
+  @DefaultMessage("SetLED")
+  @Description("")
+  String SetLEDMethods();
+
+  @DefaultMessage("SetLogging")
+  @Description("")
+  String SetLoggingMethods();
+
+  @DefaultMessage("SetLoggingTag")
+  @Description("")
+  String SetLoggingTagMethods();
+
+  @DefaultMessage("SetMode")
+  @Description("")
+  String SetModeMethods();
+
+  @DefaultMessage("SetMotorMaxSpeed")
+  @Description("")
+  String SetMotorMaxSpeedMethods();
+
+  @DefaultMessage("SetMotorMode")
+  @Description("")
+  String SetMotorModeMethods();
+
+  @DefaultMessage("SetMotorPower")
+  @Description("")
+  String SetMotorPowerMethods();
+
+  @DefaultMessage("SetMotorPowerForGroup")
+  @Description("")
+  String SetMotorPowerForGroupMethods();
+
+  @DefaultMessage("SetMotorPowerFloat")
+  @Description("")
+  String SetMotorPowerFloatMethods();
+
+  @DefaultMessage("SetMotorTargetPosition")
+  @Description("")
+  String SetMotorTargetPositionMethods();
+
+  @DefaultMessage("SetMotorZeroPowerBehaviorMethods")
+  @Description("")
+  String SetMotorZeroPowerBehaviorMethods();
+
+  @DefaultMessage("SetPhoneLocationOnRobot")
+  @Description("")
+  String SetPhoneLocationOnRobotMethods();
+
+  @DefaultMessage("SetPowerFloat")
+  @Description("")
+  String SetPowerFloatMethods();
+
+  @DefaultMessage("SetPoseCorrectionMatrix")
+  @Description("")
+  String SetPoseCorrectionMatrixMethods();
+
+  @DefaultMessage("SetPulseWidthOutputTime")
+  @Description("")
+  String SetPulseWidthOutputTimeMethods();
+
+  @DefaultMessage("SetPulseWidthPeriod")
+  @Description("")
+  String SetPulseWidthPeriodMethods();
+
+  @DefaultMessage("SetReadWindow")
+  @Description("")
+  String SetReadWindowMethods();
+
+  @DefaultMessage("SetServoPosition")
+  @Description("")
+  String SetServoPositionMethods();
+
+  @DefaultMessage("SetServoPositionAndSpeed")
+  @Description("")
+  String SetServoPositionAndSpeedMethods();
+
+  @DefaultMessage("SetTrackableName")
+  @Description("")
+  String SetTrackableNameMethods();
+
+  @DefaultMessage("SetTrackableLocation")
+  @Description("")
+  String SetTrackableLocationMethods();
+
+  @DefaultMessage("Sleep")
+  @Description("")
+  String SleepMethods();
+
+  @DefaultMessage("StartAccelerationIntegration")
+  @Description("")
+  String StartAccelerationIntegrationMethods();
+
+  @DefaultMessage("StopAccelerationIntegration")
+  @Description("")
+  String StopAccelerationIntegrationMethods();
+
+  @DefaultMessage("TelemetryAddNumericData")
+  @Description("")
+  String TelemetryAddNumericDataMethods();
+
+  @DefaultMessage("TelemetryAddTextData")
+  @Description("")
+  String TelemetryAddTextDataMethods();
+
+  @DefaultMessage("ToString")
+  @Description("")
+  String ToStringMethods();
+
+  @DefaultMessage("ToText")
+  @Description("")
+  String ToTextMethods();
+
+  @DefaultMessage("UpdateTelemetry")
+  @Description("")
+  String UpdateTelemetryMethods();
+
+  @DefaultMessage("WaitForNextHardwareCycle")
+  @Description("")
+  String WaitForNextHardwareCycleMethods();
+
+  @DefaultMessage("WaitForStart")
+  @Description("")
+  String WaitForStartMethods();
+
+  @DefaultMessage("WaitOneFullHardwareCycle")
+  @Description("")
+  String WaitOneFullHardwareCycleMethods();
+
+  @DefaultMessage("Write")
+  @Description("")
+  String WriteMethods();
+
+  @DefaultMessage("Write1Byte")
+  @Description("")
+  String Write1ByteMethods();
+
+  @DefaultMessage("WriteI2cCacheToController")
+  @Description("")
+  String WriteI2cCacheToControllerMethods();
+
+  @DefaultMessage("WriteI2cPortFlagOnlyToController")
+  @Description("")
+  String WriteI2cPortFlagOnlyToControllerMethods();
+
+  // FIRST Tech Challenge: Add FTC parameters.
+  @DefaultMessage("absoluteFileName")
+  @Description("")
+  String absoluteFileNameParams();
+
+  @DefaultMessage("alpha")
+  @Description("")
+  String alphaParams();
+
+  @DefaultMessage("angle1")
+  @Description("")
+  String angle1Params();
+
+  @DefaultMessage("angle2")
+  @Description("")
+  String angle2Params();
+
+  @DefaultMessage("angle3")
+  @Description("")
+  String angle3Params();
+
+  @DefaultMessage("angularVelocity")
+  @Description("")
+  String angularVelocityParams();
+
+  @DefaultMessage("argb")
+  @Description("")
+  String argbParams();
+
+  @DefaultMessage("assetName")
+  @Description("")
+  String assetNameParams();
+
+  @DefaultMessage("axesOrder")
+  @Description("")
+  String axesOrderParams();
+
+  @DefaultMessage("axesReference")
+  @Description("")
+  String axesReferenceParams();
+
+  @DefaultMessage("bigEndian")
+  @Description("")
+  String bigEndianParams();
+
+  @DefaultMessage("bitField")
+  @Description("")
+  String bitFieldParams();
+
+  @DefaultMessage("bitPosition")
+  @Description("")
+  String bitPositionParams();
+
+  @DefaultMessage("blue")
+  @Description("")
+  String blueParams();
+
+  @DefaultMessage("byteArray")
+  @Description("")
+  String byteArrayParams();
+
+  @DefaultMessage("channel")
+  @Description("")
+  String channelParams();
+
+  @DefaultMessage("cameraDirection")
+  @Description("")
+  String cameraDirectionParams();
+
+  @DefaultMessage("cameraMonitorFeedback")
+  @Description("")
+  String cameraMonitorFeedbackParams();
+
+  @DefaultMessage("colorText")
+  @Description("")
+  String colorTextParams();
+
+  @DefaultMessage("compassMode")
+  @Description("")
+  String compassModeParams();
+
+  @DefaultMessage("d")
+  @Description("")
+  String dParams();
+
+  @DefaultMessage("destinationByteArray")
+  @Description("")
+  String destinationByteArrayParams();
+
+  @DefaultMessage("destinationPosition")
+  @Description("")
+  String destinationPositionParams();
+
+  @DefaultMessage("distanceUnit")
+  @Description("")
+  String distanceUnitParams();
+
+  @DefaultMessage("dx")
+  @Description("")
+  String dxParams();
+
+  @DefaultMessage("dy")
+  @Description("")
+  String dyParams();
+
+  @DefaultMessage("dz")
+  @Description("")
+  String dzParams();
+
+  @DefaultMessage("enable")
+  @Description("")
+  String enableParams();
+
+  @DefaultMessage("fillCameraMonitorViewParent")
+  @Description("")
+  String fillCameraMonitorViewParentParams();
+
+  @DefaultMessage("green")
+  @Description("")
+  String greenParams();
+
+  @DefaultMessage("hsv")
+  @Description("")
+  String hsvParams();
+
+  @DefaultMessage("hue")
+  @Description("")
+  String hueParams();
+
+  @DefaultMessage("i")
+  @Description("")
+  String iParams();
+
+  @DefaultMessage("i2cAddress")
+  @Description("")
+  String i2cAddressParams();
+
+  @DefaultMessage("input")
+  @Description("")
+  String inputParams();
+
+  @DefaultMessage("joystickDeadzone")
+  @Description("")
+  String joystickDeadzoneParams();
+
+  @DefaultMessage("key")
+  @Description("")
+  String keyParams();
+
+  @DefaultMessage("label")
+  @Description("")
+  String labelParams();
+
+  @DefaultMessage("length")
+  @Description("")
+  String lengthParams();
+
+  @DefaultMessage("line")
+  @Description("")
+  String lineParams();
+
+  @DefaultMessage("listOfFtcDcMotors")
+  @Description("")
+  String listOfFtcDcMotorsParams();
+
+  @DefaultMessage("loggingTag")
+  @Description("")
+  String loggingTagParams();
+
+  @DefaultMessage("matrix")
+  @Description("")
+  String matrixParams();
+
+  @DefaultMessage("matrix1")
+  @Description("")
+  String matrix1Params();
+
+  @DefaultMessage("matrix2")
+  @Description("")
+  String matrix2Params();
+
+  @DefaultMessage("max")
+  @Description("")
+  String maxParams();
+
+  @DefaultMessage("maxSpeed")
+  @Description("")
+  String maxSpeedParams();
+
+  @DefaultMessage("memAddress")
+  @Description("")
+  String memAddressParams();
+
+  @DefaultMessage("min")
+  @Description("")
+  String minParams();
+
+  @DefaultMessage("motor")
+  @Description("")
+  String motorParams();
+
+  @DefaultMessage("object")
+  @Description("")
+  String objectParams();
+
+  @DefaultMessage("orientation")
+  @Description("")
+  String orientationParams();
+
+  @DefaultMessage("p")
+  @Description("")
+  String pParams();
+
+  @DefaultMessage("period")
+  @Description("")
+  String periodParams();
+
+  @DefaultMessage("physicalPort")
+  @Description("")
+  String physicalPortParams();
+
+  @DefaultMessage("pollInterval")
+  @Description("")
+  String pollIntervalParams();
+
+  @DefaultMessage("port")
+  @Description("")
+  String portParams();
+
+  @DefaultMessage("position")
+  @Description("")
+  String positionParams();
+
+  @DefaultMessage("ratio")
+  @Description("")
+  String ratioParams();
+
+  @DefaultMessage("readMode")
+  @Description("")
+  String readModeParams();
+
+  @DefaultMessage("red")
+  @Description("")
+  String redParams();
+
+  @DefaultMessage("register")
+  @Description("")
+  String registerParams();
+
+  @DefaultMessage("runMode")
+  @Description("")
+  String runModeParams();
+
+  @DefaultMessage("saturation")
+  @Description("")
+  String saturationParams();
+
+  @DefaultMessage("scaleX")
+  @Description("")
+  String scaleXParams();
+
+  @DefaultMessage("scaleY")
+  @Description("")
+  String scaleYParams();
+
+  @DefaultMessage("scaleZ")
+  @Description("")
+  String scaleZParams();
+
+  @DefaultMessage("set")
+  @Description("")
+  String setParams();
+
+  @DefaultMessage("sourceByteArray")
+  @Description("")
+  String sourceByteArrayParams();
+
+  @DefaultMessage("sourcePosition")
+  @Description("")
+  String sourcePositionParams();
+
+  @DefaultMessage("state")
+  @Description("")
+  String stateParams();
+
+  @DefaultMessage("threshold")
+  @Description("")
+  String thresholdParams();
+
+  @DefaultMessage("time")
+  @Description("")
+  String timeParams();
+
+  @DefaultMessage("trackableNumber")
+  @Description("")
+  String trackableNumberParams();
+
+  @DefaultMessage("unsigned")
+  @Description("")
+  String unsignedParams();
+
+  @DefaultMessage("useExtendedTracking")
+  @Description("")
+  String useExtendedTrackingParams();
+
+  @DefaultMessage("voltage")
+  @Description("")
+  String voltageParams();
+
+  @DefaultMessage("waitForCompletion")
+  @Description("")
+  String waitForCompletionParams();
+
+  @DefaultMessage("zeroPowerBehavior")
+  @Description("")
+  String zeroPowerBehaviorParams();
 }

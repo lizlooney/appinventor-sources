@@ -191,6 +191,39 @@ public final class ErrorMessages {
   public static final int ERROR_BAD_PERCENT = 2801;
 
   // 2901-2999 are reserved for FIRST Tech Challenge.
+  // FIRST Tech Challenge: Add FTC errors.
+  public static final int ERROR_FTC_UNEXPECTED_ERROR = 2901;
+  public static final int ERROR_FTC_TOO_MANY_ROBOT_CONTROLLERS = 2902;
+  public static final int ERROR_FTC_INVALID_DC_MOTOR_RUN_MODE = 2903;
+  public static final int ERROR_FTC_INVALID_DIRECTION = 2904;
+  public static final int ERROR_FTC_INVALID_IR_SEEKER_SENSOR_MODE = 2905;
+  public static final int ERROR_FTC_INVALID_SCALE_RANGE = 2906;
+  public static final int ERROR_FTC_INVALID_NUMBER = 2907;
+  public static final int ERROR_FTC_INVALID_BYTE_ARRAY = 2908;
+  public static final int ERROR_FTC_INVALID_POSITION = 2909;
+  public static final int ERROR_FTC_INVALID_LENGTH = 2910;
+  public static final int ERROR_FTC_INVALID_DIGITAL_CHANNEL_MODE = 2911;
+  public static final int ERROR_FTC_INVALID_COMPASS_MODE = 2912;
+  public static final int ERROR_FTC_INVALID_DEVICE_NAME = 2913;
+  public static final int ERROR_FTC_INVALID_DC_MOTOR_CONTROLLER_DEVICE_MODE = 2914;
+  public static final int ERROR_FTC_INVALID_HSV = 2915;
+  public static final int ERROR_FTC_INVALID_LIST_OF_FTC_DC_MOTORS = 2916;
+  public static final int ERROR_FTC_INVALID_I2C_DEVICE_SYNCH_READ_MODE = 2917;
+  public static final int ERROR_FTC_INVALID_ZERO_POWER_BEHAVIOR = 2918;
+  public static final int ERROR_FTC_INVALID_CAMERA_DIRECTION = 2919;
+  public static final int ERROR_FTC_INVALID_CAMERA_MONITOR_FEEDBACK = 2920;
+  public static final int ERROR_FTC_VUFORIA_LOCALIZER_NOT_CREATED = 2921;
+  public static final int ERROR_FTC_INVALID_TRACKABLE_NUMBER = 2922;
+  public static final int ERROR_FTC_INVALID_OPEN_GL_MATRIX = 2923;
+  public static final int ERROR_FTC_INVALID_AXES_REFERENCE = 2924;
+  public static final int ERROR_FTC_INVALID_AXES_ORDER = 2925;
+  public static final int ERROR_FTC_INVALID_DISTANCE_UNIT = 2926;
+  public static final int ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX = 2927;
+  public static final int ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX_POSITION_QUATERNION_VELOCITY = 2928;
+  public static final int ERROR_FTC_INVALID_QUATERNION = 2929;
+  public static final int ERROR_FTC_INVALID_ORIENTATION = 2930;
+  public static final int ERROR_FTC_INVALID_ANGULAR_VELOCITY = 2931;
+  public static final int ERROR_FTC_INVALID_OBJECT = 2932;
 
   // Image errors
   public static final int ERROR_IMAGE_CANNOT_ROTATE = 3001;
@@ -502,6 +535,86 @@ public final class ErrorMessages {
        "TextToSpeech is not yet ready to perform this operation");
     // AndroidViewComponent errors
     errorMessages.put(ERROR_BAD_PERCENT, "Percent values should be between 0 and 100.");
+    // FIRST Tech Challenge: Add FTC errors.
+    errorMessages.put(ERROR_FTC_UNEXPECTED_ERROR,
+        "An unexpected error occurred: %s");
+    errorMessages.put(ERROR_FTC_TOO_MANY_ROBOT_CONTROLLERS,
+        "An FTC Robot Controller app should contain exactly one FtcRobotController component.");
+    errorMessages.put(ERROR_FTC_INVALID_DC_MOTOR_RUN_MODE,
+        "The specified run mode \"%s\" is not valid. The valid modes are " +
+        "RUN_USING_ENCODER, RUN_WITHOUT_ENCODER, RUN_TO_POSITION, and STOP_AND_RESET_ENCODER.");
+    errorMessages.put(ERROR_FTC_INVALID_DIRECTION,
+        "The specified direction \"%s\" is not valid. The valid directions are " +
+        "FORWARD (or 1) and REVERSE (or -1).");
+    errorMessages.put(ERROR_FTC_INVALID_IR_SEEKER_SENSOR_MODE,
+        "The specified IR seeker sensor mode \"%s\" is not valid. The valid modes are " +
+        "MODE_600HZ_DC and MODE_1200HZ_AC.");
+    errorMessages.put(ERROR_FTC_INVALID_SCALE_RANGE,
+        "The specified scale range is not valid: %s %s");
+    errorMessages.put(ERROR_FTC_INVALID_NUMBER,
+        "The specified number is not valid: %s");
+    errorMessages.put(ERROR_FTC_INVALID_BYTE_ARRAY,
+        "The specified byte array (%s) is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_POSITION,
+        "The specified position (%s) is not valid: %s");
+    errorMessages.put(ERROR_FTC_INVALID_LENGTH,
+        "The specified length is not valid: %s");
+    errorMessages.put(ERROR_FTC_INVALID_DIGITAL_CHANNEL_MODE,
+        "The specified digital channel mode \"%s\" is not valid. The valid modes are " +
+        "INPUT and OUTPUT.");
+    errorMessages.put(ERROR_FTC_INVALID_COMPASS_MODE,
+        "The specified compass mode \"%s\" is not valid. The valid modes are " +
+        "MEASUREMENT_MODE and CALIBRATION_MODE.");
+    errorMessages.put(ERROR_FTC_INVALID_DEVICE_NAME,
+        "There is no %s named %s. Valid names are %s.");
+    errorMessages.put(ERROR_FTC_INVALID_DC_MOTOR_CONTROLLER_DEVICE_MODE,
+        "The specified motor controller device mode \"%s\" is not valid. The valid modes are " +
+        "READ_ONLY and WRITE_ONLY.");
+    errorMessages.put(ERROR_FTC_INVALID_HSV,
+        "The specified HSV is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_LIST_OF_FTC_DC_MOTORS,
+        "The specified listOfFtcDcMotors is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_I2C_DEVICE_SYNCH_READ_MODE,
+        "The specified read mode \"%s\" is not valid. The valid modes are " +
+        "REPEAT, BALANCED, and ONLY_ONCE.");
+    errorMessages.put(ERROR_FTC_INVALID_ZERO_POWER_BEHAVIOR,
+        "The specified zero power behavior \"%s\" is not valid. The valid values are " +
+        "BRAKE and FLOAT.");
+    errorMessages.put(ERROR_FTC_INVALID_CAMERA_DIRECTION,
+        "The specified camera direction \"%s\" is not valid. The valid values are " +
+        "BACK and FRONT.");
+    errorMessages.put(ERROR_FTC_INVALID_CAMERA_MONITOR_FEEDBACK,
+        "The specified camera monitor feedback \"%s\" is not valid. The valid values are " +
+        "NONE, AXES, TEAPOT, and BUILDINGS.");
+    errorMessages.put(ERROR_FTC_VUFORIA_LOCALIZER_NOT_CREATED,
+        "The Vuforia localizer has not been created.");
+    errorMessages.put(ERROR_FTC_INVALID_TRACKABLE_NUMBER,
+        "The specified trackable number %s is not valid. The valid numbers are between " +
+        "%s and %s.");
+    errorMessages.put(ERROR_FTC_INVALID_OPEN_GL_MATRIX,
+        "The specified OpenGLMatrix (%s) is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_AXES_REFERENCE,
+        "The specified axes reference \"%s\" is not valid. The valid values are " +
+        "EXTRINSIC and INTRINSIC.");
+    errorMessages.put(ERROR_FTC_INVALID_AXES_ORDER,
+        "The specified axes ORDER \"%s\" is not valid. The valid values are " +
+        "XYX, XYZ, XZX, XZY, YXY, YXZ, YZX, YZY, ZXY, ZXZ, ZYX, and ZYZ.");
+    errorMessages.put(ERROR_FTC_INVALID_DISTANCE_UNIT,
+        "The specified distance unit \"%s\" is not valid. The valid values are " +
+        "METER, CM, MM, and INCH.");
+    errorMessages.put(ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX,
+        "The specified Object (%s) is not valid. It must be an Acceleration or MagneticFlux object.");
+    errorMessages.put(ERROR_FTC_INVALID_ACCELERATION_MAGNETIC_FLUX_POSITION_QUATERNION_VELOCITY,
+        "The specified Object (%s) is not valid. It must be an Acceleration, MagneticFlux, Position, Quaternion, or Velocity object.");
+    errorMessages.put(ERROR_FTC_INVALID_QUATERNION,
+        "The specified Object (%s) is not valid. It must be a Quaternion object.");
+    errorMessages.put(ERROR_FTC_INVALID_ORIENTATION,
+        "The specified Orientation (%s) is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_ANGULAR_VELOCITY,
+        "The specified AngularVelocity (%s) is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_OBJECT,
+        "The specified Object (%s) is not valid.");
+
     // Image errors
     errorMessages.put(ERROR_IMAGE_CANNOT_ROTATE,
         "The version of Android on this device does not support image rotation.");

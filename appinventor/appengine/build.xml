@@ -4,7 +4,7 @@
      Copyright 2011-2012 Google Inc.  All Rights Reserved.
      Author: kerr@google.com (Debby Wallach)
      Author: lizlooney@google.com (Liz Looney)
-     Copyright © 2012-2016 Massachusetts Institute of Technology. All Rights Reserved.
+     Copyright © 2012-2017 Massachusetts Institute of Technology. All Rights Reserved.
      Author: jis@mit.edu (Jeffrey I. Schiller)
      Author: hal@mit.edu (Hal Abelson)
      Author: ram8647@gmail.com (Ralph Morelli)
@@ -81,6 +81,8 @@
         <include name="images/canvas.png" />
       </fileset>
       <fileset dir="${docs.dir}"/>
+      <!-- FIRST Tech Challenge -->
+      <fileset dir="${lib.dir}/ftc" includes="FtcDriverStation-release.apk"/>
     </copy>
     <mkdir dir="${build.war.dir}/assets/" />
     <copy todir="${build.war.dir}/assets/" flatten="true">
@@ -148,7 +150,7 @@
     <!-- external libs -->
     <copy todir="${build.war.dir}/WEB-INF/lib" file="${lib.dir}/commons-fileupload/commons-fileupload-1.2.2.jar" />
     <copy todir="${build.war.dir}/WEB-INF/lib" file="${lib.dir}/findbugs/jsr305.jar" />
-    <copy todir="${build.war.dir}/WEB-INF/lib" file="${lib.dir}/guava/guava-18.0.jar" />
+    <copy todir="${build.war.dir}/WEB-INF/lib" file="${lib.dir}/guava/guava-20.0.jar" />
     <copy todir="${build.war.dir}/WEB-INF/lib" file="${lib.dir}/firebase/firebase-token-generator-2.0.0.jar" />
     <copy todir="${build.war.dir}/WEB-INF/lib" file="${lib.dir}/commons-codec/commons-codec-1.7.jar" />
     <copy todir="${build.war.dir}/WEB-INF/lib" file="${lib.dir}/json/json.jar" />
@@ -198,7 +200,8 @@
     <copy todir="${AiServerLib-class.dir}/${appinventor.pkg}/server">
       <fileset dir="src/${appinventor.pkg}/server/" includes="*.properties" />
     </copy>
-    <ai.javac destdir="${AiServerLib-class.dir}" >
+    <ai.javac destdir="${AiServerLib-class.dir}"
+              source="1.7" target="1.7">
       <include name="${appinventor.pkg}/server/**/*.java" />
       <classpath>
         <!-- jars that we put in <build>/war/WEB-INF/lib -->
@@ -273,7 +276,9 @@
     <pathelement location="${build.dir}/common/CommonTestUtils.jar" />
     <pathelement location="${build.dir}/common/CommonVersion.jar" />
     <pathelement location="${build.dir}/components/CommonConstants.jar"/>
-    <pathelement location="${lib.dir}/guava/guava-18.0.jar" />
+    <pathelement location="${lib.dir}/guava/guava-20.0.jar" />
+    <pathelement location="${lib.dir}/guava/error_prone_annotations-2.0.12.jar" />
+    <pathelement location="${lib.dir}/guava/j2objc-annotations-1.1.jar" />
     <pathelement location="${lib.dir}/json/json.jar" />
     <pathelement location="${lib.dir}/junit/junit-4.8.2.jar" />
     <pathelement location="${lib.dir}/junit-addons/junit-addons-1.4.jar" />
@@ -319,7 +324,8 @@
     <property name="AiSharedLib-class.dir" location="${class.dir}/AiSharedLib" />
     <mkdir dir="${AiSharedLib-class.dir}" />
 
-    <ai.javac destdir="${AiSharedLib-class.dir}" >
+    <ai.javac destdir="${AiSharedLib-class.dir}"
+              source="1.7" target="1.7">
       <include name="${appinventor.pkg}/shared/**/*.java" />
       <classpath>
         <!-- jars that we put in <build>/war/WEB-INF/lib -->
@@ -342,7 +348,9 @@
     <pathelement location="${local.build.dir}/AiSharedLib.jar" />
     <pathelement location="${local.build.dir}/AiServerLib.jar" />
     <pathelement location="${build.dir}/common/CommonUtils.jar" />
-    <pathelement location="${lib.dir}/guava/guava-18.0.jar" />
+    <pathelement location="${lib.dir}/guava/guava-20.0.jar" />
+    <pathelement location="${lib.dir}/guava/error_prone_annotations-2.0.12.jar" />
+    <pathelement location="${lib.dir}/guava/j2objc-annotations-1.1.jar" />
     <pathelement location="${lib.dir}/json/json.jar" />
     <pathelement location="${lib.dir}/junit/junit-4.8.2.jar" />
     <pathelement location="${lib.dir}/gcs/appengine-gcs-client-0.6.jar" />
@@ -372,7 +380,8 @@
     <property name="AiRebindLib-class.dir" location="${class.dir}/AiRebindLib" />
     <mkdir dir="${AiRebindLib-class.dir}" />
 
-    <ai.javac destdir="${AiRebindLib-class.dir}" >
+    <ai.javac destdir="${AiRebindLib-class.dir}"
+              source="1.7" target="1.7">
       <include name="${appinventor.pkg}/rebind/**/*.java" />
       <classpath>
         <!-- gwt libs -->
@@ -400,7 +409,7 @@
     <ai.javac encoding="utf-8"
               destdir="${build.war.dir}/WEB-INF/classes"
               srcdir="${src.dir};${build.dir}/components/ComponentTranslation/src"
-              source="1.5" target="1.5" nowarn="true"
+              source="1.7" target="1.7" nowarn="true"
               debug="true" debuglevel="lines,vars,source">
       <include name="${appinventor.pkg}/client/**/*.java" />
       <include name="${appinventor.pkg}/shared/**/*.java" />
@@ -411,7 +420,9 @@
         <pathelement location="${build.dir}/components/CommonConstants.jar" />
         <pathelement location="${build.dir}/components/CommonConstants-gwt.jar" />
         <!-- external libs -->
-        <pathelement location="${lib.dir}/guava/guava-18.0.jar" />
+        <pathelement location="${lib.dir}/guava/guava-20.0.jar" />
+        <pathelement location="${lib.dir}/guava/error_prone_annotations-2.0.12.jar" />
+        <pathelement location="${lib.dir}/guava/j2objc-annotations-1.1.jar" />
         <pathelement location="${lib.dir}/gwt_dragdrop/gwt-dnd-3.2.3.jar" />
         <pathelement location="${lib.dir}/gwt_incubator/gwt-incubator-20101117-r1766.jar" />
         <pathelement location="${lib.dir}/gwt_query/gwtquery-1.5-beta1.jar" />
@@ -461,8 +472,10 @@
         <pathelement location="${build.dir}/components/CommonConstants-gwt.jar" />
         <!-- external libs -->
         <pathelement location="${lib.dir}/findbugs/jsr305.jar" />
-        <pathelement location="${lib.dir}/guava/guava-18.0.jar" />
-        <pathelement location="${lib.dir}/guava/guava-gwt-18.0.jar" />
+        <pathelement location="${lib.dir}/guava/guava-20.0.jar" />
+        <pathelement location="${lib.dir}/guava/guava-gwt-20.0.jar" />
+        <pathelement location="${lib.dir}/guava/error_prone_annotations-2.0.12.jar" />
+        <pathelement location="${lib.dir}/guava/j2objc-annotations-1.1.jar" />
         <pathelement location="${lib.dir}/gwt_dragdrop/gwt-dnd-3.2.3.jar" />
         <pathelement location="${lib.dir}/gwt_incubator/gwt-incubator-20101117-r1766.jar" />
         <pathelement location="${lib.dir}/gwt_query/gwtquery-1.5-beta1.jar" />
@@ -493,7 +506,9 @@
     <pathelement location="${build.dir}/common/CommonTestUtils.jar" />
     <pathelement location="${build.dir}/components/CommonConstants.jar"/>
     <pathelement location="${build.dir}/common/CommonUtils.jar" />
-    <pathelement location="${lib.dir}/guava/guava-18.0.jar" />
+    <pathelement location="${lib.dir}/guava/guava-20.0.jar" />
+    <pathelement location="${lib.dir}/guava/error_prone_annotations-2.0.12.jar" />
+    <pathelement location="${lib.dir}/guava/j2objc-annotations-1.1.jar" />
     <pathelement location="${lib.dir}/json/json.jar" />
     <pathelement location="${lib.dir}/junit/junit-4.8.2.jar" />
     <pathelement location="${gwt.sdk}/gwt-user.jar"/>

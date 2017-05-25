@@ -15,6 +15,7 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.google.common.io.CharStreams;
 import com.google.common.io.Files;
 import com.google.common.io.InputSupplier;
 import com.google.common.io.Resources;
@@ -27,6 +28,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -247,19 +249,58 @@ public final class ProjectBuilder {
       throws IOException {
     ArrayList<String> projectFileNames = Lists.newArrayList();
     Enumeration<? extends ZipEntry> inputZipEnumeration = inputZip.entries();
+    // FIRST Tech Challenge: use the same activity name as the official FTC robot controller app.
+    String newFormClassName =
+        "org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity";
+
     while (inputZipEnumeration.hasMoreElements()) {
       ZipEntry zipEntry = inputZipEnumeration.nextElement();
       final InputStream extractedInputStream = inputZip.getInputStream(zipEntry);
+
       File extractedFile = new File(projectRoot, zipEntry.getName());
+      // FIRST Tech Challenge: rename and move the Screen1.* files.
+      String name = zipEntry.getName();
+      if (name.contains("/Screen1.")) {
+        name = "src/org/firstinspires/ftc/robotcontroller/internal/FtcRobotControllerActivity" +
+            name.substring(name.lastIndexOf("."));
+        extractedFile = new File(projectRoot, name);
+      }
+
       LOG.info("extracting " + extractedFile.getAbsolutePath() + " from input zip");
       Files.createParentDirs(extractedFile); // Do I need this?
-      Files.copy(
-          new InputSupplier<InputStream>() {
-            public InputStream getInput() throws IOException {
-              return extractedInputStream;
-            }
-          },
-          extractedFile);
+
+      // FIRST Tech Challenge: update form class name in generated yail and project properties.
+      if (name.endsWith(".yail")) {
+        String content = CharStreams.toString(new InputStreamReader(extractedInputStream, Charsets.UTF_8));
+        String zipEntryName = zipEntry.getName();
+        if (zipEntryName.startsWith("src/")) {
+          String oldFormClassName = zipEntryName
+              .substring("src/".length(), zipEntryName.length() - ".yail".length())
+              .replace('/', '.');
+          content = content.replace(oldFormClassName, newFormClassName);
+        } else {
+          throw new RuntimeException("Expected zipEntryName \"" + zipEntryName + "\" to begin with \"src/\"");
+        }
+        Files.write(content, extractedFile, Charsets.UTF_8);
+      } else if (name.endsWith("project.properties")) {
+        String content = CharStreams.toString(new InputStreamReader(extractedInputStream, Charsets.UTF_8));
+        if (content.startsWith("main=")) {
+          int eol = content.indexOf("\n");
+          String oldFormClassName = content.substring("main=".length(), eol);
+          content = content.replace(oldFormClassName, newFormClassName);
+        } else {
+          throw new RuntimeException("Expected content \"" + content + "\" to begin with \"main=\"");
+        }
+        Files.write(content, extractedFile, Charsets.UTF_8);
+      } else {
+        Files.copy(
+            new InputSupplier<InputStream>() {
+              public InputStream getInput() throws IOException {
+                return extractedInputStream;
+              }
+            },
+            extractedFile);
+      }
       projectFileNames.add(extractedFile.getPath());
     }
     return projectFileNames;
@@ -314,10 +355,23 @@ public final class ProjectBuilder {
       }
 
       File extCompJsonFile = new File (extCompDir, "component.json");
-      JSONObject extCompJson = new JSONObject(Resources.toString(
-          extCompJsonFile.toURI().toURL(), Charsets.UTF_8));
-      nameTypeMap.put(extCompJson.getString("name"),
-          extCompJson.getString("type"));
+      if (extCompJsonFile.exists()) {
+        JSONObject extCompJson = new JSONObject(Resources.toString(
+            extCompJsonFile.toURI().toURL(), Charsets.UTF_8));
+        nameTypeMap.put(extCompJson.getString("name"),
+            extCompJson.getString("type"));
+      } else {  // multi-extension package
+        extCompJsonFile = new File(extCompDir, "components.json");
+        if (extCompJsonFile.exists()) {
+          JSONArray extCompJson = new JSONArray(Resources.toString(
+              extCompJsonFile.toURI().toURL(), Charsets.UTF_8));
+          for (int i = 0; i < extCompJson.length(); i++) {
+            JSONObject extCompDescriptor = extCompJson.getJSONObject(i);
+            nameTypeMap.put(extCompDescriptor.getString("name"),
+                extCompDescriptor.getString("type"));
+          }
+        }
+      }
     }
 
     return nameTypeMap;

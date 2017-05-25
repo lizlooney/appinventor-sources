@@ -27,6 +27,8 @@
     <include path="/blocklyframe.html" expiration="0s" />
     <include path="/index.html" expiration="0s" />
     <include path="/android" expiration="0s" />
+    <!-- FIRST Tech Challenge -->
+    <include path="/FtcDriverStation-release.apk" expiration="0s" />
 
     <include path="/ode/**.cache.*" expiration="365d" />
     <exclude path="/ode/**.gwt.rpc" />
@@ -94,7 +96,11 @@
      -->
 
     <property name="auth.usegoogle" value="true" />
+    <!-- FIRST Tech Challenge: Use local auth. -->
+    <property name="auth.uselocal" value="false" />
+    <!--
     <property name="auth.uselocal" value="true" />
+    -->
 
     <!-- Flags associated with localauth code -->
     <property name="localauth.mailserver" value="https://osiris.mit.edu/passmail/" />
@@ -147,6 +153,10 @@
     <property name="firebase.secret" value="" />
     <property name="firebase.url" value="" />
 
+    <!-- FIRST Tech Challenge: Use URLS for FTC specific sites, instead of MIT specific sites. -->
+    <property name="forums.url" value="http://ftcforum.usfirst.org/forumdisplay.php?160-MIT-App-Inventor" />
+    <property name="guide.url" value="https://docs.google.com/document/d/1NB5gyOUhZ1EgnjtOtUo5PGh0it2WcRYQ7voyVFIxoZQ/edit?usp=sharing" />
+    <!--
     <property name="library.url" value="http://appinventor.mit.edu/explore/library" />
     <property name="get_started.url" value="http://appinventor.mit.edu/explore/get-started" />
     <property name="tutorials.url" value="http://appinventor.mit.edu/explore/ai2/tutorials" />
@@ -159,6 +169,7 @@
     <property name="logo.url" value="http://appinventor.mit.edu" />
     <property name="guide.url" value="http://appinventor.mit.edu/explore/library" />
     <property name="reference.components.url" value="/reference/components/" />
+    -->
 
   </system-properties>
 

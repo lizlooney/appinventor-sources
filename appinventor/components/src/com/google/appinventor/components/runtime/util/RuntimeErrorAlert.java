@@ -22,19 +22,26 @@ public final class RuntimeErrorAlert {
   public static void alert(final Object context,
       final String message, final String title,final String buttonText) {
     Log.i("RuntimeErrorAlert", "in alert");
-    AlertDialog alertDialog = new AlertDialog.Builder((Context) context).create();
-    alertDialog.setTitle(title);
-    alertDialog.setMessage(message);
-    alertDialog.setButton(buttonText, new DialogInterface.OnClickListener() {
-      public void onClick(DialogInterface dialog, int which) {
-        ((Activity) context).finish();
-      }});
-    if (message == null) {
-      // Avoid passing null to Log.e, which would cause a NullPointerException.
-      Log.e(RuntimeErrorAlert.class.getName(), "No error message available");
-    } else {
-      Log.e(RuntimeErrorAlert.class.getName(), message);
-    }
-    alertDialog.show();
+    // FIRST Tech Challenge: Make sure the alert dialog is run on the UI thread. In most cases it
+    // already is, but some events for the FIRST Tech Challenge (FTC) components are run on other
+    // threads.
+    ((Activity) context).runOnUiThread(new Runnable() {
+      public void run() {
+        AlertDialog alertDialog = new AlertDialog.Builder((Context) context).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setButton(buttonText, new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+            ((Activity) context).finish();
+          }});
+        if (message == null) {
+          // Avoid passing null to Log.e, which would cause a NullPointerException.
+          Log.e(RuntimeErrorAlert.class.getName(), "No error message available");
+        } else {
+          Log.e(RuntimeErrorAlert.class.getName(), message);
+        }
+        alertDialog.show();
+      }
+    });
   }
 }
