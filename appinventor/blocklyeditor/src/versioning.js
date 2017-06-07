@@ -2807,6 +2807,13 @@ Blockly.Versioning.AllUpgradeMaps =
 
   }, // End FtcLinearOpMode upgraders
 
+  "FtcLynxColorRangeSensor": {
+
+    // This is the initial version. Placeholder for future upgrades
+    1: "noUpgrade"
+
+  }, // End FtcLynxColorRangeSensor upgraders
+
   "FtcMrRangeSensor": {
 
     // This is the initial version. Placeholder for future upgrades

@@ -483,6 +483,8 @@ public class YaVersion {
   // Added HorizontalScrollArrangement and VerticalScrollArrangement
   // For YOUNG_ANDROID_VERSION 159:
   // - FORM_COMPONENT_VERSION was incremented to 20
+  // For YOUNG_ANDROID_VERSION 160:
+  // - The FtcLynxColorRangeSensor component was added.
 
   public static final int YOUNG_ANDROID_VERSION = 159;
 
@@ -1360,6 +1362,8 @@ public class YaVersion {
   // For FTC_LINEAR_OP_MODE_COMPONENT_VERSION 5:
   // - The Autonomous and Group properties were added.
   public static final int FTC_LINEAR_OP_MODE_COMPONENT_VERSION = 5;
+
+  public static final int FTC_LYNX_COLOR_RANGE_SENSOR_COMPONENT_VERSION = 1;
 
   public static final int FTC_MR_RANGE_SENSOR_COMPONENT_VERSION = 1;
 

@@ -6460,6 +6460,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String ftcLinearOpModeComponentPallette();
 
+  @DefaultMessage("FtcLynxColorRangeSensor")
+  @Description("")
+  String ftcLynxColorRangeSensorComponentPallette();
+
   @DefaultMessage("FtcMrRangeSensor")
   @Description("")
   String ftcMrRangeSensorComponentPallette();
@@ -6596,6 +6600,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("A component for a linear operation mode for an FTC robot.")
   @Description("")
   String FtcLinearOpModeHelpStringComponentPallette();
+
+  @DefaultMessage("A component for a Lynx color range sensor of an FTC robot.")
+  @Description("")
+  String FtcLynxColorRangeSensorHelpStringComponentPallette();
 
   @DefaultMessage("A component for a Modern Robotics range sensor of an FTC robot.")
   @Description("")
