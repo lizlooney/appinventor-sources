@@ -7741,6 +7741,14 @@ public interface OdeMessages extends Messages {
   @Description("")
   String OpenGLMatrixFormatMethods();
 
+  @DefaultMessage("OpenGLMatrixGetOrientation")
+  @Description("")
+  String OpenGLMatrixGetOrientationMethods();
+
+  @DefaultMessage("OpenGLMatrixGetTranslationVector")
+  @Description("")
+  String OpenGLMatrixGetTranslationVectorMethods();
+
   @DefaultMessage("OpenGLMatrixIdentity")
   @Description("")
   String OpenGLMatrixIdentityMethods();
@@ -8041,6 +8049,14 @@ public interface OdeMessages extends Messages {
   @Description("")
   String UpdateTelemetryMethods();
 
+  @DefaultMessage("VectorFGetLength")
+  @Description("")
+  String VectorFGetLengthMethods();
+
+  @DefaultMessage("VectorFGetValue")
+  @Description("")
+  String VectorFGetValueMethods();
+
   @DefaultMessage("WaitForNextHardwareCycle")
   @Description("")
   String WaitForNextHardwareCycleMethods();
@@ -8205,6 +8221,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("i2cAddress")
   @Description("")
   String i2cAddressParams();
+
+  @DefaultMessage("index")
+  @Description("")
+  String indexParams();
 
   @DefaultMessage("input")
   @Description("")
@@ -8373,6 +8393,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("useExtendedTracking")
   @Description("")
   String useExtendedTrackingParams();
+
+  @DefaultMessage("vector")
+  @Description("")
+  String vectorParams();
 
   @DefaultMessage("voltage")
   @Description("")

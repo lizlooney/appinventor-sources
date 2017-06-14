@@ -224,6 +224,7 @@ public final class ErrorMessages {
   public static final int ERROR_FTC_INVALID_ORIENTATION = 2930;
   public static final int ERROR_FTC_INVALID_ANGULAR_VELOCITY = 2931;
   public static final int ERROR_FTC_INVALID_OBJECT = 2932;
+  public static final int ERROR_FTC_INVALID_VECTOR_F = 2933;
 
   // Image errors
   public static final int ERROR_IMAGE_CANNOT_ROTATE = 3001;
@@ -614,6 +615,8 @@ public final class ErrorMessages {
         "The specified AngularVelocity (%s) is not valid.");
     errorMessages.put(ERROR_FTC_INVALID_OBJECT,
         "The specified Object (%s) is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_VECTOR_F,
+        "The specified VectorF (%s) is not valid.");
 
     // Image errors
     errorMessages.put(ERROR_IMAGE_CANNOT_ROTATE,
