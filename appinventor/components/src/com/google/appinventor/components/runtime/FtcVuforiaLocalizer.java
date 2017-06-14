@@ -20,6 +20,7 @@ import com.google.appinventor.components.runtime.ftc.R;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
+import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
@@ -309,7 +310,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
   // Trackable functions
 
   @SimpleFunction(description = "Set the name of a trackable that was loaded with " +
-      "LoadTrackablesFromAsset or LoadTrackablesFromFile.")
+      "LoadTrackablesFromAsset or LoadTrackablesFromFile. The trackableNumber is 0, 1, 2, etc.")
   public void SetTrackableName(int trackableNumber, String name) {
     try {
       if (vuforiaLocalizer != null) {
@@ -331,7 +332,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
   }
 
   @SimpleFunction(description = "Get the name of a trackable that was loaded with " +
-      "LoadTrackablesFromAsset or LoadTrackablesFromFile.")
+      "LoadTrackablesFromAsset or LoadTrackablesFromFile. The trackableNumber is 0, 1, 2, etc.")
   public String GetTrackableName(int trackableNumber) {
     try {
       if (vuforiaLocalizer != null) {
@@ -353,7 +354,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
     return "";
   }
 
-  @SimpleFunction(description = "Set the location (an OpenGLMatrix) of a trackable in the field.")
+  @SimpleFunction(description = "Set the location (an OpenGLMatrix) of a trackable in the field.  The trackableNumber is 0, 1, 2, etc.")
   public void SetTrackableLocation(int trackableNumber, Object matrix) {
     try {
       if (vuforiaLocalizer != null) {
@@ -379,7 +380,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
     }
   }
 
-  @SimpleFunction(description = "Get the location (an OpenGLMatrix) of a trackable in the field.")
+  @SimpleFunction(description = "Get the location (an OpenGLMatrix) of a trackable in the field. The trackableNumber is 0, 1, 2, etc.")
   public Object GetTrackableLocation(int trackableNumber) {
     try {
       if (vuforiaLocalizer != null) {
@@ -430,7 +431,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
     }
   }
 
-  @SimpleFunction(description = "Return true if the trackable (specified by number) is visible.")
+  @SimpleFunction(description = "Return true if the trackable (specified by number) is visible. The trackableNumber is 0, 1, 2, etc.")
   public boolean IsTrackableVisible(int trackableNumber) {
     try {
       if (vuforiaLocalizer != null) {
@@ -455,7 +456,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
 
   @SimpleFunction(description = "Return the transform (an OpenGLMatrix) that represents the " +
       "location of the robot on the field computed from the specified tracker, or null if the " +
-      "location cannot be computed.")
+      "location cannot be computed. The trackableNumber is 0, 1, 2, etc.")
   public Object GetRobotLocation(int trackableNumber) {
     try {
       if (vuforiaLocalizer != null) {
@@ -480,7 +481,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
 
   @SimpleFunction(description = "Return the transform (an OpenGLMatrix) that represents the " +
       "location of the robot on the field computed from the specified tracker, but only if a new " +
-      "location has been detected since the last call to GetUpdatedRobotLocation.")
+      "location has been detected since the last call to GetUpdatedRobotLocation. The trackableNumber is 0, 1, 2, etc.")
   public Object GetUpdatedRobotLocation(int trackableNumber) {
     try {
       if (vuforiaLocalizer != null) {
@@ -504,7 +505,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
   }
 
   @SimpleFunction(description = "Return the location (an OpenGLMatrix) of the trackable in the " +
-      "phone's coordinate system, if it is currently visible, or null if it is not visible.")
+      "phone's coordinate system, if it is currently visible, or null if it is not visible. The trackableNumber is 0, 1, 2, etc.")
   public Object GetPose(int trackableNumber) {
     try {
       if (vuforiaLocalizer != null) {
@@ -529,7 +530,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
 
   // listener.getRawPose
   @SimpleFunction(description = "Return the raw location (an OpenGLMatrix) of the trackable in " +
-      "the phone's coordinate system, as reported by Vuforia.")
+      "the phone's coordinate system, as reported by Vuforia. The trackableNumber is 0, 1, 2, etc.")
   public Object GetRawPose(int trackableNumber) {
     try {
       if (vuforiaLocalizer != null) {
@@ -554,7 +555,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
 
   @SimpleFunction(description = "Return the raw location (an OpenGLMatrix) of the trackable in " +
       "the phone's coordinate system, as reported by Vuforia, but only if a new location is " +
-      "available since the last call to GetRawUpdatedPose.")
+      "available since the last call to GetRawUpdatedPose. The trackableNumber is 0, 1, 2, etc.")
   public Object GetRawUpdatedPose(int trackableNumber) {
     try {
       if (vuforiaLocalizer != null) {
@@ -578,7 +579,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
   }
 
   @SimpleFunction(description = "Return the last known location (an OpenGLMatrix) of the " +
-      "trackable in the phone's coordinate system, even if the trackable is no longer visible.")
+      "trackable in the phone's coordinate system, even if the trackable is no longer visible. The trackableNumber is 0, 1, 2, etc.")
   public Object GetLastTrackedRawPose(int trackableNumber) {
     try {
       if (vuforiaLocalizer != null) {
@@ -605,7 +606,7 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
   @SimpleFunction(description = "Sets the matrix to correct for the different coordinate systems " +
       "used in Vuforia and our phone coordinate system here. Here, with the phone in flat front " +
       "of you in portrait mode (as it is when running the robot controller app), Z is pointing " +
-      "upwards, up out of the screen, X points to your right, and Y points away from you.")
+      "upwards, up out of the screen, X points to your right, and Y points away from you. The trackableNumber is 0, 1, 2, etc.")
   public void SetPoseCorrectionMatrix(int trackableNumber, Object matrix) {
     try {
       if (vuforiaLocalizer != null && parameters != null) {
@@ -758,6 +759,121 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
       return "";
     }
     return ((OpenGLMatrix) matrix).formatAsTransform();
+  }
+
+  @SimpleFunction(description = "Returns the translation (a VectorF) of the given OpenGLMatrix.")
+  public Object OpenGLMatrixGetTranslationVector(Object matrix) {
+    if (!(matrix instanceof OpenGLMatrix)) {
+      form.dispatchErrorOccurredEvent(this, "OpenGLMatrixGetTranslation",
+          ErrorMessages.ERROR_FTC_INVALID_OPEN_GL_MATRIX, "matrix");
+    }
+    return ((OpenGLMatrix) matrix).getTranslation();
+  }
+
+  @SimpleFunction(description = "Returns an Orientation object for the given OpenGLMatrix.")
+  public Object OpenGLMatrixGetOrientation(Object matrix, String axesReference, String axesOrder) {
+    if (!(matrix instanceof OpenGLMatrix)) {
+      form.dispatchErrorOccurredEvent(this, "OpenGLMatrixGetOrientation",
+          ErrorMessages.ERROR_FTC_INVALID_OPEN_GL_MATRIX, "matrix");
+    }
+    AxesReference axesReferenceValue = parseAxesReference(axesReference, "OpenGLMatrixGetOrientation");
+    if (axesReferenceValue == null) {
+      return null;
+    }
+    AxesOrder axesOrderValue = parseAxesOrder(axesOrder, "OpenGLMatrixGetOrientation");
+    if (axesOrderValue == null) {
+      return null;
+    }
+    return Orientation.getOrientation((OpenGLMatrix) matrix, axesReferenceValue, axesOrderValue, AngleUnit.DEGREES);
+  }
+
+  // Functions to extract Orientation fields
+
+  @SimpleFunction(description = "Returns the first angle of the given Orientation object.")
+  public float OrientationFirstAngle(Object orientation) {
+    if (!(orientation instanceof Orientation)) {
+      form.dispatchErrorOccurredEvent(this, "OrientationFirstAngle",
+          ErrorMessages.ERROR_FTC_INVALID_ORIENTATION, "orientation");
+      return 0;
+    }
+    return ((Orientation) orientation).firstAngle;
+  }
+
+  @SimpleFunction(description = "Returns the Second angle of the given Orientation object.")
+  public float OrientationSecondAngle(Object orientation) {
+    if (!(orientation instanceof Orientation)) {
+      form.dispatchErrorOccurredEvent(this, "OrientationSecondAngle",
+          ErrorMessages.ERROR_FTC_INVALID_ORIENTATION, "orientation");
+      return 0;
+    }
+    return ((Orientation) orientation).secondAngle;
+  }
+
+  @SimpleFunction(description = "Returns the third angle of the given Orientation object.")
+  public float OrientationThirdAngle(Object orientation) {
+    if (!(orientation instanceof Orientation)) {
+      form.dispatchErrorOccurredEvent(this, "OrientationThirdAngle",
+          ErrorMessages.ERROR_FTC_INVALID_ORIENTATION, "orientation");
+      return 0;
+    }
+    return ((Orientation) orientation).thirdAngle;
+  }
+
+  @SimpleFunction(description = "Converts an Orientation object to an equivalent one with the " +
+      "indicated point of view. Returns an Orientation object.")
+  public Object OrientationToAxesReference(Object orientation, String axesReference) {
+    if (!(orientation instanceof Orientation)) {
+      form.dispatchErrorOccurredEvent(this, "OrientationToAxesReference",
+          ErrorMessages.ERROR_FTC_INVALID_ORIENTATION, "orientation");
+      return null;
+    }
+    AxesReference axesReferenceValue = parseAxesReference(axesReference, "OrientationToAxesReference");
+    if (axesReferenceValue == null) {
+      return null;
+    }
+    return ((Orientation) orientation).toAxesReference(axesReferenceValue);
+  }
+
+  @SimpleFunction(description = "Converts an Orientation object to an equivalent one with the " +
+      "indicated ordering of axes. Returns an Orientation object.")
+  public Object OrientationToAxesOrder(Object orientation, String axesOrder) {
+    if (!(orientation instanceof Orientation)) {
+      form.dispatchErrorOccurredEvent(this, "OrientationToAxesOrder",
+          ErrorMessages.ERROR_FTC_INVALID_ORIENTATION, "orientation");
+      return null;
+    }
+    AxesOrder axesOrderValue = parseAxesOrder(axesOrder, "OrientationToAxesOrder");
+    if (axesOrderValue == null) {
+      return null;
+    }
+    return ((Orientation) orientation).toAxesOrder(axesOrderValue);
+  }
+
+  // Functions to extract VectorF fields
+
+  @SimpleFunction(description = "Returns the length of the given VectorF object.")
+  public int VectorFGetLength(Object vector) {
+    if (!(vector instanceof VectorF)) {
+      form.dispatchErrorOccurredEvent(this, "VectorFGetLength",
+          ErrorMessages.ERROR_FTC_INVALID_VECTOR_F, "vector");
+      return 0;
+    }
+    return ((VectorF) vector).length();
+  }
+
+  @SimpleFunction(description = "Returns a particular element of the given VectorF object. The index is 0, 1, 2, etc.")
+  public float VectorFGetValue(Object vector, int index) {
+    if (!(vector instanceof VectorF)) {
+      form.dispatchErrorOccurredEvent(this, "VectorFGetValue",
+          ErrorMessages.ERROR_FTC_INVALID_VECTOR_F, "vector");
+      return 0;
+    }
+    if (index < 0 || index >= ((VectorF) vector).length()) {
+      form.dispatchErrorOccurredEvent(this, "VectorFGetValue",
+          ErrorMessages.ERROR_FTC_INVALID_NUMBER, "index");
+      return 0;
+    }
+    return ((VectorF) vector).get(index);
   }
 
   // AxesOrder enum values
