@@ -483,6 +483,8 @@ public class YaVersion {
   // Added HorizontalScrollArrangement and VerticalScrollArrangement
   // For YOUNG_ANDROID_VERSION 159:
   // - FORM_COMPONENT_VERSION was incremented to 20
+  // For YOUNG_ANDROID_VERSION 160:
+  // - The FtcLynxColorRangeSensor component was added.
 
   public static final int YOUNG_ANDROID_VERSION = 159;
 
@@ -1162,10 +1164,10 @@ public class YaVersion {
 
   public static final String ACCEPTABLE_COMPANION_PACKAGE = "edu.mit.appinventor.aicompanion3";
 
-  public static final String PREFERRED_COMPANION = "2.41";
+  public static final String PREFERRED_COMPANION = "2.42";
   public static final String COMPANION_UPDATE_URL = "";
   public static final String COMPANION_UPDATE_URL1 = "";
-  public static final String [] ACCEPTABLE_COMPANIONS = { "2.41" };
+  public static final String [] ACCEPTABLE_COMPANIONS = { "2.42" };
 
   // Splash Screen Values
   public static final int SPLASH_SURVEY = 1;
@@ -1360,6 +1362,8 @@ public class YaVersion {
   // For FTC_LINEAR_OP_MODE_COMPONENT_VERSION 5:
   // - The Autonomous and Group properties were added.
   public static final int FTC_LINEAR_OP_MODE_COMPONENT_VERSION = 5;
+
+  public static final int FTC_LYNX_COLOR_RANGE_SENSOR_COMPONENT_VERSION = 1;
 
   public static final int FTC_MR_RANGE_SENSOR_COMPONENT_VERSION = 1;
 

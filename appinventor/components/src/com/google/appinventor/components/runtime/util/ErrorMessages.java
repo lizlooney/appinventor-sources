@@ -224,6 +224,7 @@ public final class ErrorMessages {
   public static final int ERROR_FTC_INVALID_ORIENTATION = 2930;
   public static final int ERROR_FTC_INVALID_ANGULAR_VELOCITY = 2931;
   public static final int ERROR_FTC_INVALID_OBJECT = 2932;
+  public static final int ERROR_FTC_INVALID_VECTOR_F = 2933;
 
   // Image errors
   public static final int ERROR_IMAGE_CANNOT_ROTATE = 3001;
@@ -239,7 +240,10 @@ public final class ErrorMessages {
   // Form errors that are signalled in runtime.scm
   public static final int ERROR_DIVISION_BY_ZERO = 3200;
 
-  // Start the next group of errors at 3300
+  // Extension errors are signalled from extensions
+  public static final int ERROR_EXTENSION_ERROR = 3300;
+
+  // Start the next group of errors at 3400
 
   // Mapping of error numbers to error message format strings.
   private static final Map<Integer, String> errorMessages;
@@ -614,6 +618,8 @@ public final class ErrorMessages {
         "The specified AngularVelocity (%s) is not valid.");
     errorMessages.put(ERROR_FTC_INVALID_OBJECT,
         "The specified Object (%s) is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_VECTOR_F,
+        "The specified VectorF (%s) is not valid.");
 
     // Image errors
     errorMessages.put(ERROR_IMAGE_CANNOT_ROTATE,
@@ -622,6 +628,9 @@ public final class ErrorMessages {
     // signal-runtime-form-error must match the error number used here.
     errorMessages.put(ERROR_DIVISION_BY_ZERO,
         "Trying to divide %s by 0.  The result might not be valid.");
+    // Extension errors
+    errorMessages.put(ERROR_EXTENSION_ERROR,
+        "Error %d in extension %s: %s");
 
   }
 

@@ -37,6 +37,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -220,6 +221,11 @@ public final class Compiler {
   private JSONArray extCompsBuildInfo;
   private Set<String> simpleCompTypes;  // types needed by the project
   private Set<String> extCompTypes; // types needed by the project
+
+  /**
+   * Mapping from type name to path in project to minimize tests against the file system.
+   */
+  private Map<String, String> extTypePathCache = new HashMap<String, String>();
 
   private static final Logger LOG = Logger.getLogger(Compiler.class.getName());
 
@@ -1000,15 +1006,22 @@ public final class Compiler {
       }
 
       // Construct the class path including component libraries (jars)
-      String classpath =
-        getResource(KAWA_RUNTIME) + COLON +
-        getResource(ACRA_RUNTIME) + COLON +
-        getResource(SIMPLE_ANDROID_RUNTIME_JAR) + COLON;
+      StringBuilder classpath = new StringBuilder(getResource(KAWA_RUNTIME));
+      classpath.append(COLON);
+      classpath.append(getResource(ACRA_RUNTIME));
+      classpath.append(COLON);
+      classpath.append(getResource(SIMPLE_ANDROID_RUNTIME_JAR));
+      classpath.append(COLON);
 
       // attach the jars of external comps
+      Set<String> addedExtJars = new HashSet<String>();
       for (String type : extCompTypes) {
         String sourcePath = getExtCompDirPath(type) + SIMPLE_ANDROID_RUNTIME_JAR;
-        classpath += sourcePath + COLON;
+        if (!addedExtJars.contains(sourcePath)) {  // don't add multiple copies for bundled extensions
+          classpath.append(sourcePath);
+          classpath.append(COLON);
+          addedExtJars.add(sourcePath);
+        }
       }
 
       // Add component library names to classpath
@@ -1028,12 +1041,12 @@ public final class Compiler {
 
           uniqueLibsNeeded.add(sourcePath);
 
-          classpath += sourcePath + COLON;
+          classpath.append(sourcePath);
+          classpath.append(COLON);
         }
       }
 
-      classpath +=
-        getResource(ANDROID_RUNTIME);
+      classpath.append(getResource(ANDROID_RUNTIME));
 
       System.out.println("Libraries Classpath = " + classpath);
 
@@ -1044,7 +1057,7 @@ public final class Compiler {
           System.getProperty("java.home") + "/bin/java",
           "-Dfile.encoding=UTF-8",
           "-mx" + mx + "M",
-          "-cp", classpath,
+          "-cp", classpath.toString(),
           "kawa.repl",
           "-f", yailRuntime,
           "-d", classesDir.getAbsolutePath(),
@@ -1256,9 +1269,13 @@ public final class Compiler {
     // END DEBUG -- XXX --
 
     // attach the jars of external comps to the libraries list
+    Set<String> addedExtJars = new HashSet<String>();
     for (String type : extCompTypes) {
       String sourcePath = getExtCompDirPath(type) + SIMPLE_ANDROID_RUNTIME_JAR;
-      libList.add(new File(sourcePath));
+      if (!addedExtJars.contains(sourcePath)) {
+        libList.add(new File(sourcePath));
+        addedExtJars.add(sourcePath);
+      }
     }
 
     int offset = libList.size();
@@ -1637,6 +1654,7 @@ public final class Compiler {
           Compiler.class.getResource(COMP_BUILD_INFO), Charsets.UTF_8));
 
       extCompsBuildInfo = new JSONArray();
+      Set<String> readComponentInfos = new HashSet<String>();
       for (String type : extCompTypes) {
         // .../assets/external_comps/com.package.MyExtComp/files/component_build_info.json
         File extCompRuntimeFileDir = new File(getExtCompDirPath(type) + RUNTIME_FILES_DIR);
@@ -1646,19 +1664,31 @@ public final class Compiler {
           path = path.substring(0, path.lastIndexOf('.'));
           extCompRuntimeFileDir = new File(path + RUNTIME_FILES_DIR);
         }
-        String jsonFileName = "component_build_info.json";
-        File jsonFile = new File(extCompRuntimeFileDir, jsonFileName);
+        File jsonFile = new File(extCompRuntimeFileDir, "component_build_infos.json");
+        if (!jsonFile.exists()) {
+          // old extension with a single component?
+          jsonFile = new File(extCompRuntimeFileDir, "component_build_info.json");
+          if (!jsonFile.exists()) {
+            throw new IllegalStateException("No component_build_info.json in extension for " +
+                type);
+          }
+        }
+        if (readComponentInfos.contains(jsonFile.getAbsolutePath())) {
+          continue;  // already read the build infos for this type (bundle extension)
+        }
 
         String buildInfo = Resources.toString(jsonFile.toURI().toURL(), Charsets.UTF_8);
         JSONTokener tokener = new JSONTokener(buildInfo);
         Object value = tokener.nextValue();
         if (value instanceof JSONObject) {
           extCompsBuildInfo.put((JSONObject) value);
+          readComponentInfos.add(jsonFile.getAbsolutePath());
         } else if (value instanceof JSONArray) {
           JSONArray infos = (JSONArray) value;
           for (int i = 0; i < infos.length(); i++) {
             extCompsBuildInfo.put(infos.getJSONObject(i));
           }
+          readComponentInfos.add(jsonFile.getAbsolutePath());
         }
       }
     } catch (Exception e) {
@@ -1690,8 +1720,23 @@ public final class Compiler {
 
   private String getExtCompDirPath(String type) {
     createDir(project.getAssetsDirectory());
-    return project.getAssetsDirectory().getAbsolutePath() + SLASH +
+    String candidate = extTypePathCache.get(type);
+    if (candidate != null) {  // already computed the path
+      return candidate;
+    }
+    candidate = project.getAssetsDirectory().getAbsolutePath() + SLASH + EXT_COMPS_DIR_NAME +
+        SLASH + type;
+    if (new File(candidate).exists()) {  // extension has FCQN as path element
+      extTypePathCache.put(type, candidate);
+      return candidate;
+    }
+    candidate = project.getAssetsDirectory().getAbsolutePath() + SLASH +
         EXT_COMPS_DIR_NAME + SLASH + type.substring(0, type.lastIndexOf('.'));
+    if (new File(candidate).exists()) {  // extension has package name as path element
+      extTypePathCache.put(type, candidate);
+      return candidate;
+    }
+    throw new IllegalStateException("Project lacks extension directory for " + type);
   }
 
   // FIRST Tech Challenge

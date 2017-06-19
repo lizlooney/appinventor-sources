@@ -293,7 +293,6 @@ public final class YaBlocksEditor extends FileEditor
 
   @Override
   public void onWorkspaceChange(BlocklyPanel panel, JavaScriptObject event) {
-    OdeLog.log("Got blocks area changed for " + fullFormName);
     if (!EventHelper.isTransient(event)) {
       Ode.getInstance().getEditorManager().scheduleAutoSave(this);
     }
@@ -629,4 +628,16 @@ public final class YaBlocksEditor extends FileEditor
   public void makeActiveWorkspace() {
     blocksArea.makeActive();
   }
+
+  public static native void resendAssetsAndExtensions()/*-{
+    if (top.ReplState && top.ReplState.state == Blockly.ReplMgr.rsState.CONNECTED) {
+      Blockly.ReplMgr.resendAssetsAndExtensions();
+    }
+  }-*/;
+
+  public static native void resendExtensionsList()/*-{
+    if (top.ReplState && top.ReplState.state == Blockly.ReplMgr.rsState.CONNECTED) {
+      Blockly.ReplMgr.loadExtensions();
+    }
+  }-*/;
 }

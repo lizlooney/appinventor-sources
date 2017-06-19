@@ -1,5 +1,5 @@
 // -*- mode: java; c-basic-offset: 2; -*-
-// Copyright © 2016 Massachusetts Institute of Technology. All rights reserved.
+// Copyright © 2016-2017 Massachusetts Institute of Technology. All rights reserved.
 
 /**
  * @license
@@ -61,7 +61,8 @@ Blockly.BlockSvg.prototype.onMouseDown_ = (function(func) {
   } else {
     var wrappedFunc = function(e){
       var workspace = this.getTopWorkspace();
-      if (workspace && workspace.getParentSvg() && workspace.getParentSvg().parentNode) {
+      if (workspace && workspace.getParentSvg() && workspace.getParentSvg().parentNode &&
+          typeof workspace.getParentSvg().parentNode.focus === 'function') {  // Firefox 49 doesn't have focus function on SVG elements
         workspace.getParentSvg().parentNode.focus();
       }
       if (Blockly.FieldFlydown.openFieldFlydown_) {
@@ -74,7 +75,10 @@ Blockly.BlockSvg.prototype.onMouseDown_ = (function(func) {
       var xy = goog.style.getPageOffset(this.svgGroup_);
       this.startX = xy.x;
       this.startY = xy.y;
-      this.getTopWorkspace().getParentSvg().parentNode.focus();
+      if (workspace && workspace.getParentSvg() && workspace.getParentSvg().parentNode &&
+        typeof workspace.getParentSvg().parentNode.focus === 'function') {  // Firefox 49 doesn't have focus function on SVG elements
+        workspace.getParentSvg().parentNode.focus();
+      }
       return retval;
     };
     wrappedFunc.isWrapped = true;
@@ -128,9 +132,6 @@ Blockly.BlockSvg.prototype.onMouseUp_ = (function(func) {
         if (! Blockly.Instrument.avoidRenderWorkspaceInMouseUp) {
           Blockly.mainWorkspace.render();
         }
-        if (this.workspace && this.workspace.getWarningHandler()) {
-          this.workspace.getWarningHandler().checkAllBlocksForWarningsAndErrors();
-        }
         var stop = new Date().getTime();
         Blockly.Instrument.stats.totalTime = stop - start;
         Blockly.Instrument.displayStats('onMouseUp');
@@ -163,12 +164,9 @@ Blockly.BlockSvg.prototype.setErrorIconText = function(text) {
       changedState = true;
     }
   }
-  if (this.rendered) {
-    this.render();
-    if (changedState) {
-      // Adding or removing a warning icon will cause the block to change shape.
-      this.bumpNeighbours_();
-    }
+  if (this.rendered && changedState) {
+    // Adding or removing a warning icon will cause the block to change shape so we need to re-render.
+    this.workspace.requestRender(this);
   }
 };
 
