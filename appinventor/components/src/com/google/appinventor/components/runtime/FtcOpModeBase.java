@@ -13,7 +13,7 @@ import com.google.appinventor.components.annotations.SimpleProperty;
 import com.google.appinventor.components.common.PropertyTypeConstants;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpModeMeta.Flavor;
+import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta.Flavor;
 
 /**
  * A base class for components for operation modes for an FTC robot.

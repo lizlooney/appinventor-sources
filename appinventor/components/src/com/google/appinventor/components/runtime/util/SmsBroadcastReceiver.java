@@ -13,6 +13,7 @@ package com.google.appinventor.components.runtime.util;
 import java.util.List;
 
 import com.google.appinventor.components.common.ComponentConstants;
+import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.Texting;
 import com.google.appinventor.components.runtime.ReplForm;
 
@@ -208,7 +209,7 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
 
     // Will the activity name always be "Screen1"?   If not, we need to revise this
     try {
-      String classname = packageName + ".Screen1";
+      String classname = packageName + "." + Form.SCREEN1;
       newIntent = new Intent(context, Class.forName(classname));
       newIntent.setAction(Intent.ACTION_MAIN);
       newIntent.addCategory(Intent.CATEGORY_LAUNCHER);

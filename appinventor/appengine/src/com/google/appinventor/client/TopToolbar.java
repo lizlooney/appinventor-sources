@@ -56,6 +56,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.qualcomm.ftcrobotcontroller.BuildConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -777,7 +778,7 @@ public class TopToolbar extends Composite {
       String html = MESSAGES.gitBuildId(GitBuildId.getDate(), GitBuildId.getVersion()) +
       // FIRST Tech Challenge: Different message in About box.
           "<BR/><BR/><b>This version of MIT App Inventor contains support for<BR/>" +
-          "FIRST\u00AE Tech Challenge</b>" +
+          "FIRST\u00AE Tech Challenge Robot Controller version " + BuildConfig.VERSION_NAME + ".</b>" +
           "<BR/><BR/>No Companion Available.";
       /*
           "<BR/>Use Companion: " + BlocklyPanel.getCompVersion();

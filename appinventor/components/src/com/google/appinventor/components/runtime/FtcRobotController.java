@@ -19,18 +19,16 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.collect.Lists;
 import com.google.appinventor.components.runtime.ftc.FtcRobotControllerActivity;
 import com.google.appinventor.components.runtime.util.ErrorMessages;
-import com.google.appinventor.components.runtime.util.OnInitializeListener;
-import com.google.appinventor.components.runtime.util.SdkLevel;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
-import com.qualcomm.robotcore.eventloop.opmode.OpModeMeta;
-import com.qualcomm.robotcore.eventloop.opmode.OpModeMeta.Flavor;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.util.TypeConversion;
 import com.qualcomm.robotcore.util.Version;
+import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
+import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta.Flavor;
 
 import android.content.Context;
 import android.content.Intent;
@@ -82,15 +80,13 @@ import java.util.List;
   "FtcGsonExtras.jar," +
   "FtcHardware.jar," +
   "FtcInspection.jar," +
-  "FtcModernRobotics.jar," +
+  "FtcJavac.jar," +
   "FtcRobotCore.jar," +
   "FtcSupportAnnotations.jar," +
   "FtcVuforia.jar," +
   "FtcWirelessP2p.jar")
-public final class FtcRobotController extends AndroidViewComponent implements OnInitializeListener,
-    ActivityResultListener, OnNewIntentListener, OnCreateOptionsMenuListener,
-    OnOptionsItemSelectedListener, OnPauseListener, OnResumeListener, OnStartListener,
-    OnStopListener, OnDestroyListener, Deleteable, OpModeRegister {
+public final class FtcRobotController extends AndroidViewComponent
+    implements OnDestroyListener, OpModeRegister {
 
   interface GamepadDevice {
     void initGamepadDevice(OpMode opMode);
@@ -126,21 +122,11 @@ public final class FtcRobotController extends AndroidViewComponent implements On
   private final Form form;
   public final LinearLayout view;
 
-  // The request codes for launching other activities.
-  public final int requestCodeConfigureRobot;
-  public final int requestCodeConfigureWifiChannel;
-
   // Backing for properties.
   private volatile int usbScanTimeInSeconds = DEFAULT_USB_SCAN_TIME_IN_SECONDS;
   private volatile String configuration = DEFAULT_CONFIGURATION;
-  private volatile int backgroundColor = Component.COLOR_WHITE;
 
-  /*
-   * wakeLock and ftcRobotControllerActivity are set in onInitialize,
-   * if the device version is Ice Cream Sandwich or later.
-   */
-  private PowerManager.WakeLock wakeLock;
-  private FtcRobotControllerActivity ftcRobotControllerActivity;
+  private final FtcRobotControllerActivity ftcRobotControllerActivity;
 
   public FtcRobotController(ComponentContainer container) {
     super(container.$form());
@@ -155,18 +141,7 @@ public final class FtcRobotController extends AndroidViewComponent implements On
       robotControllers.add(this);
     }
 
-    form.registerForOnInitialize(this);
-    requestCodeConfigureRobot = form.registerForActivityResult(this);
-    requestCodeConfigureWifiChannel = form.registerForActivityResult(this);
-    form.registerForOnNewIntent(this);
-    form.omitExitMenu();
-    form.registerForOnCreateOptionsMenu(this);
-    form.registerForOnOptionsItemSelected(this);
-    form.registerForOnDestroy(this);
-    form.registerForOnPause(this);
-    form.registerForOnResume(this);
-    form.registerForOnStart(this);
-    form.registerForOnStop(this);
+    ftcRobotControllerActivity = (FtcRobotControllerActivity) form;
 
     Width(LENGTH_FILL_PARENT);
     Height(LENGTH_FILL_PARENT);
@@ -179,130 +154,10 @@ public final class FtcRobotController extends AndroidViewComponent implements On
     return view;
   }
 
-  // OnInitializeListener implementation
-
-  @Override
-  public void onInitialize() {
-    int robotControllersCount;
-    synchronized (robotControllersLock) {
-      robotControllersCount = robotControllers.size();
-    }
-    if (robotControllersCount == 1) {
-      if (SdkLevel.getLevel() >= SdkLevel.LEVEL_ICE_CREAM_SANDWICH) {
-        PowerManager powerManager = (PowerManager) form.getSystemService(Context.POWER_SERVICE);
-        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "FtcRobotController");
-        wakeLock.acquire();
-
-        ftcRobotControllerActivity = new FtcRobotControllerActivity(this, form, configuration);
-        view.requestLayout();
-      } else {
-        form.dispatchErrorOccurredEvent(this, "FtcRobotController",
-            ErrorMessages.ERROR_FUNCTIONALITY_NOT_SUPPORTED_WIFI_DIRECT);
-      }
-    } else {
-      form.dispatchErrorOccurredEvent(this, "FtcRobotController",
-          ErrorMessages.ERROR_FTC_TOO_MANY_ROBOT_CONTROLLERS);
-    }
-  }
-
-  // ActivityResultListener implementation
-
-  @Override
-  public void resultReturned(int requestCode, int resultCode, Intent data) {
-    if (requestCode == requestCodeConfigureRobot ||
-        requestCode == requestCodeConfigureWifiChannel) {
-      if (ftcRobotControllerActivity != null) {
-        ftcRobotControllerActivity.onActivityResultAI(requestCode, resultCode, data);
-      }
-    }
-  }
-
-  // OnNewIntentListener implementation
-
-  @Override
-  public void onNewIntent(Intent intent) {
-    if (ftcRobotControllerActivity != null) {
-      ftcRobotControllerActivity.onNewIntentAI(intent);
-    }
-  }
-
-  // OnCreateOptionsMenuListener implementation
-
-  @Override
-  public void onCreateOptionsMenu(Menu menu) {
-    if (ftcRobotControllerActivity != null) {
-      ftcRobotControllerActivity.onCreateOptionsMenu(menu);
-    }
-  }
-
-  // OnOptionsItemSelectedListener implementation
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    if (ftcRobotControllerActivity != null) {
-      return ftcRobotControllerActivity.onOptionsItemSelected(item);
-    }
-    return false;
-  }
-
-  // OnPauseListener implementation
-
-  @Override
-  public void onPause() {
-    if (ftcRobotControllerActivity != null) {
-      ftcRobotControllerActivity.onPause();
-    }
-  }
-
-  // OnResumeListener implementation
-
-  @Override
-  public void onResume() {
-    if (ftcRobotControllerActivity != null) {
-      ftcRobotControllerActivity.onResumeAI();
-    }
-  }
-
-  // OnStartListener implementation
-
-  @Override
-  public void onStart() {
-    if (ftcRobotControllerActivity != null) {
-      ftcRobotControllerActivity.onStartAI();
-    }
-  }
-
-  // OnStopListener implementation
-
-  @Override
-  public void onStop() {
-    if (ftcRobotControllerActivity != null) {
-      ftcRobotControllerActivity.onStopAI();
-    }
-  }
-
   // OnDestroyListener implementation
 
   @Override
   public void onDestroy() {
-    if (ftcRobotControllerActivity != null) {
-      ftcRobotControllerActivity.onDestroyAI();
-    }
-    prepareToDie();
-    synchronized (robotControllersLock) {
-      robotControllers.remove(this);
-    }
-  }
-
-  // Deleteable implementation
-
-  @Override
-  public void onDelete() {
-    if (ftcRobotControllerActivity != null) {
-      ftcRobotControllerActivity.onStopAI();
-      ftcRobotControllerActivity.onDestroyAI();
-    }
-    prepareToDie();
     synchronized (robotControllersLock) {
       robotControllers.remove(this);
     }
@@ -329,6 +184,25 @@ public final class FtcRobotController extends AndroidViewComponent implements On
         opModeManager.register(meta, opModeWrapper.getOpMode());
       }
     }
+  }
+
+  /**
+   * getFtcRobotController is called from FtcRobotControllerActivity.
+   */
+  public static FtcRobotController getFtcRobotController() {
+    FtcRobotController ftcRobotController = null;
+    int robotControllersCount;
+    synchronized (robotControllersLock) {
+      robotControllersCount = robotControllers.size();
+      if (robotControllersCount > 0) {
+        ftcRobotController = robotControllers.get(0);
+      }
+    }
+    if (robotControllersCount > 1) {
+      ftcRobotController.form.dispatchErrorOccurredEvent(ftcRobotController, "FtcRobotController",
+          ErrorMessages.ERROR_FTC_TOO_MANY_ROBOT_CONTROLLERS);
+    }
+    return ftcRobotController;
   }
 
   /**
@@ -389,16 +263,6 @@ public final class FtcRobotController extends AndroidViewComponent implements On
     }
   }
 
-  // Called from FtcRobotControllerActivity.requestRobotSetup
-  public void beforeSetupRobot() {
-    if (usbScanTimeInSeconds > 0) {
-      try {
-        Thread.sleep(usbScanTimeInSeconds * 1000);
-      } catch (InterruptedException e) {
-      }
-    }
-  }
-
   static void activateOpMode(OpMode opMode) {
     activeOpMode = opMode;
     activeHardwareMap = opMode.hardwareMap;
@@ -453,11 +317,6 @@ public final class FtcRobotController extends AndroidViewComponent implements On
   public void Configuration(String configuration) {
     if (!this.configuration.equals(configuration)) {
       this.configuration = configuration;
-      if (!TextUtils.isEmpty(configuration)) {
-        if (ftcRobotControllerActivity != null) {
-          ftcRobotControllerActivity.onConfigurationPropertyChanged(configuration);
-        }
-      }
     }
   }
 
@@ -494,27 +353,20 @@ public final class FtcRobotController extends AndroidViewComponent implements On
   /**
    * BackgroundColor property getter.
    */
+  @Deprecated
   @SimpleProperty(description = "Returns the background color",
       category = PropertyCategory.APPEARANCE)
   public int BackgroundColor() {
-    return backgroundColor;
+    return Component.COLOR_WHITE;
   }
 
   /**
    * BackgroundColor property setter.
    */
+  @Deprecated
   @SimpleProperty(description = "Specifies the background color.")
   public void BackgroundColor(final int argb) {
-    backgroundColor = argb;
-
-    // Update the UI.
-    final View relativeLayout = ftcRobotControllerActivity.getRelativeLayout();
-    relativeLayout.post(new Runnable() {
-      public void run() {
-        relativeLayout.setBackgroundColor(argb);
-        relativeLayout.invalidate();
-      }
-    });
+    // Nothing to do now.
   }
 
   @SimpleFunction(description = "Adds a text data point to the telemetry for the active op mode.")
@@ -936,14 +788,5 @@ public final class FtcRobotController extends AndroidViewComponent implements On
       height = LENGTH_FILL_PARENT;
     }
     super.Height(height);
-  }
-
-  private void prepareToDie() {
-    form.unregisterForActivityResult(this);
-
-    if (wakeLock != null) {
-      wakeLock.release();
-      wakeLock = null;
-    }
   }
 }
