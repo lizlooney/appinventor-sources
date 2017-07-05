@@ -29,13 +29,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
-// Modified for App Inventor by Liz Looney
-// Copyright 2011-2017 MIT, All rights reserved
-// Released under the Apache License, Version 2.0
-// http://www.apache.org/licenses/LICENSE-2.0
-
-package com.google.appinventor.components.runtime.ftc;
-//package org.firstinspires.ftc.robotcontroller.internal;
+package org.firstinspires.ftc.robotcontroller.internal;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -61,7 +55,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.appinventor.components.runtime.FtcRobotController; // Added for App Inventor
 import com.google.blocks.ftcrobotcontroller.BlocksActivity;
 import com.google.blocks.ftcrobotcontroller.ProgrammingModeActivity;
 import com.google.blocks.ftcrobotcontroller.ProgrammingModeControllerImpl;
@@ -83,8 +76,7 @@ import com.qualcomm.ftccommon.configuration.EditParameters;
 import com.qualcomm.ftccommon.configuration.FtcLoadFileActivity;
 import com.qualcomm.ftccommon.configuration.RobotConfigFile;
 import com.qualcomm.ftccommon.configuration.RobotConfigFileManager;
-// Removed for App Inventor
-//import com.qualcomm.ftcrobotcontroller.R;
+import com.qualcomm.ftcrobotcontroller.R;
 import com.qualcomm.hardware.HardwareFactory;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
 import com.qualcomm.robotcore.hardware.configuration.LynxConstants;
@@ -508,7 +500,6 @@ public class FtcRobotControllerActivity extends Activity
     }
     else if (id == R.id.action_exit_app) {
       finish();
-      System.exit(0); // Added for App Inventor.
       return true;
     }
 
@@ -571,7 +562,6 @@ public class FtcRobotControllerActivity extends Activity
     FtcEventLoopIdle idleLoop = new FtcEventLoopIdle(factory, callback, this, programmingModeController);
 
     controllerService.setCallback(callback);
-    aiWaitForScan(); // Added for App Inventor
     controllerService.setupRobot(eventLoop, idleLoop);
 
     passReceivedUsbAttachmentsToEventLoop();
@@ -612,21 +602,6 @@ public class FtcRobotControllerActivity extends Activity
     @Override public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
       if (key.equals(context.getString(R.string.pref_app_theme))) {
         ThemedActivity.restartForAppThemeChange(getTag(), getString(R.string.appThemeChangeRestartNotifyRC));
-      }
-    }
-  }
-
-  // Added for App Inventor
-
-  private void aiWaitForScan() {
-    FtcRobotController aiFtcRobotController = FtcRobotController.getFtcRobotController();
-    if (aiFtcRobotController != null) {
-      int usbScanTimeInSeconds = aiFtcRobotController.UsbScanTimeInSeconds();
-      if (usbScanTimeInSeconds > 0) {
-        try {
-          Thread.sleep(usbScanTimeInSeconds * 1000);
-        } catch (InterruptedException e) {
-        }
       }
     }
   }

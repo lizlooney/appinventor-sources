@@ -770,6 +770,9 @@ public final class Compiler {
     if (!compiler.writeAndroidManifest(manifestFile)) {
       return false;
     }
+    // Added for FIRST Tech Challenge. begin
+    //copyFile(manifestFile.getAbsolutePath(), "/usr/local/google/home/lizlooney/ai/HeyLiz/AndroidManifest.xml");
+    // Added for FIRST Tech Challenge. end
     setProgress(20);
 
     // Insert native libraries

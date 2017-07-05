@@ -73,6 +73,7 @@ import com.google.appinventor.components.runtime.util.OnInitializeListener;
 import com.google.appinventor.components.runtime.util.SdkLevel;
 import com.google.appinventor.components.runtime.util.ScreenDensityUtil;
 import com.google.appinventor.components.runtime.util.ViewUtil;
+import com.qualcomm.ftccommon.configuration.RobotConfigFile; // Added for FIRST Tech Challenge.
 import com.qualcomm.ftcrobotcontroller.BuildConfig; // Added for FIRST Tech Challenge.
 
 /**
@@ -242,7 +243,8 @@ public class Form extends FtcRobotControllerActivity // Changed for FIRST Tech C
   @Override
   public void onCreate(Bundle icicle) {
     // Called when the activity is first created
-    /* Removed for FIRST Tech Challenge.
+    /* Moved to the end for FIRST Tech Challenge. The application components must be added to the
+     * form before calling super.onCreate.
     super.onCreate(icicle);
     */
 
@@ -283,7 +285,9 @@ public class Form extends FtcRobotControllerActivity // Changed for FIRST Tech C
       _initialized = true;
       onCreateFinish();
     }
+    com.google.appinventor.components.runtime.ftc.R.init(this); // Added for FIRST Tech Challenge.
     super.onCreate(icicle); // Added for FIRST Tech Challenge.
+    ftcSetConfiguration(); // Added for FIRST Tech Challenge.
   }
 
   /*
@@ -480,11 +484,6 @@ public class Form extends FtcRobotControllerActivity // Changed for FIRST Tech C
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     Log.i(LOG_TAG, "Form " + formName + " got onActivityResult, requestCode = " +
         requestCode + ", resultCode = " + resultCode);
-    // Added for FIRST Tech Challenge.
-    if (isFtcRobotController()) {
-      super.onActivityResult(requestCode, resultCode, data);
-      return;
-    }
     if (requestCode == SWITCH_FORM_REQUEST_CODE) {
       // Assume this is a multiple screen application, and a secondary
       // screen has closed.  Process the result as a JSON-encoded string.
@@ -506,6 +505,7 @@ public class Form extends FtcRobotControllerActivity // Changed for FIRST Tech C
         component.resultReturned(requestCode, resultCode, data);
       }
     }
+    super.onActivityResult(requestCode, resultCode, data); // Added for FIRST Tech Challenge.
   }
 
   // functionName is a string to include in the error message that will be shown
@@ -2088,6 +2088,27 @@ public class Form extends FtcRobotControllerActivity // Changed for FIRST Tech C
       imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     } else {
       dispatchErrorOccurredEvent(this, "HideKeyboard", ErrorMessages.ERROR_NO_FOCUSABLE_VIEW_FOUND);
+    }
+  }
+
+  // Added for FIRST Tech Challenge.
+
+  @Override
+  public void setContentView(int layoutId) {
+    // Inflate the layout into the FtcRobotController component's view.
+    FtcRobotController aiFtcRobotController = FtcRobotController.getFtcRobotController();
+    if (aiFtcRobotController != null) {
+      getLayoutInflater().inflate(layoutId, aiFtcRobotController.view, true);
+    }
+  }
+
+  private void ftcSetConfiguration() {
+    FtcRobotController aiFtcRobotController = FtcRobotController.getFtcRobotController();
+    if (aiFtcRobotController != null) {
+      String configuration = aiFtcRobotController.Configuration();
+      if (!configuration.isEmpty()) {
+        cfgFileMgr.setActiveConfig(new RobotConfigFile(cfgFileMgr, configuration));
+      }
     }
   }
 }

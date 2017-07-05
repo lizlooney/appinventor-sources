@@ -116,7 +116,7 @@ public class R {
   static Strings string;
   static Xmls xml;
 
-  static void init(Context context) {
+  public static void init(Context context) {
     Resources resources = context.getResources();
     String packageName = context.getPackageName();
     id = new Ids(resources, packageName);
