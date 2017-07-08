@@ -100,6 +100,14 @@ public class YoungAndroidPalettePanel extends Composite implements SimplePalette
   }
 
   private static boolean showCategory(ComponentCategory category) {
+    // FIRST Tech Challenge: Hide user interface categories.
+    if (category == ComponentCategory.USERINTERFACE ||
+        category == ComponentCategory.LAYOUT ||
+        category == ComponentCategory.ANIMATION ||
+        category == ComponentCategory.SOCIAL) {
+      return false;
+    }
+
     if (category == ComponentCategory.UNINITIALIZED) {
       return false;
     }

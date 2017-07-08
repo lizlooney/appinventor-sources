@@ -296,6 +296,11 @@ public abstract class MockComponent extends Composite implements PropertyChangeL
 
       @Override
       public boolean canDelete() {
+        // FIRST Tech Challenge: don't allow FtcRobotController or FtcGamepad components to be deleted.
+        if (getType().equals(MockFtcRobotController.TYPE) ||
+            getType().equals(MockFtcGamepad.TYPE)) {
+          return false;
+        }
         return !isForm();
       }
 

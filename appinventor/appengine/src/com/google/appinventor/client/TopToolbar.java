@@ -56,7 +56,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.qualcomm.ftcrobotcontroller.BuildConfig;
+import com.qualcomm.ftcrobotcontroller.BuildConfig; // Added for FIRST Tech Challenge.
 
 import java.util.ArrayList;
 import java.util.List;

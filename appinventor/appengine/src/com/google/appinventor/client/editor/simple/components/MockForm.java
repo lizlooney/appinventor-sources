@@ -20,6 +20,7 @@ import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroid
 import com.google.appinventor.client.output.OdeLog;
 import com.google.appinventor.client.properties.BadPropertyEditorException;
 import com.google.appinventor.client.widgets.properties.EditableProperties;
+import com.google.appinventor.client.widgets.properties.EditableProperty;
 import com.google.appinventor.shared.settings.SettingsConstants;
 import com.google.gwt.core.client.Duration;
 import com.google.gwt.dom.client.DivElement;
@@ -37,6 +38,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.TreeItem;
+import com.qualcomm.ftcrobotcontroller.BuildConfig;
 
 /**
  * Mock Form component. This implementation provides two main preview sizes corresponding to
@@ -150,7 +152,9 @@ public final class MockForm extends MockContainer {
   // the designer we use sizes of GWT widgets, and not the sizes of the actual Android widgets.
 
   private static final int PHONE_PORTRAIT_WIDTH = 320;
-  private static final int PHONE_PORTRAIT_HEIGHT = 470 + 35; // Adds 35 for the navigation bar
+  // Modified for FIRST Tech Challenge
+  private static final int PHONE_PORTRAIT_HEIGHT = 470;
+  //private static final int PHONE_PORTRAIT_HEIGHT = 470 + 35; // Adds 35 for the navigation bar
   private static final int PHONE_LANDSCAPE_WIDTH = PHONE_PORTRAIT_HEIGHT;
   private static final int PHONE_LANDSCAPE_HEIGHT = PHONE_PORTRAIT_WIDTH;
 
@@ -227,16 +231,19 @@ public final class MockForm extends MockContainer {
     formWidget.setStylePrimaryName("ode-SimpleMockForm");
 
     // Initialize mock form UI by adding the phone bar and title bar.
-    formWidget.add(new PhoneBar());
+    // Removed for FIRST Tech Challenge.
+    //formWidget.add(new PhoneBar());
     titleBar = new TitleBar();
-    formWidget.add(titleBar);
+    // Removed for FIRST Tech Challenge.
+    //formWidget.add(titleBar);
 
     // Put a ScrollPanel around the rootPanel.
     scrollPanel = new ScrollPanel(rootPanel);
     formWidget.add(scrollPanel);
 
     //Add navigation bar at the bottom of the viewer.
-    formWidget.add(new NavigationBar());
+    // Removed for FIRST Tech Challenge.
+    //formWidget.add(new NavigationBar());
 
     initComponent(formWidget);
     
@@ -279,7 +286,9 @@ public final class MockForm extends MockContainer {
   private void resizePanel(int newWidth, int newHeight){
     screenWidth = newWidth;
     screenHeight = newHeight;
-    usableScreenHeight = screenHeight - PhoneBar.HEIGHT - TitleBar.HEIGHT - NavigationBar.HEIGHT;
+    // Modified for FIRST Tech Challenge.
+    usableScreenHeight = screenHeight;
+    //usableScreenHeight = screenHeight - PhoneBar.HEIGHT - TitleBar.HEIGHT - NavigationBar.HEIGHT;
 
 
     rootPanel.setPixelSize(screenWidth, usableScreenHeight);
@@ -297,6 +306,8 @@ public final class MockForm extends MockContainer {
    * Returns the width of a vertical scroll bar, calculating it if necessary.
    */
   private static int getVerticalScrollbarWidth() {
+    // Removed for FIRST Tech Challenge.
+    /*
     // We only calculate the vertical scroll bar width once, then we store it in the static field
     // verticalScrollbarWidth. If the field is non-zero, we don't need to calculate it again.
     if (verticalScrollbarWidth == 0) {
@@ -354,6 +365,7 @@ public final class MockForm extends MockContainer {
       // Calculate the width of the vertical scrollbar by subtracting the two widths.
       verticalScrollbarWidth = widthWithoutScrollbar - widthWithScrollbar;
     }
+    */
 
     return verticalScrollbarWidth;
   }
@@ -395,6 +407,26 @@ public final class MockForm extends MockContainer {
 
   @Override
   protected boolean isPropertyVisible(String propertyName) {
+    // FIRST Tech Challenge: Hide some properties.
+    if (propertyName.equals("AboutScreen") ||
+        propertyName.equals("AlignHorizontal") ||
+        propertyName.equals("AlignVertical") ||
+        propertyName.equals("AppName") ||
+        propertyName.equals("BackgroundColor") ||
+        propertyName.equals("BackgroundImage") ||
+        propertyName.equals("CloseScreenAnimation") ||
+        propertyName.equals("Icon") ||
+        propertyName.equals("OpenScreenAnimation") ||
+        propertyName.equals("ScreenOrientation") ||
+        propertyName.equals("Scrollable") ||
+        propertyName.equals("ShowStatusBar") ||
+        propertyName.equals("Sizing") ||
+        propertyName.equals("Title") ||
+        propertyName.equals("TitleVisible") ||
+        propertyName.equals("TutorialURL")) {
+      return false;
+    }
+
     if (propertyName.equals(PROPERTY_NAME_WIDTH) ||
         propertyName.equals(PROPERTY_NAME_HEIGHT)) {
       return false;
@@ -437,6 +469,16 @@ public final class MockForm extends MockContainer {
 
     return super.isPropertyVisible(propertyName);
   }
+
+  // FIRST Tech Challenge: Some properties cannot be changed.
+  @Override
+  public void changeProperty(String name, String value) {
+    if (name.equals("VersionCode") || name.equals("VersionName")) {
+      return;
+    }
+    super.changeProperty(name, value);
+  }
+
 
   /*
    * Sets the form's BackgroundColor property to a new value.
@@ -807,6 +849,15 @@ public final class MockForm extends MockContainer {
   @Override
   public void onPropertyChange(String propertyName, String newValue) {
     super.onPropertyChange(propertyName, newValue);
+
+    // FIRST Tech Challenge: Don't let VersionCode or VersionName be changed.
+    if (propertyName.equals("VersionCode")) {
+      EditableProperty editableProperty = properties.getProperty(propertyName);
+      editableProperty.setValue("" + BuildConfig.VERSION_CODE);
+    } else if (propertyName.equals("VersionName")) {
+      EditableProperty editableProperty = properties.getProperty(propertyName);
+      editableProperty.setValue(BuildConfig.VERSION_NAME);
+    }
 
     // Apply changed properties to the mock component
     if (propertyName.equals(PROPERTY_NAME_BACKGROUNDCOLOR)) {

@@ -55,7 +55,8 @@ import java.util.List;
  */
 @DesignerComponent(version = YaVersion.FTC_ROBOT_CONTROLLER_COMPONENT_VERSION,
     description = "The primary FTC Robot Controller component",
-    category = ComponentCategory.FIRSTTECHCHALLENGE)
+    category = ComponentCategory.FIRSTTECHCHALLENGE,
+    showOnPalette = false)
 @SimpleObject
 @UsesPermissions(permissionNames =
                  "android.permission.ACCESS_NETWORK_STATE, " +
