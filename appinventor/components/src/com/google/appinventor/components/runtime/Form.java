@@ -98,7 +98,7 @@ import com.qualcomm.ftcrobotcontroller.BuildConfig; // Added for FIRST Tech Chal
 @SimpleObject
 @UsesPermissions(permissionNames = "android.permission.INTERNET,android.permission.ACCESS_WIFI_STATE," +
     "android.permission.ACCESS_NETWORK_STATE")
-public class Form extends FtcRobotControllerActivity // Changed for FIRST Tech Challenge.
+public class Form extends FtcRobotControllerActivity // Modified for FIRST Tech Challenge.
   implements Component, ComponentContainer, HandlesEventDispatching,
   OnGlobalLayoutListener {
 
@@ -1060,7 +1060,7 @@ public class Form extends FtcRobotControllerActivity // Changed for FIRST Tech C
    * @param show boolean
    */
   @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_BOOLEAN,
-      defaultValue = "True")
+      defaultValue = "False") // Modified for FIRST Tech Challenge.
   @SimpleProperty(category = PropertyCategory.APPEARANCE)
   public void TitleVisible(boolean show) {
     if (show != showTitle) {
@@ -1093,7 +1093,7 @@ public class Form extends FtcRobotControllerActivity // Changed for FIRST Tech C
    * @param show boolean
    */
   @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_BOOLEAN,
-      defaultValue = "True")
+      defaultValue = "False") // Changed for FIRST Tech Challenge.
   @SimpleProperty(category = PropertyCategory.APPEARANCE)
   public void ShowStatusBar(boolean show) {
     if (show != showStatusBar) {
