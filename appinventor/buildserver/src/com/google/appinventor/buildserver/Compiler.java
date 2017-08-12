@@ -771,7 +771,12 @@ public final class Compiler {
       return false;
     }
     // Added for FIRST Tech Challenge. begin
-    //copyFile(manifestFile.getAbsolutePath(), "/usr/local/google/home/lizlooney/ai/HeyLiz/AndroidManifest.xml");
+    // Save the AndroidManifest.xml so it can be compared with
+    // appinventor/lib/ftc/gen/AndroidManifest.xml.
+    if ("lizlooney".equals(System.getProperty("user.name"))) {
+      copyFile(manifestFile.getAbsolutePath(),
+          System.getProperty("user.home") + "/ai/Check/AndroidManifest.xml");
+    }
     // Added for FIRST Tech Challenge. end
     setProgress(20);
 

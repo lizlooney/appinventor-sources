@@ -52,6 +52,8 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+// Removed for App Inventor
+//import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -86,6 +88,8 @@ import com.qualcomm.ftccommon.configuration.RobotConfigFileManager;
 // Removed for App Inventor
 //import com.qualcomm.ftcrobotcontroller.R;
 import com.qualcomm.hardware.HardwareFactory;
+import com.qualcomm.robotcore.eventloop.EventLoopManager;
+import com.qualcomm.robotcore.eventloop.opmode.FtcRobotControllerServiceState;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
 import com.qualcomm.robotcore.hardware.configuration.LynxConstants;
 import com.qualcomm.robotcore.hardware.configuration.Utility;
@@ -111,6 +115,7 @@ import org.firstinspires.ftc.robotcore.internal.ui.LocalByRefIntentExtraHolder;
 import org.firstinspires.ftc.robotcore.internal.ui.ThemedActivity;
 import org.firstinspires.ftc.robotcore.internal.ui.UILocation;
 import org.firstinspires.ftc.robotcore.internal.webserver.RobotControllerWebInfo;
+import org.firstinspires.ftc.robotcore.internal.webserver.WebServer;
 import org.firstinspires.inspection.RcInspectionActivity;
 
 import java.util.Queue;
@@ -221,6 +226,9 @@ public class FtcRobotControllerActivity extends Activity
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     RobotLog.vv(TAG, "onCreate()");
+    R.init(this); // Added for FIRST Tech Challenge.
+  } // Added for App Inventor.
+  protected void aiOnCreateFinish() { // Added for App Inventor.
     ThemedActivity.appAppThemeToActivity(getTag(), this); // do this way instead of inherit to help AppInventor
 
     Assert.assertTrue(FtcRobotControllerWatchdogService.isFtcRobotControllerActivity(AppUtil.getInstance().getRootActivity()));
@@ -535,13 +543,25 @@ public class FtcRobotControllerActivity extends Activity
     }
   }
 
-  public void onServiceBind(FtcRobotControllerService service) {
+  public void onServiceBind(final FtcRobotControllerService service) {
     RobotLog.vv(FtcRobotControllerService.TAG, "%s.controllerService=bound", TAG);
     controllerService = service;
     updateUI.setControllerService(controllerService);
 
     updateUIAndRequestRobotSetup();
-    programmingWebHandlers.setWebServer(service.getWebServer());
+    programmingWebHandlers.setState(new FtcRobotControllerServiceState() {
+      // Removed for App Inventor
+      //@NonNull
+      @Override
+      public WebServer getWebServer() {
+        return service.getWebServer();
+      }
+
+      @Override
+      public EventLoopManager getEventLoopManager() {
+        return service.getRobot().eventLoopManager;
+      }
+    });
   }
 
   private void updateUIAndRequestRobotSetup() {
@@ -567,8 +587,9 @@ public class FtcRobotControllerActivity extends Activity
     }
     factory = hardwareFactory;
 
-    eventLoop = new FtcEventLoop(factory, createOpModeRegister(), callback, this, programmingModeController);
-    FtcEventLoopIdle idleLoop = new FtcEventLoopIdle(factory, callback, this, programmingModeController);
+    OpModeRegister userOpModeRegister = createOpModeRegister();
+    eventLoop = new FtcEventLoop(factory, userOpModeRegister, callback, this, programmingModeController);
+    FtcEventLoopIdle idleLoop = new FtcEventLoopIdle(factory, userOpModeRegister, callback, this, programmingModeController);
 
     controllerService.setCallback(callback);
     aiWaitForScan(); // Added for App Inventor

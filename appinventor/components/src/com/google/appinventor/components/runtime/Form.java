@@ -243,10 +243,7 @@ public class Form extends FtcRobotControllerActivity // Modified for FIRST Tech 
   @Override
   public void onCreate(Bundle icicle) {
     // Called when the activity is first created
-    /* Moved to the end for FIRST Tech Challenge. The application components must be added to the
-     * form before calling super.onCreate.
     super.onCreate(icicle);
-    */
 
     // Figure out the name of this form.
     String className = getClass().getName();
@@ -285,9 +282,6 @@ public class Form extends FtcRobotControllerActivity // Modified for FIRST Tech 
       _initialized = true;
       onCreateFinish();
     }
-    com.google.appinventor.components.runtime.ftc.R.init(this); // Added for FIRST Tech Challenge.
-    super.onCreate(icicle); // Added for FIRST Tech Challenge.
-    ftcSetConfiguration(); // Added for FIRST Tech Challenge.
   }
 
   /*
@@ -332,12 +326,16 @@ public class Form extends FtcRobotControllerActivity // Modified for FIRST Tech 
     // Add application components to the form
     $define();
 
+    aiOnCreateFinish(); // Added for FIRST Tech Challenge.
+
     // Special case for Event.Initialize(): all other initialize events are triggered after
     // completing the constructor. This doesn't work for Android apps though because this method
     // is called after the constructor completes and therefore the Initialize event would run
     // before initialization finishes. Instead the compiler suppresses the invocation of the
     // event and leaves it up to the library implementation.
     Initialize();
+
+    ftcSetConfiguration(); // Added for FIRST Tech Challenge.
   }
 
   private void defaultPropertyValues() {
