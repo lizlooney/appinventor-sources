@@ -65,8 +65,8 @@
       <fileset dir="${src.dir}/${buildserver.pkg}/resources" includes="*"/>
       <fileset dir="${build.dir}/components"
                includes="AndroidRuntime.jar,Barcode.jar,simple_components.txt,simple_components_build_info.json,simple_components.json"/>
-      <!-- FIRST Tech Challenge: Copy lib/ftc/ftc.debug.keystore. -->
-      <fileset dir="${lib.dir}/ftc" includes="ftc.debug.keystore"/>
+      <!-- FIRST Tech Challenge: Copy lib/ftc/libs/ftc.debug.keystore. -->
+      <fileset dir="${lib.dir}/ftc/libs" includes="ftc.debug.keystore"/>
     </copy>
     <copy toFile="${classes.files.dir}/kawa.jar" file="${lib.dir}/kawa/kawa-1.11-modified.jar" />
     <copy toFile="${classes.files.dir}/acra-4.4.0.jar" file="${lib.dir}/acra/acra-4.4.0.jar" />
@@ -78,14 +78,14 @@
     <copy toFile="${classes.files.dir}/FtcAnalytics.jar" file="${build.dir}/components/ftc/Analytics/classes.jar" />
     <copy toFile="${classes.files.dir}/FtcBlocks.jar" file="${build.dir}/components/ftc/Blocks/classes.jar" />
     <copy toFile="${classes.files.dir}/FtcCommon.jar" file="${build.dir}/components/ftc/FtcCommon/classes.jar" />
-    <copy toFile="${classes.files.dir}/FtcGson.jar" file="${lib.dir}/ftc/gson-2.8.0.jar" />
-    <copy toFile="${classes.files.dir}/FtcGsonExtras.jar" file="${lib.dir}/ftc/gson-extras-0.2.1.jar" />
+    <copy toFile="${classes.files.dir}/FtcGson.jar" file="${lib.dir}/ftc/libs/gson-2.8.0.jar" />
+    <copy toFile="${classes.files.dir}/FtcGsonExtras.jar" file="${lib.dir}/ftc/libs/gson-extras-0.2.1.jar" />
     <copy toFile="${classes.files.dir}/FtcHardware.jar" file="${build.dir}/components/ftc/Hardware/classes.jar" />
     <copy toFile="${classes.files.dir}/FtcInspection.jar" file="${build.dir}/components/ftc/Inspection/classes.jar" />
-    <copy toFile="${classes.files.dir}/FtcModernRobotics.jar" file="${build.dir}/components/ftc/ModernRobotics/classes.jar" />
+    <copy toFile="${classes.files.dir}/FtcJavac.jar" file="${lib.dir}/ftc/libs/javac.jar" />
     <copy toFile="${classes.files.dir}/FtcRobotCore.jar" file="${build.dir}/components/ftc/RobotCore/classes.jar" />
-    <copy toFile="${classes.files.dir}/FtcSupportAnnotations.jar" file="${lib.dir}/ftc/support-annotations-23.4.0.jar" />
-    <copy toFile="${classes.files.dir}/FtcVuforia.jar" file="${lib.dir}/ftc/Vuforia.jar" />
+    <copy toFile="${classes.files.dir}/FtcSupportAnnotations.jar" file="${lib.dir}/ftc/libs/support-annotations-23.4.0.jar" />
+    <copy toFile="${classes.files.dir}/FtcVuforia.jar" file="${lib.dir}/ftc/libs/Vuforia.jar" />
     <copy toFile="${classes.files.dir}/FtcWirelessP2p.jar" file="${build.dir}/components/ftc/WirelessP2p/classes.jar" />
     <copy toFile="${classes.files.dir}/fusiontables.jar" file="${lib.dir}/fusiontables/fusiontables.jar" />
     <copy toFile="${classes.files.dir}/firebase.jar" file="${lib.dir}/firebase/firebase-client-android-2.5.0.jar" />
@@ -346,18 +346,6 @@
       <arg value="${build.dir}/components/ftc/Inspection/res/values/values.xml" />
       <arg value="${build.dir}/components/ftc/Blocks/res/values/values.xml" />
     </java>
-    <mkdir dir="${ftc.res.dir}/values-v11" />
-    <java jar="${local.build.dir}/MergeFtcRes.jar" fork="true" failonerror="true">
-      <arg value="${ftc.res.dir}/values-v11/values-v11.xml" />
-      <arg value="${build.dir}/components/ftc/RobotCore/res/values-v11/values-v11.xml" />
-      <arg value="${build.dir}/components/ftc/FtcCommon/res/values-v11/values-v11.xml" />
-    </java>
-    <mkdir dir="${ftc.res.dir}/values-v14" />
-    <java jar="${local.build.dir}/MergeFtcRes.jar" fork="true" failonerror="true">
-      <arg value="${ftc.res.dir}/values-v14/values-v14.xml" />
-      <arg value="${build.dir}/components/ftc/RobotCore/res/values-v14/values-v14.xml" />
-      <arg value="${build.dir}/components/ftc/FtcCommon/res/values-v14/values-v14.xml" />
-    </java>
 
     <!-- Copy resources from ftc aar files (RobotCore, Hardware, FtcCommon,
          Inspection, and Blocks), but don't copy any files that also exist in
@@ -474,7 +462,7 @@
     <property name="ftc.libs.dir" location="${class.dir}/BuildServer/files/ftc/libs" />
     <mkdir dir="${ftc.libs.dir}/armeabi-v7a" />
     <copy todir="${ftc.libs.dir}/armeabi-v7a" flatten="false">
-      <fileset dir="${lib.dir}/ftc/armeabi-v7a" includes="**/*" />
+      <fileset dir="${lib.dir}/ftc/libs/armeabi-v7a" includes="**/*" />
     </copy>
   </target>
 

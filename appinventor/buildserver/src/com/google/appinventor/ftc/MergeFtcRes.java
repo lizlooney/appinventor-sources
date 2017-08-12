@@ -1,7 +1,10 @@
 package com.google.appinventor.ftc;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -94,6 +97,11 @@ public class MergeFtcRes {
         String tagName = element.getNodeName();
         String name = element.getAttribute("name");
 
+        if (skipNode(tagName, name)) {
+          //System.out.println("Skipping " + tagName + " named \"" + name + "\"");
+          continue;
+        }
+
         Map<String, Node> nameToNode = items.get(tagName);
         if (nameToNode == null) {
           nameToNode = new TreeMap<String, Node>();
@@ -103,9 +111,34 @@ public class MergeFtcRes {
           nameToNode.put(name, node);
           //System.out.println("Adding " + tagName + " named \"" + name + "\"");
         } else {
-          //System.out.println("Skipping " + tagName + " named \"" + name + "\"");
+          //System.out.println("Skipping duplicate " + tagName + " named \"" + name + "\"");
         }
       }
     }
+  }
+
+  private static Map<String, Set<String>> nodesToSkip = new HashMap<String, Set<String>>();
+  static {
+    Set<String> set = new HashSet<String>();
+    set.add("app_name");
+    set.add("packageName");
+    set.add("toastRestartingRobot");
+    nodesToSkip.put("string", set);
+
+    set = new HashSet<String>();
+    set.add("app_theme_ids");
+    nodesToSkip.put("integer-array", set);
+
+    set = new HashSet<String>();
+    set.add("activity_horizontal_margin");
+    set.add("activity_vertical_margin");
+    nodesToSkip.put("dimen", set);
+  }
+
+  private static boolean skipNode(String tagName, String name) {
+    Set<String> set = nodesToSkip.get(tagName);
+    return (set != null)
+        ? set.contains(name)
+        : false;
   }
 }

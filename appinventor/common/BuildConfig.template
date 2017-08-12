@@ -1,0 +1,21 @@
+// -*- mode: java; c-basic-offset: 2; -*-
+// Copyright 2011-2017 MIT, All rights reserved
+// Released under the Apache License, Version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0
+
+package com.qualcomm.ftcrobotcontroller;
+
+/**
+ * Provides constants related to FIRST Tech Challenge.
+ */
+public final class BuildConfig {
+  // Constants extracted from FtcRobotController-release.apk.
+  public static final String APPLICATION_ID = "@ftc.application.id@";
+  public static final int VERSION_CODE = @ftc.version.code@;
+  public static final String VERSION_NAME = "@ftc.version.name@";
+  public static final int SDK_VERSION = @ftc.sdk.version@;
+  public static final int TARGET_SDK_VERSION = @ftc.target.sdk.version@;
+
+  private BuildConfig() {
+  }
+}

@@ -28,6 +28,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 @DesignerComponent(version = YaVersion.FTC_GAMEPAD_COMPONENT_VERSION,
     description = "A component for a gamepad of an FTC robot.",
     category = ComponentCategory.FIRSTTECHCHALLENGE,
+    showOnPalette = false,
     nonVisible = true,
     iconName = "images/ftcGamepad.png")
 @SimpleObject
