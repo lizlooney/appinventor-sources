@@ -6,6 +6,7 @@
 
 package com.google.appinventor.buildserver;
 
+import com.google.appinventor.common.version.FtcConstants;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
@@ -117,8 +118,14 @@ public final class Compiler {
 
   private static final String DEFAULT_APP_NAME = "";
   private static final String DEFAULT_ICON = RUNTIME_FILES_DIR + "ya.png";
+  // FIRST Tech Challenge: Use the same version code as FtcRobotController-release.apk.
+  private static final String DEFAULT_VERSION_CODE = FtcConstants.VERSION_CODE;
+  // FIRST Tech Challenge: Use the same version name as FtcRobotController-release.apk.
+  private static final String DEFAULT_VERSION_NAME = FtcConstants.VERSION_NAME;
+  /*
   private static final String DEFAULT_VERSION_CODE = "1";
   private static final String DEFAULT_VERSION_NAME = "1.0";
+  */
   private static final String DEFAULT_MIN_SDK = "4";
 
   /*
@@ -201,6 +208,10 @@ public final class Compiler {
   private final PrintStream out;
   private final PrintStream err;
   private final PrintStream userErrors;
+
+  // FIRST Tech Challenge: If the project has an FtcRobotController component, hasFtcRobotController
+  // is true.
+  private final boolean hasFtcRobotController;
 
   private File libsDir; // The directory that will contain any native libraries for packaging
   private String dexCacheDir;
@@ -427,6 +438,10 @@ public final class Compiler {
     // Create AndroidManifest.xml
     String mainClass = project.getMainClass();
     String packageName = Signatures.getPackageName(mainClass);
+    // FIRST Tech Challenge: Use the same package as FtcRobotController-release.apk.
+    if (hasFtcRobotController) {
+      packageName = FtcConstants.PACKAGE;
+    }
     String className = Signatures.getClassName(mainClass);
     String projectName = project.getProjectName();
     String vCode = (project.getVCode() == null) ? DEFAULT_VERSION_CODE : project.getVCode();
@@ -474,6 +489,15 @@ public final class Compiler {
         minSDK = LEVEL_GINGERBREAD_MR1;
       }
 
+      // FIRST Tech Challenge: Add features from ftc_sdk/lib/RobotCore/src/main/AndroidManifest.xml
+      if (hasFtcRobotController) {
+        out.write("  <uses-feature android:name=\"android.hardware.usb.accessory\" />\n");
+        out.write("  <uses-feature android:glEsVersion=\"0x00020000\" />\n");
+        out.write("  <uses-feature android:name=\"android.hardware.camera\" />\n");
+        out.write("  <uses-feature android:name=\"android.hardware.bluetooth\" />\n");
+        minSDK = FtcConstants.SDK_VERSION;
+      }
+
       // make permissions unique by putting them in one set
       Set<String> permissions = Sets.newHashSet();
       for (Set<String> compPermissions : permissionsNeeded.values()) {
@@ -493,6 +517,12 @@ public final class Compiler {
       // the specified SDK version.  We right now support building for minSDK 4.
       // We might also want to allow users to specify minSdk version or targetSDK version.
       out.write("  <uses-sdk android:minSdkVersion=\"" + minSDK + "\" />\n");
+
+      // FIRST Tech Challenge:
+      if (hasFtcRobotController) {
+        out.write("  <uses-sdk android:targetSdkVersion=\"" + FtcConstants.TARGET_SDK_VERSION + "\" />\n");
+        ftcAddApplicationToManifest(out);
+      } else {
 
       out.write("  <application ");
 
@@ -569,7 +599,8 @@ public final class Compiler {
         }
         out.write("    </activity>\n");
       }
-      
+      }
+
       // Collect any additional <application> subelements into a single set.
       Set<Map.Entry<String, Set<String>>> subelements = Sets.newHashSet();
       subelements.addAll(activitiesNeeded.entrySet());
@@ -684,6 +715,24 @@ public final class Compiler {
       return false;
     }
 
+    // FIRST Tech Challenge: Add resources, assets, and native libraries.
+    if (compiler.hasFtcRobotController) {
+      // Copy resources used in FTC libraries and components.
+      if (!compiler.ftcCreateResources(resDir)) {
+        return false;
+      }
+
+      // Copy assets used in FTC libraries and components.
+      if (!compiler.ftcCreateAssets(project.getAssetsDirectory())) {
+        return false;
+      }
+
+      // Copy native libraries used in FTC libraries and components.
+      if (!compiler.ftcCreateNativeLibs(buildDir)) {
+        return false;
+      }
+    }
+
     // Generate AndroidManifest.xml
     out.println("________Generating manifest file");
     File manifestFile = new File(buildDir, "AndroidManifest.xml");
@@ -711,6 +760,33 @@ public final class Compiler {
       return false;
     }
     setProgress(35);
+
+    // FIRST Tech Challenge: Generate and compile R.java files used in FTC libraries.
+    if (compiler.hasFtcRobotController) {
+      // Generate R.java files used in FTC libraries.
+      out.println("________Generating R.java files");
+      File genDir = createDirectory(buildDir, "gen");
+      String[] packages = {
+        "com.google.blocks",
+        "com.qualcomm.ftccommon",
+        "com.qualcomm.hardware",
+        "com.qualcomm.robotcore",
+        "org.firstinspires.inspection"
+      };
+      List<String> genFileNames = Lists.newArrayListWithCapacity(packages.length);
+      for (String customPackage : packages) {
+        if (!compiler.ftcRunAaptPackage(manifestFile, resDir, genDir, customPackage)) {
+          return false;
+        }
+        genFileNames.add(genDir.getAbsolutePath() + File.separatorChar + 
+            customPackage.replace('.', File.separatorChar) + File.separatorChar + "R.java");
+      }
+      // Compile the generated R.java files.
+      out.println("________Compiling R.java files");
+      if (!compiler.ftcRunJavac(classesDir, genFileNames)) {
+        return false;
+      }
+    }
 
     // Invoke dx on class files
     out.println("________Invoking DX");
@@ -874,6 +950,10 @@ public final class Compiler {
     this.childProcessRamMb = childProcessMaxRam;
     this.dexCacheDir = dexCacheDir;
 
+    // FIRST Tech Challenge: If the project has an FtcRobotController component, hasFtcRobotController is true.
+    hasFtcRobotController =
+        simpleCompTypes.contains("com.google.appinventor.components.runtime.FtcRobotController") &&
+        !isForCompanion;
   }
 
   /*
@@ -981,7 +1061,8 @@ public final class Compiler {
           "kawa.repl",
           "-f", yailRuntime,
           "-d", classesDir.getAbsolutePath(),
-          "-P", Signatures.getPackageName(project.getMainClass()) + ".",
+          // FIRST Tech Challenge: Use the same package as FtcRobotController-release.apk.
+          "-P", (hasFtcRobotController ? FtcConstants.PACKAGE : Signatures.getPackageName(project.getMainClass())) + ".",
           "-C");
       // TODO(lizlooney) - we are currently using (and have always used) absolute paths for the
       // source file names. The resulting .class files contain references to the source file names,
@@ -1055,6 +1136,11 @@ public final class Compiler {
       }
     }
 
+    // FIRST Tech Challenge: Use FTC keystore.
+    if (hasFtcRobotController) {
+      keystoreAbsolutePath = getResource(RUNTIME_FILES_DIR + "ftc.debug.keystore");
+    }
+
     String[] jarsignerCommandLine = {
         jarsignerFile.getAbsolutePath(),
         "-digestalg", "SHA1",
@@ -1062,7 +1148,8 @@ public final class Compiler {
         "-keystore", keystoreAbsolutePath,
         "-storepass", "android",
         apkAbsolutePath,
-        "AndroidKey"
+        // FIRST Tech Challenge: Use keyAlias from ftc_sdk/app/ftc_app/build.common.gradle.
+        hasFtcRobotController ? "androiddebugkey" : "AndroidKey"
     };
     if (!Execution.execute(null, jarsignerCommandLine, System.out, System.err)) {
       LOG.warning("YAIL compiler - jarsigner execution failed.");
@@ -1650,5 +1737,449 @@ public final class Compiler {
       return candidate;
     }
     throw new IllegalStateException("Project lacks extension directory for " + type);
+  }
+
+  // FIRST Tech Challenge
+
+  private void ftcAddApplicationToManifest(BufferedWriter out) throws IOException {
+    out.write("  <application \n");
+    out.write("    android:allowBackup=\"true\"\n");
+    out.write("    android:largeHeap=\"true\"\n");
+    out.write("    android:icon=\"@drawable/ic_launcher\"\n");
+    out.write("    android:label=\"@string/AI_app_name\"\n");
+    out.write("    android:theme=\"@style/AI_AppTheme\"\n");
+    out.write("    android:name=\"org.firstinspires.ftc.robotcore.internal.RobotApplication\" >\n");
+
+    // The main activity for an FTC Robot Controller app. This is from ftc_sdk/app/ftc_app/FtcRobotController/src/main/AndroidManifest.xml.
+    out.write("    <activity\n");
+    out.write("      android:name=\"org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/AI_app_name\"\n");
+    out.write("      android:launchMode=\"singleTask\" >\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"android.intent.action.MAIN\" />\n");
+    out.write("        <category android:name=\"android.intent.category.LAUNCHER\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"android.hardware.usb.action.USB_DEVICE_ATTACHED\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("      <meta-data\n");
+    out.write("        android:name=\"android.hardware.usb.action.USB_DEVICE_ATTACHED\"\n");
+    out.write("        android:resource=\"@xml/device_filter\" />\n");
+    out.write("    </activity>\n");
+    // TODO(lizlooney): Add receiver tag for RunOnStartup.
+    out.write("    <service\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.FtcRobotControllerService\"\n");
+    out.write("      android:enabled=\"true\" />\n");
+    // TODO(lizlooney): Add service tag for FtcRobotControllerWatchdogService.
+    // Add other FTC related activities and service.
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.FtcRobotControllerSettingsActivity\"\n");
+    out.write("      android:label=\"@string/settings_activity\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.qualcomm.ftccommon.FtcRobotControllerSettingsActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.FtcLoadFileActivity\"\n");
+    out.write("      android:label=\"@string/configure_activity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.qualcomm.ftccommon.configuration.FtcLoadFileActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.ConfigureFromTemplateActivity\"\n");
+    out.write("      android:label=\"@string/title_activity_configfromtemplate\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.qualcomm.ftccommon.configuration.ConfigureFromTemplateActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.ViewLogsActivity\"\n");
+    out.write("      android:label=\"@string/view_logs_activity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.qualcomm.ftccommon.ViewLogsActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.FtcConfigurationActivity\"\n");
+    out.write("      android:label=\"@string/AI_title_ftc_configuration_activity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.FtcNewFileActivity\"\n");
+    out.write("      android:label=\"@string/AI_title_ftc_new_file_activity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.ConfigWifiDirectActivity\"\n");
+    out.write("      android:label=\"@string/title_activity_config_wifi_direct\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.FtcAdvancedRCSettingsActivity\"\n");
+    out.write("      android:label=\"@string/titleAdvancedRCSettings\"\n");
+    out.write("      android:exported=\"true\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.qualcomm.ftccommon.FtcAdvancedRCSettingsActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.FtcLynxFirmwareUpdateActivity\"\n");
+    out.write("      android:exported=\"true\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.qualcomm.ftccommon.FtcLynxFirmwareUpdateModeActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.FtcLynxModuleAddressUpdateActivity\"\n");
+    out.write("      android:exported=\"true\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.qualcomm.ftccommon.FtcLynxModuleAddressUpdateActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.FtcWifiDirectChannelSelectorActivity\"\n");
+    out.write("      android:label=\"@string/title_activity_wifi_channel_selector\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.qualcomm.ftccommon.FtcWifiDirectChannelSelectorActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.FtcWifiDirectRememberedGroupsActivity\"\n");
+    out.write("      android:label=\"@string/title_activity_wifi_remembered_groups_editor\"\n");
+    out.write("      android:exported=\"true\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.qualcomm.ftccommon.FtcWifiDirectRememberedGroupsActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.AboutActivity\"\n");
+    out.write("      android:label=\"@string/about_activity\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.qualcomm.ftccommon.configuration.AboutActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditSwapUsbDevices\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_swap_devices_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditMotorControllerActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_motor_controller_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditLegacyMotorControllerActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_motor_controller_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden\" >\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditMotorListActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_motor_controller_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditServoControllerActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_servo_controller_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditLegacyServoControllerActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_servo_controller_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\" >\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditServoListActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_servo_controller_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditLegacyModuleControllerActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_legacy_module_controller_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditMatrixControllerActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_matrix_controller_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditDeviceInterfaceModuleActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_core_device_interface_module_controller_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditLynxModuleActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_lynx_module_controller_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\" >\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditLynxUsbDeviceActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_lynx_usb_device_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\" >\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditPWMDevicesActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_pwm_devices_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditAnalogInputDevicesActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_analog_input_devices_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditDigitalDevicesActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_digital_devices_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditDigitalDevicesActivityLynx\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_digital_devices_activity_lynx\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\" >\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditI2cDevicesActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_i2c_devices_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditI2cDevicesActivityLynx\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_i2c_devices_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\" >\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.qualcomm.ftccommon.configuration.EditAnalogOutputDevicesActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/edit_analog_output_devices_activity\"\n");
+    out.write("      android:windowSoftInputMode=\"stateHidden|adjustResize\">\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.google.blocks.ftcrobotcontroller.ProgrammingModeActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/programming_mode_activity\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.google.blocks.ftcrobotcontroller.ProgrammingModeActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.google.blocks.ftcdriverstation.RemoteProgrammingModeActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/programming_mode_activity\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.google.blocks.ftcdriverstation.RemoteProgrammingModeActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"com.google.blocks.ftcrobotcontroller.BlocksActivity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\"\n");
+    out.write("      android:label=\"@string/blocks_activity\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"com.google.blocks.ftcrobotcontroller.BlocksActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <activity\n");
+    out.write("      android:name=\"org.firstinspires.inspection.RcInspectionActivity\"\n");
+    out.write("      android:label=\"@string/inspection_activity\"\n");
+    out.write("      android:configChanges=\"orientation|screenSize\">\n");
+    out.write("      <intent-filter>\n");
+    out.write("        <action android:name=\"org.firstinspires.inspection.RcInspectionActivity.intent.action.Launch\" />\n");
+    out.write("        <category android:name=\"android.intent.category.DEFAULT\" />\n");
+    out.write("      </intent-filter>\n");
+    out.write("    </activity>\n");
+    out.write("    <receiver\n");
+    out.write("      android:name=\"org.firstinspires.inspection.DeviceNameReceiver\"\n");
+    out.write("      android:enabled=\"true\"\n");
+    out.write("      android:exported=\"true\">\n");
+    out.write("    </receiver>\n");
+  }
+
+  /*
+   * Creates the resources used by FTC.
+   */
+  private boolean ftcCreateResources(File resDir) throws IOException {
+    String csv = Resources.toString(
+        Compiler.class.getResource(RUNTIME_FILES_DIR + "ftc/res.list"), Charsets.UTF_8);
+    String[] ftcFiles = csv.split(",");
+    for (String ftcFile : ftcFiles) {
+      //out.println("________Copying " + ftcFile);
+      String source = getResource(RUNTIME_FILES_DIR + "ftc/res/" + ftcFile);
+      File destFile = new File(resDir, ftcFile.replace('/', File.separatorChar));
+      destFile.getParentFile().mkdirs();
+      if (!copyFile(source, destFile.getAbsolutePath())) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /*
+   * Creates the assets used by FTC.
+   */
+  private boolean ftcCreateAssets(File assetsDir) throws IOException {
+    createDir(assetsDir);
+    String csv = Resources.toString(
+        Compiler.class.getResource(RUNTIME_FILES_DIR + "ftc/assets.list"), Charsets.UTF_8);
+    String[] ftcFiles = csv.split(",");
+    for (String ftcFile : ftcFiles) {
+      //out.println("________Copying " + ftcFile);
+      String source = getResource(RUNTIME_FILES_DIR + "ftc/assets/" + ftcFile);
+      File destFile = new File(assetsDir, ftcFile.replace('/', File.separatorChar));
+      destFile.getParentFile().mkdirs();
+      if (!copyFile(source, destFile.getAbsolutePath())) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /*
+   * Creates the native libraries used by FTC.
+   */
+  private boolean ftcCreateNativeLibs(File buildDir) throws IOException {
+    // libsDir field hasn't been set yet.
+    File libsDir = createDirectory(buildDir, LIBS_DIR_NAME);
+    File apkLibDir = createDirectory(libsDir, "lib"); // This dir will be copied to apk.
+
+    String csv = Resources.toString(
+        Compiler.class.getResource(RUNTIME_FILES_DIR + "ftc/libs.list"), Charsets.UTF_8);
+    String[] ftcFiles = csv.split(",");
+    for (String ftcFile : ftcFiles) {
+      if (!ftcFile.startsWith(ARMEABI_DIR_NAME + "/") &&
+          !ftcFile.startsWith(ARMEABI_V7A_DIR_NAME + "/")) {
+        throw new RuntimeException("FTC library " + ftcFile + " does not belong in " + ARMEABI_DIR_NAME + " or " + ARMEABI_V7A_DIR_NAME);
+      }
+      //out.println("________Copying " + ftcFile);
+      String source = getResource(RUNTIME_FILES_DIR + "ftc/libs/" + ftcFile);
+      File destFile = new File(apkLibDir, ftcFile.replace('/', File.separatorChar));
+      destFile.getParentFile().mkdirs();
+      if (!copyFile(source, destFile.getAbsolutePath())) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Runs aapt package to generate R.java files.
+   */
+  private boolean ftcRunAaptPackage(File manifestFile, File resDir, File genDir, String customPackage) {
+    String aaptTool;
+    String osName = System.getProperty("os.name");
+    if (osName.equals("Mac OS X")) {
+      aaptTool = MAC_AAPT_TOOL;
+    } else if (osName.equals("Linux")) {
+      aaptTool = LINUX_AAPT_TOOL;
+    } else if (osName.startsWith("Windows")) {
+      aaptTool = WINDOWS_AAPT_TOOL;
+    } else {
+      LOG.warning("YAIL compiler - cannot run AAPT on OS " + osName);
+      err.println("YAIL compiler - cannot run AAPT on OS " + osName);
+      userErrors.print(String.format(ERROR_IN_STAGE, "AAPT"));
+      return false;
+    }
+    String[] aaptPackageCommandLine = {
+      getResource(aaptTool),
+      "package",
+      "-f",
+      "-m",
+      "-I", getResource(ANDROID_RUNTIME),
+      "-S", resDir.getAbsolutePath(),
+      "-M", manifestFile.getAbsolutePath(),
+      "-J", genDir.getAbsolutePath(),
+      "--custom-package", customPackage
+    };
+    long startAapt = System.currentTimeMillis();
+    // Using System.err and System.out on purpose. Don't want to pollute build messages with
+    // tools output
+    if (!Execution.execute(null, aaptPackageCommandLine, System.out, System.err)) {
+      LOG.warning("YAIL compiler - AAPT execution failed.");
+      err.println("YAIL compiler - AAPT execution failed.");
+      userErrors.print(String.format(ERROR_IN_STAGE, "AAPT"));
+      return false;
+    }
+    String aaptTimeMessage = "AAPT time: " +
+        ((System.currentTimeMillis() - startAapt) / 1000.0) + " seconds";
+    out.println(aaptTimeMessage);
+    LOG.info(aaptTimeMessage);
+
+    return true;
+  }
+
+  /**
+   * Runs javac to compiler generated .java files.
+   */
+  private boolean ftcRunJavac(File classesDir, List<String> genFileNames) {
+    String javaHome = System.getProperty("java.home");
+    // This works on Mac OS X.
+    File javacFile = new File(javaHome + File.separator + "bin" +
+        File.separator + "javac");
+    if (!javacFile.exists()) {
+      // This works when a JDK is installed with the JRE.
+      javacFile = new File(javaHome + File.separator + ".." + File.separator + "bin" +
+          File.separator + "javac");
+      if (System.getProperty("os.name").startsWith("Windows")) {
+        javacFile = new File(javaHome + File.separator + ".." + File.separator + "bin" +
+            File.separator + "javac.exe");
+      }
+      if (!javacFile.exists()) {
+        LOG.warning("YAIL compiler - could not find javac.");
+        err.println("YAIL compiler - could not find javac.");
+        userErrors.print(String.format(ERROR_IN_STAGE, "Javac"));
+        return false;
+      }
+    }
+
+    List<String> javacCommandArgs = Lists.newArrayList();
+    Collections.addAll(javacCommandArgs,
+        javacFile.getAbsolutePath(),
+        "-d", classesDir.getAbsolutePath(),
+        "-source", "5",
+        "-target", "5");
+    javacCommandArgs.addAll(genFileNames);
+    String[] javacCommandLine = javacCommandArgs.toArray(new String[javacCommandArgs.size()]);
+    if (!Execution.execute(null, javacCommandLine, System.out, System.err)) {
+      LOG.warning("YAIL compiler - javac execution failed.");
+      err.println("YAIL compiler - javac execution failed.");
+      userErrors.print(String.format(ERROR_IN_STAGE, "Javac"));
+      return false;
+    }
+
+    return true;
   }
 }

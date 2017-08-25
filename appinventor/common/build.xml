@@ -104,9 +104,10 @@
   <!-- =====================================================================
        CommonVersion: library containing version classes.
        ===================================================================== -->
+  <!-- FIRST Tech Challenge: Add FtcConstantsJava to depends. -->
   <target name="CommonVersion"
           description="Generate library containing version classes"
-          depends="init">
+          depends="init,FtcConstantsJava">
     <property name="CommonVersion-class.dir" location="${class.dir}/CommonVersion" />
     <mkdir dir="${CommonVersion-class.dir}" />
 
@@ -204,6 +205,112 @@
       <fileset dir="${CommonTestUtils-class.dir}"/>
     </jar>
 
+  </target>
+
+  <!-- FIRST Tech Challenge -->
+
+  <target name="CheckFtcConstantsJava"
+          depends="init">
+    <uptodate property="FtcConstantsJava.uptodate" targetfile="${local.build.dir}/src/${common.pkg}/version/FtcConstants.java">
+      <srcfiles dir="${lib.dir}/ftc" includes="FtcRobotController-release.apk" />
+    </uptodate>
+  </target>
+
+  <target name="FtcConstantsJava"
+          description="Generate FtcConstants.java"
+          depends="init,CheckFtcConstantsJava"
+          unless="FtcConstantsJava.uptodate">
+    <mkdir dir="${local.build.dir}/src/${common.pkg}/version/"/>
+    <delete>
+      <fileset dir="${local.build.dir}/src/${common.pkg}/version/">
+        <include name="FtcConstants.java"/>
+      </fileset>
+    </delete>
+    <mkdir dir="${local.build.dir}/tmp/"/>
+    <!-- Extract package, versionCode, and versionName from FtcRobotController-release.apk -->
+    <exec executable="${lib.dir}/android/tools/linux/aapt" osfamily="unix"
+          output="${local.build.dir}/tmp/FtcRobotController.dump">
+      <arg line = "dump badging ${lib.dir}/ftc/FtcRobotController-release.apk" />
+    </exec>
+    <exec executable="${lib.dir}/android/tools/windows/aapt" osfamily="windows"
+          output="${local.build.dir}/tmp/FtcRobotController.dump">
+      <arg line = "dump badging ${lib.dir}/ftc/FtcRobotController-release.apk" />
+    </exec>
+    <exec executable="${lib.dir}/android/tools/mac/aapt" osfamily="mac"
+          output="${local.build.dir}/tmp/FtcRobotController.dump">
+      <arg line = "dump badging ${lib.dir}/ftc/FtcRobotController-release.apk" />
+    </exec>
+    <loadfile srcfile="${local.build.dir}/tmp/FtcRobotController.dump"
+              property="ftc.package">
+      <filterchain>
+        <linecontains>
+          <contains value="versionCode"/>
+        </linecontains>
+        <tokenfilter>
+          <replaceregex
+              pattern="package\: name\=\'([^\']*)\'.*"
+              replace="\1"/>
+        </tokenfilter>
+        <striplinebreaks/>
+      </filterchain>
+    </loadfile>
+    <loadfile srcfile="${local.build.dir}/tmp/FtcRobotController.dump"
+              property="ftc.version.code">
+      <filterchain>
+        <linecontains>
+          <contains value="versionCode"/>
+        </linecontains>
+        <tokenfilter>
+          <replaceregex
+              pattern=".*versionCode\=\'([^\']*)\'.*"
+              replace="\1"/>
+        </tokenfilter>
+        <striplinebreaks/>
+      </filterchain>
+    </loadfile>
+    <loadfile srcfile="${local.build.dir}/tmp/FtcRobotController.dump"
+              property="ftc.version.name">
+      <filterchain>
+        <linecontains>
+          <contains value="versionName"/>
+        </linecontains>
+        <tokenfilter>
+          <replaceregex
+              pattern=".*versionName\=\'([^\']*)\'.*"
+              replace="\1"/>
+        </tokenfilter>
+        <striplinebreaks/>
+      </filterchain>
+    </loadfile>
+    <loadfile srcfile="${local.build.dir}/tmp/FtcRobotController.dump"
+              property="ftc.sdk.version">
+      <filterchain>
+        <tokenfilter>
+          <containsregex
+              pattern="^sdkVersion\:\'([^\']*)\'.*"
+              replace="\1"/>
+        </tokenfilter>
+        <striplinebreaks/>
+      </filterchain>
+    </loadfile>
+    <loadfile srcfile="${local.build.dir}/tmp/FtcRobotController.dump"
+              property="ftc.target.sdk.version">
+      <filterchain>
+        <tokenfilter>
+          <containsregex
+              pattern="^targetSdkVersion\:\'([^\']*)\'.*"
+              replace="\1"/>
+        </tokenfilter>
+        <striplinebreaks/>
+      </filterchain>
+    </loadfile>
+    <filter token="ftc.package" value="${ftc.package}" />
+    <filter token="ftc.version.code" value="${ftc.version.code}" />
+    <filter token="ftc.version.name" value="${ftc.version.name}" />
+    <filter token="ftc.sdk.version" value="${ftc.sdk.version}" />
+    <filter token="ftc.target.sdk.version" value="${ftc.target.sdk.version}" />
+    <copy tofile="${local.build.dir}/src/${common.pkg}/version/FtcConstants.java"
+          file="FtcConstants.template" filtering="true" />
   </target>
 
 </project>

@@ -11,6 +11,12 @@ import com.google.appinventor.client.editor.simple.components.MockForm;
 import com.google.appinventor.client.editor.simple.components.MockComponent;
 import com.google.appinventor.client.editor.youngandroid.YaFormEditor;
 import com.google.appinventor.client.editor.youngandroid.palette.YoungAndroidPalettePanel;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055AccelUnitChoicePropertyEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055AccelerationIntegrationAlgorithmChoicePropertyEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055AngleUnitChoicePropertyEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055SensorModeChoicePropertyEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcBNO055TempUnitChoicePropertyEditor;
+import com.google.appinventor.client.editor.youngandroid.properties.FtcGamepadNumberChoicePropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidAccelerometerSensitivityChoicePropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidAlignmentChoicePropertyEditor;
 import com.google.appinventor.client.editor.youngandroid.properties.YoungAndroidAssetSelectorPropertyEditor;
@@ -245,6 +251,21 @@ public class PropertiesUtil {
       String type = editorType.substring(PropertyTypeConstants.PROPERTY_TYPE_COMPONENT.length() + 2);
       type = type.substring(type.lastIndexOf('.') + 1);
       return new YoungAndroidComponentSelectorPropertyEditor(editor, Collections.singleton(type));
+
+    // FIRST Tech Challenge: Support editors for FTC property types.
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_BNO055_ACCEL_UNIT)) {
+      return new FtcBNO055AccelUnitChoicePropertyEditor();
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_BNO055_ACCELERATION_INTEGRATION_ALGORITHM)) {
+      return new FtcBNO055AccelerationIntegrationAlgorithmChoicePropertyEditor();
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_BNO055_ANGLE_UNIT)) {
+      return new FtcBNO055AngleUnitChoicePropertyEditor();
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_BNO055_SENSOR_MODE)) {
+      return new FtcBNO055SensorModeChoicePropertyEditor();
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_BNO055_TEMP_UNIT)) {
+      return new FtcBNO055TempUnitChoicePropertyEditor();
+    } else if (editorType.equals(PropertyTypeConstants.PROPERTY_TYPE_FTC_GAMEPAD_NUMBER)) {
+      return new FtcGamepadNumberChoicePropertyEditor();
+      
     } else {
       return new TextPropertyEditor();
     }

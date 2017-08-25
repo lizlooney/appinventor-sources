@@ -106,7 +106,8 @@ Blockly.Blocks.component_event = {
     this.setNextStatement(false, null);
 
     if (eventType && eventType.deprecated === "true" && this.workspace === Blockly.mainWorkspace) {
-      this.badBlock();
+      // FIRST Tech Challenge: Don't mark deprecated blocks bad.
+      //this.badBlock();
       this.setDisabled(true);
     }
 
@@ -492,7 +493,8 @@ Blockly.Blocks.component_method = {
     var method = this.getMethodTypeObject();
     if ((!method || method.deprecated === true || method.deprecated === 'true') &&
         this.workspace === Blockly.mainWorkspace) {
-      this.badBlock();
+      // FIRST Tech Challenge: Don't mark deprecated blocks bad.
+      //this.badBlock();
       this.setDisabled(true);
     }
 
@@ -796,7 +798,8 @@ Blockly.Blocks.component_set_get = {
 
     if (thisBlock.propertyObject && this.propertyObject.deprecated === "true" && this.workspace === Blockly.mainWorkspace) {
       // [lyn, 2015/12/27] mark deprecated properties as bad
-      this.badBlock();
+      // FIRST Tech Challenge: Don't mark deprecated blocks bad.
+      //this.badBlock();
       this.setDisabled(true);
     }
 
