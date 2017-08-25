@@ -45,6 +45,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ScrollView;
 
+import com.google.appinventor.common.version.FtcConstants;
 import com.google.appinventor.components.annotations.DesignerComponent;
 import com.google.appinventor.components.annotations.DesignerProperty;
 import com.google.appinventor.components.annotations.PropertyCategory;
@@ -167,6 +168,8 @@ public class Form extends Activity
 
   // Application lifecycle related fields
   private final HashMap<Integer, ActivityResultListener> activityResultMap = Maps.newHashMap();
+  // FIRST Tech Challenge: Add OnStartListener.
+  private final Set<OnStartListener> onStartListeners = Sets.newHashSet();
   private final Set<OnStopListener> onStopListeners = Sets.newHashSet();
   private final Set<OnNewIntentListener> onNewIntentListeners = Sets.newHashSet();
   private final Set<OnResumeListener> onResumeListeners = Sets.newHashSet();
@@ -179,6 +182,9 @@ public class Form extends Activity
   // Listeners for options menu.
   private final Set<OnCreateOptionsMenuListener> onCreateOptionsMenuListeners = Sets.newHashSet();
   private final Set<OnOptionsItemSelectedListener> onOptionsItemSelectedListeners = Sets.newHashSet();
+
+  // FIRST Tech Challenge: Omit exit menu since FTC provides it.
+  private boolean omitExitMenu;
 
   // Set to the optional String-valued Extra passed in via an Intent on startup.
   // This is passed directly in the Repl.
@@ -1354,7 +1360,9 @@ public class Form extends Activity
    * @param vCode the version name of the application
    */
   @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_NON_NEGATIVE_INTEGER,
-    defaultValue = "1")
+    // FIRST Tech Challenge: Use the same version code as FtcRobotController-release.apk.
+    defaultValue = FtcConstants.VERSION_CODE + "")
+    //defaultValue = "1")
   @SimpleProperty(userVisible = false,
     description = "An integer value which must be incremented each time a new Android "
     +  "Application Package File (APK) is created for the Google Play Store.")
@@ -1368,7 +1376,9 @@ public class Form extends Activity
    * @param vName the version name of the application
    */
   @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_STRING,
-    defaultValue = "1.0")
+    // FIRST Tech Challenge: Use the same version name as FtcRobotController-release.apk.
+    defaultValue = FtcConstants.VERSION_NAME + "")
+    //defaultValue = "1.0")
   @SimpleProperty(userVisible = false,
     description = "A string which can be changed to allow Google Play "
     + "Store users to distinguish between different versions of the App.")
@@ -1808,8 +1818,11 @@ public class Form extends Activity
     // we would use onPrepareOptionsMenu.
     super.onCreateOptionsMenu(menu);
     // add the menu items
-    // Comment out the next line if we don't want the exit button
-    addExitButtonToMenu(menu);
+    // FIRST Tech Challenge: Omit exit menu since FTC provides it.
+    if (!omitExitMenu) {
+      // Comment out the next line if we don't want the exit button
+      addExitButtonToMenu(menu);
+    }
     addAboutInfoToMenu(menu);
     for (OnCreateOptionsMenuListener onCreateOptionsMenuListener : onCreateOptionsMenuListeners) {
       onCreateOptionsMenuListener.onCreateOptionsMenu(menu);
@@ -1830,7 +1843,8 @@ public class Form extends Activity
   }
 
   public void addAboutInfoToMenu(Menu menu) {
-    MenuItem aboutAppItem = menu.add(Menu.NONE, Menu.NONE, 2,
+    // FIRST Tech Challenge: Change 2 to 1000.
+    MenuItem aboutAppItem = menu.add(Menu.NONE, Menu.NONE, 1000,
     "About this application")
     .setOnMenuItemClickListener(new OnMenuItemClickListener() {
       public boolean onMenuItemClick(MenuItem item) {
@@ -1896,6 +1910,8 @@ public class Form extends Activity
     frameLayout = null;
     // Set all screen properties to default values.
     defaultPropertyValues();
+    // FIRST Tech Challenge: Add OnStartListener.
+    onStartListeners.clear();
     onStopListeners.clear();
     onNewIntentListeners.clear();
     onResumeListeners.clear();
@@ -1911,6 +1927,13 @@ public class Form extends Activity
   }
 
   public void deleteComponent(Object component) {
+    // FIRST Tech Challenge: Add OnStartListener.
+    if (component instanceof OnStartListener) {
+      OnStartListener onStartListener = (OnStartListener) component;
+      if (onStartListeners.contains(onStartListener)) {
+        onStartListeners.remove(onStartListener);
+      }
+    }
     if (component instanceof OnStopListener) {
       OnStopListener onStopListener = (OnStopListener) component;
       if (onStopListeners.contains(onStopListener)) {
@@ -2074,5 +2097,24 @@ public class Form extends Activity
     } else {
       dispatchErrorOccurredEvent(this, "HideKeyboard", ErrorMessages.ERROR_NO_FOCUSABLE_VIEW_FOUND);
     }
+  }
+
+  // FIRST Tech Challenge
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    Log.i(LOG_TAG, "Form " + formName + " got onStart");
+    for (OnStartListener onStartListener : onStartListeners) {
+      onStartListener.onStart();
+    }
+  }
+
+  public void registerForOnStart(OnStartListener component) {
+    onStartListeners.add(component);
+  }
+
+  public void omitExitMenu() {
+    omitExitMenu = true;
   }
 }

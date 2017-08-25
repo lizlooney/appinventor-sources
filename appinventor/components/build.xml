@@ -6,7 +6,8 @@
      App Inventor component libraries
      ====================================================================== -->
 
-<project name="components" default="all">
+<!-- FIRST Tech Challenge: Add xmlns:if="ant:if" xmlns:unless="ant:unless". -->
+<project name="components" default="all" xmlns:if="ant:if" xmlns:unless="ant:unless">
   <description>
     App Inventor component libraries
   </description>
@@ -116,9 +117,10 @@
        AndroidRuntime: library providing runtime support for components
        ===================================================================== -->
   <property name="AndroidRuntime-class.dir" location="${class.dir}/AndroidRuntime" />
+  <!-- FIRST Tech Challenge: Add FtcAars to depends. -->
   <target name="AndroidRuntime"
           description="Generate runtime library implementing components"
-          depends="CommonConstants,HtmlEntities,common_CommonVersion">
+          depends="CommonConstants,HtmlEntities,common_CommonVersion,FtcAars">
     <mkdir dir="${AndroidRuntime-class.dir}" />
 
     <ai.javac5 destdir="${AndroidRuntime-class.dir}">
@@ -141,6 +143,17 @@
         <pathelement location="${lib.dir}/twitter/twitter4j-media-support-3.0.5.jar" />
         <pathelement location="${lib.dir}/apache-http/httpcore-4.3.2.jar" />
         <pathelement location="${lib.dir}/apache-http/httpmime-4.3.4.jar" />
+        <!-- FIRST Tech Challenge: Include classes jars from FTC aar files. -->
+        <pathelement location="${public.build.dir}/ftc/Analytics/classes.jar" />
+        <pathelement location="${public.build.dir}/ftc/Blocks/classes.jar" />
+        <pathelement location="${public.build.dir}/ftc/FtcCommon/classes.jar" />
+        <pathelement location="${public.build.dir}/ftc/Hardware/classes.jar" />
+        <pathelement location="${public.build.dir}/ftc/Inspection/classes.jar" />
+        <pathelement location="${public.build.dir}/ftc/ModernRobotics/classes.jar" />
+        <pathelement location="${public.build.dir}/ftc/RobotCore/classes.jar" />
+        <pathelement location="${public.build.dir}/ftc/WirelessP2p/classes.jar" />
+        <!-- FIRST Tech Challenge: Include FTC vuforia jar. -->
+        <pathelement location="${lib.dir}/ftc/Vuforia.jar" />
         <pathelement location="${lib.dir}/fusiontables/fusiontables.jar" />
         <pathelement location="${lib.dir}/firebase/firebase-client-android-2.5.0.jar" />
         <pathelement location="${lib.dir}/oauth/google-api-client-1.10.3-beta.jar" />
@@ -216,6 +229,8 @@
       files in scripts/templates. -->
       <uptodate property="target.uptodate" targetfile="@{apt-target}">
         <srcfiles dir="${src.dir}" />
+        <!-- FIRST Tech Challenge: Look at CommonVersion.jar. -->
+        <srcfiles dir="${build.dir}/common" includes="CommonVersion.jar" />
       </uptodate>
       <!-- We need to delete all the classes before running javac below. Otherwise, javac will only
       process the Java files whose classes are not up-to-date and we'll end up with only a subset
@@ -250,6 +265,15 @@
           <pathelement location="${lib.dir}/twitter/twitter4j-media-support-3.0.5.jar" />
           <pathelement location="${lib.dir}/apache-http/httpcore-4.3.2.jar" />
           <pathelement location="${lib.dir}/apache-http/httpmime-4.3.4.jar" />
+          <!-- FIRST Tech Challenge: Include classes jars from FTC aar files. -->
+          <pathelement location="${public.build.dir}/ftc/Analytics/classes.jar" />
+          <pathelement location="${public.build.dir}/ftc/Blocks/classes.jar" />
+          <pathelement location="${public.build.dir}/ftc/FtcCommon/classes.jar" />
+          <pathelement location="${public.build.dir}/ftc/Hardware/classes.jar" />
+          <pathelement location="${public.build.dir}/ftc/Inspection/classes.jar" />
+          <pathelement location="${public.build.dir}/ftc/ModernRobotics/classes.jar" />
+          <pathelement location="${public.build.dir}/ftc/RobotCore/classes.jar" />
+          <pathelement location="${public.build.dir}/ftc/WirelessP2p/classes.jar" />
           <pathelement location="${lib.dir}/fusiontables/fusiontables.jar" />
           <pathelement location="${lib.dir}/firebase/firebase-client-android-2.5.0.jar" />
           <pathelement location="${lib.dir}/oauth/google-api-client-1.10.3-beta.jar" />
@@ -339,9 +363,10 @@
   <!-- =====================================================================
        JsonComponentDescription: create simple_components.json.
        ===================================================================== -->
+  <!-- FIRST Tech Challenge: Add common_CommonVersion to depends. -->
   <target name="JsonComponentDescription"
           description="Make simple_components.json."
-          depends="AnnotationProcessors,AndroidRuntime,HtmlEntities,CommonConstants,common_CommonUtils">
+          depends="AnnotationProcessors,AndroidRuntime,HtmlEntities,CommonConstants,common_CommonUtils,common_CommonVersion">
     <property name="JsonComponentDescription-class.dir"
               location="${class.dir}/JsonComponentDescription" />
     <ai.apt apt-classdir="${JsonComponentDescription-class.dir}"
@@ -589,6 +614,60 @@
         </dirset>
       </path>
     </foreach>
+  </target>
+
+  <!-- FIRST Tech Challenge -->
+
+  <!-- =====================================================================
+       Definition for unzip an aar file.
+       ===================================================================== -->
+  <macrodef name="aar.unzip">
+    <attribute name="src"/>
+    <attribute name="name"/>
+    <attribute name="dest"/>
+    <sequential>
+      <uptodate property="@{name}.uptodate"
+                srcfile="@{src}"
+                targetfile="@{dest}/classes.jar" />
+      <mkdir unless:set="@{name}.uptodate" dir="@{dest}" />
+      <unzip unless:set="@{name}.uptodate"
+             src="@{src}"
+             dest="@{dest}" />
+      <touch unless:set="@{name}.uptodate">
+        <fileset dir="@{dest}" />
+      </touch>
+    </sequential>
+  </macrodef>
+    
+  <!-- =====================================================================
+       Unzip lib/ftc .aar files
+       ===================================================================== -->
+  <target name="FtcAars"
+          depends="init">
+    <aar.unzip src="${lib.dir}/ftc/Analytics-release.aar"
+               name="Analytics"
+               dest="${public.build.dir}/ftc/Analytics" />
+    <aar.unzip src="${lib.dir}/ftc/Blocks-release.aar"
+               name="Blocks"
+               dest="${public.build.dir}/ftc/Blocks" />
+    <aar.unzip src="${lib.dir}/ftc/FtcCommon-release.aar"
+               name="FtcCommon"
+               dest="${public.build.dir}/ftc/FtcCommon" />
+    <aar.unzip src="${lib.dir}/ftc/Hardware-release.aar"
+               name="Hardware"
+               dest="${public.build.dir}/ftc/Hardware" />
+    <aar.unzip src="${lib.dir}/ftc/Inspection-release.aar"
+               name="Inspection"
+               dest="${public.build.dir}/ftc/Inspection" />
+    <aar.unzip src="${lib.dir}/ftc/ModernRobotics-release.aar"
+               name="ModernRobotics"
+               dest="${public.build.dir}/ftc/ModernRobotics" />
+    <aar.unzip src="${lib.dir}/ftc/RobotCore-release.aar"
+               name="RobotCore"
+               dest="${public.build.dir}/ftc/RobotCore" />
+    <aar.unzip src="${lib.dir}/ftc/WirelessP2p-release.aar"
+               name="WirelessP2p"
+               dest="${public.build.dir}/ftc/WirelessP2p" />
   </target>
 
 </project>

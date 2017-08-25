@@ -355,19 +355,71 @@ public class YaVersion {
   // - MEDIASTORE_COMPONENT_VERSION was incremented to 1
   // For YOUNG_ANDROID_VERSION 139:
   // - Reserved for FIRST Tech Challenge.
+  // - The FtcAccelerationSensor component was added.
+  // - The FtcAnalogInput component was added.
+  // - The FtcAnalogOutput component was added.
+  // - The FtcColorSensor component was added.
+  // - The FtcCompassSensor component was added.
+  // - The FtcDcMotor component was added.
+  // - The FtcDcMotorController component was added.
+  // - The FtcDeviceInterfaceModule component was added.
+  // - FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION was incremented to 2.
+  // - The FtcDigitalChannel component was added.
+  // - The FtcGamepad component was added.
+  // - The FtcGyroSensor component was added.
+  // - The FtcI2cDevice component was added.
+  // - FTC_I2C_DEVICE_COMPONENT_VERSION was incremented to 2.
+  // - The FtcI2cDeviceReader component was added.
+  // - The FtcIrSeekerSensor component was added.
+  // - FTC_IR_SEEKER_SENSOR_COMPONENT_VERSION was incremented to 2.
+  // - The FtcLED component was added.
+  // - The FtcLegacyModule component was added.
+  // - FTC_LEGACY_MODULE_COMPONENT_VERSION was incremented to 2.
+  // - The FtcLightSensor component was added.
+  // - The FtcLinearOpMode component was added.
+  // - FTC_LINEAR_OP_MODE_COMPONENT_VERSION was incremented to 2.
+  // - The FtcOpMode component was added.
+  // - The FtcOpticalDistanceSensor was added.
+  // - The FtcPwmOutput was added.
+  // - The FtcRobotController component was added.
+  // - The FtcServo component was added.
+  // - The FtcServoController component was added.
+  // - The FtcTouchSensor component was added.
+  // - The FtcTouchSensorMultiplexer component was added.
+  // - The FtcUltrasonicSensor component was added.
+  // - The FtcVoltageSensor component was added.
   // For YOUNG_ANDROID_VERSION 140:
   // - HORIZONTALARRANGEMENT_COMPONENT_VERSION was incremented to 3.
   // - VERTICALARRANGEMENT_COMPONENT_VERSION was incremented to 3
+  // - FIRST Tech Challenge
+  // - FTC_COMPASS_SENSOR_COMPONENT_VERSION was incremented to 2.
   // For YOUNG_ANDROID_VERSION 141:
   // - Reserved for FIRST Tech Challenge.
+  // - FIRST Tech Challenge
+  // - The FtcElapsedTime component was added.
+  // - FTC_COLOR_SENSOR_COMPONENT_VERSION was incremented to 2.
+  // - FTC_DC_MOTOR_COMPONENT_VERSION was incremented to 2.
+  // - FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION was incremented to 2.
+  // - FTC_GYRO_SENSOR_COMPONENT_VERSION was incremented to 2.
+  // - FTC_LINEAR_OP_MODE_COMPONENT_VERSION was incremented to 3.
+  // - FTC_OP_MODE_COMPONENT_VERSION was incremented to 2.
+  // - FTC_SERVO_CONTROLLER_COMPONENT_VERSION was incremented to 2.
+  // - FTC_ROBOT_CONTROLLER_COMPONENT_VERSION was incremented to 2.
+  // - FTC_TOUCH_SENSOR_COMPONENT_VERSION was incremented to 2.
+  // - FTC_TOUCH_SENSOR_MULTIPLEXER_COMPONENT_VERSION was incremented to 2.
   // For YOUNG_ANDROID_VERSION 142:
   // - FORM_COMPONENT_VERSION was incremented to 19.
   // For YOUNG_ANDROID_VERSION 143:
   // - GyroscopeSensor component was added
   // For YOUNG_ANDROID_VERSION 144:
   // - Reserved for FIRST Tech Challenge.
+  // - FIRST Tech Challenge
+  // - FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION was incremented to 3.
   // For YOUNG_ANDROID_VERSION 145:
   // - Spelling of "obsfucate" was corrected to obfuscate and BLOCKS_LANGUAGE_VERSION incremented to 20
+  // - FIRST Tech Challenge
+  // - FTC_GAMEPAD_COMPONENT_VERSION was incremented to 2.
+  // - FTC_ROBOT_CONTROLLER_COMPONENT_VERSION was incremented to 3.
   // For YOUNG_ANDROID_VERSION 146:
   // - CAMERA_COMPONENT_VERSION was incremented to 3.
   // For YOUNG_ANDROID_VERSION 147:
@@ -378,17 +430,51 @@ public class YaVersion {
   // - CLOCK_COMPONENT_VERSION was incremented to 3
   // For YOUNG_ANDROID_VERSION 150:
   // - IMAGE_COMPONENT_VERSION was incremented to 3
+  // - FIRST Tech Challenge
+  // - The FtcI2cDeviceSynch component was added.
+  // - FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION was incremented to 4.
+  // - FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION was incremented to 3.
+  // - FTC_GYRO_SENSOR_COMPONENT_VERSION was incremented to 3.
+  // - FTC_LEGACY_MODULE_COMPONENT_VERSION was incremented to 3.
+  // - FTC_LINEAR_OP_MODE_COMPONENT_VERSION was incremented to 4.
+  // - FTC_OP_MODE_COMPONENT_VERSION was incremented to 3.
   // For YOUNG_ANDROID_VERSION 151:
   // - LOCATIONSENSOR_COMPONENT_VERSION was incremented to 3
+  // - FIRST Tech Challenge
+  // - The FtcCRServo component was added.
+  // - The FtcVuforiaLocalizer component was added.
+  // - FTC_ANALOG_INPUT_COMPONENT_VERSION was incremented to 2.
+  // - FTC_DC_MOTOR_COMPONENT_VERSION was incremented to 3.
+  // - FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION was incremented to 5.
+  // - FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION was incremented to 4.
+  // - FTC_GYRO_SENSOR_COMPONENT_VERSION was incremented to 4.
+  // - FTC_LEGACY_MODULE_COMPONENT_VERSION was incremented to 4.
+  // - FTC_LIGHT_SENSOR_COMPONENT_VERSION was incremented to 2.
+  // - FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION was incremented to 2.
+  // - FTC_ROBOT_CONTROLLER_COMPONENT_VERSION was incremented to 4.
   // For YOUNG_ANDROID_VERSION 152:
   // - FIREBASE_COMPONENT_VERSION was incremented to 2
+  // - FIRST Tech Challenge
+  // - FTC_LINEAR_OP_MODE_COMPONENT_VERSION was incremented to 5.
+  // - FTC_OP_MODE_COMPONENT_VERSION was incremented to 4.
   // For YOUNG_ANDROID_VERSION 153:
   // - The components Ev3Motors, Ev3{Color,Gyro,Touch,Ultrasonic}
   //   Sensor Ev3UI, Ev3Commands were added for EV3 support
+  // - FIRST Tech Challenge
+  // - FTC_COMPASS_SENSOR_COMPONENT_VERSION was incremented to 3.
+  // - FTC_GYRO_SENSOR_COMPONENT_VERSION was incremented to 5.
+  // - FTC_LIGHT_SENSOR_COMPONENT_VERSION was incremented to 3.
+  // - FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION was incremented to 3.
+  // - The FtcBNO055IMU component was added.
+  // - The FtcMrRangeSensor component was added.
   // For YOUNG_ANDROID_VERSION 154:
   // - PEDOMETER_COMPONENT_VERSION was incremented to 2
+  // - FIRST Tech Challenge
+  // - FTC_BNO055IMU_COMPONENT_VERSION was incremented to 2.
   // For YOUNG_ANDROID_VERSION 155:
   // - Extensions Support (non-visible only) added
+  // - FIRST Tech Challenge
+  // - FTC_BNO055IMU_COMPONENT_VERSION was incremented to 3.
   // For YOUNG_ANDROID_VERSION 156:
   // - FIREBASE_COMPONENT_VERSION was incremented to 3
   // For YOUNG_ANDROID_VERSION 157:
@@ -397,6 +483,8 @@ public class YaVersion {
   // Added HorizontalScrollArrangement and VerticalScrollArrangement
   // For YOUNG_ANDROID_VERSION 159:
   // - FORM_COMPONENT_VERSION was incremented to 20
+  // For YOUNG_ANDROID_VERSION 160:
+  // - The FtcLynxColorRangeSensor component was added.
 
   public static final int YOUNG_ANDROID_VERSION = 159;
 
@@ -1084,5 +1172,244 @@ public class YaVersion {
   // Splash Screen Values
   public static final int SPLASH_SURVEY = 1;
 
+  // FIRST Tech Challenge
 
+  public static final int FTC_ACCELERATION_SENSOR_COMPONENT_VERSION = 1;
+
+  // For FTC_ANALOG_INPUT_COMPONENT_VERSION 2:
+  // - The Value property was renamed Voltage.
+  // - The MaxVoltage property was added.
+  public static final int FTC_ANALOG_INPUT_COMPONENT_VERSION = 2;
+
+  public static final int FTC_ANALOG_OUTPUT_COMPONENT_VERSION = 1;
+
+  // For FTC_BNO055IMU_COMPONENT_VERSION 2:
+  // - The AngularVelocityToAxesReference method was deprecated.
+  // - The AngularVelocityFirstAngleRate method was renamed AngularVelocityXRotationRate.
+  // - The AngularVelocitySecondAngleRate method was renamed AngularVelocityYRotationRate.
+  // - The AngularVelocityThirdAngleRate method was renamed AngularVelocityZRotationRate.
+  // For FTC_BNO055IMU_COMPONENT_VERSION 3:
+  // - The UseExternalCrystal property was added.
+  public static final int FTC_BNO055IMU_COMPONENT_VERSION = 3;
+
+  // For FTC_COLOR_SENSOR_COMPONENT_VERSION 2:
+  // - The ColorToHSV method was renamed ConvertColorToHSV.
+  // - The HSVToColor method was renamed ConvertHSVToColor.
+  // - The HSVToColorWithAlpha method was renamed ConvertHSVToColorWithAlpha.
+  // - The RGBToHSV method was renamed ConvertRGBToHSV.
+  // - The ARGB method was renamed CreateARGB.
+  // - The RGB method was renamed CreateRGB.
+  // - The Alpha method was renamed ExtractAlpha.
+  // - The Red method was renamed ExtractRed.
+  // - The Green method was renamed ExtractGreen.
+  // - The Blue method was renamed ExtractBlue.
+  // - The Hue method was renamed ExtractHue.
+  // - The Saturation method was renamed ExtractSaturation.
+  // - The Value method was renamed ExtractValue.
+  public static final int FTC_COLOR_SENSOR_COMPONENT_VERSION = 2;
+
+  // For FTC_COMPASS_SENSOR_COMPONENT_VERSION 2:
+  // - The Mode_MEASUREMENT property was renamed CompassMode_MEASUREMENT_MODE.
+  // - The Mode_CALIBRATION property was renamed CompassMode_CALIBRATION_MODE.
+  // For FTC_COMPASS_SENSOR_COMPONENT_VERSION 3:
+  // - The MAX_NEW_I2C_ADDRESS, MIN_NEW_I2C_ADDRESS, I2cAddress, Acceleration, and MagneticFlux
+  // properties were added.
+  // - The IsCalibrating, GetX, GetY, and GetZ methods were added.
+  public static final int FTC_COMPASS_SENSOR_COMPONENT_VERSION = 3;
+
+  public static final int FTC_CR_SERVO_COMPONENT_VERSION = 1;
+
+  // For FTC_DC_MOTOR_COMPONENT_VERSION 2:
+  // - The ChannelMode property was renamed Mode.
+  // For FTC_DC_MOTOR_COMPONENT_VERSION 3:
+  // - The RunMode_RUN_USING_ENCODERS property was renamed RunMode_RUN_USING_ENCODER.
+  // - The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
+  // - The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
+  // - The SetPowerFloat method was deprecated.
+  // - The MaxSpeed property was added.
+  // - The ZeroPowerBehavior property was added.
+  // - The ZeroPowerBehavior_BRAKE property was added.
+  // - The ZeroPowerBehavior_FLOAT property was added.
+  public static final int FTC_DC_MOTOR_COMPONENT_VERSION = 3;
+
+  // For FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION 2:
+  // - The SetMotorPowerForGroup function was added.
+  // - The BatteryVoltage property was added.
+  // - The SetGearRatio function was added.
+  // - The GetGearRatio function was added.
+  // - The SetDifferentialControlLoopCoefficients function was added.
+  // - The GetDifferentialControlLoopCoefficientP function was added.
+  // - The GetDifferentialControlLoopCoefficientI function was added.
+  // - The GetDifferentialControlLoopCoefficientD function was added.
+  // For FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION 3:
+  // - The MotorControllerDeviceMode property setter was added.
+  // For FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION 4:
+  // - The DeviceMode_READ_ONLY property was deprecated.
+  // - The DeviceMode_WRITE_ONLY property was deprecated.
+  // - The MotorControllerDeviceMode property was deprecated.
+  // For FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION 5:
+  // - The RunMode_RUN_USING_ENCODERS property was renamed RunMode_RUN_USING_ENCODER.
+  // - The RunMode_RUN_WITHOUT_ENCODERS property was renamed RunMode_RUN_WITHOUT_ENCODER.
+  // - The RunMode_RESET_ENCODERS property was renamed RunMode_STOP_AND_RESET_ENCODER.
+  // - The SetMotorChannelMode method was renamed SetMotorMode.
+  // - The GetMotorChannelMode method was renamed GetMotorMode.
+  // - The SetMotorPowerFloat method was deprecated.
+  // - The SetMotorMaxSpeed method was added.
+  // - The GetMotorMaxSpeed method was added.
+  // - The ZeroPowerBehavior_BRAKE property was added.
+  // - The ZeroPowerBehavior_FLOAT property was added.
+  // - The SetMotorZeroPowerBehavior method was added.
+  // - The GetMotorZeroPowerBehavior method was added.
+  public static final int FTC_DC_MOTOR_CONTROLLER_COMPONENT_VERSION = 5;
+
+  // For FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION 2:
+  // - The GetI2cReadCache method was renamed GetCopyOfReadBuffer.
+  // - The GetI2cWriteCache method was renamed GetCopyOfWriteBuffer.
+  // - The SetI2cWriteCache method was renamed CopyBufferIntoWriteBuffer.
+  // - The ReadI2cCacheFromModule method was renamed ReadI2cCacheFromController.
+  // - The WriteI2cCacheToModule method was renamed WriteI2cCacheToController.
+  // - The WriteI2cPortFlagOnlyToModule method was renamed WriteI2cPortFlagOnlyToController.
+  // For FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION 3:
+  // - The ClearI2cPortActionFlag method was added.
+  // For FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION 4:
+  // - The GetAnalogInputValue method was renamed GetAnalogInputVoltage.
+  // - The MaxAnalogInputVoltage property was added.
+  public static final int FTC_DEVICE_INTERFACE_MODULE_COMPONENT_VERSION = 4;
+
+  public static final int FTC_DIGITAL_CHANNEL_COMPONENT_VERSION = 1;
+
+  public static final int FTC_ELAPSED_TIME_COMPONENT_VERSION = 1;
+
+  // For FTC_GAMEPAD_COMPONENT_VERSION 2:
+  // - The Type property was added.
+  public static final int FTC_GAMEPAD_COMPONENT_VERSION = 2;
+
+  // For FTC_GYRO_SENSOR_COMPONENT_VERSION 2:
+  // - The Calibrate method was added.
+  // - The IsCalibrating method was added.
+  // - The ResetZAxisIntegrator method was added.
+  // - The HeadingMode_CARDINAL property was added.
+  // - The HeadingMode_CARTESIAN property was added.
+  // - The HeadingMode property was added.
+  // - The Heading property was added.
+  // - The RawX property was added.
+  // - The RawY property was added.
+  // - The RawZ property was added.
+  // For FTC_GYRO_SENSOR_COMPONENT_VERSION 3:
+  // - The MAX_NEW_I2C_ADDRESS property was added.
+  // - The MIN_NEW_I2C_ADDRESS property was added.
+  // - The I2cAddress property was added
+  // For FTC_GYRO_SENSOR_COMPONENT_VERSION 4:
+  // - The Rotation property was renamed RotationFraction.
+  // - The RawVoltage property was added.
+  // For FTC_GYRO_SENSOR_COMPONENT_VERSION 5:
+  // - The IntegratedZValue property was added.
+  public static final int FTC_GYRO_SENSOR_COMPONENT_VERSION = 5;
+
+  // For FTC_I2C_DEVICE_COMPONENT_VERSION 2:
+  // - The GetI2cReadCache method was renamed GetCopyOfReadBuffer.
+  // - The GetI2cWriteCache method was renamed GetCopyOfWriteBuffer.
+  // - The SetI2cWriteCache method was renamed CopyBufferIntoWriteBuffer.
+  // - The ReadI2cCacheFromModule method was renamed ReadI2cCacheFromController.
+  // - The WriteI2cCacheToModule method was renamed WriteI2cCacheToController.
+  // - The WriteI2cPortFlagOnlyToModule method was renamed WriteI2cPortFlagOnlyToController.
+  public static final int FTC_I2C_DEVICE_COMPONENT_VERSION = 2;
+
+  public static final int FTC_I2C_DEVICE_READER_COMPONENT_VERSION = 1;
+
+  public static final int FTC_I2C_DEVICE_SYNCH_COMPONENT_VERSION = 1;
+
+  // For FTC_IR_SEEKER_SENSOR_COMPONENT_VERSION 2:
+  // - The Mode_1200HZ_AC property was renamed Mode_1200HZ.
+  // - The Mode_600HZ_DC property was renamed Mode_600HZ.
+  public static final int FTC_IR_SEEKER_SENSOR_COMPONENT_VERSION = 2;
+
+  public static final int FTC_LED_COMPONENT_VERSION = 1;
+
+  // For FTC_LEGACY_MODULE_COMPONENT_VERSION 2:
+  // - The EnableNxtI2cReadMode method was renamed EnableI2cReadMode.
+  // - The EnableNxtI2cWriteMode method was renamed EnableI2cWriteMode.
+  // - The GetI2cReadCache method was renamed GetCopyOfReadBuffer.
+  // - The GetI2cWriteCache method was renamed GetCopyOfWriteBuffer.
+  // - The IsNxtI2cPortActionFlagSet method was renamed IsI2cPortActionFlagSet.
+  // - The SetI2cWriteCache method was renamed CopyBufferIntoWriteBuffer.
+  // - The SetNxtI2cPortActionFlag method was renamed SetI2cPortActionFlag.
+  // - The ReadI2cCacheFromModule method was renamed ReadI2cCacheFromController.
+  // - The WriteI2cCacheToModule method was renamed WriteI2cCacheToController.
+  // - The WriteI2cPortFlagOnlyToModule method was renamed WriteI2cPortFlagOnlyToController.
+  // For FTC_LEGACY_MODULE_COMPONENT_VERSION 3:
+  // - The ClearI2cPortActionFlag method was added.
+  // For FTC_LEGACY_MODULE_COMPONENT_VERSION 4:
+  // - The ReadAnalog method was renamed ReadAnalogRaw.
+  public static final int FTC_LEGACY_MODULE_COMPONENT_VERSION = 4;
+
+  // For FTC_LIGHT_SENSOR_COMPONENT_VERSION 2:
+  // - The LightDetectedRaw property was renamed RawLightDetected.
+  // - The RawVoltage property was added.
+  // For FTC_LIGHT_SENSOR_COMPONENT_VERSION 3:
+  // - The RawLightDetectedMax property was added.
+  public static final int FTC_LIGHT_SENSOR_COMPONENT_VERSION = 3;
+
+  // For FTC_LINEAR_OP_MODE_COMPONENT_VERSION 2:
+  // - The WaitOneHardwareCycle method was renamed WaitOneFullHardwareCycle.
+  // For FTC_LINEAR_OP_MODE_COMPONENT_VERSION 3:
+  // - The Time property was added.
+  // For FTC_LINEAR_OP_MODE_COMPONENT_VERSION 4:
+  // - Idle method was added.
+  // - IsStarted method was added.
+  // - IsStopRequested method was added.
+  // - RequestOpModeStop method was added.
+  // For FTC_LINEAR_OP_MODE_COMPONENT_VERSION 5:
+  // - The Autonomous and Group properties were added.
+  public static final int FTC_LINEAR_OP_MODE_COMPONENT_VERSION = 5;
+
+  public static final int FTC_LYNX_COLOR_RANGE_SENSOR_COMPONENT_VERSION = 1;
+
+  public static final int FTC_MR_RANGE_SENSOR_COMPONENT_VERSION = 1;
+
+  // For FTC_OP_MODE_COMPONENT_VERSION 2:
+  // - The Time property was added.
+  // For FTC_OP_MODE_COMPONENT_VERSION 3:
+  // - RequestOpModeStop method was added.
+  // For FTC_OP_MODE_COMPONENT_VERSION 4:
+  // - The Autonomous and Group properties were added.
+  public static final int FTC_OP_MODE_COMPONENT_VERSION = 4;
+
+  // For FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION 2:
+  // - The LightDetectedRaw property was renamed RawLightDetected.
+  // - The RawVoltage property was added.
+  // For FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION 3:
+  // - The RawLightDetectedMax property was added.
+  public static final int FTC_OPTICAL_DISTANCE_SENSOR_COMPONENT_VERSION = 3;
+
+  public static final int FTC_PWM_OUTPUT_COMPONENT_VERSION = 1;
+
+  // For FTC_ROBOT_CONTROLLER_COMPONENT_VERSION 2:
+  // - The LogDevices function was added.
+  // For FTC_ROBOT_CONTROLLER_COMPONENT_VERSION 3:
+  // - The TelemetrySorted property was added.
+  // For FTC_ROBOT_CONTROLLER_COMPONENT_VERSION 4:
+  // - The TelemetrySorted property was deprecated.
+  // - The UpdateTelemetry method was added.
+  public static final int FTC_ROBOT_CONTROLLER_COMPONENT_VERSION = 4;
+
+  public static final int FTC_SERVO_COMPONENT_VERSION = 1;
+
+  // For FTC_SERVO_CONTROLLER_COMPONENT_VERSION 2:
+  // - The SetServoPositionAndSpeed function was added.
+  public static final int FTC_SERVO_CONTROLLER_COMPONENT_VERSION = 2;
+
+  // For FTC_TOUCH_SENSOR_COMPONENT_VERSION 2:
+  // - The Status function was added.
+  public static final int FTC_TOUCH_SENSOR_COMPONENT_VERSION = 2;
+
+  // For FTC_TOUCH_SENSOR_MULTIPLEXER_COMPONENT_VERSION 2:
+  // - The Status function was added.
+  public static final int FTC_TOUCH_SENSOR_MULTIPLEXER_COMPONENT_VERSION = 2;
+
+  public static final int FTC_ULTRASONIC_SENSOR_COMPONENT_VERSION = 1;
+
+  public static final int FTC_VOLTAGE_SENSOR_COMPONENT_VERSION = 1;
+
+  public static final int FTC_VUFORIA_LOCALIZER_COMPONENT_VERSION = 1;
 }

@@ -409,6 +409,21 @@
          target="JsonComponentDescription"/>
   </target>
 
+  <!-- FIRST Tech Challenge -->
+  <!-- ====================================================================
+       components_FtcAars builds:
+       - build/components/ftc/Analytics/...
+       - build/components/ftc/FtcCommon/...
+       - build/components/ftc/Hardware/...
+       - build/components/ftc/ModernRobotics/...
+       - build/components/ftc/RobotCore/...
+       - build/components/ftc/WirelessP2p/...
+       ==================================================================== -->
+  <target name="components_FtcAars">
+    <ant inheritAll="false" useNativeBaseDir="true" dir="${appinventor.dir}/components"
+         target="FtcAars"/>
+  </target>
+
   <!-- ====================================================================
        components_XmlComponentDescription builds:
        - build/components/ya_lang_def.xml

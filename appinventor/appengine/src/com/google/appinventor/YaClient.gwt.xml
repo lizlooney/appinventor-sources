@@ -111,25 +111,45 @@
   <!-- English language, independent of country -->
   <extend-property name="locale" values="en"/>
   <!-- Simplified Chinese -->
+  <!-- FIRST Tech Challenge
   <extend-property name="locale" values="zh_CN"/>
+  -->
   <!-- Traditional Chinese -->
+  <!-- FIRST Tech Challenge
   <extend-property name="locale" values="zh_TW"/>
+  -->
   <!-- Spanish from Spain -->
+  <!-- FIRST Tech Challenge
   <extend-property name="locale" values="es_ES"/>
+  -->
   <!-- French -->
+  <!-- FIRST Tech Challenge
   <extend-property name="locale" values="fr_FR"/>
+  -->
   <!-- Italian -->
+  <!-- FIRST Tech Challenge
   <extend-property name="locale" values="it_IT"/>
+  -->
   <!-- Russian -->
+  <!-- FIRST Tech Challenge
   <extend-property name="locale" values="ru"/>
+  -->
   <!-- Korean -->
+  <!-- FIRST Tech Challenge
   <extend-property name="locale" values="ko_KR"/>
+  -->
   <!-- Swedish -->
+  <!-- FIRST Tech Challenge
   <extend-property name="locale" values="sv"/>
+  -->
   <!-- Portuguese (Brazilian) -->
+  <!-- FIRST Tech Challenge
   <extend-property name="locale" values="pt_BR"/>
+  -->
   <!-- Dutch -->
+  <!-- FIRST Tech Challenge
   <extend-property name="locale" values="nl"/>
+  -->
 
   <set-property-fallback name="locale" value="en"/>
 
