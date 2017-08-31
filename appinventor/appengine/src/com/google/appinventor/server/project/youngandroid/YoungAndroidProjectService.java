@@ -236,7 +236,7 @@ public final class YoungAndroidProjectService extends CommonProjectService {
             "\"$Type\":\"FtcGamepad\"," +
             "\"$Version\":\"" + YaVersion.FTC_GAMEPAD_COMPONENT_VERSION + "\"," +
             "\"GamepadNumber\":\"2\"," +
-            "\"Uuid\":\"" + random.nextInt() + "\"}," +
+            "\"Uuid\":\"" + random.nextInt() + "\"}" +
         "]" +
         "}}\n|#";
   }
