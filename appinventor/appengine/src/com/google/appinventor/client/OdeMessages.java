@@ -7230,6 +7230,22 @@ public interface OdeMessages extends Messages {
   @Description("")
   String RedProperties();
 
+  @DefaultMessage("RelicRecoveryVuMark_UNKNOWN")
+  @Description("")
+  String RelicRecoveryVuMark_UNKNOWNProperties();
+
+  @DefaultMessage("RelicRecoveryVuMark_LEFT")
+  @Description("")
+  String RelicRecoveryVuMark_LEFTProperties();
+
+  @DefaultMessage("RelicRecoveryVuMark_CENTER")
+  @Description("")
+  String RelicRecoveryVuMark_CENTERProperties();
+
+  @DefaultMessage("RelicRecoveryVuMark_RIGHT")
+  @Description("")
+  String RelicRecoveryVuMark_RIGHTProperties();
+
   @DefaultMessage("RightBumper")
   @Description("")
   String RightBumperProperties();
@@ -7675,6 +7691,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("GetReadBuffer")
   @Description("")
   String GetReadBufferMethods();
+
+  @DefaultMessage("GetRelicRecoveryVuMark")
+  @Description("")
+  String GetRelicRecoveryVuMarkMethods();
 
   @DefaultMessage("GetRobotLocation")
   @Description("")
