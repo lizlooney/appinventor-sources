@@ -156,7 +156,7 @@ public class Ode implements EntryPoint {
       "Challenge&rsquo;s online Control System wiki:" +
       "</p>" +
       "<p>" +
-      "<a href=\"https://github.com/ftctechnh/ftc_app/wiki\">" +
+      "<a href=\"https://github.com/ftctechnh/ftc_app/wiki\" target=\"_blank\">" +
       "https://github.com/ftctechnh/ftc_app/wiki</a>" +
       "</p>";
 

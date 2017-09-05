@@ -75,18 +75,18 @@
     <copy toFile="${classes.files.dir}/httpcore-4.3.2.jar" file="${lib.dir}/apache-http/httpcore-4.3.2.jar" />
     <copy toFile="${classes.files.dir}/httpmime-4.3.4.jar" file="${lib.dir}/apache-http/httpmime-4.3.4.jar" />
     <!-- FIRST Tech Challenge: Copy classes jars from FTC aar files. -->
-    <copy toFile="${classes.files.dir}/FtcAnalytics.jar" file="${build.dir}/components/ftc/Analytics/classes.jar" />
-    <copy toFile="${classes.files.dir}/FtcBlocks.jar" file="${build.dir}/components/ftc/Blocks/classes.jar" />
-    <copy toFile="${classes.files.dir}/FtcCommon.jar" file="${build.dir}/components/ftc/FtcCommon/classes.jar" />
-    <copy toFile="${classes.files.dir}/FtcGson.jar" file="${lib.dir}/ftc/libs/gson-2.8.0.jar" />
-    <copy toFile="${classes.files.dir}/FtcGsonExtras.jar" file="${lib.dir}/ftc/libs/gson-extras-0.2.1.jar" />
-    <copy toFile="${classes.files.dir}/FtcHardware.jar" file="${build.dir}/components/ftc/Hardware/classes.jar" />
-    <copy toFile="${classes.files.dir}/FtcInspection.jar" file="${build.dir}/components/ftc/Inspection/classes.jar" />
-    <copy toFile="${classes.files.dir}/FtcJavac.jar" file="${lib.dir}/ftc/libs/javac.jar" />
-    <copy toFile="${classes.files.dir}/FtcRobotCore.jar" file="${build.dir}/components/ftc/RobotCore/classes.jar" />
-    <copy toFile="${classes.files.dir}/FtcSupportAnnotations.jar" file="${lib.dir}/ftc/libs/support-annotations-23.4.0.jar" />
-    <copy toFile="${classes.files.dir}/FtcVuforia.jar" file="${lib.dir}/ftc/libs/Vuforia.jar" />
-    <copy toFile="${classes.files.dir}/FtcWirelessP2p.jar" file="${build.dir}/components/ftc/WirelessP2p/classes.jar" />
+    <copy toFile="${classes.files.dir}/FtcAnalytics.jar"          file="${build.dir}/components/ftc/Analytics/classes.jar" />
+    <copy toFile="${classes.files.dir}/FtcBlocks.jar"             file="${build.dir}/components/ftc/Blocks/classes.jar" />
+    <copy toFile="${classes.files.dir}/FtcCommon.jar"             file="${build.dir}/components/ftc/FtcCommon/classes.jar" />
+    <copy toFile="${classes.files.dir}/FtcHardware.jar"           file="${build.dir}/components/ftc/Hardware/classes.jar" />
+    <copy toFile="${classes.files.dir}/FtcInspection.jar"         file="${build.dir}/components/ftc/Inspection/classes.jar" />
+    <copy toFile="${classes.files.dir}/FtcRobotCore.jar"          file="${build.dir}/components/ftc/RobotCore/classes.jar" />
+    <copy toFile="${classes.files.dir}/FtcGson.jar"               file="${build.dir}/components/ftc/RobotCore/libs/gson-2.8.0.jar" />
+    <copy toFile="${classes.files.dir}/FtcGsonExtras.jar"         file="${build.dir}/components/ftc/RobotCore/libs/gson-extras-0.2.1.jar" />
+    <copy toFile="${classes.files.dir}/FtcJavac.jar"              file="${build.dir}/components/ftc/RobotCore/libs/javac.jar" />
+    <copy toFile="${classes.files.dir}/FtcSupportAnnotations.jar" file="${build.dir}/components/ftc/RobotCore/libs/support-annotations-23.4.0.jar" />
+    <copy toFile="${classes.files.dir}/FtcVuforia.jar"            file="${build.dir}/components/ftc/RobotCore/libs/Vuforia.jar" />
+    <copy toFile="${classes.files.dir}/FtcWirelessP2p.jar"        file="${build.dir}/components/ftc/WirelessP2p/classes.jar" />
     <copy toFile="${classes.files.dir}/fusiontables.jar" file="${lib.dir}/fusiontables/fusiontables.jar" />
     <copy toFile="${classes.files.dir}/firebase.jar" file="${lib.dir}/firebase/firebase-client-android-2.5.0.jar" />
     <copy toFile="${classes.files.dir}/google-api-client-beta.jar" file="${lib.dir}/oauth/google-api-client-1.10.3-beta.jar" />
