@@ -46,7 +46,7 @@ import com.google.appinventor.components.runtime.util.MediaUtil;
           "property will be the name of the file where the image is stored. In order to not " +
           "fill up storage, a maximum of 10 images will be stored.  Picking more images " +
           "will delete previous images, in order from oldest to newest.",
-    category = ComponentCategory.MEDIA)
+    category = ComponentCategory.USERINTERFACE) // modified for FIRST Tech Challenge
 
 @UsesPermissions(permissionNames = "android.permission.WRITE_EXTERNAL_STORAGE")
 @SimpleObject

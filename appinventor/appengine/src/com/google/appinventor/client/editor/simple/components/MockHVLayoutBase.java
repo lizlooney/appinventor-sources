@@ -30,7 +30,9 @@ import com.google.gwt.user.client.Element;
 abstract class MockHVLayoutBase extends MockLayout {
 
   // Gap between adjacent components to allow for the insertion divider
-  private static final int COMPONENT_SPACING = 5;
+  // Modified for FIRST Tech Challenge
+  private static final int COMPONENT_SPACING = 0;
+  //private static final int COMPONENT_SPACING = 5;
 
   // The color of the insertion divider
   private static final String DIVIDER_COLOR = "#0000ff";

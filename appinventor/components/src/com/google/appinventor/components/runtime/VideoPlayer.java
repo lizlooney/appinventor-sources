@@ -96,7 +96,7 @@ import java.io.IOException;
         + "by shortening them or re-encoding the video into a more compact format.</p>"
         + "<p>You can also set the media source to a URL that points to a streaming video, "
         + "but the URL must point to the video file itself, not to a program that plays the video.",
-    category = ComponentCategory.MEDIA)
+    category = ComponentCategory.USERINTERFACE) // modified for FIRST Tech Challenge
 @SimpleObject
 @UsesPermissions(permissionNames = "android.permission.INTERNET")
 public final class VideoPlayer extends AndroidViewComponent implements

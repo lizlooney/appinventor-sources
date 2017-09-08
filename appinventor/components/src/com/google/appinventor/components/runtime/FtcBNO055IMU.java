@@ -37,7 +37,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.robotcore.external.navigation.Quaternion;
 import org.firstinspires.ftc.robotcore.external.navigation.Temperature;
 import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
-import org.firstinspires.ftc.robotcore.internal.AppUtil;
+import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
 
 import android.text.TextUtils;
 

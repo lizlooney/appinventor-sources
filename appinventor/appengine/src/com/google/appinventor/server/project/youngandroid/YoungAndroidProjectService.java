@@ -222,9 +222,21 @@ public final class YoungAndroidProjectService extends CommonProjectService {
         "\"Properties\":{\"$Name\":\"" + formName + "\",\"$Type\":\"Form\"," +
         "\"$Version\":\"" + YaVersion.FORM_COMPONENT_VERSION + "\",\"Uuid\":\"" + 0 + "\"," +
         "\"Title\":\"" + formName + "\",\"AppName\":\"" + packageName +"\"" +
-        // FIRST Tech Challenge: Add FtcRobotController component.
+        // FIRST Tech Challenge: Add FtcRobotController and FtcGamepad components.
         ",\"$Components\":[" +
-        "{\"$Name\":\"FtcRobotController1\",\"$Type\":\"FtcRobotController\",\"$Version\":\"" + YaVersion.FTC_ROBOT_CONTROLLER_COMPONENT_VERSION + "\",\"Uuid\":\"" + random.nextInt() + "\"}" +
+        "{\"$Name\":\"FtcRobotController1\"," +
+            "\"$Type\":\"FtcRobotController\"," +
+            "\"$Version\":\"" + YaVersion.FTC_ROBOT_CONTROLLER_COMPONENT_VERSION + "\"," +
+            "\"Uuid\":\"" + random.nextInt() + "\"}," +
+        "{\"$Name\":\"FtcGamepad1\"," +
+            "\"$Type\":\"FtcGamepad\"," +
+            "\"$Version\":\"" + YaVersion.FTC_GAMEPAD_COMPONENT_VERSION + "\"," +
+            "\"Uuid\":\"" + random.nextInt() + "\"}," +
+        "{\"$Name\":\"FtcGamepad2\"," +
+            "\"$Type\":\"FtcGamepad\"," +
+            "\"$Version\":\"" + YaVersion.FTC_GAMEPAD_COMPONENT_VERSION + "\"," +
+            "\"GamepadNumber\":\"2\"," +
+            "\"Uuid\":\"" + random.nextInt() + "\"}" +
         "]" +
         "}}\n|#";
   }

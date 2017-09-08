@@ -225,6 +225,7 @@ public final class ErrorMessages {
   public static final int ERROR_FTC_INVALID_ANGULAR_VELOCITY = 2931;
   public static final int ERROR_FTC_INVALID_OBJECT = 2932;
   public static final int ERROR_FTC_INVALID_VECTOR_F = 2933;
+  public static final int ERROR_FTC_INVALID_RELIC_RECOVERY_VU_MARK = 2934;
 
   // Image errors
   public static final int ERROR_IMAGE_CANNOT_ROTATE = 3001;
@@ -598,10 +599,10 @@ public final class ErrorMessages {
     errorMessages.put(ERROR_FTC_INVALID_OPEN_GL_MATRIX,
         "The specified OpenGLMatrix (%s) is not valid.");
     errorMessages.put(ERROR_FTC_INVALID_AXES_REFERENCE,
-        "The specified axes reference \"%s\" is not valid. The valid values are " +
+        "The specified AxesReference \"%s\" is not valid. The valid values are " +
         "EXTRINSIC and INTRINSIC.");
     errorMessages.put(ERROR_FTC_INVALID_AXES_ORDER,
-        "The specified axes ORDER \"%s\" is not valid. The valid values are " +
+        "The specified AxesOrder \"%s\" is not valid. The valid values are " +
         "XYX, XYZ, XZX, XZY, YXY, YXZ, YZX, YZY, ZXY, ZXZ, ZYX, and ZYZ.");
     errorMessages.put(ERROR_FTC_INVALID_DISTANCE_UNIT,
         "The specified distance unit \"%s\" is not valid. The valid values are " +
@@ -620,6 +621,9 @@ public final class ErrorMessages {
         "The specified Object (%s) is not valid.");
     errorMessages.put(ERROR_FTC_INVALID_VECTOR_F,
         "The specified VectorF (%s) is not valid.");
+    errorMessages.put(ERROR_FTC_INVALID_RELIC_RECOVERY_VU_MARK,
+        "The specified RelicRecoveryVuMark \"%s\" is not valid. The valid values are " +
+        "UNKNOWN, LEFT, CENTER, and RIGHT.");
 
     // Image errors
     errorMessages.put(ERROR_IMAGE_CANNOT_ROTATE,

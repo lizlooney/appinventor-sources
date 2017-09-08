@@ -585,6 +585,26 @@ public interface OdeMessages extends Messages {
   @Description("Confirmation message for deleting component(s)")
   String confirmDeleteComponents(String componentNames);
 
+  @DefaultMessage("From my computer")
+  @Description("")
+  String componentImportFromComputer();
+
+  @DefaultMessage("URL")
+  @Description("For importing from a URL")
+  String componentImportFromURL();
+
+  @DefaultMessage("The component database in the project \"{0}\" is corrupt.")
+  @Description("Error message when the component database is not valid.")
+  String componentDatabaseCorrupt(String projectName);
+
+  @DefaultMessage("The extension description of \"{0}\" in the project \"{1}\" is corrupt.")
+  @Description("Error message when the component descriptors for an extension are not parsable.")
+  String extensionDescriptorCorrupt(String extensionName, String projectName);
+
+  @DefaultMessage("The project \"{0}\" contains an invalid extension. App Inventor will attempt to continue.")
+  @Description("Error message when an extension descriptor pathname does not have the correct structure.")
+  String invalidExtensionInProject(String projectName);
+
   //Connect
   @DefaultMessage("Connect")
   @Description("Label of the button leading to Connect related cascade items")
@@ -2614,6 +2634,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String gameClientComponentPallette();
 
+  @DefaultMessage("password")
+  @Description("")
+  String passwordParams();
+
   @DefaultMessage("SoundRecorder")
   @Description("")
   String soundRecorderComponentPallette();
@@ -2898,6 +2922,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("PhoneNumber")
   @Description("")
   String PhoneNumberProperties();
+
+  @DefaultMessage("PhoneNumber")
+  @Description("")
+  String phoneNumberParams();
 
   @DefaultMessage("PhoneNumberList")
   @Description("")
@@ -3519,6 +3547,10 @@ public interface OdeMessages extends Messages {
   @Description("")
   String UsernameProperties();
 
+  @DefaultMessage("username")
+  @Description("")
+  String usernameParams();
+
   @DefaultMessage("XAccel")
   @Description("")
   String XAccelProperties();
@@ -3944,10 +3976,6 @@ public interface OdeMessages extends Messages {
   @Description("")
   String providerParams();
 
-  @DefaultMessage("phoneNumber")
-  @Description("")
-  String phoneNumberParams();
-
   @DefaultMessage("status")
   @Description("")
   String statusParams();
@@ -4228,7 +4256,7 @@ public interface OdeMessages extends Messages {
   @Description("")
   String queryParams();
 
-  @DefaultMessage("ImagePath")
+  @DefaultMessage("imagePath")
   @Description("")
   String imagePathParams();
 
@@ -6072,10 +6100,6 @@ public interface OdeMessages extends Messages {
   @Description("")
   String createWelcomeDialogText();
 
-  @DefaultMessage("<h2>This is the Splash Screen. Make this an iframe to your splash screen.</h2>")
-  @Description("")
-  String createWelcomeDialogMessage();
-
   @DefaultMessage("Continue")
   @Description("")
   String createWelcomeDialogButton();
@@ -6249,6 +6273,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("Português do Brasil")
   @Description("")
   String switchToPortugueseBR();
+
+  @DefaultMessage("Nederlands")
+  @Description("")
+  String switchToDutch();
 
   @DefaultMessage("Progress Bar")
   @Description("")
@@ -7202,6 +7230,22 @@ public interface OdeMessages extends Messages {
   @Description("")
   String RedProperties();
 
+  @DefaultMessage("RelicRecoveryVuMark_UNKNOWN")
+  @Description("")
+  String RelicRecoveryVuMark_UNKNOWNProperties();
+
+  @DefaultMessage("RelicRecoveryVuMark_LEFT")
+  @Description("")
+  String RelicRecoveryVuMark_LEFTProperties();
+
+  @DefaultMessage("RelicRecoveryVuMark_CENTER")
+  @Description("")
+  String RelicRecoveryVuMark_CENTERProperties();
+
+  @DefaultMessage("RelicRecoveryVuMark_RIGHT")
+  @Description("")
+  String RelicRecoveryVuMark_RIGHTProperties();
+
   @DefaultMessage("RightBumper")
   @Description("")
   String RightBumperProperties();
@@ -7647,6 +7691,10 @@ public interface OdeMessages extends Messages {
   @DefaultMessage("GetReadBuffer")
   @Description("")
   String GetReadBufferMethods();
+
+  @DefaultMessage("GetRelicRecoveryVuMark")
+  @Description("")
+  String GetRelicRecoveryVuMarkMethods();
 
   @DefaultMessage("GetRobotLocation")
   @Description("")

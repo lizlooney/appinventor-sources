@@ -40,6 +40,8 @@
   <property name="ExternalComponent.dir" location="${local.build.dir}/externalComponents" />
   <property name="ExternalComponent-class.dir" location="${local.build.dir}/externalComponents-class" />
   <property name="Extensions.dir" location="${local.build.dir}/extensions" />
+  <!-- Can be used by extension authors to use the old-style AIX package layout -->
+  <property name="extensions.packagefqcn" value="false" />
 
   <!-- =====================================================================
        CommonConstants: library of constants used across App Inventor
@@ -147,11 +149,10 @@
         <pathelement location="${public.build.dir}/ftc/FtcCommon/classes.jar" />
         <pathelement location="${public.build.dir}/ftc/Hardware/classes.jar" />
         <pathelement location="${public.build.dir}/ftc/Inspection/classes.jar" />
-        <pathelement location="${public.build.dir}/ftc/ModernRobotics/classes.jar" />
         <pathelement location="${public.build.dir}/ftc/RobotCore/classes.jar" />
         <pathelement location="${public.build.dir}/ftc/WirelessP2p/classes.jar" />
         <!-- FIRST Tech Challenge: Include FTC vuforia jar. -->
-        <pathelement location="${lib.dir}/ftc/Vuforia.jar" />
+        <pathelement location="${lib.dir}/ftc/libs/Vuforia.jar" />
         <pathelement location="${lib.dir}/fusiontables/fusiontables.jar" />
         <pathelement location="${lib.dir}/firebase/firebase-client-android-2.5.0.jar" />
         <pathelement location="${lib.dir}/oauth/google-api-client-1.10.3-beta.jar" />
@@ -269,7 +270,6 @@
           <pathelement location="${public.build.dir}/ftc/FtcCommon/classes.jar" />
           <pathelement location="${public.build.dir}/ftc/Hardware/classes.jar" />
           <pathelement location="${public.build.dir}/ftc/Inspection/classes.jar" />
-          <pathelement location="${public.build.dir}/ftc/ModernRobotics/classes.jar" />
           <pathelement location="${public.build.dir}/ftc/RobotCore/classes.jar" />
           <pathelement location="${public.build.dir}/ftc/WirelessP2p/classes.jar" />
           <pathelement location="${lib.dir}/fusiontables/fusiontables.jar" />
@@ -508,6 +508,7 @@
       <arg value="${AndroidRuntime-class.dir}" />
       <arg value="${buildserver.files.library.dir}"/>
       <arg value="${ExternalComponent-class.dir}"/>
+      <arg value="${extensions.packagefqcn}"/>
       <classpath>
         <pathelement location="${ExternalComponentGenerator-class.dir}" />
         <pathelement location="${lib.dir}/json/json.jar" />
@@ -641,28 +642,25 @@
        ===================================================================== -->
   <target name="FtcAars"
           depends="init">
-    <aar.unzip src="${lib.dir}/ftc/Analytics-release.aar"
+    <aar.unzip src="${lib.dir}/ftc/libs/Analytics-release.aar"
                name="Analytics"
                dest="${public.build.dir}/ftc/Analytics" />
-    <aar.unzip src="${lib.dir}/ftc/Blocks-release.aar"
+    <aar.unzip src="${lib.dir}/ftc/libs/Blocks-release.aar"
                name="Blocks"
                dest="${public.build.dir}/ftc/Blocks" />
-    <aar.unzip src="${lib.dir}/ftc/FtcCommon-release.aar"
+    <aar.unzip src="${lib.dir}/ftc/libs/FtcCommon-release.aar"
                name="FtcCommon"
                dest="${public.build.dir}/ftc/FtcCommon" />
-    <aar.unzip src="${lib.dir}/ftc/Hardware-release.aar"
+    <aar.unzip src="${lib.dir}/ftc/libs/Hardware-release.aar"
                name="Hardware"
                dest="${public.build.dir}/ftc/Hardware" />
-    <aar.unzip src="${lib.dir}/ftc/Inspection-release.aar"
+    <aar.unzip src="${lib.dir}/ftc/libs/Inspection-release.aar"
                name="Inspection"
                dest="${public.build.dir}/ftc/Inspection" />
-    <aar.unzip src="${lib.dir}/ftc/ModernRobotics-release.aar"
-               name="ModernRobotics"
-               dest="${public.build.dir}/ftc/ModernRobotics" />
-    <aar.unzip src="${lib.dir}/ftc/RobotCore-release.aar"
+    <aar.unzip src="${lib.dir}/ftc/libs/RobotCore-release.aar"
                name="RobotCore"
                dest="${public.build.dir}/ftc/RobotCore" />
-    <aar.unzip src="${lib.dir}/ftc/WirelessP2p-release.aar"
+    <aar.unzip src="${lib.dir}/ftc/libs/WirelessP2p-release.aar"
                name="WirelessP2p"
                dest="${public.build.dir}/ftc/WirelessP2p" />
   </target>

@@ -29,6 +29,8 @@
        Define base package path.
        ===================================================================== -->
   <property name="common.pkg" value="com/google/appinventor/common" />
+  <!-- FIRST Tech Challenge: Added ftcrobotcontroller.pkg. -->
+  <property name="ftcrobotcontroller.pkg" value="com/qualcomm/ftcrobotcontroller" />
 
   <!-- =====================================================================
        CommonUtils: library containing utility classes.
@@ -104,10 +106,10 @@
   <!-- =====================================================================
        CommonVersion: library containing version classes.
        ===================================================================== -->
-  <!-- FIRST Tech Challenge: Add FtcConstantsJava to depends. -->
+  <!-- FIRST Tech Challenge: Add BuildConfigJava to depends. -->
   <target name="CommonVersion"
           description="Generate library containing version classes"
-          depends="init,FtcConstantsJava">
+          depends="init,BuildConfigJava">
     <property name="CommonVersion-class.dir" location="${class.dir}/CommonVersion" />
     <mkdir dir="${CommonVersion-class.dir}" />
 
@@ -136,6 +138,8 @@
 
     <ai.javac5 destdir="${CommonVersion-class.dir}" srcdir="${src.dir};${local.build.dir}/src">
       <include name="${common.pkg}/version/*.java" />
+      <!-- FIRST Tech Challenge: Added ftcrobotcontroller.pkg. -->
+      <include name="${ftcrobotcontroller.pkg}/*.java" />
     </ai.javac5>
 
     <jar destfile="${public.build.dir}/CommonVersion.jar">
@@ -150,6 +154,8 @@
       </fileset>
       <fileset dir="${local.build.dir}/src">
         <include name="${common.pkg}/version/*.java"/>
+        <!-- FIRST Tech Challenge: Added ftcrobotcontroller.pkg. -->
+        <include name="${ftcrobotcontroller.pkg}/*.java" />
       </fileset>
   </jar>
 
@@ -209,39 +215,40 @@
 
   <!-- FIRST Tech Challenge -->
 
-  <target name="CheckFtcConstantsJava"
+  <target name="CheckBuildConfigJava"
           depends="init">
-    <uptodate property="FtcConstantsJava.uptodate" targetfile="${local.build.dir}/src/${common.pkg}/version/FtcConstants.java">
-      <srcfiles dir="${lib.dir}/ftc" includes="FtcRobotController-release.apk" />
+    <uptodate property="BuildConfigJava.uptodate" targetfile="${local.build.dir}/src/${ftcrobotcontroller.pkg}/BuildConfig.java">
+      <srcfiles dir="${lib.dir}/ftc/apk" includes="FtcRobotController-release.apk" />
+      <srcfiles dir="${basedir}" includes="BuildConfig.template" />
     </uptodate>
   </target>
 
-  <target name="FtcConstantsJava"
-          description="Generate FtcConstants.java"
-          depends="init,CheckFtcConstantsJava"
-          unless="FtcConstantsJava.uptodate">
-    <mkdir dir="${local.build.dir}/src/${common.pkg}/version/"/>
+  <target name="BuildConfigJava"
+          description="Generate BuildConfig.java"
+          depends="init,CheckBuildConfigJava"
+          unless="BuildConfigJava.uptodate">
+    <mkdir dir="${local.build.dir}/src/${ftcrobotcontroller.pkg}/"/>
     <delete>
-      <fileset dir="${local.build.dir}/src/${common.pkg}/version/">
-        <include name="FtcConstants.java"/>
+      <fileset dir="${local.build.dir}/src/${ftcrobotcontroller.pkg}/">
+        <include name="BuildConfig.java"/>
       </fileset>
     </delete>
     <mkdir dir="${local.build.dir}/tmp/"/>
-    <!-- Extract package, versionCode, and versionName from FtcRobotController-release.apk -->
+    <!-- Extract applicationId, versionCode, and versionName from FtcRobotController-release.apk -->
     <exec executable="${lib.dir}/android/tools/linux/aapt" osfamily="unix"
           output="${local.build.dir}/tmp/FtcRobotController.dump">
-      <arg line = "dump badging ${lib.dir}/ftc/FtcRobotController-release.apk" />
+      <arg line = "dump badging ${lib.dir}/ftc/apk/FtcRobotController-release.apk" />
     </exec>
     <exec executable="${lib.dir}/android/tools/windows/aapt" osfamily="windows"
           output="${local.build.dir}/tmp/FtcRobotController.dump">
-      <arg line = "dump badging ${lib.dir}/ftc/FtcRobotController-release.apk" />
+      <arg line = "dump badging ${lib.dir}/ftc/apk/FtcRobotController-release.apk" />
     </exec>
     <exec executable="${lib.dir}/android/tools/mac/aapt" osfamily="mac"
           output="${local.build.dir}/tmp/FtcRobotController.dump">
-      <arg line = "dump badging ${lib.dir}/ftc/FtcRobotController-release.apk" />
+      <arg line = "dump badging ${lib.dir}/ftc/apk/FtcRobotController-release.apk" />
     </exec>
     <loadfile srcfile="${local.build.dir}/tmp/FtcRobotController.dump"
-              property="ftc.package">
+              property="ftc.application.id">
       <filterchain>
         <linecontains>
           <contains value="versionCode"/>
@@ -304,13 +311,13 @@
         <striplinebreaks/>
       </filterchain>
     </loadfile>
-    <filter token="ftc.package" value="${ftc.package}" />
+    <filter token="ftc.application.id" value="${ftc.application.id}" />
     <filter token="ftc.version.code" value="${ftc.version.code}" />
     <filter token="ftc.version.name" value="${ftc.version.name}" />
     <filter token="ftc.sdk.version" value="${ftc.sdk.version}" />
     <filter token="ftc.target.sdk.version" value="${ftc.target.sdk.version}" />
-    <copy tofile="${local.build.dir}/src/${common.pkg}/version/FtcConstants.java"
-          file="FtcConstants.template" filtering="true" />
+    <copy tofile="${local.build.dir}/src/${ftcrobotcontroller.pkg}/BuildConfig.java"
+          file="BuildConfig.template" filtering="true" />
   </target>
 
 </project>

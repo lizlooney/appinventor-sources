@@ -7,12 +7,6 @@ package com.google.appinventor.components.runtime.ftc;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.qualcomm.ftccommon.DbgLog;
-
-import com.google.appinventor.components.runtime.collect.Maps;
-
-import java.util.Map;
-
 /**
  * R provides dynamic values for R.<type>.<name> identifiers used in
  * FtcRobotControllerActivity.java and FtcRobotControllerSettingsActivity.java.
@@ -24,11 +18,11 @@ public class R {
     final int action_configure_robot;
     final int action_exit_app;
     final int action_inspection_mode;
+    final int action_program_and_manage;
     final int action_programming_mode;
     final int action_restart_robot;
     final int action_settings;
     final int entire_screen;
-    final int RelativeLayout;
     final int menu_buttons;
     final int textDeviceName;
     final int textErrorMessage;
@@ -47,11 +41,11 @@ public class R {
       action_configure_robot = getIdentifier(resources, "action_configure_robot", "id", packageName);
       action_exit_app = getIdentifier(resources, "action_exit_app", "id", packageName);
       action_inspection_mode = getIdentifier(resources, "action_inspection_mode", "id", packageName);
+      action_program_and_manage = getIdentifier(resources, "action_program_and_manage", "id", packageName);
       action_programming_mode = getIdentifier(resources, "action_programming_mode", "id", packageName);
       action_restart_robot = getIdentifier(resources, "action_restart_robot", "id", packageName);
       action_settings = getIdentifier(resources, "action_settings", "id", packageName);
       entire_screen = getIdentifier(resources, "entire_screen", "id", packageName);
-      RelativeLayout = getIdentifier(resources, "RelativeLayout", "id", packageName);
       menu_buttons = getIdentifier(resources, "menu_buttons", "id", packageName);
       textDeviceName = getIdentifier(resources, "textDeviceName", "id", packageName);
       textErrorMessage = getIdentifier(resources, "textErrorMessage", "id", packageName);
@@ -80,29 +74,33 @@ public class R {
     }
   }
   static class Strings {
+    final int appThemeChangeRestartNotifyRC;
+    final int pref_app_theme;
+    final int pref_network_connection_type;
+    final int pref_rc_connected;
+    final int toastConfigureRobotBeforeProgrammingMode;
+    final int toastRestartRobotComplete;
     final int toastRestartingRobot;
     final int toastWifiConfigurationComplete;
-    final int toastConfigureRobotBeforeProgrammingMode;
-    final int pref_rc_connected;
-    final int pref_network_connection_type;
-    final int toastRestartRobotComplete;
 
     Strings(Resources resources, String packageName) {
+      appThemeChangeRestartNotifyRC = getIdentifier(resources, "appThemeChangeRestartNotifyRC", "string", packageName);
+      pref_app_theme = getIdentifier(resources, "pref_app_theme", "string", packageName);
+      pref_network_connection_type = getIdentifier(resources, "pref_network_connection_type", "string", packageName);
+      pref_rc_connected = getIdentifier(resources, "pref_rc_connected", "string", packageName);
+      toastConfigureRobotBeforeProgrammingMode =
+          getIdentifier(resources, "toastConfigureRobotBeforeProgrammingMode", "string", packageName);
+      toastRestartRobotComplete = getIdentifier(resources, "toastRestartRobotComplete", "string", packageName);
       toastRestartingRobot = getIdentifier(resources, "toastRestartingRobot", "string", packageName);
       toastWifiConfigurationComplete =
           getIdentifier(resources, "toastWifiConfigurationComplete", "string", packageName);
-      toastConfigureRobotBeforeProgrammingMode =
-          getIdentifier(resources, "toastConfigureRobotBeforeProgrammingMode", "string", packageName);
-      pref_rc_connected = getIdentifier(resources, "pref_rc_connected", "string", packageName);
-      pref_network_connection_type = getIdentifier(resources, "pref_network_connection_type", "string", packageName);
-      toastRestartRobotComplete = getIdentifier(resources, "toastRestartRobotComplete", "string", packageName);
     }
   }
   static class Xmls {
-    final int preferences;
+    final int app_settings;
 
     Xmls(Resources resources, String packageName) {
-      preferences = getIdentifier(resources, "preferences", "xml", packageName);
+      app_settings = getIdentifier(resources, "app_settings", "xml", packageName);
     }
   }
 
@@ -118,7 +116,7 @@ public class R {
   static Strings string;
   static Xmls xml;
 
-  static void init(Context context) {
+  public static void init(Context context) {
     Resources resources = context.getResources();
     String packageName = context.getPackageName();
     id = new Ids(resources, packageName);

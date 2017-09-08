@@ -29,6 +29,7 @@ import com.google.appinventor.client.boxes.ViewerBox;
 import com.google.appinventor.client.editor.EditorManager;
 import com.google.appinventor.client.editor.FileEditor;
 import com.google.appinventor.client.editor.youngandroid.BlocklyPanel;
+import com.google.appinventor.client.editor.youngandroid.TutorialPanel;
 import com.google.appinventor.client.explorer.commands.ChainableCommand;
 import com.google.appinventor.client.explorer.commands.CommandRegistry;
 import com.google.appinventor.client.explorer.commands.SaveAllEditorsCommand;
@@ -130,6 +131,35 @@ import com.google.appinventor.shared.rpc.project.GalleryApp;
  */
 public class Ode implements EntryPoint {
   private static final Logger LOG = Logger.getLogger(Ode.class.getName());
+
+  // Added for FIRST Tech Challenge.
+  private static final String FTC_DEPRECATION_MESSAGE =
+      "<p>" +
+      "FIRST will continue to support the FTC MIT App Inventor development software for the 2017-" +
+      "2018 season (Relic Recovery). However, FIRST will discontinue support for the FTC MIT App " +
+      "Inventor after the 2017-2018 season." +
+      "</p>" +
+      "<p>" +
+      "Whether your are a new programmer, or a veteran App Inventor user, FIRST strongly " +
+      "recommends that for the 2017-2018 competition season, you switch from the App Inventor to " +
+      "the FTC Blocks Programming Tool." +
+      "</p>" +
+      "<p>" +
+      "The FTC Blocks Programming Tool uses Google&rsquo;s Blockly visual programming language " +
+      "and it is very similar to the MIT App Inventor.  The FTC Blocks Programming Tool has the " +
+      "advantage of being much easier to use (does not require any special software to be " +
+      "installed on your laptop) and it supports most of the FTC programming features, including " +
+      "advanced functions like sensor use and Vuforia computer vision technology." +
+      "</p>" +
+      "<p>" +
+      "Details on how to use the FTC Blocks Programming Tool can be found at the FIRST Tech " +
+      "Challenge&rsquo;s online Control System wiki:" +
+      "</p>" +
+      "<p>" +
+      "<a href=\"https://github.com/ftctechnh/ftc_app/wiki\" target=\"_blank\">" +
+      "https://github.com/ftctechnh/ftc_app/wiki</a>" +
+      "</p>";
+
   // I18n messages
   public static final OdeMessages MESSAGES = GWT.create(OdeMessages.class);
 
@@ -760,7 +790,9 @@ public class Ode implements EntryPoint {
           return;
         }
 
-        splashConfig = result.getSplashConfig();
+        // Modified for FIRST Tech Challenge.
+        splashConfig = new SplashConfig(1000, 500, 400, FTC_DEPRECATION_MESSAGE);
+        //splashConfig = result.getSplashConfig();
 
         if (result.getRendezvousServer() != null) {
           setRendezvousServer(result.getRendezvousServer());
@@ -923,7 +955,7 @@ public class Ode implements EntryPoint {
     mainPanel.add(topPanel, DockPanel.NORTH);
 
     // Create the Tutorial Panel
-    tutorialPanel = new Frame("");
+    tutorialPanel = new TutorialPanel();
     tutorialPanel.setWidth("100%");
     tutorialPanel.setHeight("100%");
     // Initially we do not display it. If the project we load has
@@ -1150,6 +1182,7 @@ public class Ode implements EntryPoint {
     overDeckPanel.setWidth("100%");
     overDeckPanel.add(tutorialPanel);
     overDeckPanel.setCellWidth(tutorialPanel, "0%");
+    overDeckPanel.setCellHeight(tutorialPanel, "100%");
     overDeckPanel.add(deckPanel);
     mainPanel.add(overDeckPanel, DockPanel.CENTER);
     mainPanel.setCellHeight(overDeckPanel, "100%");
@@ -1519,7 +1552,7 @@ public class Ode implements EntryPoint {
         HasHorizontalAlignment.ALIGN_RIGHT,
         HasVerticalAlignment.ALIGN_MIDDLE);
 
-    Image dialogImage = new Image(Ode.getImageBundle().androidGreenSmall());
+    Image dialogImage = new Image(Ode.getImageBundle().codiVert());
 
     Grid messageGrid = new Grid(2, 1);
     messageGrid.getCellFormatter().setAlignment(0,
@@ -1588,21 +1621,26 @@ public class Ode implements EntryPoint {
     message.setStyleName("DialogBox-message");
     FlowPanel holder = new FlowPanel();
     Button ok = new Button(MESSAGES.createWelcomeDialogButton());
-    final CheckBox noshow = new CheckBox(MESSAGES.doNotShow());
+    // Removed for FIRST Tech Challenge.
+    //final CheckBox noshow = new CheckBox(MESSAGES.doNotShow());
     ok.addClickListener(new ClickListener() {
         public void onClick(Widget sender) {
           dialogBox.hide();
+          // Removed for FIRST Tech Challenge.
+          /*
           if (noshow.getValue()) { // User checked the box
             userSettings.getSettings(SettingsConstants.SPLASH_SETTINGS).
               changePropertyValue(SettingsConstants.SPLASH_SETTINGS_VERSION,
                 "" + splashConfig.version);
             userSettings.saveSettings(null);
           }
+          */
           maybeShowNoProjectsDialog();
         }
       });
     holder.add(ok);
-    holder.add(noshow);
+    // Removed for FIRST Tech Challenge.
+    //holder.add(noshow);
     DialogBoxContents.add(message);
     DialogBoxContents.add(holder);
     dialogBox.setWidget(DialogBoxContents);
@@ -1631,6 +1669,9 @@ public class Ode implements EntryPoint {
    * then return false so they do not see it again. Return true to show it
    */
   private boolean shouldShowWelcomeDialog() {
+    // Modified for FIRST Tech Challenge.
+    return true;
+    /*
     if (splashConfig.version == 0) {   // Never show splash if version is 0
       return false;             // Check first to avoid others unnecessary calls
     }
@@ -1647,6 +1688,7 @@ public class Ode implements EntryPoint {
     } else {
       return true;
     }
+    */
   }
 
   /**

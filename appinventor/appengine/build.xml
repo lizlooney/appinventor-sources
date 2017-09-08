@@ -82,7 +82,7 @@
       </fileset>
       <fileset dir="${docs.dir}"/>
       <!-- FIRST Tech Challenge -->
-      <fileset dir="${lib.dir}/ftc" includes="FtcDriverStation-release.apk"/>
+      <fileset dir="${lib.dir}/ftc/apk" includes="FtcDriverStation-release.apk"/>
     </copy>
     <mkdir dir="${build.war.dir}/assets/" />
     <copy todir="${build.war.dir}/assets/" flatten="true">
@@ -488,6 +488,7 @@
       <jvmarg value="-Xss2M"/>  <!-- increase if you see a StackOverflowError -->
       <jvmarg value="-Xmx1G"/>
       <jvmarg line="${XstartOnFirstThread}"/>
+      <jvmarg value="-Dfile.encoding=UTF-8" />
       <arg line="-war"/>
       <arg value="${build.war.dir}"/>
       <arg line="-logLevel INFO -style pretty"/>

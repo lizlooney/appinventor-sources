@@ -31,17 +31,10 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<!--
-Modified for App Inventor by Liz Looney
-Copyright 2011-2016 MIT, All rights reserved
-Released under the Apache License, Version 2.0
-http://www.apache.org/licenses/LICENSE-2.0
--->
-
 <resources>
 
   <!-- Default screen margins, per the Android Design guidelines. -->
-  <dimen name="AI_activity_horizontal_margin">16dp</dimen>
-  <dimen name="AI_activity_vertical_margin">5dp</dimen>
+  <dimen name="activity_horizontal_margin">16dp</dimen>
+  <dimen name="activity_vertical_margin">5dp</dimen>
 
 </resources>

@@ -96,7 +96,7 @@
      -->
 
     <property name="auth.usegoogle" value="true" />
-    <!-- FIRST Tech Challenge: Use local auth. -->
+    <!-- FIRST Tech Challenge: no local auth. -->
     <property name="auth.uselocal" value="false" />
     <!--
     <property name="auth.uselocal" value="true" />

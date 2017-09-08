@@ -25,6 +25,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.Parameters;
@@ -452,6 +453,32 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
           ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
     }
     return false;
+  }
+
+  @SimpleFunction(description = "Returns the RelicRecoveryVuMark of the trackable (specified by number). The trackableNumber is 0, 1, 2, etc.")
+  public String GetRelicRecoveryVuMark(int trackableNumber) {
+    try {
+      if (vuforiaLocalizer != null) {
+        if (trackableNumber >= 0 && trackableNumber < trackableList.size()) {
+          RelicRecoveryVuMark relicRecoveryVuMark =
+              RelicRecoveryVuMark.from((VuforiaTrackableDefaultListener) trackableList.get(trackableNumber).getListener());
+          if (relicRecoveryVuMark != null) {
+            return relicRecoveryVuMark.toString();
+          }
+        } else {
+          form.dispatchErrorOccurredEvent(this, "GetRelicRecoveryVuMark",
+              ErrorMessages.ERROR_FTC_INVALID_TRACKABLE_NUMBER, trackableNumber, 0, trackableList.size() - 1);
+        }
+      } else {
+        form.dispatchErrorOccurredEvent(this, "GetRelicRecoveryVuMark",
+            ErrorMessages.ERROR_FTC_VUFORIA_LOCALIZER_NOT_CREATED);
+      }
+    } catch (Throwable e) {
+      e.printStackTrace();
+      form.dispatchErrorOccurredEvent(this, "GetRelicRecoveryVuMark",
+          ErrorMessages.ERROR_FTC_UNEXPECTED_ERROR, e.toString());
+    }
+    return "";
   }
 
   @SimpleFunction(description = "Return the transform (an OpenGLMatrix) that represents the " +
@@ -1027,6 +1054,59 @@ public final class FtcVuforiaLocalizer extends AndroidNonvisibleComponent
     }
     form.dispatchErrorOccurredEvent(this, functionName,
         ErrorMessages.ERROR_FTC_INVALID_AXES_REFERENCE, axesReference);
+    return null;
+  }
+
+  // RelicRecoveryVuMark enum values
+
+  /**
+   * RelicRecoveryVuMark_UNKNOWN property getter.
+   */
+  @SimpleProperty(description = "The constant for RelicRecoveryVuMark_UNKNOWN. " +
+      "Indicates that the axes remain fixed in the world around the object.",
+      category = PropertyCategory.BEHAVIOR)
+  public String RelicRecoveryVuMark_UNKNOWN() {
+    return RelicRecoveryVuMark.UNKNOWN.toString();
+  }
+
+  /**
+   * RelicRecoveryVuMark_LEFT property getter.
+   */
+  @SimpleProperty(description = "The constant for RelicRecoveryVuMark_LEFT. " +
+      "Indicates that the axes move with the object that is rotating.",
+      category = PropertyCategory.BEHAVIOR)
+  public String RelicRecoveryVuMark_LEFT() {
+    return RelicRecoveryVuMark.LEFT.toString();
+  }
+
+  /**
+   * RelicRecoveryVuMark_CENTER property getter.
+   */
+  @SimpleProperty(description = "The constant for RelicRecoveryVuMark_CENTER. " +
+      "Indicates that the axes move with the object that is rotating.",
+      category = PropertyCategory.BEHAVIOR)
+  public String RelicRecoveryVuMark_CENTER() {
+    return RelicRecoveryVuMark.CENTER.toString();
+  }
+
+  /**
+   * RelicRecoveryVuMark_RIGHT property getter.
+   */
+  @SimpleProperty(description = "The constant for RelicRecoveryVuMark_RIGHT. " +
+      "Indicates that the axes move with the object that is rotating.",
+      category = PropertyCategory.BEHAVIOR)
+  public String RelicRecoveryVuMark_RIGHT() {
+    return RelicRecoveryVuMark.RIGHT.toString();
+  }
+
+  private RelicRecoveryVuMark parseRelicRecoveryVuMark(String relicRecoverVuMark, String functionName) {
+    for (RelicRecoveryVuMark relicRecoverVuMarkValue : RelicRecoveryVuMark.values()) {
+      if (relicRecoverVuMarkValue.toString().equalsIgnoreCase(relicRecoverVuMark)) {
+        return relicRecoverVuMarkValue;
+      }
+    }
+    form.dispatchErrorOccurredEvent(this, functionName,
+        ErrorMessages.ERROR_FTC_INVALID_RELIC_RECOVERY_VU_MARK, relicRecoverVuMark);
     return null;
   }
 
