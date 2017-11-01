@@ -151,8 +151,6 @@
         <pathelement location="${public.build.dir}/ftc/Inspection/classes.jar" />
         <pathelement location="${public.build.dir}/ftc/RobotCore/classes.jar" />
         <pathelement location="${public.build.dir}/ftc/WirelessP2p/classes.jar" />
-        <!-- FIRST Tech Challenge: Include FTC vuforia jar. -->
-        <pathelement location="${lib.dir}/ftc/libs/Vuforia.jar" />
         <pathelement location="${lib.dir}/fusiontables/fusiontables.jar" />
         <pathelement location="${lib.dir}/firebase/firebase-client-android-2.5.0.jar" />
         <pathelement location="${lib.dir}/oauth/google-api-client-1.10.3-beta.jar" />

@@ -225,8 +225,9 @@ public class FtcRobotControllerActivity extends Activity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    RobotLog.onApplicationStart();  // robustify against onCreate() following onDestroy() but using the same app instance, which apparently does happen
     RobotLog.vv(TAG, "onCreate()");
-    R.init(this); // Added for FIRST Tech Challenge.
+    R.init(this); // Added for App Inventor.
   } // Added for App Inventor.
   protected void aiOnCreateFinish() { // Added for App Inventor.
     ThemedActivity.appAppThemeToActivity(getTag(), this); // do this way instead of inherit to help AppInventor
